@@ -1,0 +1,153 @@
+[app-folders]
+folder-children=['System', 'Utilities', 'YaST', 'Pardus', 'b51017c7-5a3a-4de7-9875-0f939e72be73']
+
+[app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[app-folders/folders/System]
+apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Music.desktop', 'org.gnome.SimpleScan.desktop', 'org.gnome.Showtime.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Tour.desktop', 'btop.desktop', 'org.gnome.Yelp.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'cmake-gui.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop', 'io.github.benjamimgois.goverlay.desktop', 'com.github.ztefn.haguichi.desktop', 'htop.desktop', 'jshell-java-openjdk.desktop', 'org.gnome.Software.desktop', 'qvidcap.desktop', 'avahi-discover.desktop', 'jconsole-java-openjdk.desktop', 'vim.desktop', 'org.gnome.Extensions.desktop', 'conky.desktop', 'lstopo.desktop', 'wpgtk.desktop', 'io.github.flattool.Ignition.desktop']
+name='X-GNOME-Shell-System.directory'
+translate=true
+
+[app-folders/folders/Utilities]
+apps=['org.gnome.Decibels.desktop', 'org.gnome.Connections.desktop', 'org.gnome.Papers.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'nvtop.desktop', 'org.wezfurlong.wezterm.desktop', 'timeshift-gtk.desktop', 'org.gnome.Evince.desktop', 'qv4l2.desktop', 'bssh.desktop', 'org.manjaro.pamac.manager.desktop', 'com.mattjakeman.ExtensionManager.desktop', 'Alacritty.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop']
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
+[app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[app-folders/folders/b51017c7-5a3a-4de7-9875-0f939e72be73]
+apps=['Counter-Strike 2.desktop', 'curseforge.desktop', 'Arena Breakout Infinite.desktop', 'DayZ.desktop', 'PEAK.desktop', 'RV There Yet.desktop', 'sklauncher.desktop', 'The Witcher 3 Wild Hunt.desktop', 'bvnc.desktop', 'heroic.desktop']
+name='Jogos'
+translate=false
+
+[background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///home/vinicius/Pictures/Wallpaper/aafcf6cf516a7ed7d12265dabd58bfb1.jpg'
+picture-uri-dark='file:///home/vinicius/Pictures/Wallpaper/aafcf6cf516a7ed7d12265dabd58bfb1.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[break-reminders/eyesight]
+play-sound=true
+
+[break-reminders/movement]
+duration-seconds=uint32 300
+interval-seconds=uint32 1800
+play-sound=true
+
+[calendar]
+show-weekdate=false
+
+[datetime]
+automatic-timezone=true
+
+[input-sources]
+sources=[('xkb', 'br')]
+xkb-options=@as []
+
+[interface]
+clock-show-weekday=false
+color-scheme='prefer-dark'
+
+[notifications]
+application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel']
+show-in-lock-screen=false
+
+[notifications/application/com-obsproject-studio]
+application-id='com.obsproject.Studio.desktop'
+
+[notifications/application/discord]
+application-id='discord.desktop'
+
+[notifications/application/firefox]
+application-id='firefox.desktop'
+
+[notifications/application/gnome-about-panel]
+application-id='gnome-about-panel.desktop'
+
+[notifications/application/gnome-datetime-panel]
+application-id='gnome-datetime-panel.desktop'
+
+[notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[notifications/application/google-chrome]
+application-id='google-chrome.desktop'
+
+[notifications/application/heroic]
+application-id='heroic.desktop'
+
+[notifications/application/org-gnome-baobab]
+application-id='org.gnome.baobab.desktop'
+
+[notifications/application/org-gnome-characters]
+application-id='org.gnome.Characters.desktop'
+
+[notifications/application/org-gnome-console]
+application-id='org.gnome.Console.desktop'
+
+[notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[notifications/application/org-gnome-showtime]
+application-id='org.gnome.Showtime.desktop'
+
+[notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[notifications/application/org-gnome-tweaks]
+application-id='org.gnome.tweaks.desktop'
+
+[notifications/application/org-manjaro-pamac-manager]
+application-id='org.manjaro.pamac.manager.desktop'
+
+[notifications/application/spotify]
+application-id='spotify.desktop'
+
+[notifications/application/steam]
+application-id='steam.desktop'
+
+[peripherals/mouse]
+accel-profile='flat'
+speed=-0.40000000000000002
+
+[peripherals/touchpad]
+two-finger-scrolling-enabled=true
+
+[screensaver]
+color-shading-type='solid'
+idle-activation-enabled=true
+picture-options='zoom'
+picture-uri='file:///home/vinicius/Pictures/Wallpaper/aafcf6cf516a7ed7d12265dabd58bfb1.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[search-providers]
+sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
+
+[session]
+idle-delay=uint32 0
+
+[wm/keybindings]
+move-to-monitor-down=@as []
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-monitor-up=@as []
+move-to-workspace-1=@as []
+move-to-workspace-left=['<Shift><Super>Page_Down']
+move-to-workspace-right=['<Shift><Super>Page_Up']
+switch-to-workspace-left=['<Super>Page_Down']
+switch-to-workspace-right=['<Super>Page_Up']
+toggle-maximized=@as []
+
+[wm/preferences]
+action-middle-click-titlebar='minimize'
+button-layout='appmenu:minimize,maximize,close'
+num-workspaces=3

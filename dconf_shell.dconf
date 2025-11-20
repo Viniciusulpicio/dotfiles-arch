@@ -1,0 +1,161 @@
+[/]
+app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'nvidia-settings.desktop': <{'position': <2>}>, 'firefox.desktop': <{'position': <3>}>, 'postman.desktop': <{'position': <4>}>, 'org.gnome.Epiphany.desktop': <{'position': <5>}>, 'com.obsproject.Studio.desktop': <{'position': <6>}>, 'f3d.desktop': <{'position': <7>}>, 'org.kde.kolourpaint.desktop': <{'position': <8>}>, 'pinta.desktop': <{'position': <9>}>, 'arduino-ide-v2.desktop': <{'position': <10>}>, 'virtualbox.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'System': <{'position': <13>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <14>}>}]
+command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 → r → Enter', 'nautilus', 'r']
+disabled-extensions=['screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'clipboard-history@alexsaveau.dev', 'KeepAwake@jepfa.de', 'hotkeys-popup@pimsnel.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'gestureImprovements@gestures', 'tiling-assistant@leleat-on-github', 'pamac-updates@manjaro.org', 'mediacontrols@cliffniff.github.com', 'display-brightness-ddcutil@themightydeity.github.com', 'pop-shell@system76.com', 'add-to-desktop@tommimon.github.com', 'dash-to-dock@micxgx.gmail.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'discord.desktop', 'code.desktop', 'lunacy.desktop', 'mysql-workbench.desktop', 'steam.desktop', 'org.gnome.Console.desktop']
+welcome-dialog-last-shown-version='49.1'
+
+[extensions/KeepAwake@jepfa.de]
+idle-activation-enabled=false
+idle-delay=0
+idle-dim=false
+restore-state=false
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
+
+[extensions/blur-my-shell]
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'corner'>, 'id': <'effect_000000000002'>, 'params': <{'radius': <24>}>}>, <{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_17527500238104': {'name': <'New pipeline'>, 'effects': <@av []>}}
+settings-version=2
+
+[extensions/blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=30
+
+[extensions/blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.59999999999999998
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[extensions/blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/overview]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/panel]
+brightness=0.59999999999999998
+pipeline='pipeline_default'
+sigma=30
+
+[extensions/blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[extensions/blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[extensions/display-brightness-ddcutil]
+ddcutil-binary-path='/usr/bin/ddcutil'
+ddcutil-queue-ms=130.0
+ddcutil-sleep-multiplier=40.0
+decrease-brightness-shortcut=['<Control>XF86MonBrightnessDown']
+hide-system-indicator=false
+increase-brightness-shortcut=['<Control>XF86MonBrightnessUp']
+only-all-slider=false
+position-system-menu=3.0
+show-all-slider=false
+show-internal-slider=false
+show-value-label=false
+step-change-keyboard=1.0
+
+[extensions/mediacontrols]
+colored-player-icon=true
+elements-order=['ICON', 'LABEL', 'CONTROLS']
+extension-index=uint32 2
+extension-position='Left'
+fixed-label-width=false
+label-width=uint32 110
+labels-order=['TITLE']
+mouse-action-scroll-down='PREVIOUS_TRACK'
+mouse-action-scroll-up='NEXT_TRACK'
+show-control-icons=true
+show-control-icons-next=false
+show-control-icons-play=true
+show-control-icons-previous=false
+show-control-icons-seek-backward=false
+show-control-icons-seek-forward=false
+
+[extensions/pop-shell]
+active-hint=false
+active-hint-border-radius=uint32 0
+focus-left=@as []
+focus-right=@as []
+gap-inner=uint32 0
+gap-outer=uint32 0
+pop-monitor-left=@as []
+pop-monitor-right=@as []
+pop-workspace-down=['<Shift><Control><Alt>Down']
+pop-workspace-up=['<Shift><Control><Alt>Up']
+show-skip-taskbar=true
+show-title=true
+tile-by-default=true
+
+[extensions/system-monitor]
+show-cpu=true
+show-download=false
+show-memory=true
+show-swap=false
+show-upload=false
+
+[extensions/tiling-assistant]
+activate-layout0=@as []
+activate-layout1=@as []
+activate-layout2=@as []
+activate-layout3=@as []
+auto-tile=@as []
+center-window=@as []
+debugging-free-rects=@as []
+debugging-show-tiled-rects=@as []
+default-move-mode=0
+dynamic-keybinding-behavior=2
+enable-tiling-popup=false
+focus-hint=0
+focus-hint-color='rgb(53,132,228)'
+import-layout-examples=false
+last-version-installed=53
+maximize-with-gap=false
+overridden-settings={'org.gnome.mutter.edge-tiling': <true>}
+restore-window=['<Super>Down']
+search-popup-layout=@as []
+single-screen-gap=0
+tile-bottom-half=['<Super>KP_2']
+tile-bottom-half-ignore-ta=@as []
+tile-bottomleft-quarter=['<Super>KP_1']
+tile-bottomleft-quarter-ignore-ta=@as []
+tile-bottomright-quarter=['<Super>KP_3']
+tile-bottomright-quarter-ignore-ta=@as []
+tile-edit-mode=['<Alt>x']
+tile-left-half=['<Super>Left', '<Super>KP_4']
+tile-left-half-ignore-ta=@as []
+tile-maximize=['<Super>Up', '<Super>KP_5']
+tile-maximize-horizontally=@as []
+tile-maximize-vertically=@as []
+tile-right-half=['<Super>Right', '<Super>KP_6']
+tile-right-half-ignore-ta=@as []
+tile-top-half=['<Super>KP_8']
+tile-top-half-ignore-ta=@as []
+tile-topleft-quarter=['<Super>KP_7']
+tile-topleft-quarter-ignore-ta=@as []
+tile-topright-quarter=['<Super>KP_9']
+tile-topright-quarter-ignore-ta=@as []
+tiling-popup-all-workspace=false
+toggle-always-on-top=@as []
+toggle-tiling-popup=@as []
+window-gap=8
+
+[extensions/workspace-indicator]
+embed-previews=true
+
+[weather]
+automatic-location=true
+locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
+
+[world-clocks]
+locations=@av []

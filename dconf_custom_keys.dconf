@@ -1,0 +1,44 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/']
+email=@as []
+home=['<Super>e']
+
+[custom-keybindings/custom0]
+binding='<Super>t'
+command='wezterm'
+name='Wezterm'
+
+[custom-keybindings/custom1]
+binding='<Alt>w'
+command='/home/vinicius/.local/bin/wallpaper-picker.sh'
+name='Wallpaper Picker'
+
+[custom-keybindings/custom2]
+binding='<Alt>f'
+command='wofi'
+name='Wofi'
+
+[custom-keybindings/custom3]
+binding='<Alt>l'
+command='wlogout'
+name='Wlogout'
+
+[custom-keybindings/custom4]
+binding=''
+command='nautilus'
+name='nautilus'
+
+[custom-keybindings/custom5]
+binding='<Control>F5'
+command='/home/seu_usuario/obs-scripts/start_obs_buffer.sh'
+name='Iniciar Replay Buffer OBS'
+
+[custom-keybindings/custom6]
+binding='<Alt>z'
+command='/home/seu_usuario/obs-scripts/save_replay.sh'
+name='Salvar replay OBS'
+
+[custom-keybindings/custom7]
+binding='<Alt>q'
+command='kgx'
+name='Teclado'
