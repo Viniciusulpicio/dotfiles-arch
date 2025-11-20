@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Conky
+Exec=sh -c "sleep 5 && ~/.config/conky/autostart.sh"
+Comment=Inicia o Conky
+Terminal=false
