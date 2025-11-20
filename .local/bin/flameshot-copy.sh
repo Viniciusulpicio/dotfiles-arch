@@ -1,0 +1,1 @@
+/home/vinicius/.rion-dotfiles/.script/flameshot-copy.sh
