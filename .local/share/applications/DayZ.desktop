@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=DayZ
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/221100
+Icon=steam_icon_221100
+Terminal=false
+Type=Application
+Categories=Game;

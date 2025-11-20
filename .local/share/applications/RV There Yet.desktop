@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=RV There Yet?
+Comment=Play this game on Steam
+Exec=steam steam://rungameid/3949040
+Icon=steam_icon_3949040
+Terminal=false
+Type=Application
+Categories=Game;
