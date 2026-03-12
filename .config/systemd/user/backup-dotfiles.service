@@ -1,0 +1,7 @@
+[Unit]
+Description=Backup Automatico Dotfiles (GitHub)
+
+[Service]
+Type=oneshot
+# Caminho exato que você me mandou
+ExecStart=/home/vinicius/Scripts/backup_full.sh

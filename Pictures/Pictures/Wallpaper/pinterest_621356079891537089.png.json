@@ -1,0 +1,458 @@
+{
+    "node_id": "UGluOjYyMTM1NjA3OTg5MTUzNzA4OQ==",
+    "is_quick_promotable": false,
+    "image_signature": "64fea73dd5b540c21ec6db1e456cf56c",
+    "campaign_id": null,
+    "done_by_me": false,
+    "promoted_is_lead_ad": false,
+    "is_native": true,
+    "utm_link": null,
+    "access": [
+        "write",
+        "delete"
+    ],
+    "favorited_by_me": false,
+    "has_required_attribution_provider": false,
+    "seo_alt_text": "",
+    "videos": null,
+    "is_eligible_for_pdp": false,
+    "category": "pinterest",
+    "image_crop": {
+        "min_y": 0,
+        "max_y": 1
+    },
+    "title": "",
+    "domain": "Uploaded by user",
+    "aggregated_pin_data": {
+        "node_id": "QWdncmVnYXRlZFBpbkRhdGE6MzA2MzM0Mzg3OTA1NzIxNzg1Ng==",
+        "has_xy_tags": false,
+        "is_shop_the_look": false,
+        "id": "3063343879057217856",
+        "creator_analytics": null,
+        "aggregated_stats": {
+            "saves": 1,
+            "done": 0
+        },
+        "did_it_data": {
+            "details_count": 0,
+            "responses_count": 0,
+            "tags": [],
+            "images_count": 0,
+            "videos_count": 0,
+            "recommended_count": 0,
+            "rating": -1,
+            "recommend_scores": [
+                {
+                    "score": 1,
+                    "count": 0
+                },
+                {
+                    "score": 0.5,
+                    "count": 0
+                },
+                {
+                    "score": 0,
+                    "count": 0
+                }
+            ],
+            "user_count": 0,
+            "type": "aggregateddiditdata"
+        }
+    },
+    "is_repin": false,
+    "reaction_counts": {},
+    "promoted_is_removable": false,
+    "product_pin_data": null,
+    "is_go_linkless": false,
+    "seo_url": "/pin/621356079891537089/",
+    "shopping_flags": [],
+    "images": {
+        "170x": {
+            "width": 236,
+            "height": 183,
+            "url": "https://i.pinimg.com/236x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg"
+        },
+        "136x136": {
+            "width": 136,
+            "height": 136,
+            "url": "https://i.pinimg.com/136x136/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg"
+        },
+        "236x": {
+            "width": 236,
+            "height": 183,
+            "url": "https://i.pinimg.com/236x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg"
+        },
+        "474x": {
+            "width": 474,
+            "height": 368,
+            "url": "https://i.pinimg.com/474x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg"
+        },
+        "736x": {
+            "width": 736,
+            "height": 571,
+            "url": "https://i.pinimg.com/736x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg"
+        },
+        "orig": {
+            "width": 1952,
+            "height": 1516,
+            "url": "https://i.pinimg.com/originals/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.png",
+            "story_id": "3063343869291757248",
+            "page_id": null
+        }
+    },
+    "digital_media_source_type": null,
+    "is_eligible_for_pre_loved_goods_label": false,
+    "board": {
+        "node_id": "Qm9hcmQ6NjIxMzU2MTQ4NTI5NDc5ODEy",
+        "type": "board",
+        "collaborator_requests_enabled": false,
+        "sectionless_pin_count": 77,
+        "is_featured_for_active_campaign": false,
+        "event_date": null,
+        "images": {
+            "474x": [
+                {
+                    "url": "https://i.pinimg.com/474x/e9/69/1b/e9691baf334ed0d7a9f48543f89c9719.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#161C1D"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/f7/9d/92/f79d92b02637d7d28ad2099de6dd3dbe.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#110E09"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/80/4e/42/804e42b655e327a3e27f543d2a9532fb.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#505546"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/6f/56/e1/6f56e181b95094e3e36d07fb21ef7329.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#34322F"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/bc/49/39/bc4939bd23f2957612d61c6f716e6709.jpg",
+                    "width": 474,
+                    "height": 273,
+                    "dominant_color": "#3B3737"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/a1/fc/0a/a1fc0a31798f3ecbb0b57326dd7e4452.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#262623"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/09/c4/80/09c48088b9b4366cb2d9f7dd8568b197.jpg",
+                    "width": 474,
+                    "height": 316,
+                    "dominant_color": "#102128"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/4a/10/52/4a1052ed1c14680416a04f95a2d66a5d.jpg",
+                    "width": 474,
+                    "height": 266,
+                    "dominant_color": "#11100B"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/be/69/0c/be690cec0b1150e44794193662f5a68c.jpg",
+                    "width": 474,
+                    "height": 265,
+                    "dominant_color": "#221317"
+                },
+                {
+                    "url": "https://i.pinimg.com/474x/de/4c/dc/de4cdc60241afa2f56dc8dddefad1b51.jpg",
+                    "width": 474,
+                    "height": 265,
+                    "dominant_color": "#201F1F"
+                }
+            ]
+        },
+        "follower_count": 1,
+        "should_show_shop_feed": false,
+        "collab_board_email": true,
+        "should_show_more_ideas": true,
+        "viewer_contact_request": null,
+        "access": [
+            "write",
+            "delete"
+        ],
+        "pin_count": 77,
+        "url": "/limasulpicio/wallpaper/",
+        "id": "621356148529479812",
+        "archived_by_me_at": "",
+        "board_order_modified_at": "Sun, 14 Dec 2025 20:18:19 +0000",
+        "event_start_date": null,
+        "collaborator_permissions_setting": 0,
+        "blocking_actions": [],
+        "viewer_collaborator_join_requested": false,
+        "collaborator_invites_enabled": false,
+        "is_collaborative": true,
+        "map_id": "pinterest.ijz1714i",
+        "is_ads_only": false,
+        "sensitivity_screen": {
+            "reason": null,
+            "show_warning": false
+        },
+        "header": null,
+        "allow_homefeed_recommendations": true,
+        "image_cover_url": "https://i.pinimg.com/200x150/4b/88/76/4b8876b47a171a0ef48399761b7dfe24.jpg",
+        "privacy": "public",
+        "featured_board_metadata": null,
+        "category": null,
+        "section_count": 0,
+        "description": "",
+        "collaborated_by_me": false,
+        "collaborator_count": 1,
+        "should_show_board_collaborators": true,
+        "followed_by_me": false,
+        "layout": "default",
+        "name": "wallpaper",
+        "owner": {
+            "node_id": "VXNlcjo2MjEzNTYyMTcyNDc0NDkyNzU=",
+            "country": "BR",
+            "type": "user",
+            "is_partner": false,
+            "is_verified_merchant": false,
+            "domain_url": null,
+            "ads_only_profile_site": null,
+            "locale": "pt-BR",
+            "id": "621356217247449275",
+            "image_xlarge_url": "https://i.pinimg.com/280x280_RS/5d/01/70/5d017060b5efa9fd8bdc2efc7a797fe0.jpg",
+            "indexed": false,
+            "is_private_profile": false,
+            "verified_identity": {},
+            "blocked_by_me": false,
+            "image_small_url": "https://i.pinimg.com/30x30_RS/5d/01/70/5d017060b5efa9fd8bdc2efc7a797fe0.jpg",
+            "first_name": "Vinicius",
+            "twitter_url": null,
+            "full_name": "Vinicius Lima sulpicio",
+            "is_ads_only_profile": false,
+            "image_medium_url": "https://i.pinimg.com/75x75_RS/5d/01/70/5d017060b5efa9fd8bdc2efc7a797fe0.jpg",
+            "is_tastemaker": false,
+            "username": "limasulpicio"
+        },
+        "collaborator_permissions": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15
+        ],
+        "cover_pin": {
+            "pin_id": "621356079891536083",
+            "image_signature": "4b8876b47a171a0ef48399761b7dfe24",
+            "timestamp": 1765721812
+        },
+        "featured_in": []
+    },
+    "is_shoppable": false,
+    "product_metadata": null,
+    "sponsorship": null,
+    "grid_attribution": null,
+    "alt_text": null,
+    "link_utm_applicable_and_replaced": 0,
+    "call_to_action_text": null,
+    "is_downstream_promotion": false,
+    "insertion_id": null,
+    "is_video": false,
+    "debug_info_html": null,
+    "id": "621356079891537089",
+    "link": null,
+    "is_eligible_for_related_products": false,
+    "creator_analytics": null,
+    "is_oos_product": false,
+    "story_pin_data_id": "3063343869291757248",
+    "link_domain": null,
+    "should_open_in_stream": false,
+    "is_promoted": false,
+    "is_stale_product": false,
+    "collection_pin": null,
+    "native_creator": {
+        "node_id": "VXNlcjo2MjEzNTYyMTcyNDc0NDkyNzU=",
+        "is_primary_website_verified": false,
+        "id": "621356217247449275",
+        "is_verified_merchant": false,
+        "image_medium_url": "https://i.pinimg.com/75x75_RS/5d/01/70/5d017060b5efa9fd8bdc2efc7a797fe0.jpg",
+        "username": "limasulpicio",
+        "verified_identity": {},
+        "full_name": "Vinicius Lima sulpicio"
+    },
+    "story_pin_data": {
+        "node_id": "U3RvcnlQaW5EYXRhOjMwNjMzNDM4NjkyOTE3NTcyNDg=",
+        "is_deleted": false,
+        "has_product_pins": false,
+        "id": "3063343869291757248",
+        "last_edited": null,
+        "page_count": 1,
+        "has_affiliate_products": false,
+        "total_video_duration": 0,
+        "metadata": {
+            "version": "0.16.0",
+            "compatible_version": "0.16.0",
+            "is_compatible": false,
+            "showreel_data": null,
+            "pin_title": null,
+            "canvas_aspect_ratio": 1.287598944591029,
+            "template_type": null,
+            "diy_data": null,
+            "root_user_id": "621356217247449275",
+            "basics": null,
+            "recipe_data": null,
+            "root_pin_id": "621356079891537089",
+            "pin_image_signature": "64fea73dd5b540c21ec6db1e456cf56c",
+            "is_editable": false,
+            "is_promotable": true
+        },
+        "pages_preview": [
+            {
+                "blocks": [
+                    {
+                        "image_signature": "64fea73dd5b540c21ec6db1e456cf56c",
+                        "block_style": {
+                            "width": 100,
+                            "y_coord": 0,
+                            "rotation": 0,
+                            "x_coord": 0,
+                            "corner_radius": 0,
+                            "height": 100
+                        },
+                        "block_type": 2,
+                        "image": {
+                            "images": {
+                                "originals": {
+                                    "url": "https://i.pinimg.com/originals/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 1952,
+                                    "height": 1516
+                                },
+                                "1200x": {
+                                    "url": "https://i.pinimg.com/1200x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 1200,
+                                    "height": 931
+                                },
+                                "474x": {
+                                    "url": "https://i.pinimg.com/474x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 474,
+                                    "height": 368
+                                },
+                                "236x": {
+                                    "url": "https://i.pinimg.com/236x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 236,
+                                    "height": 183
+                                },
+                                "736x": {
+                                    "url": "https://i.pinimg.com/736x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 736,
+                                    "height": 571
+                                }
+                            },
+                            "dominant_color": "#c8ba9f"
+                        },
+                        "type": "story_pin_image_block"
+                    }
+                ]
+            }
+        ],
+        "static_page_count": 1,
+        "type": "storypindata",
+        "pages": [
+            {
+                "blocks": [
+                    {
+                        "image_signature": "64fea73dd5b540c21ec6db1e456cf56c",
+                        "block_style": {
+                            "width": 100,
+                            "y_coord": 0,
+                            "rotation": 0,
+                            "x_coord": 0,
+                            "corner_radius": 0,
+                            "height": 100
+                        },
+                        "block_type": 2,
+                        "image": {
+                            "images": {
+                                "originals": {
+                                    "url": "https://i.pinimg.com/originals/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 1952,
+                                    "height": 1516
+                                },
+                                "1200x": {
+                                    "url": "https://i.pinimg.com/1200x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 1200,
+                                    "height": 931
+                                },
+                                "474x": {
+                                    "url": "https://i.pinimg.com/474x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 474,
+                                    "height": 368
+                                },
+                                "236x": {
+                                    "url": "https://i.pinimg.com/236x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 236,
+                                    "height": 183
+                                },
+                                "736x": {
+                                    "url": "https://i.pinimg.com/736x/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.jpg",
+                                    "width": 736,
+                                    "height": 571
+                                }
+                            },
+                            "dominant_color": "#c8ba9f"
+                        },
+                        "type": "story_pin_image_block"
+                    }
+                ]
+            }
+        ]
+    },
+    "type": "pin",
+    "promoted_lead_form": null,
+    "favorite_user_count": 0,
+    "pinner": {
+        "node_id": "VXNlcjo2MjEzNTYyMTcyNDc0NDkyNzU=",
+        "is_primary_website_verified": false,
+        "id": "621356217247449275",
+        "is_verified_merchant": false,
+        "image_medium_url": "https://i.pinimg.com/75x75_RS/5d/01/70/5d017060b5efa9fd8bdc2efc7a797fe0.jpg",
+        "username": "limasulpicio",
+        "verified_identity": {},
+        "full_name": "Vinicius Lima sulpicio"
+    },
+    "promoter": null,
+    "video_status_message": null,
+    "attribution": null,
+    "dominant_color": "#c8ba9f",
+    "video_status": null,
+    "repin_count": 0,
+    "grid_title": "",
+    "rich_summary": null,
+    "embed": null,
+    "description": "",
+    "unified_user_note": " ",
+    "carousel_data": null,
+    "tracking_params": "CwABAAAAEDE2OTI1NzE0MDU0OTMyODkGAAMAAQsABwAAAApuZ2FwaS9wcm9kAA",
+    "count": 1,
+    "subcategory": "board",
+    "num": 1,
+    "filename": "64fea73dd5b540c21ec6db1e456cf56c",
+    "extension": "png",
+    "width": 1952,
+    "height": 1516,
+    "url": "https://i.pinimg.com/originals/64/fe/a7/64fea73dd5b540c21ec6db1e456cf56c.png",
+    "story_id": "3063343869291757248",
+    "page_id": null,
+    "media_id": ""
+}

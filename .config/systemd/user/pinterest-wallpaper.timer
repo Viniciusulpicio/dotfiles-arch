@@ -1,0 +1,16 @@
+
+[Unit]
+Description=Timer do Pinterest (Quinzenal)
+
+[Timer]
+# Começa 10min após ligar o PC (se já tiver passado o prazo)
+OnBootSec=10min
+
+# Roda a cada 14 dias após a última execução
+OnUnitActiveSec=14d
+
+# Se o PC estiver desligado na hora certa, roda assim que ligar
+Persistent=true
+
+[Install]
+WantedBy=timers.target

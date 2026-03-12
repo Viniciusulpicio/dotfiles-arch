@@ -1,0 +1,21 @@
+{
+    "version": "1.12.8",
+    "addonlistControls": {
+        "plugin": {
+            "view": "grid"
+        },
+        "theme": {
+            "view": "list"
+        }
+    },
+    "drawerStates": {
+        "settings": {
+            "customcss": true,
+            "window": true,
+            "addons": true,
+            "store": true,
+            "editor": false,
+            "developer": true
+        }
+    }
+}
