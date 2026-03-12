@@ -2,18 +2,18 @@
 <application-state>
   <context id="">
     <application id="org.gnome.Loupe.desktop" score="0" last-seen="1773011898"/>
-    <application id="google-chrome.desktop" score="14218.890625" last-seen="1773346322"/>
+    <application id="google-chrome.desktop" score="14237.890625" last-seen="1773346499"/>
     <application id="org.gnome.Shell.Extensions.desktop" score="2" last-seen="1772991802"/>
     <application id="steam.desktop" score="456.875" last-seen="1773017019"/>
     <application id="gcr-prompter.desktop" score="0" last-seen="1773344107"/>
-    <application id="org.gnome.Nautilus.desktop" score="8" last-seen="1773346274"/>
+    <application id="org.gnome.Nautilus.desktop" score="8" last-seen="1773346503"/>
     <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1772749111"/>
-    <application id="org.gnome.Console.desktop" score="17" last-seen="1773346323"/>
+    <application id="org.gnome.Console.desktop" score="18" last-seen="1773346514"/>
     <application id="firefox.desktop" score="0" last-seen="1772995028"/>
     <application id="org.gnome.Terminal.desktop" score="23.5" last-seen="1772825853"/>
     <application id="postman.desktop" score="3.5" last-seen="1772919195"/>
     <application id="mysql-workbench.desktop" score="307.5" last-seen="1772919484"/>
-    <application id="code.desktop" score="2216.5" last-seen="1773346326"/>
+    <application id="code.desktop" score="2219.5" last-seen="1773346502"/>
     <application id="vesktop.desktop" score="981.75" last-seen="1773017032"/>
   </context>
 </application-state>
