@@ -1,0 +1,112 @@
+{
+  "app_name": "bf4808b3395b43fb80afbe6773e1661f",
+  "app_title": "F.I.S.T.: Forged In Shadow Torch",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "bf4808b3395b43fb80afbe6773e1661f",
+      "asset_id": "bf4808b3395b43fb80afbe6773e1661f",
+      "build_version": "1.200.001",
+      "catalog_item_id": "d712d3b11cab4347b327b65baa4ebb95",
+      "label_name": "Live-Windows",
+      "metadata": {},
+      "namespace": "a7e2a2c51b9149c097b771926ed91877",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "",
+    "categories": [
+      {
+        "path": "public"
+      },
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2020-09-24T01:54:33.110Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "FIST"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "a7e2a2c51b9149c097b771926ed91877"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "F.I.S.T.: Forged In Shadow Torch",
+    "developer": "Astrolabe Games",
+    "developerId": "o-52rq8g5q4vkhx4tmd8vm8b8pckytry",
+    "endOfSupport": false,
+    "entitlementName": "d712d3b11cab4347b327b65baa4ebb95",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "d712d3b11cab4347b327b65baa4ebb95",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "d79b811e274bd49318edf3b7c00b82c8",
+        "size": 932509,
+        "type": "DieselGameBox",
+        "uploadedDate": "2021-09-28T19:51:33.925Z",
+        "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_FISTForgedInShadowTorch_TiGames_S3_2560x1440-d79b811e274bd49318edf3b7c00b82c8",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "e24df009a33f7e5340edc3fbf5074f9c",
+        "size": 637720,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2021-09-28T19:51:30.237Z",
+        "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_FISTForgedInShadowTorch_TiGames_S4_1200x1600-e24df009a33f7e5340edc3fbf5074f9c",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2025-05-06T18:39:44.704Z",
+    "mainGameItemList": [],
+    "namespace": "a7e2a2c51b9149c097b771926ed91877",
+    "releaseInfo": [
+      {
+        "appId": "bf4808b3395b43fb80afbe6773e1661f",
+        "dateAdded": "2020-09-24T12:41:52.432Z",
+        "id": "81478ab7c43544db9208dd1dc4a16e4a",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "F.I.S.T.: Forged In Shadow Torch",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

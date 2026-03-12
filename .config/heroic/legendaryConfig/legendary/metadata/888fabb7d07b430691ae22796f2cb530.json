@@ -1,0 +1,728 @@
+{
+  "app_name": "888fabb7d07b430691ae22796f2cb530",
+  "app_title": "Arcade Paradise",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "888fabb7d07b430691ae22796f2cb530",
+      "asset_id": "888fabb7d07b430691ae22796f2cb530",
+      "build_version": "1178",
+      "catalog_item_id": "a69da8b6bd194d73af049579b4932f0b",
+      "label_name": "Live-Windows",
+      "metadata": {},
+      "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "fghi4567tLtERD4jmcfrE2vW4CJwGRjJ",
+    "categories": [
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2021-06-09T16:10:33.094Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "ArcadeParadise"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "89b9c510e8d74b9da34c447915b1ffb1"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Arcade Paradise",
+    "developer": "Wired Productions",
+    "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+    "dlcItemList": [
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-05-19T09:18:01.557Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Cyberdance 2",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "7ee1503d309c4fe19e691231cde2c8ad",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "7ee1503d309c4fe19e691231cde2c8ad",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - CyberDance EuroMix Offer",
+            "height": 1440,
+            "md5": "a86e5549577b1d9a9caaf5a5055e2c00",
+            "size": 1001001,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-22T09:39:04.203Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-bkryb.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - CyberDance EuroMix Offer",
+            "height": 1600,
+            "md5": "b431a76b050a673fb83db91ce954ea03",
+            "size": 598656,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-22T09:39:09.829Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1w347.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-31T13:14:05.979Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Cyberdance 2",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-05-19T09:17:22.290Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Empathy",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "db7bc895d53343e4bc31faf8715ac8a6",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "db7bc895d53343e4bc31faf8715ac8a6",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Empathy DLC Offer",
+            "height": 1440,
+            "md5": "ca2a48604d77abc405b51347fc23c526",
+            "size": 210547,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-22T09:39:51.318Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-svko6.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Empathy DLC Offer",
+            "height": 1600,
+            "md5": "41619cbd2cf8ecdefc259e35f1d9c994",
+            "size": 109592,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-22T09:39:54.244Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1krz4.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-31T13:14:05.979Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Empathy",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-05-19T09:16:36.651Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Smoke 'em",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "988b856aaa21418aac97026658c568a2",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "988b856aaa21418aac97026658c568a2",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Smoke 'em Offer",
+            "height": 1440,
+            "md5": "87c54657ce1d8e7b05532f387d9a46a5",
+            "size": 815647,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-22T09:40:44.010Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-un3dk.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Smoke 'em Offer",
+            "height": 1600,
+            "md5": "b24fcb1ab2fcf2eaea3e43f79c808e55",
+            "size": 437919,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-22T09:40:52.485Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-ymo3o.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-31T13:14:05.979Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Smoke 'em",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-22T09:41:46.843Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Kung Fury",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "bce2594a59084d55b03f95e6b7842935",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "bce2594a59084d55b03f95e6b7842935",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Kung Fury: Street Rage Offer",
+            "height": 1440,
+            "md5": "930fe2c1629f2472f7723f17b80dd776",
+            "size": 735895,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-05T16:21:04.071Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-hu6qs.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Kung Fury: Street Rage Offer",
+            "height": 1600,
+            "md5": "8a73f7bafae0f4ba052b35cf3039630c",
+            "size": 808954,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-05T16:21:02.513Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-9xf7x.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-22T13:02:32.507Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Kung Fury",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-22T09:41:46.848Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Summer of Sports",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "f64b3a543eb142de8637cf0391558896",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "f64b3a543eb142de8637cf0391558896",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Summer of Sports Offer",
+            "height": 1440,
+            "md5": "09eea92e5a7b1f063d9366e7e7e6767b",
+            "size": 988205,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-22T09:38:13.231Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1y9o1.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Summer of Sports Offer",
+            "height": 1600,
+            "md5": "5ecd65bcd6b18f88a939f539fa5a60df",
+            "size": 825242,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-22T09:38:15.496Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1780j.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-22T13:02:32.507Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Summer of Sports",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-22T09:41:46.840Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Penquin Push",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "8df24522c5af4938a17b6791a41342be",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "8df24522c5af4938a17b6791a41342be",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Penguin Push Offer",
+            "height": 1440,
+            "md5": "618534bb5bbf924214c500ed53ab4362",
+            "size": 677865,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-05T16:18:51.964Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-12kuo.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Penguin Push Offer",
+            "height": 1600,
+            "md5": "2e5367414daa1d30fe932ffa27402323",
+            "size": 603108,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-05T16:18:53.934Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1r55a.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-22T13:02:32.507Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Penquin Push",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-22T09:41:46.844Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "R.O.G.E.R.",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "bfc5f6f2a1844569a26ca992f6fb0e12",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "bfc5f6f2a1844569a26ca992f6fb0e12",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - R.O.G.E.R. Offer",
+            "height": 1440,
+            "md5": "bdf2f341672455515dfd8474ad49e187",
+            "size": 919235,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-05T16:19:40.696Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-qupck.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - R.O.G.E.R. Offer",
+            "height": 1600,
+            "md5": "fb2938eb85603b4b2983d5c7c0ba2fb8",
+            "size": 539252,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-05T16:19:42.344Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-w7ban.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-22T13:02:32.507Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "R.O.G.E.R.",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-11-10T20:26:37.824Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Pinball",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "b5da5899ade64931ae00c640e6c897cf",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "b5da5899ade64931ae00c640e6c897cf",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2022-11-10T20:26:37.824Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Pinball",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-12-13T08:35:39.952Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Spare DLC",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "8d27be30ec9a425cb30cba8871bf3a3b",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "8d27be30ec9a425cb30cba8871bf3a3b",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2022-12-13T08:39:10.317Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Spare DLC",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-22T09:41:46.828Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Arcade Paradise - Vostok Inc. Pinball",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "30bace754c6c49a89537fa0b28ba2afb",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "30bace754c6c49a89537fa0b28ba2afb",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "ArcadeParadise Arcade Paradise - Vostok Inc. Pinball Offer",
+            "height": 1440,
+            "md5": "3aa85d8dc0d1ed458704f8e55cbbcd0e",
+            "size": 416173,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-22T09:33:22.011Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1e9qx.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download ArcadeParadise Arcade Paradise - Vostok Inc. Pinball Offer",
+            "height": 1600,
+            "md5": "5f1e4d8e50d1840a18d170f69faf40af",
+            "size": 323537,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-22T09:37:10.366Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/377c9da304e24a5ba4402ba123b88289/arcadeparadise-1a4dn.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-22T13:02:32.507Z",
+        "mainGameItem": {
+          "id": "a69da8b6bd194d73af049579b4932f0b",
+          "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "a69da8b6bd194d73af049579b4932f0b",
+            "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Arcade Paradise - Vostok Inc. Pinball",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "a69da8b6bd194d73af049579b4932f0b",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "a69da8b6bd194d73af049579b4932f0b",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "5a8ca84efde851f3ca2b0d30b393543e",
+        "size": 930751,
+        "type": "DieselGameBox",
+        "uploadedDate": "2022-08-11T13:13:47.613Z",
+        "url": "https://cdn1.epicgames.com/item/89b9c510e8d74b9da34c447915b1ffb1/EGS_ArcadeParadise_NosebleedInteractive_S1_2560x1440-5a8ca84efde851f3ca2b0d30b393543e",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "060836f13d8973394299024e8a0df87a",
+        "size": 611817,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2022-08-11T13:13:41.817Z",
+        "url": "https://cdn1.epicgames.com/item/89b9c510e8d74b9da34c447915b1ffb1/EGS_ArcadeParadise_NosebleedInteractive_S2_1200x1600-060836f13d8973394299024e8a0df87a",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2024-07-16T13:22:46.625Z",
+    "mainGameItemList": [],
+    "namespace": "89b9c510e8d74b9da34c447915b1ffb1",
+    "releaseInfo": [
+      {
+        "appId": "888fabb7d07b430691ae22796f2cb530",
+        "id": "fa91f007c5dc47ec8a05bf17f7fb0608",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "Arcade Paradise",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

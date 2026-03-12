@@ -1,0 +1,6 @@
+[Unit]
+Description=Baixar Wallpapers do Pinterest
+
+[Service]
+Type=oneshot
+ExecStart=/home/vinicius/Scripts/update_wallpaper.sh

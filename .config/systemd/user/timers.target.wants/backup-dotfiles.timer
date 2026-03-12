@@ -1,0 +1,11 @@
+[Unit]
+Description=Agendamento quinzenal do backup
+
+[Timer]
+# Roda dia 1 e 15 de todo mês às 13:00 (você pode mudar a hora se quiser)
+OnCalendar=*-*-01,15 13:00:00
+# Se o PC estiver desligado na hora, roda assim que ligar
+Persistent=true
+
+[Install]
+WantedBy=timers.target

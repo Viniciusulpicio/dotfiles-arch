@@ -1,0 +1,199 @@
+{
+  "app_name": "9b1148db19dc457aa1adf9f21ac6f0ff",
+  "app_title": "Turmoil",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "9b1148db19dc457aa1adf9f21ac6f0ff",
+      "asset_id": "9b1148db19dc457aa1adf9f21ac6f0ff",
+      "build_version": "3.2.15.1.1-Windows",
+      "catalog_item_id": "26047d36df5e48aeaa570d1577f44b95",
+      "label_name": "Live-Windows",
+      "metadata": {
+        "installationPoolId": "8a30c3c86d624be2bd5e726af0300a96",
+        "update_type": "PATCH"
+      },
+      "namespace": "85c72a063b884d249a554fee9f71125d",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "categories": [
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2024-05-22T13:06:43.711Z",
+    "customAttributes": {
+      "FolderName": {
+        "type": "STRING",
+        "value": "TurmoilJIZtC"
+      }
+    },
+    "description": "Drill for oil like it's 1899! Turmoil offers players a visually charming, tongue-in-cheek take on the simulation genre inspired by the 19th century oil rush in North America.",
+    "developer": "Gamious",
+    "developerId": "o-r9qyzcd8d5v5sds5z8y9c4le2upujd",
+    "dlcItemList": [
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-10-21T11:41:51.432Z",
+        "description": "Turmoil - The Heat Is On is a brand new campaign with tons of oil to dig up and convert into cash! It is designed to make you feel right at home, but at the same time offer lots of new mechanics and fun features.",
+        "developer": "Gamious",
+        "developerId": "o-r9qyzcd8d5v5sds5z8y9c4le2upujd",
+        "endOfSupport": false,
+        "entitlementName": "f6684b6c0acf4931a26a129baa43777a",
+        "entitlementType": "EXECUTABLE",
+        "id": "f6684b6c0acf4931a26a129baa43777a",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "Turmoil The Heat is On Offer",
+            "height": 1440,
+            "md5": "5beb998cc1fbe4294515c6de553d61ff",
+            "size": 710571,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-12-18T14:09:03.306Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-hzuqp.png",
+            "width": 2560
+          },
+          {
+            "alt": "Download Turmoil The Heat is On Offer",
+            "height": 1600,
+            "md5": "7de4f3b886de27ed653c8761eff9cb9b",
+            "size": 674582,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-12-13T12:04:30.804Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-1gxj5.png",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2025-05-27T12:03:29.651Z",
+        "mainGameItem": {
+          "id": "26047d36df5e48aeaa570d1577f44b95",
+          "namespace": "85c72a063b884d249a554fee9f71125d",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "26047d36df5e48aeaa570d1577f44b95",
+            "namespace": "85c72a063b884d249a554fee9f71125d",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "85c72a063b884d249a554fee9f71125d",
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "The Heat is On",
+        "unsearchable": false
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-10-21T11:45:36.575Z",
+        "description": "Turmoil - Deeper Underground is an all-new campaign with brand new resources: water and petrol! Drill deeper than ever in special new levels, and expand your oil expertise with a whole barrel of new features and mechanics. And all that with that good old Turmoil feel!",
+        "developer": "Gamious",
+        "developerId": "o-r9qyzcd8d5v5sds5z8y9c4le2upujd",
+        "endOfSupport": false,
+        "entitlementName": "02d2719a9fe24851a11648ca9dd1eb57",
+        "entitlementType": "EXECUTABLE",
+        "id": "02d2719a9fe24851a11648ca9dd1eb57",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "Turmoil Deeper Underground Offer",
+            "height": 1440,
+            "md5": "914a344adf77c6d91d33fb2b63d0fb3e",
+            "size": 652196,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-12-18T14:12:43.184Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-1jvx6.png",
+            "width": 2560
+          },
+          {
+            "alt": "Download Turmoil Deeper Underground Offer",
+            "height": 1600,
+            "md5": "c363a341b7dac205e068ef402c2c8379",
+            "size": 407047,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-12-13T12:09:30.249Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-hg71l.png",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2025-05-27T12:03:29.651Z",
+        "mainGameItem": {
+          "id": "26047d36df5e48aeaa570d1577f44b95",
+          "namespace": "85c72a063b884d249a554fee9f71125d",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "26047d36df5e48aeaa570d1577f44b95",
+            "namespace": "85c72a063b884d249a554fee9f71125d",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "85c72a063b884d249a554fee9f71125d",
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Deeper Underground",
+        "unsearchable": false
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "26047d36df5e48aeaa570d1577f44b95",
+    "entitlementType": "EXECUTABLE",
+    "id": "26047d36df5e48aeaa570d1577f44b95",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "alt": "Turmoil Offer",
+        "height": 1440,
+        "md5": "d2c0acd6e629c658024b789310ccf659",
+        "size": 783355,
+        "type": "DieselGameBox",
+        "uploadedDate": "2024-12-13T12:09:00.374Z",
+        "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-v1e51.png",
+        "width": 2560
+      },
+      {
+        "alt": "Download Turmoil Offer",
+        "height": 1600,
+        "md5": "061d3533339a903bc1669648d5a1fa01",
+        "size": 287589,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2024-12-13T12:09:00.655Z",
+        "url": "https://cdn1.epicgames.com/spt-assets/4985026f56654289a4a1fa848f41c4c9/turmoil-1kaof.png",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2025-05-27T12:03:29.651Z",
+    "mainGameItemList": [],
+    "namespace": "85c72a063b884d249a554fee9f71125d",
+    "releaseInfo": [
+      {
+        "appId": "9b1148db19dc457aa1adf9f21ac6f0ff",
+        "id": "c371f566e38040809bc2676bf0dd1873",
+        "platform": [
+          "Windows",
+          "Mac"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "Turmoil",
+    "unsearchable": false
+  },
+  "sidecar": null
+}

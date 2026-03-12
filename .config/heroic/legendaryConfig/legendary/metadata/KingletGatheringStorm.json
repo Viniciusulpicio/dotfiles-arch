@@ -1,0 +1,298 @@
+{
+  "app_name": "KingletGatheringStorm",
+  "app_title": "Civilization VI : Gathering Storm",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "KingletGatheringStorm",
+      "asset_id": "KingletGatheringStorm",
+      "build_version": "1.0.12.951533_nebraska_update1_KingletGatheringStorm",
+      "catalog_item_id": "4736907992b24277b6444f7ad46cba6b",
+      "label_name": "Live-Windows",
+      "metadata": {
+        "installationPoolId": "bc47459de63f47e488df23ef03f99a20"
+      },
+      "namespace": "cd14dcaa4f3443f19f7169a980559c62",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "",
+    "categories": [
+      {
+        "path": "addons"
+      }
+    ],
+    "creationDate": "2020-01-17T17:20:15.903Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "GatheringStormDLC"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "cd14dcaa4f3443f19f7169a980559c62"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "{}"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Civilization VI : Gathering Storm",
+    "developer": "2K Games, Inc.",
+    "developerId": "o-37m6jbj5wcvrcvm4wusv7nazdfvbjk",
+    "endOfSupport": false,
+    "entitlementName": "4736907992b24277b6444f7ad46cba6b",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "4736907992b24277b6444f7ad46cba6b",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "aa072ce4040791138639201ef017758c",
+        "size": 1008060,
+        "type": "DieselGameBox",
+        "uploadedDate": "2020-05-19T21:25:47.498Z",
+        "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVIGatheringStorm_FiraxisGames_Expansion_S1-2560x1440-aa072ce4040791138639201ef017758c.jpg",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "18224a1fa2b7afcb7de782f7bc029971",
+        "size": 1001397,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2020-05-19T21:25:58.532Z",
+        "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVIGatheringStorm_FiraxisGames_Expansion_S2-1200x1600-18224a1fa2b7afcb7de782f7bc029971.jpg",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2022-12-06T22:17:08.690Z",
+    "mainGameItem": {
+      "ageGatings": {},
+      "applicationId": "fghi4567iaHAdg7eG2GSRvv8Xpt5ojVh",
+      "categories": [
+        {
+          "path": "public"
+        },
+        {
+          "path": "games"
+        },
+        {
+          "path": "applications"
+        }
+      ],
+      "creationDate": "2019-08-19T19:51:13.782Z",
+      "customAttributes": {
+        "BackgroundProcessNames": {
+          "type": "STRING",
+          "value": "LauncherPatcher.exe"
+        },
+        "CanRunOffline": {
+          "type": "STRING",
+          "value": "true"
+        },
+        "CanSkipKoreanIdVerification": {
+          "type": "STRING",
+          "value": "true"
+        },
+        "FolderName": {
+          "type": "STRING",
+          "value": "SidMeiersCivilizationVI"
+        },
+        "MonitorPresence": {
+          "type": "STRING",
+          "value": "true"
+        },
+        "PresenceId": {
+          "type": "STRING",
+          "value": "cd14dcaa4f3443f19f7169a980559c62"
+        },
+        "RequirementsJson": {
+          "type": "STRING",
+          "value": "{}"
+        },
+        "UseAccessControl": {
+          "type": "STRING",
+          "value": "false"
+        }
+      },
+      "description": "Sid Meier's Civilization VI",
+      "developer": "2K Games, Inc.",
+      "developerId": "o-37m6jbj5wcvrcvm4wusv7nazdfvbjk",
+      "endOfSupport": false,
+      "entitlementName": "42ac1ee840304cb1807172a9b47dc8e3",
+      "entitlementType": "EXECUTABLE",
+      "eulaIds": [
+        "(egstore && amaranth)"
+      ],
+      "id": "42ac1ee840304cb1807172a9b47dc8e3",
+      "itemType": "DURABLE",
+      "keyImages": [
+        {
+          "height": 766,
+          "md5": "43ec615712394b3c4acbe77bce54975c",
+          "size": 475027,
+          "type": "DieselGameBox",
+          "uploadedDate": "2020-05-19T21:15:38.509Z",
+          "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVI_FiraxisGames_S5-1360x766-43ec615712394b3c4acbe77bce54975c.jpg",
+          "width": 1360
+        },
+        {
+          "height": 680,
+          "md5": "7bca651712a1c939a86f767c65160461",
+          "size": 309610,
+          "type": "DieselGameBoxTall",
+          "uploadedDate": "2020-05-19T21:15:50.022Z",
+          "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVI_FiraxisGames_S6-510x680-7bca651712a1c939a86f767c65160461.jpg",
+          "width": 510
+        }
+      ],
+      "lastModifiedDate": "2025-06-24T17:04:34.242Z",
+      "mainGameItemList": [],
+      "namespace": "cd14dcaa4f3443f19f7169a980559c62",
+      "releaseInfo": [
+        {
+          "appId": "Kinglet",
+          "dateAdded": "2019-08-19T00:00:00.000Z",
+          "id": "74653a0fa4f34d43ab506f50266816a2",
+          "platform": [
+            "Windows"
+          ]
+        }
+      ],
+      "status": "ACTIVE",
+      "title": "Sid Meier's Civilization VI",
+      "unsearchable": true
+    },
+    "mainGameItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "fghi4567iaHAdg7eG2GSRvv8Xpt5ojVh",
+        "categories": [
+          {
+            "path": "public"
+          },
+          {
+            "path": "games"
+          },
+          {
+            "path": "applications"
+          }
+        ],
+        "creationDate": "2019-08-19T19:51:13.782Z",
+        "customAttributes": {
+          "BackgroundProcessNames": {
+            "type": "STRING",
+            "value": "LauncherPatcher.exe"
+          },
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "CanSkipKoreanIdVerification": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "FolderName": {
+            "type": "STRING",
+            "value": "SidMeiersCivilizationVI"
+          },
+          "MonitorPresence": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "PresenceId": {
+            "type": "STRING",
+            "value": "cd14dcaa4f3443f19f7169a980559c62"
+          },
+          "RequirementsJson": {
+            "type": "STRING",
+            "value": "{}"
+          },
+          "UseAccessControl": {
+            "type": "STRING",
+            "value": "false"
+          }
+        },
+        "description": "Sid Meier's Civilization VI",
+        "developer": "2K Games, Inc.",
+        "developerId": "o-37m6jbj5wcvrcvm4wusv7nazdfvbjk",
+        "endOfSupport": false,
+        "entitlementName": "42ac1ee840304cb1807172a9b47dc8e3",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "(egstore && amaranth)"
+        ],
+        "id": "42ac1ee840304cb1807172a9b47dc8e3",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "height": 766,
+            "md5": "43ec615712394b3c4acbe77bce54975c",
+            "size": 475027,
+            "type": "DieselGameBox",
+            "uploadedDate": "2020-05-19T21:15:38.509Z",
+            "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVI_FiraxisGames_S5-1360x766-43ec615712394b3c4acbe77bce54975c.jpg",
+            "width": 1360
+          },
+          {
+            "height": 680,
+            "md5": "7bca651712a1c939a86f767c65160461",
+            "size": 309610,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2020-05-19T21:15:50.022Z",
+            "url": "https://cdn1.epicgames.com/cd14dcaa4f3443f19f7169a980559c62/item/EGS_SidMeiersCivilizationVI_FiraxisGames_S6-510x680-7bca651712a1c939a86f767c65160461.jpg",
+            "width": 510
+          }
+        ],
+        "lastModifiedDate": "2025-06-24T17:04:34.242Z",
+        "mainGameItemList": [],
+        "namespace": "cd14dcaa4f3443f19f7169a980559c62",
+        "releaseInfo": [
+          {
+            "appId": "Kinglet",
+            "dateAdded": "2019-08-19T00:00:00.000Z",
+            "id": "74653a0fa4f34d43ab506f50266816a2",
+            "platform": [
+              "Windows"
+            ]
+          }
+        ],
+        "status": "ACTIVE",
+        "title": "Sid Meier's Civilization VI",
+        "unsearchable": true
+      }
+    ],
+    "namespace": "cd14dcaa4f3443f19f7169a980559c62",
+    "releaseInfo": [
+      {
+        "appId": "KingletGatheringStorm",
+        "dateAdded": "2019-08-19T00:00:00.000Z",
+        "id": "a047f2873e964be8b738c4ecf381f08d",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "status": "ACTIVE",
+    "title": "Civilization VI : Gathering Storm",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

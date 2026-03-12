@@ -1,0 +1,298 @@
+{
+  "app_name": "8e29583ae4b44a21883038668f7e301e",
+  "app_title": "Moving Out",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "8e29583ae4b44a21883038668f7e301e",
+      "asset_id": "8e29583ae4b44a21883038668f7e301e",
+      "build_version": "11",
+      "catalog_item_id": "ad66ba38abed4035917aab1b1a3a3607",
+      "label_name": "Live-Windows",
+      "metadata": {},
+      "namespace": "f919a1262081444fb28f0fdef68d6b14",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "fghi4567ybjNnxNd7Tv1eU2qik89MLIl",
+    "categories": [
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2025-03-28T15:24:33.341Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CloudSaveFolder": {
+        "type": "STRING",
+        "value": "{AppData}/../LocalLow/Team17 Digital Limited/Moving Out/"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "MovingOut"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "f919a1262081444fb28f0fdef68d6b14"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Moving Out",
+    "developer": "Team17 Digital Ltd",
+    "developerId": "o-uvtztrtfjdn3xgrwyhbuwwb5z42mbv",
+    "dlcItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "fghi4567ybjNnxNd7Tv1eU2qik89MLIl",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2025-03-28T06:40:54.398Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "CanSkipKoreanIdVerification": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "FolderName": {
+            "type": "STRING",
+            "value": "MovingOutOST"
+          },
+          "MonitorPresence": {
+            "type": "STRING",
+            "value": "false"
+          },
+          "PresenceId": {
+            "type": "STRING",
+            "value": "f919a1262081444fb28f0fdef68d6b14"
+          },
+          "RequirementsJson": {
+            "type": "STRING",
+            "value": "[]"
+          },
+          "UseAccessControl": {
+            "type": "STRING",
+            "value": "false"
+          }
+        },
+        "description": "Moving Out Movers in Paradise",
+        "developer": "Team17 Digital Ltd",
+        "developerId": "o-uvtztrtfjdn3xgrwyhbuwwb5z42mbv",
+        "endOfSupport": false,
+        "entitlementName": "moversparadisemovingout",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "0b8986e45af94a4e9e9cb2e7c4c7a186",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "Moving Out Moving Out - Movers in Paradise Offer",
+            "height": 1440,
+            "md5": "5eb89309c9f822c28d1dc670f13d80df",
+            "size": 1002020,
+            "type": "DieselGameBox",
+            "uploadedDate": "2025-04-23T11:10:45.837Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/575ef79db8ea4c2184d745b09b8518d8/moving-out-1ls3b.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download Moving Out Moving Out - Movers in Paradise Offer",
+            "height": 1600,
+            "md5": "dcf81998f7c8cd823873f5d75b38bdbf",
+            "size": 677744,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2025-04-23T11:10:45.384Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/575ef79db8ea4c2184d745b09b8518d8/moving-out-11hap.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2025-04-24T09:11:17.164Z",
+        "mainGameItem": {
+          "id": "ad66ba38abed4035917aab1b1a3a3607",
+          "namespace": "f919a1262081444fb28f0fdef68d6b14",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "ad66ba38abed4035917aab1b1a3a3607",
+            "namespace": "f919a1262081444fb28f0fdef68d6b14",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "f919a1262081444fb28f0fdef68d6b14",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Moving Out Movers in Paradise",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "fghi4567ybjNnxNd7Tv1eU2qik89MLIl",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2025-03-28T06:37:44.061Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "CanSkipKoreanIdVerification": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "FolderName": {
+            "type": "STRING",
+            "value": "MovingOutOST"
+          },
+          "MonitorPresence": {
+            "type": "STRING",
+            "value": "false"
+          },
+          "PresenceId": {
+            "type": "STRING",
+            "value": "f919a1262081444fb28f0fdef68d6b14"
+          },
+          "RequirementsJson": {
+            "type": "STRING",
+            "value": "[]"
+          },
+          "UseAccessControl": {
+            "type": "STRING",
+            "value": "false"
+          }
+        },
+        "description": "Moving Out Employees of the Month Pack",
+        "developer": "Team17 Digital Ltd",
+        "developerId": "o-uvtztrtfjdn3xgrwyhbuwwb5z42mbv",
+        "endOfSupport": false,
+        "entitlementName": "alnilamEmployeeofthemonth",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "7cdfc18c6dfa403c979ac6c54fc5e921",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "Moving Out Moving Out - The Employees of the Month Pack Offer",
+            "height": 1440,
+            "md5": "e515fd7acb7250ce262250eb437a1f67",
+            "size": 593616,
+            "type": "DieselGameBox",
+            "uploadedDate": "2025-04-23T11:12:01.588Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/575ef79db8ea4c2184d745b09b8518d8/moving-out-1kl4s.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download Moving Out Moving Out - The Employees of the Month Pack Offer",
+            "height": 1600,
+            "md5": "a2dbfb0ed95b90c6a66bd0da5763ab25",
+            "size": 784731,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2025-04-23T11:12:01.298Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/575ef79db8ea4c2184d745b09b8518d8/moving-out-yj9xt.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2025-04-24T09:11:17.164Z",
+        "mainGameItem": {
+          "id": "ad66ba38abed4035917aab1b1a3a3607",
+          "namespace": "f919a1262081444fb28f0fdef68d6b14",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "ad66ba38abed4035917aab1b1a3a3607",
+            "namespace": "f919a1262081444fb28f0fdef68d6b14",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "f919a1262081444fb28f0fdef68d6b14",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Moving Out Employees of the Month Pack",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "ad66ba38abed4035917aab1b1a3a3607",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "ad66ba38abed4035917aab1b1a3a3607",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "86272cbdeb4cc4b39f0760ab720ac585",
+        "size": 675611,
+        "type": "DieselGameBox",
+        "uploadedDate": "2021-12-17T15:56:26.985Z",
+        "url": "https://cdn1.epicgames.com/item/f919a1262081444fb28f0fdef68d6b14/EGS_MovingOut_SMGStudioDevmGames_S1_2560x1440-86272cbdeb4cc4b39f0760ab720ac585_2560x1440-86272cbdeb4cc4b39f0760ab720ac585",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "642277510bc38c789cef83e59423e580",
+        "size": 912051,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2021-12-17T15:56:32.178Z",
+        "url": "https://cdn1.epicgames.com/item/f919a1262081444fb28f0fdef68d6b14/EGS_MovingOut_SMGStudioDevmGames_S2_1200x1600-642277510bc38c789cef83e59423e580_1200x1600-642277510bc38c789cef83e59423e580",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2025-04-22T15:33:26.518Z",
+    "mainGameItemList": [],
+    "namespace": "f919a1262081444fb28f0fdef68d6b14",
+    "releaseInfo": [
+      {
+        "appId": "8e29583ae4b44a21883038668f7e301e",
+        "id": "01d78056fcad4e0b800a1083f946e162",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "Moving Out",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

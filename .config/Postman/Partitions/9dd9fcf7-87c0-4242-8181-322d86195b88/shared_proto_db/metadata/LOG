@@ -1,0 +1,2 @@
+2025/11/08-16:17:02.950 310ab Creating DB /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/shared_proto_db/metadata since it was missing.
+2025/11/08-16:17:03.808 310ab Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/shared_proto_db/metadata/MANIFEST-000001

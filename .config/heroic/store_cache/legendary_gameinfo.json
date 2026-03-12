@@ -1,0 +1,108 @@
+{
+	"__timestamp": {
+		"89b9c510e8d74b9da34c447915b1ffb1": "Sat Nov 15 2025 16:54:00 GMT-0300 (Horário Padrão de Brasília)",
+		"9773aa1aa54f4f7b80e44bef04986cea": "Fri Nov 21 2025 20:36:42 GMT-0300 (Horário Padrão de Brasília)"
+	},
+	"89b9c510e8d74b9da34c447915b1ffb1": {
+		"about": {
+			"description": "Welcome to Arcade Paradise, the 90’s-fuelled retro arcade adventure. You play as Ashley, and you’ve just been given the keys to the family laundromat. Rather than washing rags for a living, you decide to turn the laundromat into the ultimate arcade. ",
+			"shortDescription": ""
+		},
+		"reqs": [
+			{
+				"minimum": "Windows 10 32-bit",
+				"recommended": "Windows 10 64-bit",
+				"title": "OS version"
+			},
+			{
+				"minimum": "Intel Core i3 or equivalent AMD",
+				"recommended": "Intel Core i5 or equivalent AMD",
+				"title": "CPU"
+			},
+			{
+				"minimum": "2 GB",
+				"recommended": "8 GB",
+				"title": "Memory"
+			},
+			{
+				"minimum": "NVIDIA GeForce GTX 660, AMD Radeon HD 6770",
+				"recommended": "NVIDIA GeForce GTX 660, AMD Radeon HD 6770",
+				"title": "GPU"
+			},
+			{
+				"minimum": null,
+				"recommended": null,
+				"title": "DirectX"
+			},
+			{
+				"minimum": "5 GB",
+				"recommended": "5 GB",
+				"title": "Storage"
+			},
+			{
+				"minimum": "Other - minimum: undefined, recommended: Controller",
+				"recommended": null,
+				"title": "Additional Notes"
+			}
+		],
+		"storeUrl": "https://www.epicgames.com/store/product/arcade-paradise"
+	},
+	"9773aa1aa54f4f7b80e44bef04986cea": {
+		"about": {
+			"image": {
+				"altText": "Rocket League | Download & Play Rocket League for Free on PC – Epic Games Store",
+				"src": "https://cdn2.unrealengine.com/egs-rocketleague-psyonixllc-s2-1200x1600-a0806520e0e0.jpg",
+				"_type": "Diesel Image"
+			},
+			"developerAttribution": "Psyonix LLC",
+			"_type": "Diesel Product About",
+			"publisherAttribution": "Psyonix LLC",
+			"description": "JOGUE ROCKET LEAGUE GRÁTIS\\!\n\nBaixe e participe da competição híbrida radical de futebol estilo arcade e destruição automotiva\\! Personalize seu carro, entre em campo e compita em um dos jogos esportivos mais aclamados pela crítica de todos os tempos\\! Baixe e prepare o seu chute\\!\n\nEntre em campo sozinho ou com amigos nos modos online 1x1, 2x2 e 3x3, ou aproveite os modos extras como Rumble, Snow Day ou Hoops. Desbloqueie itens no Rocket Pass, suba nos rankings competitivos, participe de torneios competitivos, conclua desafios, aproveite a progressão multiplataforma e muito mais\\! O campo aguarda por você. Prepare o seu chute\\!\n\nNovos desafios\n==============\n\nConclua desafios semanais e de temporada para desbloquear gratuitamente itens de personalização\\!\n\n![rl_s1_section_challenges.jpg](https://cdn2.unrealengine.com/rl-s1-section-challenges-3840x2160-073994219.jpg)\n\nTorneios\n========\n\nSinta a energia competitiva\\! Entre em torneios gratuitos e enfrente equipes do mesmo ranking que você durante toda a temporada\\! Vença e receba novas recompensas\\!\n\n![rl_s20 tournament](https://cdn2.unrealengine.com/rl-s20-tournamentreward-screenshot-03-1920x1080-1920x1080-ae530487f71d.jpg)\n\nEventos no jogo e modos de tempo limitado\n=========================================\n\nDe Haunted Hallows a Frosty Fest, divirta\\-se em eventos de tempo limitado que apresentam itens festivos no jogo e que podem ser desbloqueados ao jogar online\\! Fique de olho nos modos de tempo limitado e nas arenas.\n\n![rl_home_f2p-launch_event.jpg](https://cdn2.unrealengine.com/rl-home-f2p-launch-event-3840x2160-073793665.jpg)\n\nProgressão multiplataforma\n==========================\n\nCompartilhe o seu inventário, ranking competitivo e série do Rocket Pass de Rocket League em qualquer plataforma conectada\\!\n\n![rl_home_f2p-launch_cross.jpg](https://cdn2.unrealengine.com/rl-home-f2p-launch-cross-3840x2160-073994250.jpg)\n\nLoja de Itens e Plantas\n=======================\n\nConstrua o seu próprio carro com possibilidades de personalização quase infinitas\\! Obtenha itens no jogo por completar desafios, navegue na Loja de Itens ou crie Plantas para obter conteúdo premium para o seu carro.\n\n![rl_s6_section_keyart](https://cdn2.unrealengine.com/rl-playerschoice-bundle-3840x2160-723248b32611.jpg)\n\n",
+			"shortDescription": "Rocket League é uma competição de futebol híbrida e radical, de estilo arcade e destruição automotiva com controles fluidos, fáceis de entender e baseados na física real.",
+			"title": "Rocket League®",
+			"developerLogo": {
+				"_type": "Diesel Image"
+			}
+		},
+		"reqs": [
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "Sistema operacional",
+				"minimum": "Windows 7 (64 bits) ou Sistema Operacional Windows mais recente (64 bits)",
+				"recommended": "Windows 7 (64 bits) ou Sistema Operacional Windows mais recente (64 bits)"
+			},
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "Processador",
+				"minimum": "Dual Core de 2,5 GHz",
+				"recommended": "Quad Core de 3,0 GHz ou superior"
+			},
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "Memória",
+				"minimum": "4 GB",
+				"recommended": "8 GB"
+			},
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "Armazenamento",
+				"minimum": "20 GB",
+				"recommended": "20 GB"
+			},
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "DirectX",
+				"minimum": "DirectX 11",
+				"recommended": "DirectX 11"
+			},
+			{
+				"_type": "Diesel System Detail Item",
+				"title": "Placa de vídeo",
+				"minimum": "NVIDIA GeForce 760, AMD Radeon R7 270X ou superior",
+				"recommended": "NVIDIA GeForce GTX 1060, AMD Radeon RX 470 ou superior"
+			}
+		],
+		"releaseDate": "2020-09-23T22:00:00",
+		"storeUrl": "https://www.epicgames.com/store/product/rocket-league"
+	}
+}

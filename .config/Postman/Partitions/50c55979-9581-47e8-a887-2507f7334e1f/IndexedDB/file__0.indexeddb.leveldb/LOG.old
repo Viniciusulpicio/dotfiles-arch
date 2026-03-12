@@ -1,0 +1,10 @@
+2025/11/08-16:15:34.114 31094 Creating DB /home/vinicius/.config/Postman/Partitions/50c55979-9581-47e8-a887-2507f7334e1f/IndexedDB/file__0.indexeddb.leveldb since it was missing.
+2025/11/08-16:15:34.119 31094 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/50c55979-9581-47e8-a887-2507f7334e1f/IndexedDB/file__0.indexeddb.leveldb/MANIFEST-000001
+2025/11/08-16:15:34.123 31093 Level-0 table #5: started
+2025/11/08-16:15:34.125 31093 Level-0 table #5: 494 bytes OK
+2025/11/08-16:15:34.127 31093 Delete type=0 #3
+2025/11/08-16:15:34.128 31093 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/11/08-16:15:34.152 31093 Level-0 table #7: started
+2025/11/08-16:15:34.153 31093 Level-0 table #7: 478 bytes OK
+2025/11/08-16:15:34.156 31093 Delete type=0 #4
+2025/11/08-16:15:34.156 31093 Manual compaction at level-0 from '\x00\x02\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x03\x00\x00\x00' @ 0 : 0; will stop at (end)

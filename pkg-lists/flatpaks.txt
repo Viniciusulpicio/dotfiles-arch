@@ -1,0 +1,5 @@
+com.mattjakeman.ExtensionManager
+com.stremio.Stremio
+dev.overlayed.Overlayed
+io.github.flattool.Ignition
+io.gitlab.jstest_gtk.jstest_gtk

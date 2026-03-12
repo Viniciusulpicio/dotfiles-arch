@@ -1,0 +1,39 @@
+[2025-12-29 14:47:54.692] [error] (main)         Failed to connect WS: UserNotLoggedInError: user not logged in
+    at HydraApi.validateOptions (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:5992:37)
+    at HydraApi.post (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:6012:16)
+    at WSClient.connect (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:5691:40)
+    at file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:30519:18
+    at async loadState (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:30513:5)
+    at async file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:30624:5
+[2025-12-29 14:47:55.696] [error] (main)         Failed to connect WS: UserNotLoggedInError: user not logged in
+    at HydraApi.validateOptions (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:5992:37)
+    at HydraApi.post (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:6012:16)
+    at WSClient.connect (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:5691:40)
+    at Timeout._onTimeout (file:///tmp/.mount_hydral0zu9T2/resources/app.asar/out/main/index.js:5739:20)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-12-29 14:49:56.522] [error] (main)         Failed to connect WS: UserNotLoggedInError: user not logged in
+    at HydraApi.validateOptions (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:5992:37)
+    at HydraApi.post (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:6012:16)
+    at WSClient.connect (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:5691:40)
+    at file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:30519:18
+    at async loadState (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:30513:5)
+    at async file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:30624:5
+[2025-12-29 14:49:57.525] [error] (main)         Failed to connect WS: UserNotLoggedInError: user not logged in
+    at HydraApi.validateOptions (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:5992:37)
+    at HydraApi.post (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:6012:16)
+    at WSClient.connect (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:5691:40)
+    at Timeout._onTimeout (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:5739:20)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+[2025-12-29 14:52:11.800] [error] (main)         Error handling deep link --allow-file-access-from-files TypeError: Invalid URL
+    at new URL (node:internal/url:825:25)
+    at handleDeepLinkPath (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:30641:21)
+    at App.<anonymous> (file:///tmp/.mount_hydralL4bFyC/resources/app.asar/out/main/index.js:30672:5)
+    at App.emit (node:events:519:28)
+[2025-12-29 14:52:12.246] [error]                Unhandled rejection Error: Database is not open
+    at assertOpen (/tmp/.mount_hydralkjw8xh/resources/app.asar/node_modules/abstract-level/abstract-level.js:878:11)
+    at ClassicLevel.get (/tmp/.mount_hydralkjw8xh/resources/app.asar/node_modules/abstract-level/abstract-level.js:321:5)
+    at loadState (file:///tmp/.mount_hydralkjw8xh/resources/app.asar/out/main/index.js:30497:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///tmp/.mount_hydralkjw8xh/resources/app.asar/out/main/index.js:30624:5

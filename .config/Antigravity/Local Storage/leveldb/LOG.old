@@ -1,0 +1,20 @@
+2026/03/01-22:16:37.902 2f37f Reusing MANIFEST /home/vinicius/.config/Antigravity/Local Storage/leveldb/MANIFEST-000001
+2026/03/01-22:16:37.904 2f37f Recovering log #8634
+2026/03/01-22:16:37.904 2f37f Level-0 table #8637: started
+2026/03/01-22:16:37.908 2f37f Level-0 table #8637: 39198 bytes OK
+2026/03/01-22:16:37.914 2f37f Delete type=0 #8634
+2026/03/01-22:17:37.923 2f37f Level-0 table #8640: started
+2026/03/01-22:17:37.928 2f37f Level-0 table #8640: 38893 bytes OK
+2026/03/01-22:17:37.932 2f37f Delete type=0 #8638
+2026/03/01-22:18:38.682 2f37f Level-0 table #8642: started
+2026/03/01-22:18:38.687 2f37f Level-0 table #8642: 38968 bytes OK
+2026/03/01-22:18:38.691 2f37f Delete type=0 #8639
+2026/03/01-22:18:38.691 2f37f Compacting 4@0 + 1@1 files
+2026/03/01-22:18:38.698 2f37f Generated table #8643@0: 6 keys, 39507 bytes
+2026/03/01-22:18:38.698 2f37f Compacted 4@0 + 1@1 files => 39507 bytes
+2026/03/01-22:18:38.702 2f37f compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/01-22:18:38.703 2f37f Delete type=2 #8633
+2026/03/01-22:18:38.703 2f37f Delete type=2 #8635
+2026/03/01-22:18:38.703 2f37f Delete type=2 #8637
+2026/03/01-22:18:38.703 2f37f Delete type=2 #8640
+2026/03/01-22:18:38.703 2f37f Delete type=2 #8642

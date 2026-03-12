@@ -1,0 +1,354 @@
+{
+  "app_name": "32dbb6444ce14e9198129b746c0d056f",
+  "app_title": "The Falconeer",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "32dbb6444ce14e9198129b746c0d056f",
+      "asset_id": "32dbb6444ce14e9198129b746c0d056f",
+      "build_version": "1.4.30.0",
+      "catalog_item_id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+      "label_name": "Live-Windows",
+      "metadata": {},
+      "namespace": "29e93200bb53431a961afc53e39fb9c8",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "",
+    "categories": [
+      {
+        "path": "public"
+      },
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2024-07-09T09:40:39.542Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "TheFalconeer"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "29e93200bb53431a961afc53e39fb9c8"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "The Falconeer",
+    "developer": "Wired Productions",
+    "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+    "dlcItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2024-07-09T09:40:39.555Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "charlestongreen DLC02 Audience",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "ff615b58dba54362a327470e98e502d1",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "ff615b58dba54362a327470e98e502d1",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-07-09T11:20:17.333Z",
+        "mainGameItem": {
+          "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+          "namespace": "29e93200bb53431a961afc53e39fb9c8",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+            "namespace": "29e93200bb53431a961afc53e39fb9c8",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "29e93200bb53431a961afc53e39fb9c8",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "charlestongreen DLC02 Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2024-07-09T09:40:39.533Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "charlestongreen DLC01 Audience",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "11fd461db0de427f857fee905acb68a7",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "11fd461db0de427f857fee905acb68a7",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-07-09T11:20:17.333Z",
+        "mainGameItem": {
+          "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+          "namespace": "29e93200bb53431a961afc53e39fb9c8",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+            "namespace": "29e93200bb53431a961afc53e39fb9c8",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "29e93200bb53431a961afc53e39fb9c8",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "charlestongreen DLC01 Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-09T11:20:16.812Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "charlestongreen DLC02",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "1995c120ac0e465e856988bd1cb3e9fb",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "1995c120ac0e465e856988bd1cb3e9fb",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "The Falconeer The Falconeer: Edge of the World Offer",
+            "height": 1440,
+            "md5": "742b0fad3f53af373f13435071a1b7a4",
+            "size": 960292,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-09T09:27:56.916Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/574121fb5ef54dc0b794e2d0e1d5695e/the-falconeer-dzmlc.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download The Falconeer The Falconeer: Edge of the World Offer",
+            "height": 1600,
+            "md5": "8f224d64b9d70909fc280f40b5c35b43",
+            "size": 981318,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-09T09:28:01.127Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/574121fb5ef54dc0b794e2d0e1d5695e/the-falconeer-1i7wr.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-09T11:20:16.812Z",
+        "mainGameItem": {
+          "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+          "namespace": "29e93200bb53431a961afc53e39fb9c8",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+            "namespace": "29e93200bb53431a961afc53e39fb9c8",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "29e93200bb53431a961afc53e39fb9c8",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "charlestongreen DLC02",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          },
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-07-09T11:20:16.822Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "charlestongreen DLC01",
+        "developer": "Wired Productions",
+        "developerId": "o-r83qbqhwd8y5y5r6e9x62vtrsd9mqm",
+        "endOfSupport": false,
+        "entitlementName": "847f7f87190646bc99fc0a2891b85302",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "847f7f87190646bc99fc0a2891b85302",
+        "itemType": "DURABLE",
+        "keyImages": [
+          {
+            "alt": "The Falconeer The Falconeer - The Hunter Offer",
+            "height": 1440,
+            "md5": "058360d7e3fe1dab453bd5d9ab5c8c1d",
+            "size": 1016220,
+            "type": "DieselGameBox",
+            "uploadedDate": "2024-07-09T09:28:50.843Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/574121fb5ef54dc0b794e2d0e1d5695e/the-falconeer-qv7q5.jpg",
+            "width": 2560
+          },
+          {
+            "alt": "Download The Falconeer The Falconeer - The Hunter Offer",
+            "height": 1600,
+            "md5": "9923ec4d3a91441f27392925c975024a",
+            "size": 685849,
+            "type": "DieselGameBoxTall",
+            "uploadedDate": "2024-07-09T09:28:52.846Z",
+            "url": "https://cdn1.epicgames.com/spt-assets/574121fb5ef54dc0b794e2d0e1d5695e/the-falconeer-chtm8.jpg",
+            "width": 1200
+          }
+        ],
+        "lastModifiedDate": "2024-07-09T11:20:16.822Z",
+        "mainGameItem": {
+          "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+          "namespace": "29e93200bb53431a961afc53e39fb9c8",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+            "namespace": "29e93200bb53431a961afc53e39fb9c8",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "29e93200bb53431a961afc53e39fb9c8",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "charlestongreen DLC01",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "758fb8c2460b49a5a0d50ee0eba1a1dd",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "42c0d28687b659cdf36d3e3b29cb32e0",
+        "size": 924516,
+        "type": "DieselGameBox",
+        "uploadedDate": "2021-07-27T04:25:20.047Z",
+        "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_TheFalconeer_TomasSala_S1_2560x1440-42c0d28687b659cdf36d3e3b29cb32e0",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "ca4e43b6dcf60e864b143751b1999319",
+        "size": 952389,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2021-07-27T04:25:16.906Z",
+        "url": "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_TheFalconeer_TomasSala_S2_1200x1600-ca4e43b6dcf60e864b143751b1999319",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2024-07-09T11:20:17.333Z",
+    "mainGameItemList": [],
+    "namespace": "29e93200bb53431a961afc53e39fb9c8",
+    "releaseInfo": [
+      {
+        "appId": "32dbb6444ce14e9198129b746c0d056f",
+        "id": "c0ed5c2af0034a7fa1faf9ce6bef0f9b",
+        "platform": [
+          "Win32",
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "The Falconeer",
+    "unsearchable": false
+  },
+  "sidecar": null
+}

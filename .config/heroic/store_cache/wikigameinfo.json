@@ -1,0 +1,100 @@
+{
+	"Rocket League": {
+		"pcgamingwiki": {
+			"steamID": "252950",
+			"howLongToBeatID": "27113",
+			"metacritic": {
+				"score": "86",
+				"urlid": "rocket-league"
+			},
+			"opencritic": {
+				"score": "87",
+				"urlid": "1055/rocket-league"
+			},
+			"igdb": {
+				"score": "89",
+				"urlid": "rocket-league"
+			},
+			"direct3DVersions": [
+				"11"
+			],
+			"genres": [
+				"Driving",
+				"Sports"
+			],
+			"releaseDate": [
+				"Windows: July 7, 2015",
+				"OS X: September 8, 2016|ref=<ref name=\"osx and linux release\">[http://www.rocketleaguegame.com/news/2016/09/rumble-update/ In-Depth with the Rumble Update]</ref>{{note|name=Linux_and_OSX_Removal|note=Linux and OS X were discontinued on '''March 10, 2020'''.<ref name=\"Linux_and_OSX_Removal_Ref\">{{Refsnip|url=https://steamcommunity.com/games/252950/announcements/detail/1719751122119953694|title=Steam :: Rocket League :: March Update Releases March 10|date=2020-03-12|snippet=The March Update will be the final update for Mac and Linux versions of Rocket League.",
+				"Linux: September 8, 2016|ref=<ref name=\"osx and linux release\"/>{{note|name=Linux_and_OSX_Removal"
+			]
+		},
+		"applegamingwiki": null,
+		"howlongtobeat": {
+			"mainStory": 5,
+			"mainExtra": 26,
+			"completionist": 105,
+			"gameId": 27113,
+			"gameName": "Rocket League",
+			"gameImageUrl": "https://howlongtobeat.com/games/Rocket_League_header.jpg",
+			"gameWebLink": "https://howlongtobeat.com/game/27113"
+		},
+		"gamesdb": {
+			"steamID": "252950"
+		},
+		"steamInfo": {
+			"compatibilityLevel": "platinum",
+			"steamDeckCatagory": 3
+		},
+		"umuId": "umu-252950"
+	},
+	"__timestamp": {
+		"Rocket League": "Sat Nov 15 2025 16:09:12 GMT-0300 (Horário Padrão de Brasília)",
+		"Arcade Paradise": "Sat Nov 15 2025 16:54:01 GMT-0300 (Horário Padrão de Brasília)"
+	},
+	"Arcade Paradise": {
+		"pcgamingwiki": {
+			"steamID": "1388870",
+			"howLongToBeatID": "",
+			"metacritic": {
+				"score": "72",
+				"urlid": "arcade-paradise"
+			},
+			"opencritic": {
+				"score": "76",
+				"urlid": "13520/arcade-paradise"
+			},
+			"igdb": {
+				"score": "",
+				"urlid": ""
+			},
+			"direct3DVersions": [
+				""
+			],
+			"genres": [
+				"Simulation",
+				"Business"
+			],
+			"releaseDate": [
+				"Windows: August 11, 2022"
+			]
+		},
+		"applegamingwiki": null,
+		"howlongtobeat": {
+			"mainStory": 25,
+			"mainExtra": 29,
+			"completionist": 46,
+			"gameId": 112251,
+			"gameName": "Arcade Paradise",
+			"gameImageUrl": "https://howlongtobeat.com/games/112251_Arcade_Paradise.jpg",
+			"gameWebLink": "https://howlongtobeat.com/game/112251"
+		},
+		"gamesdb": {
+			"steamID": "1388870"
+		},
+		"steamInfo": {
+			"compatibilityLevel": "platinum",
+			"steamDeckCatagory": 3
+		},
+		"umuId": null
+	}
+}

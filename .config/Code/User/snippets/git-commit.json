@@ -1,0 +1,16 @@
+{
+	"Padrões de Commit (Iuricode)": {
+		"prefix": "commit",
+		"body": [
+			"${1|feat,fix,docs,style,refactor,perf,test,build,ci,chore,revert|}: ${2:escreva aqui a alteração}"
+		],
+		"description": "Gera o padrão de commit semântico (feat, fix, docs...)"
+	},
+	"Commit: Feature": { "prefix": "feat", "body": ["feat: $1"], "description": "Nova funcionalidade" },
+	"Commit: Fix": { "prefix": "fix", "body": ["fix: $1"], "description": "Correção de bug" },
+	"Commit: Docs": { "prefix": "docs", "body": ["docs: $1"], "description": "Apenas documentação" },
+	"Commit: Style": { "prefix": "style", "body": ["style: $1"], "description": "Formatação, ponto e vírgula..." },
+	"Commit: Refactor": { "prefix": "refactor", "body": ["refactor: $1"], "description": "Código refatorado" },
+	"Commit: Test": { "prefix": "test", "body": ["test: $1"], "description": "Adicionando testes" },
+	"Commit: Chore": { "prefix": "chore", "body": ["chore: $1"], "description": "Atualizações de build/ferramentas" }
+}

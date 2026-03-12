@@ -1,0 +1,315 @@
+{
+  "app_name": "fa4240e57a3c46b39f169041b7811293",
+  "app_title": "Hogwarts Legacy",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "fa4240e57a3c46b39f169041b7811293",
+      "asset_id": "fa4240e57a3c46b39f169041b7811293",
+      "build_version": "1613387",
+      "catalog_item_id": "864c7bc2c2394f7dbd1b534aa068ff56",
+      "label_name": "Live-Windows",
+      "metadata": {},
+      "namespace": "e97659b501af4e3981d5430dad170911",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "fghi4567miU20dtYQTvMX82rIvPSALxS",
+    "categories": [
+      {
+        "path": "public"
+      },
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2022-01-21T19:15:43.152Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CloudSaveFolder": {
+        "type": "STRING",
+        "value": "{AppData}/HogwartsLegacy/Saved/SaveGames/{EpicID}/"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "HogwartsLegacy"
+      },
+      "MaxSizeMB": {
+        "type": "STRING",
+        "value": "2000"
+      },
+      "OwnershipToken": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Hogwarts Legacy",
+    "developer": "Warner Bros.",
+    "developerId": "o-7kyv8uwtz74njnl544kbxzt5xqephw",
+    "dlcItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-04-11T16:12:10.765Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Phoenix store 02 DLC - Kelpie Robe Audience",
+        "developer": "Warner Bros.",
+        "developerId": "o-7kyv8uwtz74njnl544kbxzt5xqephw",
+        "endOfSupport": false,
+        "entitlementName": "27800d97d44f4b739db1daddc2c12776",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "27800d97d44f4b739db1daddc2c12776",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-02-07T17:55:28.474Z",
+        "mainGameItem": {
+          "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+          "namespace": "e97659b501af4e3981d5430dad170911",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+            "namespace": "e97659b501af4e3981d5430dad170911",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "e97659b501af4e3981d5430dad170911",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Phoenix store 02 DLC - Kelpie Robe Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-04-11T16:12:39.271Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Phoenix store 07 DLC  - Garrison Hat Audience",
+        "developer": "Warner Bros.",
+        "developerId": "o-7kyv8uwtz74njnl544kbxzt5xqephw",
+        "endOfSupport": false,
+        "entitlementName": "a206774c8690416eb5216aab0f34c410",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "a206774c8690416eb5216aab0f34c410",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-02-07T17:55:28.510Z",
+        "mainGameItem": {
+          "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+          "namespace": "e97659b501af4e3981d5430dad170911",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+            "namespace": "e97659b501af4e3981d5430dad170911",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "e97659b501af4e3981d5430dad170911",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Phoenix store 07 DLC - Garrison Hat Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-04-11T16:11:44.205Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Phoenix store 01 DLC  - Dark Arts Pack Audience",
+        "developer": "Warner Bros.",
+        "developerId": "o-7kyv8uwtz74njnl544kbxzt5xqephw",
+        "endOfSupport": false,
+        "entitlementName": "eccd101a90424793aba327a56209e795",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "eccd101a90424793aba327a56209e795",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-02-07T17:55:28.518Z",
+        "mainGameItem": {
+          "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+          "namespace": "e97659b501af4e3981d5430dad170911",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+            "namespace": "e97659b501af4e3981d5430dad170911",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "e97659b501af4e3981d5430dad170911",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Phoenix store 01 DLC - Dark Arts Pack Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-04-11T16:10:57.531Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Phoenix preorder DLC 1 - Hippogriff Audience",
+        "developer": "Warner Bros.",
+        "developerId": "o-7kyv8uwtz74njnl544kbxzt5xqephw",
+        "endOfSupport": false,
+        "entitlementName": "40a9c78e104c4234a02f6f4ad7841f94",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "40a9c78e104c4234a02f6f4ad7841f94",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-06-05T17:01:03.482Z",
+        "mainGameItem": {
+          "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+          "namespace": "e97659b501af4e3981d5430dad170911",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+            "namespace": "e97659b501af4e3981d5430dad170911",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "e97659b501af4e3981d5430dad170911",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Phoenix preorder DLC 1 - Hippogriff Audience",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "864c7bc2c2394f7dbd1b534aa068ff56",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "864c7bc2c2394f7dbd1b534aa068ff56",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "aa80981dd7c9b3f26b12606974a76dba",
+        "size": 987256,
+        "type": "DieselGameBox",
+        "uploadedDate": "2025-04-02T15:56:24.864Z",
+        "url": "https://cdn1.epicgames.com/item/e97659b501af4e3981d5430dad170911/EGS_HogwartsLegacy_AvalancheSoftware_S1_2560x1440-aa80981dd7c9b3f26b12606974a76dba",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "bb9f789b6628ff2aa935f06f5e0f218a",
+        "size": 618697,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2025-04-02T15:56:35.077Z",
+        "url": "https://cdn1.epicgames.com/item/e97659b501af4e3981d5430dad170911/EGS_HogwartsLegacy_AvalancheSoftware_S2_1200x1600-bb9f789b6628ff2aa935f06f5e0f218a",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2025-04-02T15:56:42.396Z",
+    "mainGameItemList": [],
+    "namespace": "e97659b501af4e3981d5430dad170911",
+    "releaseInfo": [
+      {
+        "appId": "fa4240e57a3c46b39f169041b7811293",
+        "compatibleApps": [],
+        "dateAdded": "2022-01-21T19:19:06.606Z",
+        "id": "197a2e14e3604707aff446925bb921ea",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "Hogwarts Legacy",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

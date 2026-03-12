@@ -1,0 +1,10 @@
+[8c928eff-95fa-4bc6-a163-55e67d122cfd]
+protocol=rdp
+host=181.41.200.166
+port=9090
+uri=rdp://181.41.200.166:9090
+certificate-verified=true
+scaling=true
+resize-supported=true
+scale-mode=fit-window
+display-name=AQM-001

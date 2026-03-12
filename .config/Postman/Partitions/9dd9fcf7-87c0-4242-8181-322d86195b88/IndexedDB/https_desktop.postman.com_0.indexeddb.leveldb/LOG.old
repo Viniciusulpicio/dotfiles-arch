@@ -1,0 +1,8 @@
+2026/03/07-18:28:06.221 c100 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/07-18:28:06.221 c100 Recovering log #88
+2026/03/07-18:28:06.233 c100 Reusing old log /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/000088.log 
+2026/03/07-18:28:06.234 c100 Delete type=2 #87
+2026/03/07-18:28:06.234 c100 Delete type=2 #89
+2026/03/07-18:28:08.511 c101 Level-0 table #93: started
+2026/03/07-18:28:08.582 c101 Level-0 table #93: 1196431 bytes OK
+2026/03/07-18:28:08.584 c101 Delete type=0 #88

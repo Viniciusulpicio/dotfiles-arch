@@ -1,0 +1,825 @@
+{
+  "app_name": "Crow",
+  "app_title": "Dead Island 2",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "Crow",
+      "asset_id": "Crow",
+      "build_version": "1.1243375.0.2",
+      "catalog_item_id": "75a5bee8052f4e2498094b2faaea8c11",
+      "label_name": "Live-Windows",
+      "metadata": {
+        "installationPoolId": "d126ea19b8f14425a4bd77f5fea88e60"
+      },
+      "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "fghi45671EeWNEA6Tc6NX5Ps6VVFY6KP",
+    "categories": [
+      {
+        "path": "public"
+      },
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2019-08-15T17:31:00.367Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CloudSaveFolder": {
+        "type": "STRING",
+        "value": "{AppData}/DeadIsland/Saved/SaveGames/"
+      },
+      "CloudSaveFolder_MAC": {
+        "type": "STRING",
+        "value": "{AppData}/DeadIsland/Saved/SaveGames/"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "DeadIsland2"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "OwnershipToken": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "236c74b4cd2e4e3099cbe2ebdc9686fd"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Dead Island 2",
+    "developer": "Plaion",
+    "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+    "dlcItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-08-16T21:06:14.413Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "OwnershipToken": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "DLC 2 SoLA",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "94e734dd5f524e65aa8821cae81db24a",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "94e734dd5f524e65aa8821cae81db24a",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-11-20T13:30:41.935Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "SUNSET",
+        "title": "DLC 2 SoLA",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-08-16T21:04:02.135Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "OwnershipToken": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "UNUSED DLC 1",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "151c3569b30245a095edf6f9e2019f35",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "151c3569b30245a095edf6f9e2019f35",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-06-27T09:12:08.978Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "SUNSET",
+        "title": "UNUSED DLC 1",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-08-16T21:06:52.664Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "OwnershipToken": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Character Pack 1 DNU",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "8cae1d2192de4ddb8aea0f9ddc06d939",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "8cae1d2192de4ddb8aea0f9ddc06d939",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-05-01T18:41:18.017Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [
+          {
+            "appId": "82ae692a03464c329710b355d3f12c8b",
+            "id": "451c5719380440058b06f32ac7ffa02a",
+            "platform": [
+              "Windows"
+            ]
+          }
+        ],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 1 DNU",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2022-08-16T21:07:45.051Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          },
+          "OwnershipToken": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Character Pack 2 DNU",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "fb94183db98b4df29346fc1dd9f9a741",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "fb94183db98b4df29346fc1dd9f9a741",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-05-01T18:41:18.026Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [
+          {
+            "appId": "edf464c978634114a292bc470bd2dac5",
+            "id": "3bea16e96f454215ad8fdf7fc06233a2",
+            "platform": [
+              "Windows"
+            ]
+          }
+        ],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 2 DNU",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2023-04-11T15:03:05.876Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Red's Demise",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "693e03b475e740ceb74a3c683b811b79",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "693e03b475e740ceb74a3c683b811b79",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-11-20T13:30:41.932Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Red's Demise",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2023-05-01T18:26:05.115Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 6 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "5845863b00e944b3815a9bc4371634f1",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "5845863b00e944b3815a9bc4371634f1",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-10-22T15:00:44.529Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 6 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-08-16T21:08:36.891Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 3 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "cf52a69221dc4bba8cbd52e777bf5905",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "cf52a69221dc4bba8cbd52e777bf5905",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-11-20T13:30:41.937Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 3 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2023-05-01T18:25:41.258Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 4 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "f7530d1f104b4545840b6c69d57fd384",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "f7530d1f104b4545840b6c69d57fd384",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-10-22T15:00:44.535Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 4 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2023-05-01T18:25:53.559Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 5 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "a975f64e71af42a9a552595f5d187044",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "a975f64e71af42a9a552595f5d187044",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-10-22T15:00:44.531Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 5 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-08-16T21:07:44.983Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 2 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "94fbfa458aa94135bf91f6abdead4164",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "94fbfa458aa94135bf91f6abdead4164",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-09-20T14:08:40.095Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 2 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-08-16T21:06:52.589Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "Character Pack 1 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "1a065bedb0784d70b77e4764f67518da",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "1a065bedb0784d70b77e4764f67518da",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-09-20T14:08:40.094Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Character Pack 1 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-08-16T21:04:02.051Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "DLC 1 audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "178dc6a3aa6749b698343e88ad57a2ae",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "178dc6a3aa6749b698343e88ad57a2ae",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-11-20T13:30:41.929Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "DLC 1 audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          }
+        ],
+        "creationDate": "2022-08-16T21:06:14.349Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "DLC 2 SoLA audience",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "a0bdce38af1a40168ef091d2671073f7",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "a0bdce38af1a40168ef091d2671073f7",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-11-20T13:30:41.935Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "DLC 2 SoLA audience",
+        "unsearchable": true
+      },
+      {
+        "categories": [
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-06-06T22:43:47.686Z",
+        "customAttributes": {
+          "CanRunOffline": {
+            "type": "STRING",
+            "value": "true"
+          }
+        },
+        "description": "Dead Island 2 - KCD2 Weapon Pack",
+        "developer": "Plaion",
+        "developerId": "o-jskfz28ywm2l56px6h9rlxplaysrtl",
+        "endOfSupport": false,
+        "entitlementName": "0f4bc1a904444a3da6b54f146c847928",
+        "entitlementType": "EXECUTABLE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "0f4bc1a904444a3da6b54f146c847928",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-06-06T22:43:47.686Z",
+        "mainGameItem": {
+          "id": "75a5bee8052f4e2498094b2faaea8c11",
+          "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "75a5bee8052f4e2498094b2faaea8c11",
+            "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "Dead Island 2 - KCD2 Weapon Pack",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "75a5bee8052f4e2498094b2faaea8c11",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "75a5bee8052f4e2498094b2faaea8c11",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1440,
+        "md5": "fdc688ce46680914ee3c4a7949ce8a67",
+        "size": 878685,
+        "type": "DieselGameBox",
+        "uploadedDate": "2022-08-23T19:55:32.283Z",
+        "url": "https://cdn1.epicgames.com/item/236c74b4cd2e4e3099cbe2ebdc9686fd/EGS_DeadIsland2_DeepSilverDambusterStudios_S1_2560x1440-fdc688ce46680914ee3c4a7949ce8a67_2560x1440-fdc688ce46680914ee3c4a7949ce8a67",
+        "width": 2560
+      },
+      {
+        "height": 1600,
+        "md5": "efc5201842cf642eb45f73227cd0789b",
+        "size": 484421,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2022-08-23T19:55:27.290Z",
+        "url": "https://cdn1.epicgames.com/item/236c74b4cd2e4e3099cbe2ebdc9686fd/EGS_DeadIsland2_DeepSilverDambusterStudios_S2_1200x1600-efc5201842cf642eb45f73227cd0789b_1200x1600-efc5201842cf642eb45f73227cd0789b",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2025-05-20T21:29:47.011Z",
+    "mainGameItemList": [],
+    "namespace": "236c74b4cd2e4e3099cbe2ebdc9686fd",
+    "releaseInfo": [
+      {
+        "appId": "Crow",
+        "compatibleApps": [],
+        "dateAdded": "2019-08-20T00:00:00.000Z",
+        "id": "8f2948cbff75447a9e23a266ac84f710",
+        "platform": [
+          "Windows",
+          "Mac"
+        ]
+      }
+    ],
+    "status": "ACTIVE",
+    "title": "Dead Island 2",
+    "unsearchable": true
+  },
+  "sidecar": null
+}

@@ -1,0 +1,2 @@
+2025/12/24-16:52:56.488 37f1 Creating DB /home/vinicius/.config/heroic/Partitions/epicstore/shared_proto_db since it was missing.
+2025/12/24-16:52:56.491 37f1 Reusing MANIFEST /home/vinicius/.config/heroic/Partitions/epicstore/shared_proto_db/MANIFEST-000001

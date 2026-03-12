@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+.git
+node_modules
+.config/Code/CachedExtensionVSIXs/
+=======
+.config/Antigravity/User/History
+.config/Code/User/History
+.config/Code/User/workspaceStorage
+.config/Antigravity/Cache/Cache_Data
+.config/Antigravity/logs
+.config/Antigravity/User
+>>>>>>> 1c5b7bad (Backup V11: Extensões Corrigidas e README Sincronizado)

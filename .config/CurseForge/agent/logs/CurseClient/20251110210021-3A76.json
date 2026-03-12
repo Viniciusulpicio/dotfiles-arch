@@ -1,0 +1,201 @@
+{
+  "Name": "CurseClient",
+  "Process": "Curse.Agent.Host",
+  "PID": 14966,
+  "Arguments": [
+    "/tmp/.mount_cursefIU3aT6/resources/app.asar.unpacked/plugins/curse/linux/Curse.Agent.Host",
+    "--port=59142",
+    "--to-port=59162",
+    "--pid=14850",
+    "--appDataPath=/home/vinicius/.config/CurseForge",
+    "--api-key=53a8ae8d-d689-49a0-baf8-6cc2cd070fc8",
+    "--clientId=Overwolf"
+  ],
+  "ProcessStart": "2025-11-11T00:00:20.4204257Z",
+  "Version": "1.288.1.28405",
+  "BuildDate": "2000-01-02T17:46:50Z",
+  "Start": "2025-11-10T21:00:21.2225718-03:00",
+  "Log": [
+{
+  "timestamp": "2025-11-10T21:00:21.2069811-03:00",
+  "level": "Warn",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Failed to modified BuiltInConverters: Cannot set initonly static field 'BuiltInConverters' after type 'Newtonsoft.Json.Serialization.DefaultContractResolver' is initialized."
+},
+{
+  "timestamp": "2025-11-10T21:00:21.2173123-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Startup Name: CurseForge, Version: 1.288.1.28405"
+},
+{
+  "timestamp": "2025-11-10T21:00:21.2183108-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Running Mods Agent with args: --port=59142,--to-port=59162,--pid=14850,--appDataPath=/home/vinicius/.config/CurseForge,--api-key=53a8ae8d-d689-49a0-baf8-6cc2cd070fc8,--clientId=Overwolf"
+},
+{
+  "timestamp": "2025-11-10T21:00:21.2225813-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "start monitor process: 14850"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.4568054-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Unable to load game instances from disk. No file was found at: /home/vinicius/.config/CurseForge/agent/GameInstances/ModpackGameInstances.json"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.5875155-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Mods Agent server started on port 59142"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.6457864-03:00",
+  "level": "Info",
+  "thread": 6,
+  "memory": 0.0,
+  "message": "Web Socket session connected"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.8603884-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "Update simultaneous downloads '1' => '3'"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.8628236-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "UpdateOverrideLauncher"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.8644764-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "Initializing Curse Mods Agent"
+},
+{
+  "timestamp": "2025-11-10T21:00:22.86766-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "update client Info ''..."
+},
+{
+  "timestamp": "2025-11-10T21:00:23.0718483-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "Network connected and internet available"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.0915213-03:00",
+  "level": "Info",
+  "thread": 15,
+  "memory": 0.0,
+  "message": "AddonServiceClient - CfCore Url: https://api.curseforge.com"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7268552-03:00",
+  "level": "Info",
+  "thread": 8,
+  "memory": 0.0,
+  "message": "Web Socket session disconnected"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.729075-03:00",
+  "level": "Warn",
+  "thread": 8,
+  "memory": 0.0,
+  "message": "Client disconnected from server"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7793184-03:00",
+  "level": "Warn",
+  "thread": 5,
+  "memory": 0.0,
+  "message": "Parent process is no longer active. Mods Agent will shutdown."
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7794164-03:00",
+  "level": "Warn",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Parent process exit. Shutting down..."
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7860179-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Curse Mods Agent is shutting down"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7861839-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Shutting down periodic tasks"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7863468-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Disabling periodic timers"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7873154-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "[InstallTaskManager] Install Manager Shutting Down"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7881349-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "[InstallTaskManager] Install Manager Shutting Down"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7881434-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "[InstallTaskManager] Install Manager Shutting Down"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.7882593-03:00",
+  "level": "Info",
+  "thread": 1,
+  "memory": 0.0,
+  "message": "Shutdown game instances."
+},
+{
+  "timestamp": "2025-11-10T21:00:23.8077632-03:00",
+  "level": "Info",
+  "thread": 2,
+  "memory": 0.0,
+  "message": "Shutting down the logger"
+},
+{
+  "timestamp": "2025-11-10T21:00:23.8406896-03:00",
+  "level": "Info",
+  "thread": 2,
+  "memory": 0.0,
+  "message": "Logging worker finished"
+}
+]}

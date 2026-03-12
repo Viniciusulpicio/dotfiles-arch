@@ -1,0 +1,33 @@
+{
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "geminicodeassist.project": "striped-site-rhv63",
+    "diffEditor.codeLens": true,
+    "javascript.suggest.enabled": false,
+    "typescript.suggest.enabled": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "typescript": false
+    },
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "editor.quickSuggestionsDelay": 0,
+    "editor.suggest.selectionMode": "never",
+    "editor.inlineSuggest.edits.allowCodeShifting": "never",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "editor.inlineSuggest.edits.renderSideBySide": "never",
+    "editor.inlineSuggest.enabled": false,
+    "editor.inlineSuggest.experimental.emptyResponseInformation": false,
+    "editor.inlineSuggest.showToolbar": "never",
+    "editor.inlineSuggest.suppressInSnippetMode": false,
+    "editor.inlineSuggest.syntaxHighlightingEnabled": false,
+    "editor.inlineSuggest.triggerCommandOnProviderChange": false,
+    "editor.screenReaderAnnounceInlineSuggestion": false,
+    "geminicodeassist.inlineSuggestions.enableAuto": false,
+    "terminal.integrated.suggest.inlineSuggestion": "off",
+    "editor.suggest.showInlineDetails": false
+}

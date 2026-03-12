@@ -1,0 +1,227 @@
+{
+  "app_name": "d36336f190094951873ed6138ac208d8",
+  "app_title": "Sifu",
+  "asset_infos": {
+    "Windows": {
+      "app_name": "d36336f190094951873ed6138ac208d8",
+      "asset_id": "d36336f190094951873ed6138ac208d8",
+      "build_version": "6770",
+      "catalog_item_id": "c80a76de890145edbe0d41679dbccc66",
+      "label_name": "Live-Windows",
+      "metadata": {
+        "update_type": "MINOR"
+      },
+      "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+      "sidecar_rev": 0
+    }
+  },
+  "base_urls": [],
+  "metadata": {
+    "ageGatings": {},
+    "applicationId": "fghi4567NiEUxiipUldDWmUl0dhcBn0g",
+    "categories": [
+      {
+        "path": "public"
+      },
+      {
+        "path": "games"
+      },
+      {
+        "path": "applications"
+      }
+    ],
+    "creationDate": "2024-12-05T14:08:37.651Z",
+    "customAttributes": {
+      "CanRunOffline": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CanSkipKoreanIdVerification": {
+        "type": "STRING",
+        "value": "true"
+      },
+      "CloudIncludeList": {
+        "type": "STRING",
+        "value": "*.sav"
+      },
+      "CloudSaveFolder": {
+        "type": "STRING",
+        "value": "{AppData}/Sifu/Saved/SaveGames/{EpicID}/"
+      },
+      "FolderName": {
+        "type": "STRING",
+        "value": "Sifu"
+      },
+      "MonitorPresence": {
+        "type": "STRING",
+        "value": "false"
+      },
+      "PresenceId": {
+        "type": "STRING",
+        "value": "b7b42e2078524ab386a8b2a9856ef557"
+      },
+      "RequirementsJson": {
+        "type": "STRING",
+        "value": "[]"
+      },
+      "UseAccessControl": {
+        "type": "STRING",
+        "value": "false"
+      }
+    },
+    "description": "Sifu",
+    "developer": "Sloclap",
+    "developerId": "o-ytvuatnvl62xcjs2hq2jp6dektwnu3",
+    "dlcItemList": [
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          },
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2021-12-16T19:44:13.558Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "SIFU Photomode Audience",
+        "developer": "Sloclap",
+        "developerId": "o-ytvuatnvl62xcjs2hq2jp6dektwnu3",
+        "endOfSupport": false,
+        "entitlementName": "7ed66c4409d143638ac44a0eac238070",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "7ed66c4409d143638ac44a0eac238070",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2023-04-14T21:08:11.367Z",
+        "mainGameItem": {
+          "id": "c80a76de890145edbe0d41679dbccc66",
+          "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "c80a76de890145edbe0d41679dbccc66",
+            "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "SIFU Photomode Audience",
+        "unsearchable": true
+      },
+      {
+        "ageGatings": {},
+        "applicationId": "",
+        "categories": [
+          {
+            "path": "audience"
+          },
+          {
+            "path": "public"
+          },
+          {
+            "path": "addons"
+          }
+        ],
+        "creationDate": "2024-12-05T14:08:37.645Z",
+        "customAttributes": {
+          "SupportedPlatforms": {
+            "type": "STRING",
+            "value": "Windows"
+          }
+        },
+        "description": "SIFU Deluxe Edition Content Audience",
+        "developer": "Sloclap",
+        "developerId": "o-ytvuatnvl62xcjs2hq2jp6dektwnu3",
+        "endOfSupport": false,
+        "entitlementName": "5fc627a5daef46f2a1dc074b393d3f0c",
+        "entitlementType": "AUDIENCE",
+        "eulaIds": [
+          "egstore"
+        ],
+        "id": "5fc627a5daef46f2a1dc074b393d3f0c",
+        "itemType": "DURABLE",
+        "lastModifiedDate": "2024-12-06T08:12:52.624Z",
+        "mainGameItem": {
+          "id": "c80a76de890145edbe0d41679dbccc66",
+          "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+          "unsearchable": false
+        },
+        "mainGameItemList": [
+          {
+            "id": "c80a76de890145edbe0d41679dbccc66",
+            "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+            "unsearchable": false
+          }
+        ],
+        "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+        "releaseInfo": [],
+        "requiresSecureAccount": false,
+        "status": "ACTIVE",
+        "title": "SIFU Deluxe Edition Content Audience",
+        "unsearchable": true
+      }
+    ],
+    "endOfSupport": false,
+    "entitlementName": "c80a76de890145edbe0d41679dbccc66",
+    "entitlementType": "EXECUTABLE",
+    "eulaIds": [
+      "egstore"
+    ],
+    "id": "c80a76de890145edbe0d41679dbccc66",
+    "itemType": "DURABLE",
+    "keyImages": [
+      {
+        "height": 1080,
+        "md5": "1df3ab45b895adfee06b011673df20aa",
+        "size": 979989,
+        "type": "DieselGameBox",
+        "uploadedDate": "2022-02-04T21:42:31.022Z",
+        "url": "https://cdn1.epicgames.com/item/b7b42e2078524ab386a8b2a9856ef557/EGS_SIFUStandardEdition_Sloclap_G1A_03_1920x1080-1df3ab45b895adfee06b011673df20aa_1920x1080-1df3ab45b895adfee06b011673df20aa",
+        "width": 1920
+      },
+      {
+        "height": 1600,
+        "md5": "32aca69d756abfcc25f8581942a6162b",
+        "size": 934765,
+        "type": "DieselGameBoxTall",
+        "uploadedDate": "2022-02-04T21:42:34.320Z",
+        "url": "https://cdn1.epicgames.com/item/b7b42e2078524ab386a8b2a9856ef557/EGS_SIFUStandardEdition_Sloclap_S4_1200x1600-32aca69d756abfcc25f8581942a6162b_1200x1600-32aca69d756abfcc25f8581942a6162b",
+        "width": 1200
+      }
+    ],
+    "lastModifiedDate": "2024-12-06T08:12:52.624Z",
+    "mainGameItemList": [],
+    "namespace": "b7b42e2078524ab386a8b2a9856ef557",
+    "releaseInfo": [
+      {
+        "appId": "d36336f190094951873ed6138ac208d8",
+        "id": "5e1cb0197be14bf5b42374ae98c50d69",
+        "platform": [
+          "Windows"
+        ]
+      }
+    ],
+    "requiresSecureAccount": false,
+    "status": "ACTIVE",
+    "title": "Sifu",
+    "unsearchable": true
+  },
+  "sidecar": null
+}
