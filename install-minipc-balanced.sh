@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=== Restaurando Rice + Full Stack Dev (GNOME DIET SUPREMO) ==="
+echo "=== Restaurando Rice + Full Stack Dev (GNOME DIET FINAL) ==="
 CURRENT_USER=$(whoami)
 
 # 1. Base e Yay
@@ -10,7 +10,7 @@ if ! command -v yay &> /dev/null; then
     cd /tmp/yay && makepkg -si --noconfirm && cd -
 fi
 
-# 2. Rice Essencial (GNOME Leve - COM ANIMAÇÕES ATIVAS!)
+# 2. Rice Essencial (GNOME Leve)
 echo "🎨 Instalando base do ambiente gráfico..."
 sudo pacman -S --needed --noconfirm fastfetch conky python-pywal imagemagick zsh gnome-shell-extensions gnome gdm
 yay -S --needed --noconfirm wpgtk-git gnome-extensions-cli
@@ -45,10 +45,11 @@ echo "⚙️ Instalando CLIs Globais..."
 sudo npm install -g typescript ts-node nodemon
 sudo npm install -g @google/generative-ai-cli 2>/dev/null 
 
-# 4. Força Bruta: Swap de 30GB e Otimizações de Kernel
+# 4. Força Bruta: Swap de 30GB
 echo "💾 Forçando a criação do Swap de 30GB no SSD..."
 sudo swapoff -a 2>/dev/null
 sudo rm -f /swapfile
+# Tenta alocação rápida primeiro; se falhar, vai no método seguro bloco a bloco (dd)
 sudo fallocate -l 30G /swapfile || sudo dd if=/dev/zero of=/swapfile bs=1M count=30720 status=progress
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
@@ -57,19 +58,6 @@ sudo swapon /swapfile
 if ! grep -q '/swapfile' /etc/fstab; then
     echo '/swapfile none swap defaults 0 0' | sudo tee -a /etc/fstab
 fi
-
-echo "🧠 Otimizando Swappiness (Forçando uso da RAM física)..."
-echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-swappiness.conf
-sudo sysctl --system 2>/dev/null
-
-echo "🧹 Limitando logs do sistema para 50MB para poupar o SSD..."
-# Remove qualquer configuração antiga e impõe o limite de 50M
-sudo sed -i 's/.*SystemMaxUse=.*/SystemMaxUse=50M/g' /etc/systemd/journald.conf
-# Se a linha não existia descomentada, garante que ela seja adicionada
-if ! grep -q "^SystemMaxUse=50M" /etc/systemd/journald.conf; then
-    echo "SystemMaxUse=50M" | sudo tee -a /etc/systemd/journald.conf
-fi
-sudo systemctl restart systemd-journald 2>/dev/null
 
 # 5. Configuração de Serviços (Otimizado para 4GB RAM)
 echo "🛠️ Configurando Serviços..."
@@ -86,7 +74,7 @@ fi
 sudo systemctl disable docker.service 2>/dev/null
 sudo systemctl disable postgresql.service 2>/dev/null
 sudo systemctl disable mariadb.service 2>/dev/null
-sudo systemctl disable tor.service 2>/dev/null
+sudo systemctl disable tor.service 2>/dev/null # O Tor também fica desligado no boot por padrão
 
 # 6. Restaurar Dotfiles (Seu ambiente)
 echo "📂 Restaurando configurações pessoais..."
@@ -121,9 +109,4 @@ if [ "$SHELL" != "/bin/zsh" ]; then chsh -s /bin/zsh; fi
 echo "======================================================="
 echo "✅ TUDO PRONTO! O AMBIENTE DE DEV ESTÁ ARMADO."
 echo "Swap de 30GB configurado. Bancos, Docker e Tor em modo manual."
-echo "Animações do GNOME mantidas e sistema blindado!"
-echo ""
-echo "⚠️ DICA DE OURO (Navegador): Assim que abrir o Chrome/Firefox,"
-echo "vá nas configurações e ative a 'Economia de Memória' (Memory Saver)"
-echo "para congelar as abas inativas e proteger seus 4GB de RAM!"
 echo "======================================================="
