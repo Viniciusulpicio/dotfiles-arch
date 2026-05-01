@@ -10,9 +10,11 @@ application/x-desktop=code.desktop
 application/x-shellscript=code.desktop
 x-scheme-handler/discord-831593107883032657=discord-831593107883032657.desktop
 x-scheme-handler/discord=vesktop.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=abiword.desktop
 
 [Added Associations]
 application/x-desktop=code.desktop;
 application/x-shellscript=code.desktop;
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=google-chrome.desktop;libreoffice-writer.desktop;abiword.desktop;

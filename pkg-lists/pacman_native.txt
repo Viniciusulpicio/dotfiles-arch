@@ -1,3 +1,4 @@
+abiword
 alacritty
 baobab
 base
@@ -7,12 +8,14 @@ btrfs-progs
 cava
 cmake
 conky
+cpupower
 cronie
 cuda
 cudnn
 ddcutil
 decibels
 dkms
+earlyoom
 efibootmgr
 epiphany
 extension-manager
@@ -22,6 +25,7 @@ firefox
 fuse2
 gamemode
 gdm
+gemini-cli
 git
 github-cli
 gnome-backgrounds
@@ -63,7 +67,6 @@ gvfs
 gvfs-afc
 gvfs-dnssd
 gvfs-goa
-gvfs-google
 gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs
@@ -72,13 +75,18 @@ gvfs-smb
 gvfs-wsdd
 htop
 intel-ucode
+iotop
 iwd
 jdk-openjdk
 jq
+jre25-openjdk
 kolourpaint
+lib32-gamemode
 libaio
 libpulse
 libratbag
+libreoffice-fresh
+libreoffice-fresh-pt-br
 libva-nvidia-driver
 linux
 linux-firmware
@@ -91,6 +99,7 @@ malcontent
 mangohud
 mariadb
 mesa-demos
+mono
 mysql-workbench
 nano
 nautilus
@@ -107,6 +116,7 @@ nvidia-open-dkms
 nvidia-settings
 nvtop
 obs-studio
+ollama
 orca
 os-prober
 pacman-contrib
@@ -119,6 +129,7 @@ pipewire-jack
 pipewire-pulse
 playerctl
 python-pip
+python-pipx
 python-pytorch-cuda
 python-pywal
 rclone
@@ -137,6 +148,7 @@ tecla
 timeshift
 tor
 torbrowser-launcher
+trash-cli
 ttf-jetbrains-mono-nerd
 ufw
 vim
@@ -146,6 +158,7 @@ vlc
 vulkan-tools
 wezterm
 wget
+wine
 wireless_tools
 wireplumber
 wofi

@@ -5,9 +5,9 @@
   "name": "Quick Settings Audio Panel",
   "settings-schema": "org.gnome.shell.extensions.quick-settings-audio-panel",
   "shell-version": [
-    "49"
+    "50"
   ],
   "url": "https://github.com/Rayzeq/quick-settings-audio-panel",
   "uuid": "quick-settings-audio-panel@rayzeq.github.io",
-  "version": 101
+  "version": 102
 }
