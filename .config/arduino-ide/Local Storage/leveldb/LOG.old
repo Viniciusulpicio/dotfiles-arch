@@ -1,2 +1,3 @@
-2025/11/10-21:58:00.432 28dd6 Creating DB /home/vinicius/.config/arduino-ide/Local Storage/leveldb since it was missing.
-2025/11/10-21:58:00.436 28dd6 Reusing MANIFEST /home/vinicius/.config/arduino-ide/Local Storage/leveldb/MANIFEST-000001
+2025/11/10-21:58:31.882 29087 Reusing MANIFEST /home/vinicius/.config/arduino-ide/Local Storage/leveldb/MANIFEST-000001
+2025/11/10-21:58:31.883 29087 Recovering log #3
+2025/11/10-21:58:31.883 29087 Reusing old log /home/vinicius/.config/arduino-ide/Local Storage/leveldb/000003.log 

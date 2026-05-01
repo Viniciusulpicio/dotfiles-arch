@@ -1,15 +1,6 @@
-2025/11/29-21:31:36.705 1840 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/Local Storage/leveldb/MANIFEST-000001
-2025/11/29-21:31:36.720 1840 Recovering log #14
-2025/11/29-21:31:36.721 1840 Reusing old log /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/Local Storage/leveldb/000014.log 
-2025/11/29-21:56:37.033 1842 Level-0 table #18: started
-2025/11/29-21:56:37.036 1842 Level-0 table #18: 23099 bytes OK
-2025/11/29-21:56:37.040 1842 Delete type=0 #14
-2025/11/29-21:56:37.040 1842 Compacting 4@0 + 1@1 files
-2025/11/29-21:56:37.042 1842 Generated table #19@0: 25 keys, 5168 bytes
-2025/11/29-21:56:37.042 1842 Compacted 4@0 + 1@1 files => 5168 bytes
-2025/11/29-21:56:37.045 1842 compacted to: files[ 0 1 1 0 0 0 0 ]
-2025/11/29-21:56:37.045 1842 Delete type=2 #8
-2025/11/29-21:56:37.045 1842 Delete type=2 #11
-2025/11/29-21:56:37.045 1842 Delete type=2 #13
-2025/11/29-21:56:37.045 1842 Delete type=2 #15
-2025/11/29-21:56:37.045 1842 Delete type=2 #18
+2026/03/07-18:28:05.164 c100 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/Local Storage/leveldb/MANIFEST-000001
+2026/03/07-18:28:05.181 c100 Recovering log #17
+2026/03/07-18:28:05.201 c100 Reusing old log /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/Local Storage/leveldb/000017.log 
+2026/03/07-18:33:11.042 c101 Level-0 table #22: started
+2026/03/07-18:33:11.044 c101 Level-0 table #22: 28418 bytes OK
+2026/03/07-18:33:11.047 c101 Delete type=0 #17

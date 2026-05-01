@@ -2,12 +2,9 @@ dash-to-dock@micxgx.gmail.com
 add-to-desktop@tommimon.github.com
 clipboard-history@alexsaveau.dev
 KeepAwake@jepfa.de
-tiling-assistant@leleat-on-github
-mediacontrols@cliffniff.github.com
 pip-on-top@rafostar.github.com
 quick-settings-audio-panel@rayzeq.github.io
 arch-update@RaphaelRochet
-gsconnect@andyholmes.github.io
 caffeine@patapon.info
 auto-move-windows@gnome-shell-extensions.gcampax.github.com
 light-style@gnome-shell-extensions.gcampax.github.com
@@ -18,3 +15,5 @@ windowsNavigator@gnome-shell-extensions.gcampax.github.com
 workspace-indicator@gnome-shell-extensions.gcampax.github.com
 pop-shell@system76.com
 display-brightness-ddcutil@themightydeity.github.com
+tiling-assistant@leleat-on-github
+gsconnect@andyholmes.github.io

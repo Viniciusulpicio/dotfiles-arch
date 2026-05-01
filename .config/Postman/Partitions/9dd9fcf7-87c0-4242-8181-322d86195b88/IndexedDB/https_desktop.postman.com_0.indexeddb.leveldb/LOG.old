@@ -1,8 +1,31 @@
-2026/03/07-18:28:06.221 c100 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/MANIFEST-000001
-2026/03/07-18:28:06.221 c100 Recovering log #88
-2026/03/07-18:28:06.233 c100 Reusing old log /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/000088.log 
-2026/03/07-18:28:06.234 c100 Delete type=2 #87
-2026/03/07-18:28:06.234 c100 Delete type=2 #89
-2026/03/07-18:28:08.511 c101 Level-0 table #93: started
-2026/03/07-18:28:08.582 c101 Level-0 table #93: 1196431 bytes OK
-2026/03/07-18:28:08.584 c101 Delete type=0 #88
+2026/03/07-18:28:18.048 c100 Reusing MANIFEST /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/03/07-18:28:18.048 c100 Recovering log #92
+2026/03/07-18:28:18.053 c100 Reusing old log /home/vinicius/.config/Postman/Partitions/9dd9fcf7-87c0-4242-8181-322d86195b88/IndexedDB/https_desktop.postman.com_0.indexeddb.leveldb/000092.log 
+2026/03/07-18:28:18.924 c100 Compacting 1@1 + 1@2 files
+2026/03/07-18:28:18.934 c100 Generated table #95@1: 2335 keys, 469495 bytes
+2026/03/07-18:28:18.934 c100 Compacted 1@1 + 1@2 files => 469495 bytes
+2026/03/07-18:28:18.937 c100 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/07-18:28:18.937 c100 Delete type=2 #90
+2026/03/07-18:28:18.937 c100 Delete type=2 #93
+2026/03/07-18:28:19.999 c11b Level-0 table #97: started
+2026/03/07-18:28:20.003 c11b Level-0 table #97: 164434 bytes OK
+2026/03/07-18:28:20.027 c119 Current memtable full; waiting...
+2026/03/07-18:28:20.029 c11b Delete type=0 #92
+2026/03/07-18:28:20.029 c11b Level-0 table #99: started
+2026/03/07-18:28:20.031 c11b Level-0 table #99: 671 bytes OK
+2026/03/07-18:28:20.033 c11b Delete type=0 #96
+2026/03/07-18:28:20.033 c11b Manual compaction at level-0 from '\x00\x13\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at '\x00\x14\x00\x00\x05' @ 115033 : 1
+2026/03/07-18:28:20.033 c11b Compacting 1@0 + 1@1 files
+2026/03/07-18:28:20.039 c11b Generated table #100@0: 2512 keys, 70915 bytes
+2026/03/07-18:28:20.039 c11b Compacted 1@0 + 1@1 files => 70915 bytes
+2026/03/07-18:28:20.042 c11b compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/07-18:28:20.043 c11b Manual compaction at level-0 from '\x00\x14\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x15\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/03/07-18:28:20.043 c11b Manual compaction at level-0 from '\x00\x14\x00\x00\x05' @ 115033 : 1 .. '\x00\x14\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/03/07-18:29:05.759 c101 Compacting 1@1 + 1@2 files
+2026/03/07-18:29:05.764 c101 Generated table #101@1: 976 keys, 39931 bytes
+2026/03/07-18:29:05.764 c101 Compacted 1@1 + 1@2 files => 39931 bytes
+2026/03/07-18:29:05.767 c101 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/07-18:29:05.767 c101 Delete type=2 #95
+2026/03/07-18:29:05.767 c101 Delete type=2 #97
+2026/03/07-18:29:05.767 c101 Delete type=2 #99
+2026/03/07-18:29:05.767 c101 Delete type=2 #100

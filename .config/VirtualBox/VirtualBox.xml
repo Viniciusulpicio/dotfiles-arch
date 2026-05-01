@@ -5,7 +5,7 @@
 ** is running, your changes will be overwritten later, without taking effect.
 ** Use VBoxManage or the VirtualBox Manager GUI to make changes.
 **
-** Written by VirtualBox 7.2.4 (r170995)
+** Written by VirtualBox 7.2.6 (r172322)
 -->
 <VirtualBox xmlns="http://www.virtualbox.org/" version="1.12-linux">
   <Global>
@@ -19,13 +19,11 @@
       <ExtraDataItem name="GUI/RecentListHD" value="/home/vinicius/VirtualBox VMs/arch/arch.vdi"/>
       <ExtraDataItem name="GUI/Settings/ExpertMode" value="false"/>
       <ExtraDataItem name="GUI/SnapshotManager/Details/Expanded" value="true"/>
-      <ExtraDataItem name="GUI/SuppressMessages" value="confirmInputCapture"/>
-      <ExtraDataItem name="GUI/Tools/LastItemsSelected" value="Machines,Details"/>
+      <ExtraDataItem name="GUI/SuppressMessages" value="confirmInputCapture,remindAboutMouseIntegration"/>
+      <ExtraDataItem name="GUI/Tools/LastItemsSelected" value="Home,Details"/>
       <ExtraDataItem name="GUI/VMActivityMonitorDataSeriesColors" value="#ffff00ff,#ff0000ff"/>
     </ExtraData>
-    <MachineRegistry>
-      <MachineEntry uuid="{00755180-a027-423e-adfc-86a1d56d3233}" src="/home/vinicius/VirtualBox VMs/arch/arch.vbox"/>
-    </MachineRegistry>
+    <MachineRegistry/>
     <NetserviceRegistry>
       <DHCPServers>
         <DHCPServer networkName="HostInterfaceNetworking-vboxnet0" IPAddress="192.168.56.100" networkMask="255.255.255.0" lowerIP="192.168.56.101" upperIP="192.168.56.254" enabled="1"/>

@@ -20,9 +20,10 @@
     "46",
     "47",
     "48",
-    "49"
+    "49",
+    "50"
   ],
   "url": "https://github.com/eonpatapon/gnome-shell-extension-caffeine",
   "uuid": "caffeine@patapon.info",
-  "version": 59
+  "version": 60
 }

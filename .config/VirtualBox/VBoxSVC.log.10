@@ -1,562 +1,484 @@
-00:00:00.005332 main     VirtualBox XPCOM Server 7.2.4 r170995 linux.amd64 (Oct 22 2025 16:59:14) release log
-00:00:00.005333 main     Log opened 2025-12-10T16:07:48.437389000Z
-00:00:00.005334 main     Build Type: release
-00:00:00.005335 main     OS Product: Linux
-00:00:00.005335 main     OS Release: 6.12.61-1-lts
-00:00:00.005336 main     OS Version: #1 SMP PREEMPT_DYNAMIC Sun, 07 Dec 2025 09:50:46 +0000
-00:00:00.005347 main     DMI Product Name: Pichau Alphard B560M-T
-00:00:00.005352 main     DMI Product Version: 
-00:00:00.005355 main     Firmware type: UEFI
-00:00:00.005541 main     Secure Boot: Disabled
-00:00:00.005567 main     Host RAM: 15859MB (15.4GB) total, 9362MB (9.1GB) available
-00:00:00.005569 main     Executable: /usr/lib/virtualbox/VBoxSVC
-00:00:00.005569 main     Process ID: 6397
-00:00:00.005570 main     Package type: LINUX_64BITS_GENERIC (OSE)
-00:00:00.010095 main     IPC socket path: /tmp/.vbox-vinicius-ipc/ipcd
-00:00:00.033431 DCon01   VirtualBox: object creation starts
-00:00:00.033481 DCon01   Home directory: '/home/vinicius/.config/VirtualBox'
-00:00:00.033596 DCon01   Loading settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:00.034066 DCon01   USB: Unknown USB device detected (idVendor: 0x30fa, idProduct: 0x1330)
-00:00:00.034111 DCon01   Successfully initialised host USB using sysfs
-00:00:00.034433 DCon01   HostDnsMonitor: initializing
-00:00:00.034516 DCon01   NAT: resolv.conf: nameserver 181.213.132.2
-00:00:00.034523 DCon01   NAT: resolv.conf: nameserver 181.213.132.3
-00:00:00.034529 DCon01   HostDnsMonitor: updating information
-00:00:00.034537 DCon01   HostDnsMonitor: old information
-00:00:00.034540 DCon01     no server entries
-00:00:00.034543 DCon01     no domain set
-00:00:00.034546 DCon01     no search string entries
-00:00:00.034549 DCon01   HostDnsMonitor: new information
-00:00:00.034552 DCon01     server 1: 181.213.132.2
-00:00:00.034555 DCon01     server 2: 181.213.132.3
-00:00:00.034557 DCon01     domain: domain.name
-00:00:00.034559 DCon01     search string 1: domain.name
-00:00:00.035650 DCon01   VD: VDInit finished with VINF_SUCCESS
-00:00:00.035711 DCon01   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
-00:00:00.036150 DCon01   Platform architecture set to 'x86'
-00:00:00.036427 DCon01   Loading settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
-00:00:00.036545 DCon01   Platform architecture set to 'x86'
-00:00:00.036950 DCon01   VirtualBox: object created
-00:00:00.725992 DCon04   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:00.832147 DCon04   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-00:00:04.400574 DCon02   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:04.405480 DCon02   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:04.405518 DCon02   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:04.409534 DCon02   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:04.409732 DCon01   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:04.413966 DCon01   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:04.414839 DCon03   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:04.418535 DCon03   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:06.434300 DCon03   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
-00:00:06.843333 DCon03   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:06.847270 DCon03   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:14.738947 DCon04   Unattended: RTVfsQueryPathInfo(, '\OS2IMAGE/DISK_0/OS2LDR' (from OS2SE20.SRC),) -> VERR_PATH_NOT_FOUND, fMode=0x0
-00:00:27.100026 createBase Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:27.106328 createBase Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:27.109499 DCon04   Platform architecture set to 'x86'
-00:00:27.109568 DCon04   Platform architecture set to 'x86'
-00:00:27.109577 DCon04   Platform architecture set to 'x86'
-00:00:27.109754 DCon04   Platform architecture set to 'x86'
-00:00:27.110332 DCon04   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:27.118307 DCon04   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:27.118421 DCon04   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:27.122540 DCon04   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:27.123054 DCon03   Platform architecture set to 'x86'
-00:00:27.124070 DCon04   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:27.128177 DCon04   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:27.128395 DCon04   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:27.132553 DCon04   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:27.133465 DCon04   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:27.137481 DCon04   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:27.137767 DCon03   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:27.141812 DCon03   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:27.183130 DCon07   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:27.186827 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-00:00:27.672854 DCon06   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:27.677440 DCon06   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:32.705880 DCon01   Launched VM: 1812356224 pid: 6653 (0x19fd) frontend: GUI/Qt name: rice-arch
-00:00:32.741991 DCon07   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:32.759856 DCon07   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-00:00:32.916016 DCon08   Platform architecture set to 'x86'
-00:00:32.942898 DCon10   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:32.946092 DCon10   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-00:00:33.440972 DCon08   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-00:00:33.529454 DCon08   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-00:00:33.537741 DCon08   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:33.548177 DCon08   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
-00:00:33.649347 DCon08   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-00:00:33.649976 DCon08   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-00:00:33.650705 DCon08   HostDnsMonitorProxy::GetDomainName: domain.name
-00:00:33.650771 DCon08   HostDnsMonitorProxy::GetNameServers:
-00:00:33.650775 DCon08     name server 1: 181.213.132.2
-00:00:33.650778 DCon08     name server 2: 181.213.132.3
-00:00:33.650838 DCon08   HostDnsMonitorProxy::GetSearchStrings:
-00:00:33.650843 DCon08     search string 1: domain.name
-00:00:33.661500 DCon04   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-00:00:33.681089 DCon04   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:33.692793 DCon04   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:33.781839 DCon04   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:33.785521 DCon04   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:33.987497 DCon07   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:33.991379 DCon07   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:33.997413 DCon08   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:34.011710 DCon08   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:34.955772 DCon06   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-00:00:34.959530 DCon06   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-00:00:34.962587 DCon07   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:34.966466 DCon07   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:34.972321 DCon04   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:34.979344 DCon04   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:36.571613 DCon07   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:36.575263 DCon07   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:36.581302 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:36.588546 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:37.086781 DCon12   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:37.093806 DCon12   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:37.104313 DCon07   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:37.113031 DCon07   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:53.072389 DCon09   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:53.076106 DCon09   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:53.090033 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:53.095897 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:53.571810 DCon14   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:53.575558 DCon14   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:53.581729 DCon01   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:53.587436 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:55.178757 DCon01   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:55.182882 DCon01   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:55.188503 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:55.212495 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:00:55.680762 DCon14   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:00:55.684330 DCon14   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:00:55.689749 DCon01   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:00:55.697557 DCon01   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:43.566575 DCon64   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:43.570486 DCon64   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:43.588493 DCon66   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:43.593746 DCon66   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:44.072867 DCon68   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:44.079333 DCon68   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:44.084047 DCon66   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:44.089364 DCon65   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:44.875913 DCon66   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:44.880442 DCon66   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:44.885307 DCon53   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:44.907057 DCon53   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:45.384720 DCon69   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:45.388256 DCon69   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:45.393607 DCon53   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:45.399518 DCon53   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:58.296504 DCon53   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:58.300744 DCon53   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:58.306575 DCon68   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:58.332712 DCon64   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:17:58.802994 DCon69   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:17:58.806786 DCon69   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:17:58.812003 DCon69   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:17:58.819435 DCon69   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:29:29.345653 DCon112  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:29:29.349161 DCon112  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:29:29.354483 DCon109  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:29:29.361702 DCon109  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:29:29.851331 DCon94   Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:29:29.854768 DCon94   Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:29:29.860072 DCon111  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:29:29.867976 DCon109  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:46:13.872092 DCon167  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:46:13.877749 DCon167  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:46:13.883639 DCon182  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:46:13.891560 DCon181  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:46:14.371870 DCon182  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:46:14.376948 DCon182  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:46:14.385045 DCon174  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:46:14.392997 DCon174  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:48:39.595875 DCon196  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:48:39.601417 DCon196  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:48:39.606716 DCon200  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:48:39.614187 DCon196  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-00:48:40.099195 DCon200  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-00:48:40.102785 DCon200  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-00:48:40.107930 DCon195  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-00:48:40.115470 DCon174  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:05:03.453380 MainPower Host suspending: Paused 1 VMs
-01:05:03.462781 DCon254  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:05:03.467714 DCon254  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:05:03.478573 DCon254  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Paused)}, preserve=false aResultDetail=0
-01:05:13.137701 dns-monitor HostDnsMonitor: updating information
-01:05:13.137731 dns-monitor HostDnsMonitor: old information
-01:05:13.137736 dns-monitor   server 1: 181.213.132.2
-01:05:13.137741 dns-monitor   server 2: 181.213.132.3
-01:05:13.137744 dns-monitor   domain: domain.name
-01:05:13.137747 dns-monitor   search string 1: domain.name
-01:05:13.137750 dns-monitor HostDnsMonitor: new information
-01:05:13.137753 dns-monitor   no server entries
-01:05:13.137756 dns-monitor   no domain set
-01:05:13.137759 dns-monitor   no search string entries
-01:05:13.140749 DCon252  HostDnsMonitorProxy::GetDomainName: no domain set
-01:05:13.140867 DCon252  HostDnsMonitorProxy::GetNameServers:
-01:05:13.140878 DCon252    no name server entries
-01:05:13.140992 DCon252  HostDnsMonitorProxy::GetSearchStrings:
-01:05:13.140997 DCon252    no search string entries
-01:05:14.031607 MainPower Host resumed: Resumed 1 VMs
-01:05:14.060381 DCon256  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:05:14.078644 DCon252  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:05:14.089535 DCon252  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:05:17.105298 dns-monitor NAT: resolv.conf: nameserver 181.213.132.2
-01:05:17.105329 dns-monitor NAT: resolv.conf: nameserver 181.213.132.3
-01:05:17.105343 dns-monitor HostDnsMonitor: updating information
-01:05:17.105347 dns-monitor HostDnsMonitor: old information
-01:05:17.105350 dns-monitor   no server entries
-01:05:17.105353 dns-monitor   no domain set
-01:05:17.105355 dns-monitor   no search string entries
-01:05:17.105358 dns-monitor HostDnsMonitor: new information
-01:05:17.105360 dns-monitor   server 1: 181.213.132.2
-01:05:17.105363 dns-monitor   server 2: 181.213.132.3
-01:05:17.105366 dns-monitor   domain: domain.name
-01:05:17.105368 dns-monitor   search string 1: domain.name
-01:05:17.106269 DCon257  HostDnsMonitorProxy::GetDomainName: domain.name
-01:05:17.106435 DCon257  HostDnsMonitorProxy::GetNameServers:
-01:05:17.106446 DCon257    name server 1: 181.213.132.2
-01:05:17.106450 DCon257    name server 2: 181.213.132.3
-01:05:17.106574 DCon257  HostDnsMonitorProxy::GetSearchStrings:
-01:05:17.106584 DCon257    search string 1: domain.name
-01:05:55.574709 DCon242  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-01:05:55.580451 DCon242  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-01:05:55.584511 DCon254  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:05:55.588618 DCon254  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:05:55.593723 DCon254  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:05:55.602122 DCon254  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:06:00.067557 DCon256  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:06:00.536785 DCon254  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:00.540834 DCon254  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:22.074251 DCon258  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:22.077821 DCon258  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:28.520139 DCon254  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:06:28.540342 DCon254  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:06:28.549670 DCon254  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Stopping)}, preserve=false aResultDetail=0
-01:06:28.823888 DCon259  Saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox" with version "1.19-linux"
-01:06:28.827771 DCon259  Finished saving settings file "/home/vinicius/VirtualBox VMs/rice-arch/rice-arch.vbox"
-01:06:28.836015 DCon242  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:06:28.854384 DCon242  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:06:28.864390 DCon242  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-01:06:29.372764 DCon263  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:29.376780 DCon263  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:30.359122 DCon258  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:06:30.376139 DCon258  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-01:06:32.034877 DCon258  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:32.040813 DCon258  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:32.040954 DCon258  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:32.045155 DCon258  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:32.045478 DCon258  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:32.049298 DCon258  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:33.451770 DCon258  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
-01:06:33.801762 DCon262  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:33.806376 DCon262  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:41.335476 DCon255  Unattended: RTVfsQueryPathInfo(, '\OS2IMAGE/DISK_0/OS2LDR' (from OS2SE20.SRC),) -> VERR_PATH_NOT_FOUND, fMode=0x0
-01:06:55.474977 createBase Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:55.480248 createBase Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:55.483448 DCon265  Platform architecture set to 'x86'
-01:06:55.483523 DCon265  Platform architecture set to 'x86'
-01:06:55.483532 DCon265  Platform architecture set to 'x86'
-01:06:55.483729 DCon265  Platform architecture set to 'x86'
-01:06:55.484378 DCon265  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:06:55.487885 DCon265  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:06:55.487985 DCon265  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:55.491622 DCon265  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:55.492186 DCon265  Platform architecture set to 'x86'
-01:06:55.493391 DCon265  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:55.497044 DCon265  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:06:55.497240 DCon265  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:06:55.500869 DCon265  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:06:55.501879 DCon258  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:06:55.505609 DCon258  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:06:55.505877 DCon265  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:06:55.509296 DCon265  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:06:55.552699 DCon255  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:06:55.556707 DCon255  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-01:06:56.070996 DCon255  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:06:56.074615 DCon255  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:07:04.128731 DCon255  Launched VM: 1812369472 pid: 25673 (0x6449) frontend: GUI/Qt name: arch-ricea
-01:07:04.169489 DCon265  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:04.186506 DCon265  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-01:07:04.345136 DCon266  Platform architecture set to 'x86'
-01:07:04.366440 DCon267  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:04.368969 DCon267  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-01:07:04.842090 DCon258  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:07:04.902772 DCon266  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:07:04.933388 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:04.943749 DCon264  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
-01:07:05.098086 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-01:07:05.098882 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-01:07:05.099748 DCon264  HostDnsMonitorProxy::GetDomainName: domain.name
-01:07:05.099815 DCon264  HostDnsMonitorProxy::GetNameServers:
-01:07:05.099819 DCon264    name server 1: 181.213.132.2
-01:07:05.099821 DCon264    name server 2: 181.213.132.3
-01:07:05.099882 DCon264  HostDnsMonitorProxy::GetSearchStrings:
-01:07:05.099885 DCon264    search string 1: domain.name
-01:07:05.111688 DCon258  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-01:07:05.135087 DCon266  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:05.148498 DCon258  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:05.184135 DCon258  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:07:05.188054 DCon258  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:07:05.372778 DCon266  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:05.376735 DCon266  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:05.382791 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:05.398051 DCon264  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:06.848272 DCon263  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-01:07:06.852510 DCon267  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:06.853416 DCon263  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-01:07:06.857296 DCon267  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:06.863710 DCon267  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:06.871110 DCon263  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:08.007481 DCon266  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:08.011361 DCon266  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:08.016875 DCon266  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:08.023678 DCon270  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:08.574731 DCon270  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:08.578731 DCon270  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:08.584222 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:08.591169 DCon264  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:10.699518 DCon269  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:10.703279 DCon269  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:10.708130 DCon269  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:10.713973 DCon258  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:11.205012 DCon268  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:11.209051 DCon268  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:11.214839 DCon270  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:11.220649 DCon265  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:12.875916 DCon270  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:12.879877 DCon270  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:12.885680 DCon269  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:12.910901 DCon270  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:07:13.372106 DCon269  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:07:13.377084 DCon269  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:07:13.381918 DCon267  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:07:13.389229 DCon267  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:20.042313 DCon334  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:20.045852 DCon334  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:20.050986 DCon331  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:20.069595 DCon334  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:20.549561 DCon342  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:20.553065 DCon342  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:20.558229 DCon342  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:20.564742 DCon334  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:21.744059 DCon342  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:21.747418 DCon342  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:21.752109 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:21.757411 DCon309  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:22.250493 DCon340  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:22.256900 DCon340  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:22.261380 DCon334  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:22.266471 DCon341  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:23.192358 DCon309  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:23.196284 DCon309  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:23.201323 DCon337  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:23.218451 DCon337  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:23.698899 DCon331  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:23.704981 DCon331  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:23.709886 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:23.715721 DCon337  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:35.205617 DCon338  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:35.209362 DCon338  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:35.214956 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:35.236824 DCon339  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:32:35.744444 DCon339  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:32:35.748165 DCon339  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:32:35.753864 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:32:35.762634 DCon309  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:42:53.271438 DCon374  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:42:53.275094 DCon374  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:42:53.282354 DCon375  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:42:53.293005 DCon375  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:42:53.771713 DCon379  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:42:53.775450 DCon379  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:42:53.780774 DCon373  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:42:53.788546 DCon369  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:50:03.194679 DCon395  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:50:03.198680 DCon395  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:50:03.204526 DCon393  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:50:03.212385 DCon389  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:50:03.700814 DCon393  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:50:03.704994 DCon393  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:50:03.711384 DCon387  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:50:03.719519 DCon387  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:58:47.404744 DCon420  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:58:47.408864 DCon420  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:58:47.414172 DCon415  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:58:47.430382 DCon415  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:58:47.971423 DCon425  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:58:47.975863 DCon425  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:58:47.980557 DCon415  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:58:47.997607 DCon415  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:58:48.472650 DCon415  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:58:48.482611 DCon415  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:58:48.487634 DCon424  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:58:48.494037 DCon415  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:58:49.572084 DCon424  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:58:49.583075 DCon424  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:58:49.588084 DCon423  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:58:49.594313 DCon409  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:58:53.071496 DCon423  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:58:53.076520 DCon423  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:58:53.083248 DCon420  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:58:53.089413 DCon426  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:59:03.061859 DCon423  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:59:03.066701 DCon423  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:59:03.094499 DCon417  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:59:03.103247 DCon428  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-01:59:03.568190 DCon417  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-01:59:03.573451 DCon417  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-01:59:03.578922 DCon424  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-01:59:03.587752 DCon424  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:40:02.749094 DCon554  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-02:40:02.768966 DCon554  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:02.778315 DCon554  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Stopping)}, preserve=false aResultDetail=0
-02:40:02.792844 DCon554  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox" with version "1.19-linux"
-02:40:02.796660 DCon554  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricea/arch-ricea.vbox"
-02:40:02.804639 DCon556  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-02:40:02.805660 DCon556  ERROR [COM]: aRC=NS_ERROR_INVALID_ARG (0x80070057) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={SessionMachine} aText={Properties with TRANSIENT or TRANSRESET flag cannot be set or modified if VM is not running}, preserve=false aResultDetail=0
-02:40:02.816822 DCon556  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:02.827265 DCon556  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-02:40:04.335428 DCon546  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:04.350729 DCon546  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-02:40:16.356455 DCon545  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:16.360525 DCon545  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:16.360569 DCon545  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:16.363953 DCon545  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:16.364182 DCon545  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:16.367703 DCon545  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:18.075971 DCon558  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
-02:40:18.457670 DCon558  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:18.461772 DCon558  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:27.142652 DCon558  Unattended: RTVfsQueryPathInfo(, '\OS2IMAGE/DISK_0/OS2LDR' (from OS2SE20.SRC),) -> VERR_PATH_NOT_FOUND, fMode=0x0
-02:40:36.869978 createBase Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:36.873915 createBase Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:36.878294 DCon545  Platform architecture set to 'x86'
-02:40:36.878401 DCon545  Platform architecture set to 'x86'
-02:40:36.878415 DCon545  Platform architecture set to 'x86'
-02:40:36.878628 DCon545  Platform architecture set to 'x86'
-02:40:36.879270 DCon545  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:36.883409 DCon545  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:36.883500 DCon545  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:36.887562 DCon545  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:36.888038 DCon545  Platform architecture set to 'x86'
-02:40:36.889042 DCon559  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:36.892656 DCon559  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:36.892850 DCon545  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:36.896624 DCon545  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:36.897462 DCon559  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:36.902302 DCon559  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:36.902543 DCon545  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:36.907022 DCon545  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:36.950230 DCon558  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:36.954215 DCon558  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-02:40:37.464505 DCon558  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:37.468410 DCon558  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:50.209166 DCon555  Launched VM: 1342184656 pid: 56765 (0xddbd) frontend: GUI/Qt name: arch-ricee
-02:40:50.248115 DCon562  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:50.265625 DCon562  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-02:40:50.428445 DCon564  Platform architecture set to 'x86'
-02:40:50.443346 DCon566  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:50.445872 DCon566  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
-02:40:50.921999 DCon565  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-02:40:51.004947 DCon566  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:51.016329 DCon565  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
-02:40:51.024757 DCon565  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-02:40:51.112593 DCon565  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-02:40:51.113408 DCon565  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
-02:40:51.114198 DCon565  HostDnsMonitorProxy::GetDomainName: domain.name
-02:40:51.114253 DCon565  HostDnsMonitorProxy::GetNameServers:
-02:40:51.114257 DCon565    name server 1: 181.213.132.2
-02:40:51.114259 DCon565    name server 2: 181.213.132.3
-02:40:51.114313 DCon565  HostDnsMonitorProxy::GetSearchStrings:
-02:40:51.114319 DCon565    search string 1: domain.name
-02:40:51.125369 DCon559  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
-02:40:51.146602 DCon559  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:51.158794 DCon566  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:40:51.269771 DCon566  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:51.273328 DCon566  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:51.485659 DCon562  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:51.489452 DCon562  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:51.495767 DCon555  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:51.510670 DCon565  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:40:52.373670 DCon565  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-02:40:52.376312 DCon568  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:40:52.378765 DCon565  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-02:40:52.381148 DCon568  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:40:52.386777 DCon566  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:40:52.393581 DCon566  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:41:10.495973 DCon564  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:41:10.500172 DCon564  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:41:10.505351 DCon566  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:41:10.524135 DCon566  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:41:11.001365 DCon562  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:41:11.004978 DCon562  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:41:11.010978 DCon569  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:41:11.017272 DCon563  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:41:12.771741 DCon569  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:41:12.775753 DCon569  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:41:12.781582 DCon571  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:41:12.810838 DCon565  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-02:41:13.271866 DCon571  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-02:41:13.277019 DCon571  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-02:41:13.283258 DCon562  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-02:41:13.292371 DCon572  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:23.572187 DCon661  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:23.575876 DCon661  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:23.582372 DCon650  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:23.598335 DCon650  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:24.052684 DCon650  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:24.056214 DCon650  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:24.060923 DCon648  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:24.078649 DCon648  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:24.558523 DCon650  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:24.562261 DCon650  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:24.566915 DCon658  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:24.571999 DCon649  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:25.975478 DCon661  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:25.979063 DCon661  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:25.983844 DCon663  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:26.000308 DCon663  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:26.483267 DCon663  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:26.486761 DCon663  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:26.491874 DCon661  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:26.497874 DCon661  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:45.099328 DCon649  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:45.104672 DCon649  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:45.110340 DCon648  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:45.138542 DCon648  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:11:45.636417 DCon663  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:11:45.640537 DCon663  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:11:45.645565 DCon661  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:11:45.653270 DCon661  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:29:27.242001 DCon714  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:29:27.245569 DCon714  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:29:27.251051 DCon731  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:29:27.258461 DCon731  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:29:30.747251 DCon726  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:29:30.751023 DCon726  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:29:30.756114 DCon728  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:29:30.763733 DCon728  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:36:56.271600 DCon754  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:36:57.013761 DCon754  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:36:57.025365 DCon739  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:36:57.035198 DCon757  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:36:57.339852 DCon757  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:36:57.934369 DCon757  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:36:57.939542 DCon753  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:36:57.947038 DCon751  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:43:20.174180 DCon769  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:43:20.177467 DCon769  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:43:20.178042 DCon762  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
-03:43:20.181442 DCon762  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
-03:43:20.185741 DCon753  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
-03:43:20.193185 DCon776  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
-03:44:02.704937 main     Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
-03:44:02.739600 main     Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
-03:44:02.739953 main     VirtualBox: object deletion starts
-03:44:02.739973 main     ERROR [COM]: aRC=VBOX_E_OBJECT_IN_USE (0x80bb000c) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Medium '/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vdi' cannot be closed because it is still attached to 1 virtual machines}, preserve=false aResultDetail=0
-03:44:02.749975 main     HostDnsMonitor: shutting down ...
-03:44:02.750058 main     HostDnsMonitor: shut down
-03:44:02.761697 Watcher  ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={2ce10519-3c09-45d8-a12d-e887786146b7} aComponent={VirtualBoxWrap} aText={The object is not ready}, preserve=false aResultDetail=0
-03:44:02.781297 main     VirtualBox: object deleted
+00:00:00.004217 main     VirtualBox XPCOM Server 7.2.4 r170995 linux.amd64 (Oct 22 2025 16:59:14) release log
+00:00:00.004220 main     Log opened 2025-12-10T23:03:52.714880000Z
+00:00:00.004220 main     Build Type: release
+00:00:00.004222 main     OS Product: Linux
+00:00:00.004223 main     OS Release: 6.12.61-1-lts
+00:00:00.004223 main     OS Version: #1 SMP PREEMPT_DYNAMIC Sun, 07 Dec 2025 09:50:46 +0000
+00:00:00.004241 main     DMI Product Name: Pichau Alphard B560M-T
+00:00:00.004248 main     DMI Product Version: 
+00:00:00.004252 main     Firmware type: UEFI
+00:00:00.004440 main     Secure Boot: Disabled
+00:00:00.004478 main     Host RAM: 15859MB (15.4GB) total, 10990MB (10.7GB) available
+00:00:00.004482 main     Executable: /usr/lib/virtualbox/VBoxSVC
+00:00:00.004482 main     Process ID: 4970
+00:00:00.004483 main     Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:00.013591 main     IPC socket path: /tmp/.vbox-vinicius-ipc/ipcd
+00:00:00.045271 DCon01   VirtualBox: object creation starts
+00:00:00.045322 DCon01   Home directory: '/home/vinicius/.config/VirtualBox'
+00:00:00.045445 DCon01   Loading settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:00.046006 DCon01   USB: Unknown USB device detected (idVendor: 0x30fa, idProduct: 0x1330)
+00:00:00.046071 DCon01   Successfully initialised host USB using sysfs
+00:00:00.046420 DCon01   HostDnsMonitor: initializing
+00:00:00.046586 DCon01   NAT: resolv.conf: nameserver 181.213.132.2
+00:00:00.046595 DCon01   NAT: resolv.conf: nameserver 181.213.132.3
+00:00:00.046605 DCon01   HostDnsMonitor: updating information
+00:00:00.046618 DCon01   HostDnsMonitor: old information
+00:00:00.046620 DCon01     no server entries
+00:00:00.046622 DCon01     no domain set
+00:00:00.046624 DCon01     no search string entries
+00:00:00.046626 DCon01   HostDnsMonitor: new information
+00:00:00.046628 DCon01     server 1: 181.213.132.2
+00:00:00.046631 DCon01     server 2: 181.213.132.3
+00:00:00.046633 DCon01     domain: domain.name
+00:00:00.046635 DCon01     search string 1: domain.name
+00:00:00.048241 DCon01   VD: VDInit finished with VINF_SUCCESS
+00:00:00.048347 DCon01   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
+00:00:00.049101 DCon01   Platform architecture set to 'x86'
+00:00:00.049453 DCon01   Loading settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:00.049626 DCon01   Platform architecture set to 'x86'
+00:00:00.050159 DCon01   VirtualBox: object created
+00:00:00.935022 DCon04   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:00.946363 DCon04   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:00:01.009195 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:01.172541 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Aborted)}, preserve=false aResultDetail=0
+00:00:01.464948 DCon01   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:01.503321 DCon01   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:00:04.185137 DCon01   Launched VM: 3020634080 pid: 5181 (0x143d) frontend: GUI/Qt name: arch-ricee
+00:00:04.244318 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:04.294179 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Aborted)}, preserve=false aResultDetail=0
+00:00:04.804690 DCon01   Platform architecture set to 'x86'
+00:00:04.868302 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:04.885134 DCon10   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Aborted)}, preserve=false aResultDetail=0
+00:00:05.885432 DCon06   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:00:06.088134 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:06.127823 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
+00:00:06.143626 DCon02   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:00:06.203986 DCon02   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:06.214859 DCon02   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:06.255179 DCon01   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:06.263361 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
+00:00:06.298462 DCon01   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:00:06.304630 DCon01   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:00:06.357011 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:00:06.358765 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:00:06.367170 DCon03   HostDnsMonitorProxy::GetDomainName: domain.name
+00:00:06.373490 DCon03   HostDnsMonitorProxy::GetNameServers:
+00:00:06.373506 DCon03     name server 1: 181.213.132.2
+00:00:06.373512 DCon03     name server 2: 181.213.132.3
+00:00:06.373671 DCon03   HostDnsMonitorProxy::GetSearchStrings:
+00:00:06.373679 DCon03     search string 1: domain.name
+00:00:06.431806 DCon03   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:00:06.565763 DCon09   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:06.603641 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:06.649182 DCon10   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:06.674704 DCon10   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:06.711503 DCon01   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:06.720124 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:06.738318 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:09.361407 DCon08   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:09.367387 DCon08   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:09.374175 DCon05   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:09.383003 DCon05   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:09.802907 DCon08   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:09.807392 DCon08   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:09.825026 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:09.835894 DCon05   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:22.294912 DCon02   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:22.299690 DCon02   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:22.305201 DCon02   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:22.319778 DCon02   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:22.800142 DCon02   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:22.806092 DCon02   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:22.811409 DCon10   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:22.817632 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:52.995070 DCon06   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:52.999876 DCon06   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:53.005429 DCon15   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:53.012356 DCon16   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:53.494099 DCon15   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:53.499631 DCon15   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:53.504655 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:53.511173 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:55.527131 DCon12   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:55.532637 DCon12   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:55.537946 DCon06   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:55.544914 DCon08   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:56.075389 DCon06   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:56.079269 DCon06   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:56.084913 DCon19   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:56.091781 DCon08   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:58.514017 DCon08   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:58.517900 DCon08   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:58.523418 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:58.537878 DCon09   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:00:59.023270 DCon03   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:00:59.027216 DCon03   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:00:59.032480 DCon17   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:00:59.039152 DCon16   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:06.142199 DCon09   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:06.147899 DCon09   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:06.154303 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Paused)}, preserve=false aResultDetail=0
+00:01:11.110661 DCon09   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:11.132299 DCon09   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:11.143274 DCon09   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Stopping)}, preserve=false aResultDetail=0
+00:01:11.158352 DCon09   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:11.161835 DCon09   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:11.170170 DCon16   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:11.183776 DCon16   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:11.193397 DCon16   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:01:11.691254 DCon15   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:01:11.696821 DCon15   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:01:12.701737 DCon15   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:12.719898 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:01:13.729485 DCon20   Launched VM: 2415927200 pid: 5922 (0x1722) frontend: GUI/Qt name: arch-ricee
+00:01:13.763092 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:13.781013 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:01:13.912190 DCon12   Platform architecture set to 'x86'
+00:01:13.921011 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:13.923988 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:01:14.413949 DCon09   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:14.479611 DCon12   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:14.510162 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:14.520349 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
+00:01:14.573016 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:01:14.573598 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:01:14.574211 DCon12   HostDnsMonitorProxy::GetDomainName: domain.name
+00:01:14.574264 DCon12   HostDnsMonitorProxy::GetNameServers:
+00:01:14.574268 DCon12     name server 1: 181.213.132.2
+00:01:14.574270 DCon12     name server 2: 181.213.132.3
+00:01:14.574322 DCon12   HostDnsMonitorProxy::GetSearchStrings:
+00:01:14.574325 DCon12     search string 1: domain.name
+00:01:14.584804 DCon21   ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:01:14.605414 DCon21   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:14.617404 DCon21   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:14.788401 DCon21   Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:01:14.792074 DCon21   Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:01:17.489560 DCon06   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:17.493352 DCon06   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:17.498789 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:17.504864 DCon03   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:17.999605 DCon03   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:18.003736 DCon03   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:18.009563 DCon17   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:18.016785 DCon06   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:23.177866 DCon06   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:23.181511 DCon06   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:23.186475 DCon03   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:23.195016 DCon09   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:23.680630 DCon09   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:23.684500 DCon09   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:23.690600 DCon09   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:23.697717 DCon09   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:28.189869 DCon16   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:28.193800 DCon16   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:28.199478 DCon12   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:28.206264 DCon12   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:33.256182 DCon09   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:33.261718 DCon09   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:33.267317 DCon15   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:33.276148 DCon09   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:01:33.762922 DCon15   Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:01:33.766871 DCon15   Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:01:33.772426 DCon16   ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:01:33.780645 DCon16   ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:03.889967 DCon164  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:03.893925 DCon164  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:03.899380 DCon183  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:03.904947 DCon183  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:04.390179 DCon169  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:04.393892 DCon169  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:04.398333 DCon169  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:04.404028 DCon164  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:06.504416 DCon183  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:06.508533 DCon183  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:06.512924 DCon183  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:06.518663 DCon183  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:07.015465 DCon169  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:07.019789 DCon169  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:07.024254 DCon164  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:07.030036 DCon164  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:22.959261 DCon177  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:22.963395 DCon177  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:22.968807 DCon189  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:22.981949 DCon190  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:23.463097 DCon190  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:23.466998 DCon190  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:23.471878 DCon177  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:23.477678 DCon177  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:25.090033 DCon190  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:25.093861 DCon190  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:25.098174 DCon190  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:25.114744 DCon190  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:25.589964 DCon189  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:25.594130 DCon189  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:25.598808 DCon190  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:25.608790 DCon164  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:49.989932 DCon192  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:49.993569 DCon192  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:49.998220 DCon175  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:50.004803 DCon175  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:50.381109 DCon175  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:50.384745 DCon175  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:50.389017 DCon164  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:50.401029 DCon177  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:50.889391 DCon164  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:50.892769 DCon164  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:50.897269 DCon193  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:50.902441 DCon193  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:51.689787 DCon192  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:51.693482 DCon192  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:51.698626 DCon195  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:51.711451 DCon194  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:46:52.189845 DCon195  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:46:52.193329 DCon195  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:46:52.198431 DCon193  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:46:52.204119 DCon190  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:47:02.181027 DCon194  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:47:02.185444 DCon194  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:47:02.207860 DCon196  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:47:02.217843 DCon196  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:47:02.692261 DCon189  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:47:02.698342 DCon189  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:47:02.703668 DCon189  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:47:02.711578 DCon194  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:48:14.761550 DCon189  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:48:14.777751 DCon189  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:48:14.787185 DCon189  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Stopping)}, preserve=false aResultDetail=0
+00:48:14.808001 DCon189  Saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox" with version "1.19-linux"
+00:48:14.812133 DCon189  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-ricee/arch-ricee.vbox"
+00:48:14.821043 DCon177  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:48:14.837071 DCon177  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:48:14.849544 DCon177  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:48:15.848277 DCon194  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:48:15.864836 DCon194  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:48:20.391478 DCon199  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:20.396190 DCon199  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:23.510960 DCon199  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:23.520949 DCon199  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:23.521071 DCon199  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:23.530161 DCon199  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:23.531006 DCon177  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:23.536406 DCon177  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:23.537474 DCon177  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:23.541748 DCon177  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:24.307851 DCon177  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={925084b0-625f-422f-a67d-0ede1880a56c} aComponent={SystemPropertiesWrap} aText={Cannot determine default Guest Additions ISO location. Most likely they are not available}, preserve=false aResultDetail=0
+00:48:24.702052 DCon177  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:48:24.707486 DCon177  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:48:38.951646 DCon177  Unattended: RTVfsQueryPathInfo(, '\OS2IMAGE/DISK_0/OS2LDR' (from OS2SE20.SRC),) -> VERR_PATH_NOT_FOUND, fMode=0x0
+00:53:14.954865 createBase Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:53:14.960103 createBase Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:53:14.963385 DCon205  Platform architecture set to 'x86'
+00:53:14.963459 DCon205  Platform architecture set to 'x86'
+00:53:14.963468 DCon205  Platform architecture set to 'x86'
+00:53:14.963656 DCon205  Platform architecture set to 'x86'
+00:53:14.964333 DCon205  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:14.970169 DCon205  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:14.970225 DCon205  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:53:14.974276 DCon205  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:53:14.974814 DCon205  Platform architecture set to 'x86'
+00:53:14.975890 DCon203  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:53:14.979787 DCon203  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:53:14.979982 DCon203  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:14.984160 DCon203  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:14.985173 DCon205  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:14.988791 DCon205  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:14.989087 DCon205  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:14.999033 DCon205  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:15.041408 DCon204  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:15.045306 DCon204  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:53:15.516864 DCon204  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:53:15.521228 DCon204  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:53:17.384464 DCon205  Launched VM: 2617361552 pid: 23493 (0x5bc5) frontend: GUI/Qt name: arch-rice
+00:53:17.419245 DCon203  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:17.437384 DCon203  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:53:17.584636 DCon207  Platform architecture set to 'x86'
+00:53:17.592834 DCon209  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:17.595759 DCon210  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+00:53:18.101475 DCon208  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:53:18.168017 DCon194  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:53:18.194975 DCon194  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:18.204985 DCon194  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Starting)}, preserve=false aResultDetail=0
+00:53:18.272202 DCon194  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:53:18.272846 DCon194  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={7d510820-a678-4730-a862-818dcd3fbed0} aComponent={MediumWrap} aText={Property 'CRYPT/KeyId' does not exist}, preserve=false aResultDetail=0
+00:53:18.273560 DCon194  HostDnsMonitorProxy::GetDomainName: domain.name
+00:53:18.273619 DCon194  HostDnsMonitorProxy::GetNameServers:
+00:53:18.273632 DCon194    name server 1: 181.213.132.2
+00:53:18.273634 DCon194    name server 2: 181.213.132.3
+00:53:18.273692 DCon194  HostDnsMonitorProxy::GetSearchStrings:
+00:53:18.273696 DCon194    search string 1: domain.name
+00:53:18.283841 DCon194  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+00:53:18.304532 DCon210  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:18.316611 DCon204  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:18.473922 DCon204  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+00:53:18.478376 DCon204  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+00:53:18.615543 DCon210  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:18.619431 DCon210  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:18.624348 DCon204  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:18.638017 DCon206  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:19.495358 DCon203  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:19.499295 DCon203  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:19.504701 DCon203  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:19.511769 DCon194  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:37.076954 DCon210  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:37.080102 DCon210  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:37.085437 DCon215  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:37.100048 DCon208  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:37.587570 DCon215  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:37.590781 DCon215  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:37.595700 DCon208  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:37.601468 DCon216  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:39.200690 DCon217  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:39.203956 DCon217  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:39.209449 DCon203  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:39.228766 DCon207  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+00:53:39.704125 DCon207  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+00:53:39.707306 DCon207  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+00:53:39.712808 DCon207  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+00:53:39.721156 DCon207  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:42.809639 DCon233  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:42.816784 DCon233  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:42.923181 DCon256  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:42.929369 DCon256  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:43.290120 DCon259  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:43.295181 DCon259  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:43.301195 DCon261  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:43.310462 DCon261  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:44.489852 DCon259  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:44.494731 DCon259  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:44.500153 DCon256  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:44.507607 DCon256  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:44.989749 DCon256  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:45.002329 DCon256  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:45.007802 DCon257  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:45.016598 DCon233  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:55.254208 DCon257  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:55.258881 DCon257  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:55.265676 DCon262  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:55.276479 DCon257  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:09:55.768065 DCon258  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:09:55.772843 DCon258  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:09:55.782135 DCon264  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:09:55.792325 DCon233  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:19:47.397310 DCon285  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:19:47.402012 DCon285  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:19:47.551128 DCon233  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:19:47.563012 DCon233  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:19:47.886911 DCon233  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:19:47.890334 DCon233  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:19:47.896007 DCon286  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:19:47.906862 DCon284  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:24:23.748418 DCon300  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:24:23.758384 DCon300  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:24:23.791431 DCon296  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:24:23.802116 DCon296  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:24:23.817834 DCon289  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:24:23.827179 DCon296  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:29:06.841150 DCon304  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:29:06.846310 DCon304  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:29:06.891046 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:29:06.905442 DCon309  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:30:58.691238 DCon309  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:30:58.695963 DCon309  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:30:58.702618 DCon322  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:30:58.713841 DCon322  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:31:05.119384 DCon314  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:31:05.122762 DCon314  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:31:05.128058 DCon312  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:31:05.138377 DCon312  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:38:57.593090 DCon345  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:38:57.599714 DCon345  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:38:57.691957 DCon341  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:38:57.699236 DCon346  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:38:58.087009 DCon346  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:38:58.095410 DCon346  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:38:58.100571 DCon340  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:38:58.107895 DCon340  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:38:59.089398 DCon343  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:38:59.093480 DCon343  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:38:59.098382 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:38:59.111759 DCon309  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:38:59.589816 DCon347  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:38:59.596168 DCon347  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:38:59.601087 DCon343  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:38:59.606692 DCon343  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:39:00.790127 DCon340  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:39:00.795653 DCon340  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:39:00.801165 DCon338  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:39:00.808073 DCon338  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:39:01.296452 DCon346  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:39:01.300833 DCon346  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:39:01.305807 DCon309  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:39:01.313175 DCon309  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:39:13.589342 DCon346  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:39:13.601176 DCon346  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:39:13.607812 DCon346  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:39:13.629255 DCon346  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:39:14.089442 DCon346  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:39:14.094809 DCon346  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:39:14.101189 DCon351  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:39:14.109607 DCon347  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:41:09.405882 DCon355  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:41:09.425896 DCon355  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:41:09.436951 DCon346  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:41:09.451524 DCon358  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:41:17.397015 DCon356  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:41:17.402902 DCon356  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:41:17.407958 DCon354  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:41:17.416598 DCon357  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:00.035270 DCon366  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:00.041671 DCon366  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:00.166607 DCon366  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:00.188954 DCon366  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:00.776792 DCon373  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:00.781318 DCon373  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:00.786821 DCon368  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:00.800538 DCon369  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:01.396105 DCon368  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:01.400250 DCon368  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:01.405707 DCon359  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:01.411761 DCon359  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:01.983530 DCon359  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:01.987623 DCon359  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:01.993765 DCon375  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:02.009922 DCon375  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:02.491232 DCon366  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:02.496475 DCon366  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:02.502416 DCon374  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:02.509354 DCon368  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:11.683657 DCon368  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:11.688187 DCon368  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:11.713222 DCon374  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:11.722613 DCon374  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:12.189818 DCon366  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:12.195807 DCon366  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:12.206629 DCon371  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:12.218333 DCon359  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Running)}, preserve=false aResultDetail=0
+01:49:55.679121 DCon374  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+01:49:55.749277 DCon374  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:55.761067 DCon374  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is Stopping)}, preserve=false aResultDetail=0
+01:49:55.809766 DCon374  Saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox" with version "1.19-linux"
+01:49:55.814243 DCon374  Finished saving settings file "/home/vinicius/VirtualBox VMs/arch-rice/arch-rice.vbox"
+01:49:55.824812 DCon374  ERROR [COM]: aRC=NS_ERROR_FAILURE (0x80004005) aIID={83cfdc66-4f20-4569-ad39-8722f7d472b3} aComponent={RecordingSettingsWrap} aText={Recording not started}, preserve=false aResultDetail=0
+01:49:55.842148 DCon374  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:55.854462 DCon374  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+01:49:57.343388 DCon375  ERROR [COM]: aRC=VBOX_E_OBJECT_NOT_FOUND (0x80bb0001) aIID={5bfd8965-b81b-469f-8649-f717ce97a5d5} aComponent={NvramStoreWrap} aText={The UEFI NVRAM file is not existing for this machine}, preserve=false aResultDetail=0
+01:49:57.360419 DCon375  ERROR [COM]: aRC=VBOX_E_INVALID_VM_STATE (0x80bb0002) aIID={e36a5081-a82a-40bd-9e4e-42a44d6ce50f} aComponent={MachineWrap} aText={The machine is not mutable, saved or running (state is PoweredOff)}, preserve=false aResultDetail=0
+01:51:32.697680 DCon377  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:32.705890 DCon377  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:37.391080 DCon377  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:37.394706 DCon377  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:37.394750 DCon377  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:37.398241 DCon377  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:37.399098 DCon377  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:37.402624 DCon377  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:38.811312 DCon375  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:38.814674 DCon375  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:42.166478 DCon375  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:42.169908 DCon375  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:42.679226 DCon375  Saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml" with version "1.12-linux"
+01:51:42.683163 DCon375  Finished saving settings file "/home/vinicius/.config/VirtualBox/VirtualBox.xml"
+01:51:48.193204 main     VirtualBox: object deletion starts
+01:51:48.194331 main     HostDnsMonitor: shutting down ...
+01:51:48.206066 main     HostDnsMonitor: shut down
+01:51:48.232320 Watcher  ERROR [COM]: aRC=E_ACCESSDENIED (0x80070005) aIID={2ce10519-3c09-45d8-a12d-e887786146b7} aComponent={VirtualBoxWrap} aText={The object is not ready}, preserve=false aResultDetail=0
+01:51:48.232443 main     VirtualBox: object deleted

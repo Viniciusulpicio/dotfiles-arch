@@ -397,7 +397,7 @@ const InhibitorManager = GObject.registerClass({
         const params = [
             GLib.Variant.new_string('caffeine-gnome-extension'),
             GLib.Variant.new_uint32(0),
-            GLib.Variant.new_string('Inhibit by %s'.format(this._name)),
+            GLib.Variant.new_string('Inhibited by Caffeine GNOME extension'),
             GLib.Variant.new_uint32(inhibitFlags)
         ];
         const paramsVariant = GLib.Variant.new_tuple(params);
@@ -637,7 +637,6 @@ class Caffeine extends QuickSettings.SystemIndicator {
         this._appSystem = Shell.AppSystem.get_default();
         this._indicator = this._addIndicator();
         this._settings = Me._settings;
-        this._name = Me.metadata.name;
         this._state = false;
 
         // Add indicator label for the timer
@@ -912,7 +911,22 @@ class Caffeine extends QuickSettings.SystemIndicator {
     }
 
     _handleScrollEvent(event) {
-        switch (event.get_scroll_direction()) {
+        // Undo natural scrolling inversions (available on GNOME 49+)
+        let scrollDirection = event.get_scroll_direction();
+        if (ShellVersion >= 49) {
+            if (event.get_scroll_flags() & Clutter.ScrollFlags.INVERTED) {
+                switch (scrollDirection) {
+                case Clutter.ScrollDirection.UP:
+                    scrollDirection = Clutter.ScrollDirection.DOWN;
+                    break;
+                case Clutter.ScrollDirection.DOWN:
+                    scrollDirection = Clutter.ScrollDirection.UP;
+                    break;
+                }
+            }
+        }
+
+        switch (scrollDirection) {
         case Clutter.ScrollDirection.UP:
             if (!this._state) {
                 // User state on - UP

@@ -532,7 +532,7 @@ class ExtensionController {
             this.disconnect(this.input_volume_slider, "notify::visible");
             this.injection_manager.restoreMethod(this.input_volume_slider.constructor.prototype, "_sync");
             this.active_patches.set("always-show-input-volume-slider", false);
-            this.input_volume_slider._maybeShowInput();
+            this.input_volume_slider._maybeShowInput?.();
             this.input_volume_slider.visible = this.input_volume_slider._shouldBeVisible();
         }
         this.reset_input_volume_visibility();
@@ -551,6 +551,7 @@ class ExtensionController {
                 this.input_volume_slider.visible = true;
             }
         }
+        this.output_volume_slider._updatePrivacyIndicator?.();
     }
     set_remove_output_volume_slider(enable) {
         const was_active = !!this.active_patches.get("remove-output-volume-slider");
