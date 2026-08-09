@@ -12,7 +12,7 @@ Ele configura um ambiente completo com **Tiling Shell**, tema dinâmico (**Pywal
 
 ## Demonstração (Showcase)
 
-https://github.com/user-attachments/assets/0997c15e-19ce-4ad6-a97d-360dcdf87058
+<!-- https://github.com/user-attachments/assets/0997c15e-19ce-4ad6-a97d-360dcdf87058 -->
 
 
 > **Destaques Visuais:**
