@@ -1,4 +1,0 @@
-[2025-12-29 14:47:54.695] [warn]  (main)         WS disconnected due to auth-failed
-[2025-12-29 14:47:55.696] [warn]  (main)         WS disconnected due to auth-failed
-[2025-12-29 14:49:56.524] [warn]  (main)         WS disconnected due to auth-failed
-[2025-12-29 14:49:57.525] [warn]  (main)         WS disconnected due to auth-failed

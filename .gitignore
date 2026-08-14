@@ -1,12 +1,49 @@
-<<<<<<< HEAD
+# Git
 .git
-node_modules
+.gitignore
+
+# Bloat & Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.tmp
+*.iso
+*.iso.tmp
+*.log
+*.sqlite-shm
+*.sqlite-wal
+
+# VS Code / Antigravity Caches & History
+.config/Code/User/History/
+.config/Code/User/workspaceStorage/
 .config/Code/CachedExtensionVSIXs/
-=======
-.config/Antigravity/User/History
-.config/Code/User/History
-.config/Code/User/workspaceStorage
-.config/Antigravity/Cache/Cache_Data
-.config/Antigravity/logs
-.config/Antigravity/User
->>>>>>> 1c5b7bad (Backup V11: Extensões Corrigidas e README Sincronizado)
+.config/Code/CachedData/
+.config/Code/Cache/
+.config/Code/logs/
+.config/Code/Backups/
+.config/Antigravity/
+
+# Browser & Electron Caches
+**/Cache/
+**/Cache_Data/
+**/CachedData/
+**/GPUCache/
+**/Code Cache/
+**/Service Worker/CacheStorage/
+**/Partitions/
+**/WidevineCdm/
+
+# Sensitive Data & Tokens
+.config/gh/
+.config/discord/Local Storage/
+.config/discord/Session Storage/
+.config/google-chrome/
+.config/Postman/
+.config/heroic/
+.config/CurseForge/
+.config/hydralauncher/
+.config/rclone/
+
+# Heavy Binaries in local/bin
+.local/bin/agy*
+.local/bin/rclone

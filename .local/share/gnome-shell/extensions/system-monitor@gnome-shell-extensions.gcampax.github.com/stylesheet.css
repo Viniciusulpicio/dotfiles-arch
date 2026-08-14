@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Florian Müllner <fmuellner@gnome.org>
+ *
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ */
+
+.system-monitor-stat-section {
+  padding: 0 6px;
+}
+
+.system-monitor-stat-section-icon {
+  icon-size: 1.08em;
+  margin-right: 4px !important;
+}
+
+.system-monitor-stat-section-label {
+  font-size: 0.9em;
+  margin-left: 4px !important;
+}
+
+.system-monitor-placeholder {-st-icon-style: symbolic;}
+
+.panel-button .high-usage {color: #ff7800;}

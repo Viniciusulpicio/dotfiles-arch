@@ -1,8 +1,19 @@
 #!/bin/bash
-echo "=== Restaurando Rice + Full Stack Dev (V11) ==="
+# ==============================================================================
+# Script de Instalação e Restauração Completa - Arch Linux GNOME Rice & Dev
+# ==============================================================================
+echo "=== Restaurando Rice + Full Stack Dev (Completo) ==="
 CURRENT_USER=$(whoami)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# 1. Base
+# 1. Habilitar Multilib em /etc/pacman.conf se estiver desativado
+if grep -q "^#\[multilib\]" /etc/pacman.conf; then
+    echo "⚙️ Ativando repositório [multilib] em /etc/pacman.conf..."
+    sudo sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+fi
+
+# 2. Atualizar Keyring e Base
+echo "🔑 Atualizando keyring e base..."
 sudo pacman -Sy --noconfirm archlinux-keyring
 if ! command -v yay &> /dev/null; then
     sudo pacman -S --needed --noconfirm base-devel git python-pipx wget unzip
@@ -10,112 +21,144 @@ if ! command -v yay &> /dev/null; then
     cd /tmp/yay && makepkg -si --noconfirm && cd -
 fi
 
-# 2. Rice Essencial
-echo "🎨 Instalando base do Rice..."
-sudo pacman -S --needed --noconfirm fastfetch conky python-pywal imagemagick zsh gnome-shell-extensions jq curl
-yay -S --needed --noconfirm wpgtk-git gnome-extensions-cli
+# 3. INSTALAÇÃO DE PACOTES NATIVOS (Pacman)
+echo "📦 Instalando Pacotes Nativos do Pacman..."
+INSTALLED_PKGS=$(pacman -Qq)
+REPO_PKGS=$(pacman -Slq)
 
-# 3. INSTALAÇÃO DE APLICATIVOS
-echo "📦 Instalando Stack de Desenvolvimento e Apps..."
-
-# --- NATIVOS (Pacman) ---
-APPS_NATIVE=(
-    "git" "nodejs" "npm" "docker" "docker-compose" "mariadb" "postgresql" "code" "openssl" 
-    "vlc" "obs-studio" "discord" "steam" "firefox" "btop" "alacritty" "wezterm" "jdk-openjdk" "unzip"
-)
-for pkg in "${APPS_NATIVE[@]}"; do
-    sudo pacman -S --needed --noconfirm "$pkg" 2>/dev/null || echo "⚠️ Falha Nativo: $pkg"
+# Ler listas de pacotes nativos
+REQUESTED_NATIVE=()
+for f in "$SCRIPT_DIR/pkg-lists/pacman_native.txt" "$SCRIPT_DIR/pkg-lists/native_list.txt"; do
+    if [ -f "$f" ]; then
+        while read -r pkg; do
+            [[ -z "$pkg" || "$pkg" =~ ^# ]] && continue
+            REQUESTED_NATIVE+=("$pkg")
+        done < "$f"
+    fi
 done
 
-# --- AUR (Yay) ---
-APPS_AUR=(
-    "google-chrome" "spotify" "postman-bin" "mysql-workbench" "notion-app-electron" 
-    "heroic-games-launcher-bin" "teamspeak3"
-    "mangohud" "goverlay" "wlogout" "wofi" "cava" 
-    "gnome-shell-extension-tiling-assistant" 
-    "gnome-shell-extension-pop-shell-git"
-    "gnome-shell-extension-clipboard-indicator"
-    "gnome-shell-extension-mediacontrols"
-)
-for pkg in "${APPS_AUR[@]}"; do
-    yay -S --needed --noconfirm "$pkg" 2>/dev/null || echo "⚠️ Falha AUR: $pkg"
+# Filtrar o que precisa ser instalado via Pacman
+TO_INSTALL_PACMAN=()
+for pkg in "${REQUESTED_NATIVE[@]}"; do
+    if ! echo "$INSTALLED_PKGS" | grep -qx "$pkg" && echo "$REPO_PKGS" | grep -qx "$pkg"; then
+        TO_INSTALL_PACMAN+=("$pkg")
+    fi
 done
 
-# 4. Configuração Pós-Instalação
+if [ ${#TO_INSTALL_PACMAN[@]} -gt 0 ]; then
+    echo "Instalando ${#TO_INSTALL_PACMAN[@]} pacotes nativos..."
+    sudo pacman -S --needed --noconfirm "${TO_INSTALL_PACMAN[@]}"
+else
+    echo "Todos os pacotes nativos solicitados já estão instalados!"
+fi
+
+# 4. INSTALAÇÃO DE PACOTES AUR (Yay)
+echo "🚀 Instalando Pacotes do AUR..."
+REQUESTED_AUR=()
+for f in "$SCRIPT_DIR/pkg-lists/aur_packages.txt" "$SCRIPT_DIR/pkg-lists/aur_list.txt"; do
+    if [ -f "$f" ]; then
+        while read -r pkg; do
+            [[ -z "$pkg" || "$pkg" =~ ^# || "$pkg" =~ -debug$ ]] && continue
+            REQUESTED_AUR+=("$pkg")
+        done < "$f"
+    fi
+done
+
+TO_INSTALL_AUR=()
+for pkg in "${REQUESTED_AUR[@]}"; do
+    if ! echo "$INSTALLED_PKGS" | grep -qx "$pkg" && ! echo "$REPO_PKGS" | grep -qx "$pkg"; then
+        TO_INSTALL_AUR+=("$pkg")
+    fi
+done
+
+if [ ${#TO_INSTALL_AUR[@]} -gt 0 ]; then
+    echo "Instalando ${#TO_INSTALL_AUR[@]} pacotes do AUR..."
+    for pkg in "${TO_INSTALL_AUR[@]}"; do
+        yay -S --needed --noconfirm "$pkg" 2>/dev/null || echo "⚠️ Falha ao instalar do AUR: $pkg"
+    done
+else
+    echo "Todos os pacotes AUR já estão instalados!"
+fi
+
+# 5. INSTALAÇÃO DE FLATPAKS
+if command -v flatpak &> /dev/null && [ -f "$SCRIPT_DIR/pkg-lists/flatpak_list.txt" ]; then
+    echo "📦 Instalando Flatpaks..."
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    while read -r fp; do
+        [[ -z "$fp" || "$fp" =~ ^# ]] && continue
+        flatpak install -y flathub "$fp" 2>/dev/null
+    done < "$SCRIPT_DIR/pkg-lists/flatpak_list.txt"
+fi
+
+# 6. CONFIGURAÇÃO DE SERVIÇOS
 echo "🛠️ Configurando Serviços..."
-sudo npm install -g typescript
-sudo systemctl enable --now docker.service
-sudo usermod -aG docker $CURRENT_USER
+sudo npm install -g typescript 2>/dev/null
+sudo systemctl enable --now docker.service 2>/dev/null
+sudo usermod -aG docker "$CURRENT_USER" 2>/dev/null
+
 if [ ! -d "/var/lib/mysql" ]; then
     echo "Inicializando MariaDB..."
     sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 fi
-sudo systemctl enable --now mariadb.service
-sudo systemctl enable --now postgresql.service
+sudo systemctl enable --now mariadb.service 2>/dev/null
+sudo systemctl enable --now postgresql.service 2>/dev/null
 
-# 5. Restaurar Arquivos
+# 7. RESTAURAR ARQUIVOS E DOTFILES
 echo "📂 Restaurando Dotfiles..."
-cp .zshrc .p10k.zsh .bashrc .profile ~/ 
-cp -r .config/* ~/.config/
-cp -r .rion-dotfiles ~/ 
-cp -r grub2-themes ~/ 
+cp -f "$SCRIPT_DIR"/.zshrc "$SCRIPT_DIR"/.p10k.zsh "$SCRIPT_DIR"/.bashrc "$SCRIPT_DIR"/.profile ~/ 2>/dev/null || true
+cp -rf "$SCRIPT_DIR"/.config/* ~/.config/ 2>/dev/null || true
+[ -d "$SCRIPT_DIR/.rion-dotfiles" ] && cp -rf "$SCRIPT_DIR/.rion-dotfiles" ~/
+[ -d "$SCRIPT_DIR/grub2-themes" ] && cp -rf "$SCRIPT_DIR/grub2-themes" ~/
 mkdir -p ~/Pictures ~/.local/bin ~/.local/share
-cp -r Pictures/Wallpaper ~/Pictures/
-cp -r .local/bin/* ~/.local/bin/
-chmod +x ~/.local/bin/*
+[ -d "$SCRIPT_DIR/Pictures" ] && cp -rf "$SCRIPT_DIR/Pictures/"* ~/Pictures/
+[ -d "$SCRIPT_DIR/.local/bin" ] && cp -rf "$SCRIPT_DIR/.local/bin/"* ~/.local/bin/
+chmod +x ~/.local/bin/* 2>/dev/null
 
-# Oh-My-Zsh
+# Oh-My-Zsh Custom
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
-[ -d ".oh-my-zsh/custom" ] && cp -r .oh-my-zsh/custom/* ~/.oh-my-zsh/custom/
+[ -d "$SCRIPT_DIR/.oh-my-zsh/custom" ] && cp -rf "$SCRIPT_DIR/.oh-my-zsh/custom/"* ~/.oh-my-zsh/custom/ 2>/dev/null
 
-# Temas e Extensões Físicas
-[ -d ".themes" ] && cp -r .themes ~/ 
-[ -d ".icons" ] && cp -r .icons ~/ 
-[ -d ".local/share/themes" ] && mkdir -p ~/.local/share && cp -r .local/share/themes ~/.local/share/
-[ -d ".local/share/icons" ] && mkdir -p ~/.local/share && cp -r .local/share/icons ~/.local/share/
-[ -d ".local/share/fonts" ] && mkdir -p ~/.local/share && cp -r .local/share/fonts ~/.local/share/
-[ -d ".local/share/gnome-shell" ] && cp -r .local/share/gnome-shell ~/.local/share/
-
-# VS Code Extensions
+# 8. VS CODE EXTENSIONS
 mkdir -p ~/.config/Code/User
-[ -f ".config/Code/User/settings.json" ] && cp .config/Code/User/*.json ~/.config/Code/User/
-if command -v code &> /dev/null; then
-    cat pkg-lists/vscode_extensions.txt | while read extension; do
-        code --install-extension "$extension" --force 2>/dev/null
-    done
+[ -f "$SCRIPT_DIR/.config/Code/User/settings.json" ] && cp "$SCRIPT_DIR/.config/Code/User/"*.json ~/.config/Code/User/ 2>/dev/null
+
+CODE_BIN=$(command -v code || command -v visual-studio-code)
+if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; then
+    echo "📝 Instalando Extensões do VS Code..."
+    while read -r ext; do
+        [[ -z "$ext" || "$ext" =~ ^# ]] && continue
+        "$CODE_BIN" --install-extension "$ext" --force 2>/dev/null
+    done < "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt"
 fi
 
-# 6. Ajustes Finais
-if [ "$CURRENT_USER" != "vinicius" ]; then
-    echo "⚠️ Ajustando usuário para $CURRENT_USER..."
-    sed -i "s|/home/vinicius|/home/$CURRENT_USER|g" gnome-settings/gnome-shell-backup.dconf
-    find ~/.config -type f -exec sed -i "s|/home/vinicius|/home/$CURRENT_USER|g" {} +
-    find ~/.local/bin -type f -exec sed -i "s|/home/vinicius|/home/$CURRENT_USER|g" {} +
+# 9. DCONF & GNOME EXTENSIONS
+echo "🎛️ Restaurando Configurações do GNOME (dconf)..."
+if [ -f "$SCRIPT_DIR/gnome-settings/full-backup.dconf" ]; then
+    dconf load / < "$SCRIPT_DIR/gnome-settings/full-backup.dconf"
+elif [ -f "$SCRIPT_DIR/gnome-settings/org-gnome.dconf" ]; then
+    dconf load /org/gnome/ < "$SCRIPT_DIR/gnome-settings/org-gnome.dconf"
+elif [ -f "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" ]; then
+    dconf load /org/gnome/ < "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf"
+fi
+[ -f "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" ] && dconf load /com/github/ < "$SCRIPT_DIR/gnome-settings/github-extensions.dconf"
+
+if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ]; then
+    while read -r ext; do
+        [[ -z "$ext" || "$ext" =~ ^# ]] && continue
+        gnome-extensions enable "$ext" 2>/dev/null
+    done < "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt"
 fi
 
-if ! grep -q "fastfetch" ~/.zshrc; then
-    echo -e "\n# Auto Fastfetch\nfastfetch" >> ~/.zshrc
-fi
-
-dconf load /org/gnome/ < gnome-settings/gnome-shell-backup.dconf
-dconf load /com/github/ < gnome-settings/github-extensions.dconf
-
-# Ativar Extensões via comando
-gnome-extensions enable tiling-assistant@leleat-on-github 2>/dev/null
-gnome-extensions enable pop-shell@system76.com 2>/dev/null
-gnome-extensions enable clipboard-indicator@tudmotu.com 2>/dev/null
-gnome-extensions enable mediacontrols@cliffniff.github.com 2>/dev/null
-
-sort -u pkg-lists/gnome_extensions_enabled.txt | while read extension; do
-    gnome-extensions enable "$extension" 2>/dev/null
-done 
-
-if command -v wpg &> /dev/null; then
+# 10. AJUSTES FINAIS
+if command -v wpg &> /dev/null && [ -d ~/Pictures/Wallpaper ]; then
     echo "🎨 Aplicando Wallpaper..."
-    wpg -s "$(find ~/Pictures/Wallpaper -type f | head -n 1)"
+    wpg -s "$(find ~/Pictures/Wallpaper -type f | head -n 1)" 2>/dev/null
 fi
 
-if [ "$SHELL" != "/bin/zsh" ]; then chsh -s /bin/zsh; fi
-echo "=== PRONTO! REINICIE A MÁQUINA. ==="
+if [ "$SHELL" != "/bin/zsh" ] && command -v zsh &> /dev/null; then 
+    chsh -s /bin/zsh 2>/dev/null || true
+fi
+
+echo "=== PRONTO! TUDO RESTAURADO E INSTALADO COM SUCESSO. ==="

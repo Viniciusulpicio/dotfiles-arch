@@ -1,0 +1,7 @@
+[
+    {
+        "key": "ctrl+enter",
+        "command": "code-runner.run",
+        "when": "editorTextFocus"
+    }
+]
