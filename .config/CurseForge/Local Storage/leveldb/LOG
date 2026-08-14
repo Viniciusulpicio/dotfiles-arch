@@ -1,6 +1,0 @@
-2025/11/23-11:57:52.571 6295 Reusing MANIFEST /home/vinicius/.config/CurseForge/Local Storage/leveldb/MANIFEST-000001
-2025/11/23-11:57:52.632 6295 Recovering log #44
-2025/11/23-11:57:52.633 6295 Reusing old log /home/vinicius/.config/CurseForge/Local Storage/leveldb/000044.log 
-2025/11/23-11:59:54.731 6296 Level-0 table #49: started
-2025/11/23-11:59:54.735 6296 Level-0 table #49: 22934 bytes OK
-2025/11/23-11:59:54.738 6296 Delete type=0 #44

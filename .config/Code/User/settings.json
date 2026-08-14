@@ -1,7 +1,6 @@
 {
     "files.autoSave": "afterDelay",
     "git.enableSmartCommit": true,
-    "workbench.iconTheme": "material-icon-theme",
     "geminicodeassist.project": "striped-site-rhv63",
     "diffEditor.codeLens": true,
     "javascript.suggest.enabled": false,
@@ -17,8 +16,6 @@
     "editor.quickSuggestionsDelay": 0,
     "editor.suggest.selectionMode": "never",
     "editor.inlineSuggest.edits.allowCodeShifting": "never",
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "editor.inlineSuggest.edits.renderSideBySide": "never",
     "editor.inlineSuggest.enabled": false,
     "editor.inlineSuggest.experimental.emptyResponseInformation": false,
@@ -29,5 +26,9 @@
     "editor.screenReaderAnnounceInlineSuggestion": false,
     "geminicodeassist.inlineSuggestions.enableAuto": false,
     "terminal.integrated.suggest.inlineSuggestion": "off",
-    "editor.suggest.showInlineDetails": false
+    "editor.suggest.showInlineDetails": false,
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.saveFileBeforeRun": true,
+    "workbench.iconTheme": "material-icon-theme"
 }

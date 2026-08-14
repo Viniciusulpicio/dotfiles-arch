@@ -1,0 +1,12 @@
+{
+  "name": "System Monitor",
+  "description": "Monitor system from the top bar",
+  "uuid": "system-monitor@gnome-shell-extensions.gcampax.github.com",
+  "gettext-domain": "gnome-shell-extensions",
+  "settings-schema": "org.gnome.shell.extensions.system-monitor",
+  "shell-version": [
+    "50"
+  ],
+  "version-name": "50.2",
+  "url": "https://gitlab.gnome.org/GNOME/gnome-shell-extensions"
+}

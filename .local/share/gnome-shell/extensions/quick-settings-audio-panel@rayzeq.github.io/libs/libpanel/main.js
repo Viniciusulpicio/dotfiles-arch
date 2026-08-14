@@ -702,10 +702,22 @@ export var Panel = registerClass(class Panel extends GridItem(AutoHidable(St.Wid
         this._grid.add_child(placeholder);
         this._dimEffect = new Clutter.BrightnessContrastEffect({ enabled: false });
         this._grid.add_effect_with_name('dim', this._dimEffect);
-        this._overlay.add_constraint(new Clutter.BindConstraint({
+        const x_constraint = new Clutter.BindConstraint({
+            coordinate: Clutter.BindCoordinate.X,
+            source: this._grid,
+        });
+        const width_constraint = new Clutter.BindConstraint({
             coordinate: Clutter.BindCoordinate.WIDTH,
             source: this._grid,
-        }));
+        });
+        this._overlay.add_constraint(x_constraint);
+        this._overlay.add_constraint(width_constraint);
+        this._grid.connect("style-changed", _source => {
+            const grid_theme = this._grid.get_theme_node();
+            x_constraint.offset = grid_theme.get_padding(St.Side.LEFT);
+            width_constraint.offset =
+                -grid_theme.get_padding(St.Side.LEFT) - grid_theme.get_padding(St.Side.RIGHT);
+        });
         this.add_child(this._overlay);
     }
     getItems() {

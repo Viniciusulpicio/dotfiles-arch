@@ -1,23 +1,25 @@
 <?xml version="1.0"?>
 <application-state>
   <context id="">
-    <application id="antigravity.desktop" score="2" last-seen="1777386406"/>
-    <application id="org.gnome.Loupe.desktop" score="0" last-seen="1777593693"/>
-    <application id="abiword.desktop" score="3" last-seen="1777070670"/>
-    <application id="org.gnome.Shell.Extensions.desktop" score="1" last-seen="1777243552"/>
-    <application id="org.gnome.Epiphany.desktop" score="6" last-seen="1777246786"/>
-    <application id="steam.desktop" score="1122.21875" last-seen="1777599275"/>
-    <application id="org.gnome.Papers.desktop" score="9" last-seen="1777144800"/>
-    <application id="org.gnome.Console.desktop" score="1746.75" last-seen="1777655450"/>
-    <application id="org.gnome.Nautilus.desktop" score="115" last-seen="1777593694"/>
-    <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1777244636"/>
-    <application id="com.mattjakeman.ExtensionManager.desktop" score="3" last-seen="1777243585"/>
+    <application id="org.gnome.tweaks.desktop" score="0" last-seen="1786561336"/>
+    <application id="google-chrome.desktop" score="775" last-seen="1786744335"/>
+    <application id="org.gnome.Shell.Extensions.desktop" score="3" last-seen="1786569522"/>
+    <application id="org.gnome.SystemMonitor.desktop" score="1" last-seen="1786742886"/>
+    <application id="org.gnome.Software.desktop" score="14" last-seen="1786742973"/>
+    <application id="steam.desktop" score="97" last-seen="1786744149"/>
+    <application id="org.gnome.Papers.desktop" score="330" last-seen="1786579152"/>
+    <application id="discord.desktop" score="9" last-seen="1786744147"/>
+    <application id="org.gnome.Console.desktop" score="1647" last-seen="1786744386"/>
+    <application id="user-dirs-update-gtk.desktop" score="1" last-seen="1786562384"/>
+    <application id="org.gnome.Nautilus.desktop" score="17" last-seen="1786667701"/>
+    <application id="org.gnome.Shell.Extensions.GSConnect.Preferences.desktop" score="0" last-seen="1786669525"/>
     <application id="com.google.Chrome.desktop" score="7436" last-seen="1777655415"/>
-    <application id="org.gnome.Terminal.desktop" score="22" last-seen="1777240674"/>
-    <application id="firefox.desktop" score="2" last-seen="1777384766"/>
-    <application id="code.desktop" score="39" last-seen="1777077797"/>
-    <application id="vesktop.desktop" score="791.9375" last-seen="1777593545"/>
-    <application id="org.gnome.Snapshot.desktop" score="14" last-seen="1777595242"/>
-    <application id="org.gnome.Extensions.desktop" score="11" last-seen="1777243714"/>
+    <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1786744140"/>
+    <application id="org.gnome.Terminal.desktop" score="11" last-seen="1786669447"/>
+    <application id="firefox.desktop" score="0" last-seen="1786561281"/>
+    <application id="code.desktop" score="369" last-seen="1786744097"/>
+    <application id="org.gnome.Extensions.desktop" score="8" last-seen="1786669592"/>
+    <application id="codeblocks.desktop" score="7" last-seen="1786571235"/>
+    <application id="org.gnome.Settings.desktop" score="77" last-seen="1786662441"/>
   </context>
 </application-state>
