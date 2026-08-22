@@ -266,17 +266,21 @@ fi
 echo ""
 echo "🎛️ 13. Restaurando banco de configurações do GNOME (dconf)..."
 if [ -f "$SCRIPT_DIR/gnome-settings/full-backup.dconf" ]; then
-    dconf load / < "$SCRIPT_DIR/gnome-settings/full-backup.dconf" 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/full-backup.dconf" | dconf load / 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" ]; then
-    dconf load /org/gnome/ < "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" | dconf load /org/gnome/ 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" ]; then
-    dconf load /com/github/ < "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" | dconf load /com/github/ 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
-    dconf load /org/gnome/shell/extensions/ < "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
 fi
+
+# Ajustar eventuais caminhos com usuário hardcoded nas configs restauradas
+find "$TARGET_HOME/.config" -maxdepth 3 -type f \( -name "*.json" -o -name "*.conf" -o -name "*.ini" -o -name "*.sh" -o -name "*.desktop" \) -exec sed -i "s|/home/vinicius|$TARGET_HOME|g" {} + 2>/dev/null || true
+
 
 # Habilitar extensões do GNOME
 if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ] && command -v gnome-extensions &> /dev/null; then

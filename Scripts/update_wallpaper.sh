@@ -2,8 +2,8 @@
 # Baixador Pinterest - Força Max Quality + Auto Update
 
 PINTEREST_URL="https://www.pinterest.com/limasulpicio/wallpaper/"
-OUTPUT_DIR="/home/vinicius/Pictures/Wallpaper"
-COOKIES="/home/vinicius/.pinterest-cookies.txt"
+OUTPUT_DIR="$HOME/Pictures/Wallpaper"
+COOKIES="$HOME/.pinterest-cookies.txt"
 
 # 1. ATUALIZAÇÃO AUTOMÁTICA (Essencial para o Pinterest)
 # O Pinterest muda o layout toda semana. Se o gallery-dl estiver velho,
