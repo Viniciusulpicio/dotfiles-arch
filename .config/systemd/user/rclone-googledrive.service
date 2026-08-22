@@ -1,0 +1,14 @@
+[Unit]
+Description=Rclone Mount GoogleDrive
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/home/vinicius/.local/bin/rclone mount GoogleDrive: /home/vinicius/GoogleDrive --vfs-cache-mode full --vfs-cache-max-size 10G --dir-cache-time 72h
+ExecStop=/usr/bin/fusermount -u /home/vinicius/GoogleDrive
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

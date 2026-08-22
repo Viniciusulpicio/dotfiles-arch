@@ -12,15 +12,34 @@ __pycache__/
 *.log
 *.sqlite-shm
 *.sqlite-wal
+*~
 
 # VS Code / Antigravity Caches & History
 .config/Code/User/History/
 .config/Code/User/workspaceStorage/
+.config/Code/User/globalStorage/
 .config/Code/CachedExtensionVSIXs/
 .config/Code/CachedData/
 .config/Code/Cache/
 .config/Code/logs/
 .config/Code/Backups/
+.config/Code/Cookies*
+.config/Code/DIPS*
+.config/Code/Dawn*
+.config/Code/Dictionaries/
+.config/Code/GPUCache/
+.config/Code/Local Storage/
+.config/Code/Network Persistent State
+.config/Code/Preferences
+.config/Code/Service Worker/
+.config/Code/Session Storage/
+.config/Code/Shared Dictionary/
+.config/Code/SharedStorage*
+.config/Code/TransportSecurity
+.config/Code/Trust Tokens*
+.config/Code/WebStorage/
+.config/Code/Crashpad/
+.config/Code - OSS/
 .config/Antigravity/
 
 # Browser & Electron Caches
@@ -29,21 +48,40 @@ __pycache__/
 **/CachedData/
 **/GPUCache/
 **/Code Cache/
-**/Service Worker/CacheStorage/
+**/DawnGraphiteCache/
+**/DawnWebGPUCache/
+**/Service Worker/
 **/Partitions/
 **/WidevineCdm/
+**/Crashpad/
+**/IndexedDB/
+**/blob_storage/
+**/Session Storage/
+**/Local Storage/
+**/WebStorage/
+**/Dawn*Cache/
+**/Dictionaries/
+**/*-journal
+**/*-wal
 
-# Sensitive Data & Tokens
+# Sensitive Data & Personal Tokens
 .config/gh/
-.config/discord/Local Storage/
-.config/discord/Session Storage/
 .config/google-chrome/
+.config/google-chrome-beta/
+.config/google-chrome-unstable/
+.config/BraveSoftware/
+.config/microsoft-edge-beta/
+.config/microsoft-edge-dev/
+.config/chromium/
 .config/Postman/
 .config/heroic/
 .config/CurseForge/
 .config/hydralauncher/
 .config/rclone/
+.config/evolution/
+.config/go/telemetry/
 
 # Heavy Binaries in local/bin
 .local/bin/agy*
 .local/bin/rclone
+.local/bin/composer

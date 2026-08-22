@@ -1,4 +1,5 @@
 arduino-ide-bin
+cachyos-ananicy-rules
 gnome-extensions-cli
 gnome-shell-extension-clipboard-indicator
 gnome-shell-extension-pop-shell-git

@@ -1,5 +1,8 @@
 abiword
 alacritty
+alsa-firmware
+alsa-utils
+ananicy-cpp
 avogadro-fragments
 baobab
 base
@@ -55,6 +58,7 @@ gnome-remote-desktop
 gnome-session
 gnome-settings-daemon
 gnome-shell
+gnome-shell-extension-appindicator
 gnome-shell-extensions
 gnome-software
 gnome-system-monitor
@@ -78,7 +82,6 @@ gvfs-mtp
 gvfs-nfs
 gvfs-onedrive
 gvfs-smb
-gvfs-wsdd
 htop
 i2c-tools
 intel-media-driver
@@ -138,6 +141,8 @@ piper
 pipewire-alsa
 playerctl
 postgresql
+power-profiles-daemon
+powertop
 python-pip
 python-pipx
 python-pytorch-cuda
@@ -153,6 +158,7 @@ showtime
 simple-scan
 smartmontools
 snapshot
+sof-firmware
 solaar
 steam
 stow

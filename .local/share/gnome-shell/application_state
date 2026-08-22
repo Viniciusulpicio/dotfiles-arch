@@ -1,25 +1,33 @@
 <?xml version="1.0"?>
 <application-state>
   <context id="">
-    <application id="org.gnome.tweaks.desktop" score="0" last-seen="1786561336"/>
-    <application id="google-chrome.desktop" score="775" last-seen="1786744335"/>
-    <application id="org.gnome.Shell.Extensions.desktop" score="3" last-seen="1786569522"/>
-    <application id="org.gnome.SystemMonitor.desktop" score="1" last-seen="1786742886"/>
-    <application id="org.gnome.Software.desktop" score="14" last-seen="1786742973"/>
-    <application id="steam.desktop" score="97" last-seen="1786744149"/>
-    <application id="org.gnome.Papers.desktop" score="330" last-seen="1786579152"/>
-    <application id="discord.desktop" score="9" last-seen="1786744147"/>
-    <application id="org.gnome.Console.desktop" score="1647" last-seen="1786744386"/>
-    <application id="user-dirs-update-gtk.desktop" score="1" last-seen="1786562384"/>
-    <application id="org.gnome.Nautilus.desktop" score="17" last-seen="1786667701"/>
-    <application id="org.gnome.Shell.Extensions.GSConnect.Preferences.desktop" score="0" last-seen="1786669525"/>
+    <application id="org.remmina.Remmina.desktop" score="0" last-seen="1787181862"/>
+    <application id="org.wezfurlong.wezterm.desktop" score="1" last-seen="1787182870"/>
+    <application id="org.gnome.Software.desktop" score="15" last-seen="1787154747"/>
+    <application id="google-chrome.desktop" score="13874" last-seen="1787418892"/>
+    <application id="org.gnome.Shell.Extensions.desktop" score="13" last-seen="1787149643"/>
+    <application id="org.gnome.SystemMonitor.desktop" score="5" last-seen="1787236641"/>
+    <application id="steam.desktop" score="170" last-seen="1787418893"/>
+    <application id="org.gnome.Papers.desktop" score="1219" last-seen="1787186737"/>
+    <application id="discord.desktop" score="28" last-seen="1787418821"/>
+    <application id="org.gnome.Console.desktop" score="2395" last-seen="1787267186"/>
+    <application id="libreoffice-calc.desktop" score="58" last-seen="1787360903"/>
+    <application id="notion.desktop" score="8" last-seen="1787267521"/>
+    <application id="com.mattjakeman.ExtensionManager.desktop" score="1" last-seen="1787149645"/>
     <application id="com.google.Chrome.desktop" score="7436" last-seen="1777655415"/>
-    <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1786744140"/>
-    <application id="org.gnome.Terminal.desktop" score="11" last-seen="1786669447"/>
-    <application id="firefox.desktop" score="0" last-seen="1786561281"/>
-    <application id="code.desktop" score="369" last-seen="1786744097"/>
-    <application id="org.gnome.Extensions.desktop" score="8" last-seen="1786669592"/>
-    <application id="codeblocks.desktop" score="7" last-seen="1786571235"/>
-    <application id="org.gnome.Settings.desktop" score="77" last-seen="1786662441"/>
+    <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1787154587"/>
+    <application id="org.telegram.desktop.desktop" score="23" last-seen="1787155065"/>
+    <application id="libreoffice-startcenter.desktop" score="0" last-seen="1787360855"/>
+    <application id="firefox.desktop" score="1" last-seen="1787361419"/>
+    <application id="gnome-bluetooth-panel.desktop" score="0" last-seen="0"/>
+    <application id="org.gnome.Terminal.desktop" score="11" last-seen="1787270779"/>
+    <application id="org.gnome.Nautilus.desktop" score="370" last-seen="1787360904"/>
+    <application id="mysql-workbench.desktop" score="22" last-seen="1787267302"/>
+    <application id="org.torproject.torbrowser-launcher.desktop" score="0" last-seen="1787183368"/>
+    <application id="code.desktop" score="3718" last-seen="1787270826"/>
+    <application id="org.gnome.Snapshot.desktop" score="76" last-seen="1787273658"/>
+    <application id="org.gnome.Extensions.desktop" score="16" last-seen="1787149036"/>
+    <application id="org.gnome.Settings.desktop" score="111" last-seen="1787415641"/>
+    <application id="codeblocks.desktop" score="7" last-seen="1787267446"/>
   </context>
 </application-state>
