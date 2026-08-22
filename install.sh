@@ -28,7 +28,7 @@ while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
 SUDO_KEEP_ALIVE_PID=$!
 trap 'kill $SUDO_KEEP_ALIVE_PID 2>/dev/null' EXIT
 
-# 1. HABILITAR REPOSITÓRIO MULTILIB
+# 1. HABILITAR REPOSITÓRIO MULTILIB E CONFIGURAR IDIOMA (pt_BR)
 echo "⚙️ 1. Habilitando repositório [multilib] em /etc/pacman.conf..."
 if grep -q "^#\[multilib\]" /etc/pacman.conf; then
     sudo sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
@@ -36,6 +36,15 @@ if grep -q "^#\[multilib\]" /etc/pacman.conf; then
 else
     echo "  ✓ Multilib já estava ativo."
 fi
+
+echo "🌐 Configurando idioma do sistema para Português (pt_BR.UTF-8)..."
+sudo sed -i 's/^#pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/' /etc/locale.gen
+sudo sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sudo locale-gen > /dev/null 2>&1 || true
+echo "LANG=pt_BR.UTF-8" | sudo tee /etc/locale.conf > /dev/null
+export LANG=pt_BR.UTF-8
+export LC_ALL=pt_BR.UTF-8
+echo "  ✓ Idioma pt_BR.UTF-8 configurado."
 
 # 2. ATUALIZAR CHAVES E BASE DO PACMAN
 echo ""
@@ -161,13 +170,34 @@ for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfi
     fi
 done
 
-# 9. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config)
+# 9. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config) E PASTAS DO USUÁRIO
 echo ""
-echo "⚙️ 9. Restaurando configurações em ~/.config..."
+echo "⚙️ 9. Restaurando configurações em ~/.config e organizando pastas em Português..."
 mkdir -p "$TARGET_HOME/.config"
 cp -rf "$SCRIPT_DIR/.config/"* "$TARGET_HOME/.config/" 2>/dev/null || true
 rm -rf "$TARGET_HOME/.config/'*'" "$TARGET_HOME/.config/*" 2>/dev/null || true
-echo "  ✓ Configurações de aplicativos e rice restauradas."
+
+# Criar pastas padrão em Português
+mkdir -p "$TARGET_HOME/Área de trabalho" "$TARGET_HOME/Documentos" "$TARGET_HOME/Downloads" \
+         "$TARGET_HOME/Imagens" "$TARGET_HOME/Músicas" "$TARGET_HOME/Vídeos" \
+         "$TARGET_HOME/Modelos" "$TARGET_HOME/Público"
+
+# Migrar conteúdo de pastas antigas em inglês se houver
+[ -d "$TARGET_HOME/Desktop" ] && [ -n "$(ls -A "$TARGET_HOME/Desktop" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Desktop/"* "$TARGET_HOME/Área de trabalho/" 2>/dev/null; rmdir "$TARGET_HOME/Desktop" 2>/dev/null || true
+[ -d "$TARGET_HOME/Documents" ] && [ -n "$(ls -A "$TARGET_HOME/Documents" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Documents/"* "$TARGET_HOME/Documentos/" 2>/dev/null; rmdir "$TARGET_HOME/Documents" 2>/dev/null || true
+[ -d "$TARGET_HOME/Music" ] && [ -n "$(ls -A "$TARGET_HOME/Music" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Music/"* "$TARGET_HOME/Músicas/" 2>/dev/null; rmdir "$TARGET_HOME/Music" 2>/dev/null || true
+[ -d "$TARGET_HOME/Videos" ] && [ -n "$(ls -A "$TARGET_HOME/Videos" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Videos/"* "$TARGET_HOME/Vídeos/" 2>/dev/null; rmdir "$TARGET_HOME/Videos" 2>/dev/null || true
+[ -d "$TARGET_HOME/Templates" ] && [ -n "$(ls -A "$TARGET_HOME/Templates" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Templates/"* "$TARGET_HOME/Modelos/" 2>/dev/null; rmdir "$TARGET_HOME/Templates" 2>/dev/null || true
+[ -d "$TARGET_HOME/Public" ] && [ -n "$(ls -A "$TARGET_HOME/Public" 2>/dev/null)" ] && mv -n "$TARGET_HOME/Public/"* "$TARGET_HOME/Público/" 2>/dev/null; rmdir "$TARGET_HOME/Public" 2>/dev/null || true
+
+# Atualizar mapeamento de diretórios do XDG
+if command -v xdg-user-dirs-update &> /dev/null; then
+    xdg-user-dirs-update --force 2>/dev/null || true
+fi
+if command -v xdg-user-dirs-gtk-update &> /dev/null; then
+    xdg-user-dirs-gtk-update 2>/dev/null || true
+fi
+echo "  ✓ Pastas e configurações restauradas em Português."
 
 # 10. RESTAURAÇÃO DE ASSETS (Temas, Fontes, Ícones, Extensões e Wallpapers)
 echo ""
