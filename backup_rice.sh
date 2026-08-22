@@ -222,6 +222,8 @@ CONFIG_APPS=(
     "vlc"
     "winboat"
     "Arduino IDE"
+    "codeblocks"
+    "composer"
 )
 
 for app in "${CONFIG_APPS[@]}"; do
@@ -229,6 +231,12 @@ for app in "${CONFIG_APPS[@]}"; do
         copy_safe "$HOME/.config/$app" "$REPO_DIR/.config/"
     fi
 done
+
+# Arduino-IDE (Apenas config.json)
+if [ -f "$HOME/.config/arduino-ide/config.json" ]; then
+    mkdir -p "$REPO_DIR/.config/arduino-ide"
+    cp -f "$HOME/.config/arduino-ide/config.json" "$REPO_DIR/.config/arduino-ide/" 2>/dev/null || true
+fi
 
 # VS Code configs (Settings, Keybindings, Snippets e MCP)
 if [ -d "$HOME/.config/Code/User" ]; then
