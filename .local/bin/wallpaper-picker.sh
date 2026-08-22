@@ -9,7 +9,7 @@ CACHE_DIR="$HOME/.cache/wallpaper-picker"
 GENERATED_WALL="$HOME/.cache/current_wallpaper_fixed.png"
 THUMB_WIDTH="250"
 THUMB_HEIGHT="141"
-WAL_BIN="/usr/local/bin/wal"
+WAL_BIN="$(command -v wal || echo /usr/bin/wal)"
 HOOKS="$HOME/.config/wal/hooks/hooks.sh"
 
 mkdir -p "$CACHE_DIR"
