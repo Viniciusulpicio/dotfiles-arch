@@ -1,0 +1,278 @@
+[KeepAwake@jepfa.de]
+idle-activation-enabled=false
+idle-delay=0
+idle-dim=false
+restore-state=false
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
+
+[arch-update]
+always-visible=false
+enable-positioning=false
+show-count=false
+strip-versions=true
+update-cmd="gnome-terminal -- bash -c \"sudo pacman -Syu; echo; echo 'Atualização finalizada. Pressione Enter para sair...'; read\""
+
+[blur-my-shell]
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'corner'>, 'id': <'effect_000000000002'>, 'params': <{'radius': <24>}>}>, <{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_17527500238104': {'name': <'New pipeline'>, 'effects': <@av []>}}
+settings-version=2
+
+[blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=30
+
+[blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.59999999999999998
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[blur-my-shell/overview]
+pipeline='pipeline_default'
+
+[blur-my-shell/panel]
+brightness=0.59999999999999998
+pipeline='pipeline_default'
+sigma=30
+
+[blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[caffeine]
+cli-toggle=false
+enable-fullscreen=false
+enable-mpris=false
+indicator-position=0
+indicator-position-index=0
+indicator-position-max=3
+restore-state=true
+show-indicator='always'
+user-enabled=false
+
+[clipboard-history]
+display-mode=0
+window-width-percentage=33
+
+[dash-to-dock]
+apply-glossy-effect=true
+autohide=true
+background-color='#1e1e1e'
+background-opacity=0.34999999999999998
+click-action='focus-minimize-or-previews'
+custom-background-color=true
+custom-theme-shrink=true
+dance-urgent-applications=true
+dash-max-icon-size=56
+dock-fixed=false
+dock-position='BOTTOM'
+extend-height=false
+intellihide=false
+require-pressure-to-show=false
+running-indicator-style='DOTS'
+show-apps-always-in-the-edge=true
+show-apps-at-top=false
+show-mounts=true
+show-show-apps-button=true
+show-trash=true
+transparency-mode='DYNAMIC'
+
+[dash2dock-lite]
+animate-icons=true
+animate-icons-unmute=true
+animation-bounce-height=0.75
+animation-magnify=0.55000000000000004
+animation-rise=0.34999999999999998
+animation-spread=0.84999999999999998
+animation-type=0
+apps-icon=true
+autohide-dash=true
+autohide-dodge=false
+autohide-speed=0.40000000000000002
+blur-background=true
+border-radius=3.0
+clock-icon=false
+customize-topbar=false
+dock-location=0
+dock-padding=0.5
+downloads-icon=false
+downloads-icon-rotate-labels=false
+favorites-only=false
+hide-labels=false
+icon-border-radius=3.0
+icon-spacing=0.5
+items-pullout-angle=0.5
+lamp-app-animation=true
+mounted-icon=true
+msg-to-ext=''
+open-app-animation=true
+panel-mode=false
+preferred-monitor=0
+pressure-sense=false
+pressure-sense-sensitivity=0.40000000000000002
+scroll-sensitivity=0.40000000000000002
+shrink-icons=true
+trash-icon=true
+
+[display-brightness-ddcutil]
+ddcutil-binary-path='/usr/bin/ddcutil'
+ddcutil-queue-ms=130.0
+ddcutil-sleep-multiplier=40.0
+decrease-brightness-shortcut=['<Control>XF86MonBrightnessDown']
+hide-system-indicator=false
+increase-brightness-shortcut=['<Control>XF86MonBrightnessUp']
+only-all-slider=false
+position-system-menu=3.0
+show-all-slider=false
+show-internal-slider=false
+show-value-label=false
+step-change-keyboard=1.0
+
+[gsconnect]
+devices=['3ece46ec3872458487f43667ac96daf2']
+enabled=false
+missing-openssl=false
+name='archlinux'
+
+[gsconnect/device/3ece46ec3872458487f43667ac96daf2]
+incoming-capabilities=['kdeconnect.battery', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.contacts.request_all_uids_timestamps', 'kdeconnect.contacts.request_vcards_by_uid', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.action', 'kdeconnect.notification.reply', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.runcommand', 'kdeconnect.runcommand.output', 'kdeconnect.sftp.request', 'kdeconnect.share.request', 'kdeconnect.share.request.update', 'kdeconnect.shareinputdevices.request', 'kdeconnect.sms.request', 'kdeconnect.sms.request_attachment', 'kdeconnect.sms.request_conversation', 'kdeconnect.sms.request_conversations', 'kdeconnect.systemvolume', 'kdeconnect.telephony.request_mute']
+last-connection='lan://10.1.73.145:1716'
+name='Galaxy S23 Ultra'
+outgoing-capabilities=['kdeconnect.battery', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.connectivity_report', 'kdeconnect.contacts.response_uids_timestamps', 'kdeconnect.contacts.response_vcards', 'kdeconnect.digitizer', 'kdeconnect.digitizer.session', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.echo', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.presenter', 'kdeconnect.runcommand.request', 'kdeconnect.sftp', 'kdeconnect.share.request', 'kdeconnect.shareinputdevices', 'kdeconnect.sms.attachment_file', 'kdeconnect.sms.messages', 'kdeconnect.systemvolume.request', 'kdeconnect.telephony']
+supported-plugins=['battery', 'clipboard', 'connectivity_report', 'contacts', 'findmyphone', 'mousepad', 'mpris', 'notification', 'ping', 'presenter', 'runcommand', 'sftp', 'share', 'sms', 'systemvolume', 'telephony']
+type='phone'
+
+[gsconnect/preferences]
+window-maximized=false
+window-size=(806, 785)
+
+[just-perfection]
+animation=4
+support-notifier-showed-version=36
+support-notifier-type=0
+
+[libpanel]
+layout=[['gnome@main', 'quick-settings-audio-panel@rayzeq.github.io/main', 'pop-shell@system76.com/main']]
+
+[mediacontrols]
+colored-player-icon=true
+elements-order=['ICON', 'LABEL', 'CONTROLS']
+extension-index=uint32 2
+extension-position='Left'
+fixed-label-width=false
+label-width=uint32 110
+labels-order=['TITLE']
+mouse-action-scroll-down='PREVIOUS_TRACK'
+mouse-action-scroll-up='NEXT_TRACK'
+show-control-icons=true
+show-control-icons-next=false
+show-control-icons-play=true
+show-control-icons-previous=false
+show-control-icons-seek-backward=false
+show-control-icons-seek-forward=false
+
+[pip-on-top]
+stick=true
+
+[pop-shell]
+active-hint=false
+active-hint-border-radius=uint32 0
+focus-left=@as []
+focus-right=@as []
+gap-inner=uint32 0
+gap-outer=uint32 0
+pop-monitor-left=@as []
+pop-monitor-right=@as []
+pop-workspace-down=['<Shift><Control><Alt>Down']
+pop-workspace-up=['<Shift><Control><Alt>Up']
+show-skip-taskbar=true
+show-title=true
+tile-by-default=true
+
+[quick-settings-audio-panel]
+profiles-renames={'Áudio interno': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'input:analog-stereo': ('Entrada Estéreo analógico', 'Entrada Estéreo analógico'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:analog-stereo': ('Duplex estéreo analógico', 'Duplex estéreo analógico')}, 'GA106 High Definition Audio Controller': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:hdmi-surround71-extra3': ('Saída Digital Surround 7.1 (HDMI 4)', 'Saída Digital Surround 7.1 (HDMI 4)'), 'output:hdmi-surround-extra3': ('Saída Digital Surround 5.1 (HDMI 4)', 'Saída Digital Surround 5.1 (HDMI 4)'), 'output:hdmi-surround71-extra2': ('Saída Digital Surround 7.1 (HDMI 3)', 'Saída Digital Surround 7.1 (HDMI 3)'), 'output:hdmi-surround-extra2': ('Saída Digital Surround 5.1 (HDMI 3)', 'Saída Digital Surround 5.1 (HDMI 3)'), 'output:hdmi-surround71-extra1': ('Saída Digital Surround 7.1 (HDMI 2)', 'Saída Digital Surround 7.1 (HDMI 2)'), 'output:hdmi-surround-extra1': ('Saída Digital Surround 5.1 (HDMI 2)', 'Saída Digital Surround 5.1 (HDMI 2)'), 'output:hdmi-surround71': ('Saída Digital Surround 7.1 (HDMI)', 'Saída Digital Surround 7.1 (HDMI)'), 'output:hdmi-surround': ('Saída Surround digital 5.1 (HDMI)', 'Saída Surround digital 5.1 (HDMI)'), 'output:hdmi-stereo-extra3': ('Saída Digital Stereo (HDMI 4)', 'Saída Digital Stereo (HDMI 4)'), 'output:hdmi-stereo-extra2': ('Saída Digital Stereo (HDMI 3)', 'Saída Digital Stereo (HDMI 3)'), 'output:hdmi-stereo-extra1': ('Saída Digital Stereo (HDMI 2)', 'Saída Digital Stereo (HDMI 2)'), 'output:hdmi-stereo': ('Saída Estéreo digital (HDMI)', 'Saída Estéreo digital (HDMI)')}, 'SPCA2281 Web Camera': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio')}, 'Buds FE de Vinicius': {'off': ('Desligado', 'Desligado'), 'headset-head-unit-cvsd': ('Unidade de headset (HSP/HFP, codec CVSD)', 'Unidade de headset (HSP/HFP, codec CVSD)'), 'headset-head-unit': ('Unidade de headset (HSP/HFP, codec MSBC)', 'Unidade de headset (HSP/HFP, codec MSBC)'), 'a2dp-sink-sbc_xq': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)'), 'a2dp-sink-sbc': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC)'), 'a2dp-sink': ('Reprodução de alta-fidelidade (destino  A2DP, codec AAC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec AAC)')}, '500 Series Chipset Family On-Package High Definition Audio (HD Audio)': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)'), 'HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)')}}
+version=2
+
+[search-light]
+background-color=(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.84999999999999998)
+border-radius=2.5
+monitor-count=1
+scale-height=0.34999999999999998
+scale-width=0.34999999999999998
+secondary-shortcut-search=['<Control>space']
+shortcut-search=['<Super>space']
+
+[system-monitor]
+show-cpu=true
+show-download=false
+show-memory=true
+show-swap=false
+show-upload=false
+
+[tiling-assistant]
+activate-layout0=@as []
+activate-layout1=@as []
+activate-layout2=@as []
+activate-layout3=@as []
+auto-tile=@as []
+center-window=@as []
+debugging-free-rects=@as []
+debugging-show-tiled-rects=@as []
+default-move-mode=0
+dynamic-keybinding-behavior=2
+enable-tiling-popup=false
+focus-hint=0
+focus-hint-color='rgb(53,132,228)'
+import-layout-examples=false
+last-version-installed=54
+maximize-with-gap=false
+overridden-settings={'org.gnome.mutter.edge-tiling': <true>}
+restore-window=['<Super>Down']
+search-popup-layout=@as []
+single-screen-gap=0
+tile-bottom-half=['<Super>KP_2']
+tile-bottom-half-ignore-ta=@as []
+tile-bottomleft-quarter=['<Super>KP_1']
+tile-bottomleft-quarter-ignore-ta=@as []
+tile-bottomright-quarter=['<Super>KP_3']
+tile-bottomright-quarter-ignore-ta=@as []
+tile-edit-mode=['<Alt>x']
+tile-left-half=['<Super>Left', '<Super>KP_4']
+tile-left-half-ignore-ta=@as []
+tile-maximize=['<Super>Up', '<Super>KP_5']
+tile-maximize-horizontally=@as []
+tile-maximize-vertically=@as []
+tile-right-half=['<Super>Right', '<Super>KP_6']
+tile-right-half-ignore-ta=@as []
+tile-top-half=['<Super>KP_8']
+tile-top-half-ignore-ta=@as []
+tile-topleft-quarter=['<Super>KP_7']
+tile-topleft-quarter-ignore-ta=@as []
+tile-topright-quarter=['<Super>KP_9']
+tile-topright-quarter-ignore-ta=@as []
+tiling-popup-all-workspace=false
+toggle-always-on-top=@as []
+toggle-tiling-popup=@as []
+window-gap=8
+
+[vitals]
+hot-sensors=['_processor_temp_', '_processor_usage_', '_memory_usage_']
+position-in-panel=0
+show-battery=false
+show-memory=true
+show-processor=true
+show-temperature=true
+
+[workspace-indicator]
+embed-previews=true
