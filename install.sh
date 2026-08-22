@@ -22,6 +22,12 @@ echo " 📁 Diretório do Repositório: $SCRIPT_DIR"
 echo "================================================================="
 echo ""
 
+# Solicitar senha sudo logo no início e manter a sessão ativa em segundo plano
+sudo -v
+while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
+SUDO_KEEP_ALIVE_PID=$!
+trap 'kill $SUDO_KEEP_ALIVE_PID 2>/dev/null' EXIT
+
 # 1. HABILITAR REPOSITÓRIO MULTILIB
 echo "⚙️ 1. Habilitando repositório [multilib] em /etc/pacman.conf..."
 if grep -q "^#\[multilib\]" /etc/pacman.conf; then
@@ -31,37 +37,59 @@ else
     echo "  ✓ Multilib já estava ativo."
 fi
 
-# 2. ATUALIZAR CHAVES E INSTALAR YAY (AUR HELPER)
+# 2. ATUALIZAR CHAVES E BASE DO PACMAN
 echo ""
-echo "🔑 2. Atualizando base do sistema e verificando Yay..."
+echo "🔑 2. Atualizando chaves do sistema..."
 sudo pacman -Sy --noconfirm archlinux-keyring
+
+# Resolver conflito comum do jack2 com pipewire-jack
+sudo pacman -Rdd --noconfirm jack2 2>/dev/null || true
+
+# 3. INSTALAÇÃO DO YAY (AUR HELPER)
+echo ""
+echo "🛠️ 3. Verificando/Instalando Yay..."
 if ! command -v yay &> /dev/null; then
-    echo "  -> Instalando dependências para compilar o yay..."
+    echo "  -> Instalando dependências básicas de compilação..."
     sudo pacman -S --needed --noconfirm base-devel git python-pipx wget unzip
-    rm -rf /tmp/yay
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
-    (cd /tmp/yay && makepkg -si --noconfirm)
-    rm -rf /tmp/yay
+    
+    echo "  -> Baixando e instalando yay-bin (AUR)..."
+    rm -rf /tmp/yay-bin
+    git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+    (cd /tmp/yay-bin && makepkg -s --noconfirm)
+    sudo pacman -U --noconfirm /tmp/yay-bin/yay-bin-*.pkg.tar.zst
+    rm -rf /tmp/yay-bin
     echo "  ✓ Yay instalado com sucesso!"
 else
     echo "  ✓ Yay já está instalado."
 fi
 
-# 3. INSTALAÇÃO DE PACOTES NATIVOS (Pacman)
+# 4. INSTALAÇÃO DE PACOTES CRÍTICOS NATIVOS (Zsh, Ferramentas, Áudio, Imagens)
 echo ""
-echo "📦 3. Instalando pacotes nativos do repositório oficial..."
+echo "📦 4. Instalando pacotes base e essenciais..."
+CRITICAL_PKGS=(
+    "zsh" "zsh-autosuggestions" "zsh-syntax-highlighting"
+    "git" "github-cli" "base-devel" "curl" "wget"
+    "imagemagick" "fastfetch" "alacritty" "wezterm"
+    "btop" "cava" "conky" "neofetch"
+    "pipewire" "pipewire-alsa" "pipewire-jack" "pipewire-pulse" "wireplumber"
+    "python-pywal" "dconf" "gnome-shell-extensions" "gnome-tweaks"
+    "ttf-jetbrains-mono-nerd" "noto-fonts" "noto-fonts-cjk"
+)
+sudo pacman -S --needed --noconfirm "${CRITICAL_PKGS[@]}" || true
+
+# 5. INSTALAÇÃO DOS DEMAIS PACOTES NATIVOS (Pacman)
+echo ""
+echo "📦 5. Instalando pacotes nativos do repositório oficial..."
 INSTALLED_PKGS=$(pacman -Qq 2>/dev/null || true)
 REPO_PKGS=$(pacman -Slq 2>/dev/null || true)
 
 REQUESTED_NATIVE=()
-for f in "$SCRIPT_DIR/pkg-lists/pacman_native.txt" "$SCRIPT_DIR/pkg-lists/native_list.txt"; do
-    if [ -f "$f" ]; then
-        while read -r pkg; do
-            [[ -z "$pkg" || "$pkg" =~ ^# ]] && continue
-            REQUESTED_NATIVE+=("$pkg")
-        done < "$f"
-    fi
-done
+if [ -f "$SCRIPT_DIR/pkg-lists/pacman_native.txt" ]; then
+    while read -r pkg; do
+        [[ -z "$pkg" || "$pkg" =~ ^# ]] && continue
+        REQUESTED_NATIVE+=("$pkg")
+    done < "$SCRIPT_DIR/pkg-lists/pacman_native.txt"
+fi
 
 TO_INSTALL_PACMAN=()
 for pkg in "${REQUESTED_NATIVE[@]}"; do
@@ -71,26 +99,30 @@ for pkg in "${REQUESTED_NATIVE[@]}"; do
 done
 
 if [ ${#TO_INSTALL_PACMAN[@]} -gt 0 ]; then
-    echo "  -> Instalando ${#TO_INSTALL_PACMAN[@]} pacotes nativos via Pacman..."
-    sudo pacman -S --needed --noconfirm "${TO_INSTALL_PACMAN[@]}" || true
+    echo "  -> Instalando ${#TO_INSTALL_PACMAN[@]} pacotes nativos..."
+    if ! sudo pacman -S --needed --noconfirm "${TO_INSTALL_PACMAN[@]}"; then
+        echo "  ⚠️ Instalando pacotes individualmente para contornar eventuais conflitos..."
+        for pkg in "${TO_INSTALL_PACMAN[@]}"; do
+            sudo pacman -S --needed --noconfirm "$pkg" 2>/dev/null || echo "  ⚠️ Não foi possível instalar: $pkg"
+        done
+    fi
 else
-    echo "  ✓ Todos os pacotes nativos necessários já estão instalados!"
+    echo "  ✓ Todos os pacotes nativos solicitados já estão instalados!"
 fi
 
-# 4. INSTALAÇÃO DE PACOTES AUR (Yay)
+# 6. INSTALAÇÃO DE PACOTES AUR (Yay)
 echo ""
-echo "🚀 4. Instalando pacotes do AUR via Yay..."
+echo "🚀 6. Instalando pacotes do AUR via Yay..."
 REQUESTED_AUR=()
-for f in "$SCRIPT_DIR/pkg-lists/aur_packages.txt" "$SCRIPT_DIR/pkg-lists/aur_list.txt"; do
-    if [ -f "$f" ]; then
-        while read -r pkg; do
-            [[ -z "$pkg" || "$pkg" =~ ^# || "$pkg" =~ -debug$ ]] && continue
-            REQUESTED_AUR+=("$pkg")
-        done < "$f"
-    fi
-done
+if [ -f "$SCRIPT_DIR/pkg-lists/aur_packages.txt" ]; then
+    while read -r pkg; do
+        [[ -z "$pkg" || "$pkg" =~ ^# || "$pkg" =~ -debug$ ]] && continue
+        REQUESTED_AUR+=("$pkg")
+    done < "$SCRIPT_DIR/pkg-lists/aur_packages.txt"
+fi
 
 TO_INSTALL_AUR=()
+INSTALLED_PKGS=$(pacman -Qq 2>/dev/null || true)
 for pkg in "${REQUESTED_AUR[@]}"; do
     if ! echo "$INSTALLED_PKGS" | grep -qx "$pkg" && ! echo "$REPO_PKGS" | grep -qx "$pkg"; then
         TO_INSTALL_AUR+=("$pkg")
@@ -100,15 +132,16 @@ done
 if [ ${#TO_INSTALL_AUR[@]} -gt 0 ]; then
     echo "  -> Instalando ${#TO_INSTALL_AUR[@]} pacotes do AUR..."
     for pkg in "${TO_INSTALL_AUR[@]}"; do
-        yay -S --needed --noconfirm "$pkg" || echo "⚠️ Aviso: Pacote AUR $pkg não pôde ser instalado de imediato."
+        echo "     -> AUR: $pkg"
+        yay -S --needed --noconfirm --answerclean None --answerdiff None "$pkg" || echo "⚠️ Aviso: Pacote AUR $pkg não pôde ser instalado."
     done
 else
     echo "  ✓ Todos os pacotes AUR necessários já estão instalados!"
 fi
 
-# 5. INSTALAÇÃO DE FLATPAKS
+# 7. INSTALAÇÃO DE FLATPAKS
 echo ""
-echo "📦 5. Verificando Flatpaks..."
+echo "📦 7. Verificando Flatpaks..."
 if command -v flatpak &> /dev/null && [ -f "$SCRIPT_DIR/pkg-lists/flatpak_list.txt" ]; then
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo 2>/dev/null || true
     while read -r fp; do
@@ -118,9 +151,9 @@ if command -v flatpak &> /dev/null && [ -f "$SCRIPT_DIR/pkg-lists/flatpak_list.t
     echo "  ✓ Flatpaks processados."
 fi
 
-# 6. RESTAURAÇÃO DE ARQUIVOS DE PERFIL, SHELL E DOTFILES
+# 8. RESTAURAÇÃO DE ARQUIVOS DE PERFIL, SHELL E DOTFILES
 echo ""
-echo "🐚 6. Restaurando arquivos de ambiente Shell e Perfil..."
+echo "🐚 8. Restaurando arquivos de ambiente Shell e Perfil..."
 for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc .notas_rapidas.txt; do
     if [ -f "$SCRIPT_DIR/$file" ]; then
         cp -f "$SCRIPT_DIR/$file" "$TARGET_HOME/"
@@ -128,18 +161,17 @@ for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfi
     fi
 done
 
-# 7. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config)
+# 9. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config)
 echo ""
-echo "⚙️ 7. Restaurando configurações em ~/.config..."
+echo "⚙️ 9. Restaurando configurações em ~/.config..."
 mkdir -p "$TARGET_HOME/.config"
 cp -rf "$SCRIPT_DIR/.config/"* "$TARGET_HOME/.config/" 2>/dev/null || true
-# Limpa qualquer resquício acidental
 rm -rf "$TARGET_HOME/.config/'*'" "$TARGET_HOME/.config/*" 2>/dev/null || true
 echo "  ✓ Configurações de aplicativos e rice restauradas."
 
-# 8. RESTAURAÇÃO DE ASSETS (Temas, Fontes, Ícones, Extensões e Wallpapers)
+# 10. RESTAURAÇÃO DE ASSETS (Temas, Fontes, Ícones, Extensões e Wallpapers)
 echo ""
-echo "🎨 8. Restaurando assets visuais, fontes, ícones e extensões..."
+echo "🎨 10. Restaurando assets visuais, fontes, ícones e extensões..."
 [ -d "$SCRIPT_DIR/.rion-dotfiles" ] && cp -rf "$SCRIPT_DIR/.rion-dotfiles" "$TARGET_HOME/"
 [ -d "$SCRIPT_DIR/grub2-themes" ] && cp -rf "$SCRIPT_DIR/grub2-themes" "$TARGET_HOME/"
 
@@ -172,9 +204,9 @@ if command -v fc-cache &> /dev/null; then
     echo "  ✓ Fontes Nerd Fonts registradas."
 fi
 
-# 9. OH-MY-ZSH E POWERLEVEL10K
+# 11. OH-MY-ZSH E POWERLEVEL10K
 echo ""
-echo "⚡ 9. Configurando Oh-My-Zsh..."
+echo "⚡ 11. Configurando Oh-My-Zsh..."
 if [ ! -d "$TARGET_HOME/.oh-my-zsh" ]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 2>/dev/null || true
 fi
@@ -182,9 +214,9 @@ mkdir -p "$TARGET_HOME/.oh-my-zsh/custom"
 [ -d "$SCRIPT_DIR/.oh-my-zsh/custom" ] && cp -rf "$SCRIPT_DIR/.oh-my-zsh/custom/"* "$TARGET_HOME/.oh-my-zsh/custom/" 2>/dev/null || true
 echo "  ✓ Customizações do Zsh restauradas."
 
-# 10. CONFIGURAÇÕES E EXTENSÕES DO VS CODE
+# 12. CONFIGURAÇÕES E EXTENSÕES DO VS CODE
 echo ""
-echo "💻 10. Restaurando configurações do VS Code..."
+echo "💻 12. Restaurando configurações do VS Code..."
 mkdir -p "$TARGET_HOME/.config/Code/User"
 if [ -d "$SCRIPT_DIR/.config/Code/User" ]; then
     cp -rf "$SCRIPT_DIR/.config/Code/User/"* "$TARGET_HOME/.config/Code/User/" 2>/dev/null || true
@@ -200,9 +232,9 @@ if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; t
     echo "  ✓ Extensões do VS Code instaladas."
 fi
 
-# 11. DCONF & CONFIGURAÇÕES DO GNOME
+# 13. DCONF & CONFIGURAÇÕES DO GNOME
 echo ""
-echo "🎛️ 11. Restaurando banco de configurações do GNOME (dconf)..."
+echo "🎛️ 13. Restaurando banco de configurações do GNOME (dconf)..."
 if [ -f "$SCRIPT_DIR/gnome-settings/full-backup.dconf" ]; then
     dconf load / < "$SCRIPT_DIR/gnome-settings/full-backup.dconf" 2>/dev/null || true
 fi
@@ -226,9 +258,9 @@ if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ] && command -v gno
     echo "  ✓ Extensões do GNOME ativadas."
 fi
 
-# 12. APLICAR WALLPAPER E WPGTK / PYWAL
+# 14. APLICAR WALLPAPER E WPGTK / PYWAL
 echo ""
-echo "🖼️ 12. Aplicando Wallpaper e Esquema de Cores Pywal..."
+echo "🖼️ 14. Aplicando Wallpaper e Esquema de Cores Pywal..."
 if [ -f "$SCRIPT_DIR/wallpaper_atual.jpg" ]; then
     cp -f "$SCRIPT_DIR/wallpaper_atual.jpg" "$TARGET_HOME/Pictures/wallpaper_atual.jpg" 2>/dev/null || true
     gsettings set org.gnome.desktop.background picture-uri "file://$TARGET_HOME/Pictures/wallpaper_atual.jpg" 2>/dev/null || true
@@ -244,9 +276,9 @@ if command -v wpg &> /dev/null; then
     fi
 fi
 
-# 13. SERVIÇOS DO SISTEMA E SHELL PADRÃO
+# 15. SERVIÇOS DO SISTEMA E SHELL PADRÃO
 echo ""
-echo "🛠️ 13. Habilitando serviços do sistema..."
+echo "🛠️ 15. Habilitando serviços do sistema..."
 sudo systemctl enable --now docker.service 2>/dev/null || true
 sudo usermod -aG docker "$CURRENT_USER" 2>/dev/null || true
 sudo systemctl enable --now bluetooth.service 2>/dev/null || true
@@ -257,6 +289,9 @@ if [ ! -d "/var/lib/mysql" ] && command -v mariadb-install-db &> /dev/null; then
 fi
 sudo systemctl enable --now mariadb.service 2>/dev/null || true
 sudo systemctl enable --now postgresql.service 2>/dev/null || true
+
+# Habilitar serviços de usuário (conky, etc.)
+systemctl --user enable conky.service 2>/dev/null || true
 
 if [ "$SHELL" != "/bin/zsh" ] && command -v zsh &> /dev/null; then
     echo "  -> Definindo Zsh como shell padrão..."

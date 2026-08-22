@@ -84,6 +84,7 @@ gvfs-onedrive
 gvfs-smb
 htop
 i2c-tools
+imagemagick
 intel-media-driver
 intel-ucode
 iotop
