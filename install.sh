@@ -81,7 +81,8 @@ CRITICAL_PKGS=(
     "imagemagick" "fastfetch" "alacritty" "wezterm"
     "btop" "cava" "conky" "neofetch"
     "pipewire" "pipewire-alsa" "pipewire-jack" "pipewire-pulse" "wireplumber"
-    "python-pywal" "dconf" "gnome-shell-extensions" "gnome-tweaks"
+    "python-pywal" "python-gobject" "libayatana-appindicator"
+    "dconf" "gnome-shell-extensions" "gnome-tweaks"
     "ttf-jetbrains-mono-nerd" "noto-fonts" "noto-fonts-cjk"
 )
 sudo pacman -S --needed --noconfirm "${CRITICAL_PKGS[@]}" || true
@@ -321,6 +322,13 @@ if [ -d "$SCRIPT_DIR/system-tray" ]; then
         chmod +x "$TARGET_HOME/system-tray/install-desktop.sh"
         bash "$TARGET_HOME/system-tray/install-desktop.sh" 2>/dev/null || true
     fi
+    sudo tee /etc/polkit-1/rules.d/50-system-tray.rules > /dev/null << 'RULE' 2>/dev/null || true
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.systemd1.manage-units" && subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+    }
+});
+RULE
     echo "  ✓ System Tray instalado e atalhos registrados."
 fi
 
