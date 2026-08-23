@@ -84,6 +84,7 @@ gvfs-onedrive
 gvfs-smb
 htop
 i2c-tools
+imagemagick
 intel-media-driver
 intel-ucode
 iotop
@@ -94,6 +95,7 @@ jre25-openjdk
 kolourpaint
 lib32-gamemode
 libaio
+libayatana-appindicator
 libratbag
 libreoffice-fresh
 libreoffice-fresh-pt-br
@@ -143,6 +145,7 @@ playerctl
 postgresql
 power-profiles-daemon
 powertop
+python-gobject
 python-pip
 python-pipx
 python-pytorch-cuda
