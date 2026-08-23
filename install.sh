@@ -332,6 +332,22 @@ if [ -f "$SCRIPT_DIR/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
     echo "  ✓ Parâmetros de I/O e Google BBR aplicados."
 fi
 
+
+# 14.2 OTIMIZAÇÕES DO GERENCIADOR DE ARQUIVOS (NAUTILUS & RCLONE)
+echo ""
+echo "📁 14.2 Configurando Gerenciador de Arquivos e Pastas em Nuvem..."
+mkdir -p "$TARGET_HOME/GoogleDrive" "$TARGET_HOME/DriveUnimar"
+touch "$TARGET_HOME/GoogleDrive/.trackerignore" "$TARGET_HOME/GoogleDrive/.nomedia" 2>/dev/null || true
+touch "$TARGET_HOME/DriveUnimar/.trackerignore" "$TARGET_HOME/DriveUnimar/.nomedia" 2>/dev/null || true
+
+# Configurar indexador do GNOME para ignorar pastas de nuvem
+gsettings set org.freedesktop.Tracker3.Miner.Files ignored-directories "['po', 'CVS', 'core-dumps', 'lost+found', 'DriveUnimar', 'GoogleDrive']" 2>/dev/null || true
+gsettings set org.gnome.nautilus.preferences show-image-thumbnails "local-only" 2>/dev/null || true
+
+# Habilitar montagem em nuvem de alta performance
+systemctl --user enable rclone-googledrive.service rclone-driveunimar.service 2>/dev/null || true
+echo "  ✓ Nautilus e Rclone configurados contra travamentos."
+
 # 15. SERVIÇOS DO SISTEMA E SHELL PADRÃO
 echo ""
 echo "🛠️ 15. Habilitando serviços do sistema..."
