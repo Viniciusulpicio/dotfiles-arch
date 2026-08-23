@@ -310,6 +310,28 @@ if command -v wpg &> /dev/null; then
     fi
 fi
 
+
+# 14.1 RESTAURAR SYSTEM TRAY E OTIMIZAÇÕES DO KERNEL
+echo ""
+echo "🖥️ 14.1 Restaurando System Tray e Painel de Controle de Serviços..."
+if [ -d "$SCRIPT_DIR/system-tray" ]; then
+    mkdir -p "$TARGET_HOME/system-tray"
+    cp -rf "$SCRIPT_DIR/system-tray/"* "$TARGET_HOME/system-tray/" 2>/dev/null || true
+    if [ -f "$TARGET_HOME/system-tray/install-desktop.sh" ]; then
+        chmod +x "$TARGET_HOME/system-tray/install-desktop.sh"
+        bash "$TARGET_HOME/system-tray/install-desktop.sh" 2>/dev/null || true
+    fi
+    echo "  ✓ System Tray instalado e atalhos registrados."
+fi
+
+if [ -f "$SCRIPT_DIR/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
+    echo "⚡ Restaurando configurações de responsividade para Downloads e Jogos (/etc/sysctl.d)..."
+    sudo mkdir -p /etc/sysctl.d
+    sudo cp -f "$SCRIPT_DIR/etc/sysctl.d/99-desktop-responsiveness.conf" /etc/sysctl.d/
+    sudo sysctl --system >/dev/null 2>&1 || true
+    echo "  ✓ Parâmetros de I/O e Google BBR aplicados."
+fi
+
 # 15. SERVIÇOS DO SISTEMA E SHELL PADRÃO
 echo ""
 echo "🛠️ 15. Habilitando serviços do sistema..."

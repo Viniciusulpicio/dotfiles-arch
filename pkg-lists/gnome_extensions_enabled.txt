@@ -17,6 +17,5 @@ status-icons@gnome-shell-extensions.gcampax.github.com
 system-monitor@gnome-shell-extensions.gcampax.github.com
 tiling-assistant@leleat-on-github
 user-theme@gnome-shell-extensions.gcampax.github.com
-Vitals@CoreCoding.com
 windowsNavigator@gnome-shell-extensions.gcampax.github.com
 workspace-indicator@gnome-shell-extensions.gcampax.github.com

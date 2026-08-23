@@ -1,0 +1,11 @@
+[Desktop Entry]
+type=Application
+version=1.0
+name=System Tray
+comment=Painel e Ícone de Controle de Serviços do Linux na Barra Superior
+exec=python3 /home/vinicius/system-tray/app.py --no-browser
+icon=system-tray
+terminal=false
+hidden=true
+x-gnome-autostart-enabled=false
+

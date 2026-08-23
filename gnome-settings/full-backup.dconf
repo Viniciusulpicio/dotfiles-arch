@@ -18,7 +18,7 @@ window-size=(1248, 1001)
 [org/gnome/Console]
 font-scale=0.80000000000000004
 last-window-maximised=false
-last-window-size=(480, 832)
+last-window-size=(768, 416)
 
 [org/gnome/Extensions]
 window-height=832
@@ -49,8 +49,8 @@ is-maximized=false
 window-size=(906, 524)
 
 [org/gnome/control-center]
-last-panel='bluetooth'
-window-state=(768, 832, false)
+last-panel='applications'
+window-state=(768, 416, false)
 
 [org/gnome/desktop/a11y/magnifier]
 cross-hairs-length=58
@@ -276,7 +276,7 @@ default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 
 [org/gnome/nautilus/window-state]
-initial-size=(768, 832)
+initial-size=(768, 416)
 initial-size-file-chooser=(1536, 832)
 maximized=false
 
@@ -398,13 +398,13 @@ sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
 [org/gnome/shell]
-app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'firefox.desktop': <{'position': <2>}>, 'com.obsproject.Studio.desktop': <{'position': <3>}>, 'discord.desktop': <{'position': <4>}>, 'teamspeak3.desktop': <{'position': <5>}>, 'org.telegram.desktop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'System': <{'position': <8>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <9>}>, 'abiword.desktop': <{'position': <10>}>, 'arduino-ide-v2.desktop': <{'position': <11>}>, 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e': <{'position': <12>}>, 'nvidia-settings.desktop': <{'position': <13>}>, 'codeblocks.desktop': <{'position': <14>}>, 'virtualbox.desktop': <{'position': <15>}>}]
+app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'firefox.desktop': <{'position': <2>}>, 'com.obsproject.Studio.desktop': <{'position': <3>}>, 'discord.desktop': <{'position': <4>}>, 'teamspeak3.desktop': <{'position': <5>}>, 'org.telegram.desktop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'System': <{'position': <8>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <9>}>, 'abiword.desktop': <{'position': <10>}>, 'arduino-ide-v2.desktop': <{'position': <11>}>, 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e': <{'position': <12>}>, 'nvidia-settings.desktop': <{'position': <13>}>, 'codeblocks.desktop': <{'position': <14>}>, 'virtualbox.desktop': <{'position': <15>}>, 'steam.desktop': <{'position': <16>}>}]
 command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 → r → Enter', 'nautilus', 'r']
 disable-extension-version-validation=true
 disable-user-extensions=false
 disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'gsconnect@andyholmes.github.io', 'KeepAwake@jepfa.de', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com']
 enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'dash2dock-lite@icedman.github.com', 'just-perfection-desktop@just-perfection', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'tiling-assistant@leleat-on-github', 'display-brightness-ddcutil@themightydeity.github.com', 'pop-shell@system76.com', 'add-to-desktop@tommimon.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'pip-on-top@rafostar.github.com', 'quick-settings-audio-panel@rayzeq.github.io', 'clipboard-history@alexsaveau.dev', 'arch-update@RaphaelRochet', 'mediacontrols@cliffniff.github.com', 'caffeine@patapon.info', 'search-light@icedman.github.com']
-favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'steam.desktop', 'org.gnome.Console.desktop', 'notion.desktop']
+favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'org.gnome.Console.desktop', 'notion.desktop', 'system-tray.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='49.1'
 
@@ -461,15 +461,15 @@ brightness=0.59999999999999998
 sigma=30
 
 [org/gnome/shell/extensions/caffeine]
-cli-toggle=false
+cli-toggle=true
 enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=3
+indicator-position-max=4
 restore-state=true
 show-indicator='always'
-user-enabled=false
+user-enabled=true
 
 [org/gnome/shell/extensions/clipboard-history]
 display-mode=0
@@ -700,7 +700,7 @@ locations=@av []
 [org/gnome/software]
 check-timestamp=int64 1787415522
 first-run=false
-flatpak-purge-timestamp=int64 1787186089
+flatpak-purge-timestamp=int64 1787444764
 
 [org/gnome/system/location]
 enabled=true

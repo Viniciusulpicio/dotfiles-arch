@@ -51,15 +51,15 @@ brightness=0.59999999999999998
 sigma=30
 
 [caffeine]
-cli-toggle=false
+cli-toggle=true
 enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=3
+indicator-position-max=4
 restore-state=true
 show-indicator='always'
-user-enabled=false
+user-enabled=true
 
 [clipboard-history]
 display-mode=0
