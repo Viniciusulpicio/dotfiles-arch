@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Tray — Linux Control Panel (XAMPP Edition)</title>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --xampp-orange: #ea580c;
+      --xampp-bg: #111317;
+      --xampp-surface: #181b20;
+      --xampp-panel: #1f232b;
+      --xampp-border: #2e3440;
+      --xampp-text: #e5e9f0;
+      --xampp-green: #22c55e;
+      --xampp-red: #ef4444;
+    }
+
+    body {
+      background-color: var(--xampp-bg);
+      color: var(--xampp-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f1115; }
+    ::-webkit-scrollbar-thumb { background: #2e3440; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b4252; }
+
+    .xampp-btn {
+      background: #252a34;
+      border: 1px solid #3b4252;
+      color: #e5e9f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      transition: all 0.1s ease-in-out;
+    }
+    .xampp-btn:hover {
+      background: #2e3440;
+      border-color: #4c566a;
+      color: #ffffff;
+    }
+    .xampp-btn:active {
+      transform: translateY(1px);
+      background: #1e222a;
+    }
+
+    .xampp-btn-start {
+      background: #15803d;
+      border: 1px solid #22c55e;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .xampp-btn-start:hover {
+      background: #16a34a;
+    }
+
+    .xampp-btn-stop {
+      background: #991b1b;
+      border: 1px solid #ef4444;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .xampp-btn-stop:hover {
+      background: #b91c1c;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-orange-600 selection:text-white">
+
+  <!-- ================= TOP TITLE BAR ================= -->
+  <header class="border-b border-[#2e3440] bg-[#181b20] px-5 py-2.5 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand & XAMPP Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white shadow-md font-bold text-sm">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm font-bold text-white tracking-tight">
+              System Tray <span class="text-orange-400 font-semibold">Control Panel</span>
+            </h1>
+            <span class="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.2 rounded font-mono font-bold">
+              XAMPP Edition
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">Painel de Controle de Serviços & Inicialização Linux</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center bg-[#111317] p-1 rounded-lg border border-[#2e3440] text-xs font-semibold">
+        <button id="nav-btn-services" onclick="switchSection('services')" class="px-3.5 py-1.5 rounded bg-[#252a34] text-white border border-[#3b4252] transition flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-orange-400"></i>
+          <span>Módulos de Serviços</span>
+        </button>
+        <button id="nav-btn-autostart" onclick="switchSection('autostart')" class="px-3.5 py-1.5 rounded text-slate-400 hover:text-white transition flex items-center gap-2">
+          <i class="fa-solid fa-rocket text-amber-400"></i>
+          <span>Aplicativos (Autostart)</span>
+          <span id="badge-autostart-count" class="bg-[#252a34] text-slate-300 text-[10px] px-1.5 py-0.2 rounded font-mono">0</span>
+        </button>
+      </div>
+
+      <!-- Stats Metrics -->
+      <div class="hidden md:flex items-center gap-3 text-xs">
+        <div class="flex items-center gap-2 px-2.5 py-1 rounded bg-[#111317] border border-[#2e3440]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-slate-400">Ativos:</span>
+          <span id="stat-active" class="font-bold text-emerald-400 font-mono">--</span>
+        </div>
+        <div class="flex items-center gap-2 px-2.5 py-1 rounded bg-[#111317] border border-[#2e3440]">
+          <i class="fa-solid fa-memory text-teal-400 text-[11px]"></i>
+          <span class="text-slate-400">RAM:</span>
+          <span id="stat-ram" class="font-bold text-teal-400 font-mono">-- MB</span>
+        </div>
+        <button id="btn-refresh" title="Atualizar agora (R)" class="xampp-btn px-2.5 py-1 rounded text-xs font-medium flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right text-xs" id="refresh-icon"></i>
+          <span>Atualizar</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-4 flex flex-col gap-4">
+
+    <!-- ================= SECTION 1: SERVICES TABLE ================= -->
+    <div id="section-services" class="flex flex-col gap-4">
+
+      <div class="flex flex-col lg:flex-row items-stretch gap-4">
+        
+        <!-- Left: The Iconic XAMPP Module Table -->
+        <div class="flex-1 flex flex-col gap-2">
+          
+          <!-- Toolbar -->
+          <div class="bg-[#181b20] border border-[#2e3440] rounded-t-lg p-2.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-1.5 text-xs overflow-x-auto">
+              <button class="filter-tab px-3 py-1 rounded font-semibold transition bg-orange-600 text-white" data-filter="favorites">
+                ⭐ Favoritos & Dev
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="dev">
+                Bancos & Web
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="active">
+                🟢 Rodando
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="inactive">
+                ⚪ Parados
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="all">
+                Todos (<span id="total-count">0</span>)
+              </button>
+            </div>
+
+            <!-- Search -->
+            <div class="relative min-w-[200px] flex-1 max-w-xs">
+              <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+              <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Filtrar módulos... [/]" 
+                class="w-full bg-[#111317] border border-[#2e3440] rounded pl-8 pr-7 py-1 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition"
+              >
+              <button id="search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 text-xs">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- XAMPP Table -->
+          <div class="bg-[#181b20] border border-t-0 border-[#2e3440] rounded-b-lg overflow-hidden shadow-md">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse font-sans">
+                <thead>
+                  <tr class="bg-[#1f232b] text-slate-300 border-b border-[#2e3440] font-bold text-[11px] uppercase tracking-wider">
+                    <th class="py-2.5 px-3 w-36">Módulo</th>
+                    <th class="py-2.5 px-2 w-16 text-center font-mono">PID</th>
+                    <th class="py-2.5 px-2 w-20 text-center font-mono">Porta</th>
+                    <th class="py-2.5 px-3 w-36 text-center">Ações</th>
+                    <th class="py-2.5 px-3 w-36 text-center text-amber-400"><i class="fa-solid fa-power-off text-amber-400 mr-1 text-[10px]"></i> Iniciar no Boot</th>
+                    <th class="py-2.5 px-2 w-16 text-center">Logs</th>
+                    <th class="py-2.5 px-4 min-w-[220px]">Descrição / Explicação (PT-BR)</th>
+                  </tr>
+                </thead>
+                <tbody id="services-tbody" class="divide-y divide-[#2e3440]">
+                  <tr>
+                    <td colspan="7" class="py-12 text-center text-slate-500 animate-pulse">Carregando módulos de serviços do sistema...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: XAMPP Control Sidebar -->
+        <div class="w-full lg:w-56 flex flex-col gap-2 bg-[#181b20] border border-[#2e3440] rounded-lg p-3 shadow-md">
+          <div class="text-[11px] font-bold text-orange-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-sliders"></i> Controles XAMPP
+          </div>
+
+          <button id="btn-stop-all-dev" class="xampp-btn py-2 px-3 rounded text-xs font-semibold flex items-center justify-center gap-2 text-rose-300 border-rose-900/60 bg-rose-950/30 hover:bg-rose-900/50 transition">
+            <i class="fa-solid fa-power-off text-xs"></i>
+            <span>Parar Todos os Devs</span>
+          </button>
+
+          <button onclick="startFavoriteServices()" class="xampp-btn py-2 px-3 rounded text-xs font-semibold flex items-center justify-center gap-2 text-emerald-300 border-emerald-900/60 bg-emerald-950/30 hover:bg-emerald-900/50 transition">
+            <i class="fa-solid fa-play text-xs"></i>
+            <span>Iniciar Favoritos</span>
+          </button>
+
+          <div class="border-t border-[#2e3440] my-1"></div>
+
+          <button onclick="switchSection('autostart')" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-rocket text-amber-400"></i> Autostart Apps</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <button onclick="openNetstatModal()" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-blue-400"></i> Portas / Netstat</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <button onclick="openConfigInfoModal()" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-gear text-slate-400"></i> Informações</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <div class="border-t border-[#2e3440] my-1"></div>
+
+          <div class="bg-[#111317] border border-[#2e3440] rounded p-2.5 text-[11px] text-slate-400 flex flex-col gap-1">
+            <div class="flex justify-between font-mono">
+              <span>No Boot:</span>
+              <span id="sidebar-boot" class="font-bold text-amber-400">--</span>
+            </div>
+            <div class="flex justify-between font-mono">
+              <span>Total RAM:</span>
+              <span id="sidebar-ram" class="font-bold text-teal-400">-- MB</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= THE ICONIC XAMPP BOTTOM CONSOLE ================= -->
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg shadow-md overflow-hidden">
+        <div class="bg-[#1f232b] px-3.5 py-1.5 border-b border-[#2e3440] flex items-center justify-between">
+          <div class="flex items-center gap-2 text-xs font-bold text-slate-300">
+            <i class="fa-solid fa-terminal text-orange-400"></i>
+            <span>Log de Ações & Console do Sistema</span>
+          </div>
+          <button onclick="clearConsole()" class="text-[11px] text-slate-400 hover:text-white font-mono px-2 py-0.5 rounded bg-[#111317] border border-[#2e3440] transition">
+            Limpar Console
+          </button>
+        </div>
+        <div id="xampp-console" class="p-3 bg-[#0c0d10] font-mono text-[11px] text-slate-300 h-36 overflow-y-auto leading-relaxed whitespace-pre-wrap select-text border-t border-[#111317]">
+          [Carregando console...]
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= SECTION 2: AUTOSTART APPS ================= -->
+    <div id="section-autostart" class="hidden flex-col gap-4">
+      
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md">
+        <div>
+          <h2 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-rocket text-amber-400"></i>
+            Aplicativos de Inicialização do Usuário (Autostart)
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Gerencie quais programas e scripts abrem automaticamente ao fazer login no seu computador.
+          </p>
+        </div>
+        <button onclick="openAddAppModal()" class="xampp-btn xampp-btn-start px-3.5 py-2 rounded text-xs font-semibold transition flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-plus text-xs"></i>
+          <span>Adicionar Aplicativo</span>
+        </button>
+      </div>
+
+      <!-- Autostart Apps Table -->
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg overflow-hidden shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[#1f232b] text-slate-300 border-b border-[#2e3440] font-bold text-[11px] uppercase tracking-wider">
+                <th class="py-2.5 px-4 w-12 text-center">Ícone</th>
+                <th class="py-2.5 px-4 min-w-[200px]">Aplicativo / Descrição</th>
+                <th class="py-2.5 px-4">Comando (Exec)</th>
+                <th class="py-2.5 px-4 w-32">Origem</th>
+                <th class="py-2.5 px-4 w-36 text-center">Iniciar no Login</th>
+                <th class="py-2.5 px-4 w-20 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="autostart-tbody" class="divide-y divide-[#2e3440]">
+              <tr>
+                <td colspan="6" class="py-8 text-center text-slate-500 animate-pulse">Carregando aplicativos de inicialização...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ADD AUTOSTART APP MODAL -->
+  <div id="modal-add-app" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+    <div class="bg-[#181b20] border border-[#2e3440] rounded-lg max-w-lg w-full flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-5 py-3 bg-[#1f232b] border-b border-[#2e3440] flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-plus text-orange-400 text-xs"></i>
+          <h3 class="font-bold text-white text-xs">Adicionar Aplicativo ao Autostart</h3>
+        </div>
+        <button onclick="closeAddAppModal()" class="p-1 rounded hover:bg-[#252a34] text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div class="p-5 flex flex-col gap-3.5 text-xs">
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Escolher dos Aplicativos Instalados:</label>
+          <select id="modal-app-select" onchange="handleAppSelectChange(this.value)" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-slate-200 focus:outline-none focus:border-orange-500">
+            <option value="">-- Selecione um aplicativo instalado --</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 my-0.5 text-slate-500 text-[11px]">
+          <div class="flex-1 border-t border-[#2e3440]"></div>
+          <span>ou digite manualmente</span>
+          <div class="flex-1 border-t border-[#2e3440]"></div>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Nome do Aplicativo:</label>
+          <input type="text" id="modal-app-name" placeholder="Ex: Meu Script ou Discord" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Comando de Execução (Exec):</label>
+          <input type="text" id="modal-app-exec" placeholder="Ex: /usr/bin/discord ou python3 ~/meu_script.py" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white font-mono placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Descrição (opcional):</label>
+          <input type="text" id="modal-app-comment" placeholder="Ex: Iniciar automaticamente em segundo plano" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+      </div>
+
+      <div class="px-5 py-3 bg-[#1f232b] border-t border-[#2e3440] flex items-center justify-end gap-2">
+        <button onclick="closeAddAppModal()" class="xampp-btn px-4 py-1.5 rounded text-xs font-semibold">
+          Cancelar
+        </button>
+        <button onclick="submitAddApp()" class="xampp-btn xampp-btn-start px-4 py-1.5 rounded text-xs font-semibold">
+          Adicionar ao Autostart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGS MODAL -->
+  <div id="modal-logs" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+    <div class="bg-[#181b20] border border-[#2e3440] rounded-lg max-w-4xl w-full flex flex-col max-h-[85vh] shadow-2xl overflow-hidden">
+      <div class="px-5 py-3 bg-[#1f232b] border-b border-[#2e3440] flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-terminal text-orange-400 text-xs"></i>
+          <div>
+            <h3 id="modal-service-name" class="font-bold text-white text-xs font-mono">service.service</h3>
+            <p class="text-[11px] text-slate-400">Logs do journalctl</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="modal-log-lines" class="bg-[#111317] border border-[#2e3440] rounded text-xs px-2 py-1 text-slate-300 focus:outline-none">
+            <option value="50">50 linhas</option>
+            <option value="100">100 linhas</option>
+            <option value="200">200 linhas</option>
+          </select>
+          <button id="modal-log-refresh" class="xampp-btn p-1.5 rounded text-xs">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button id="modal-log-close" class="p-1.5 rounded hover:bg-[#252a34] text-slate-400 hover:text-white transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-4 bg-[#0c0d10] flex-1 overflow-auto font-mono text-xs text-slate-300 leading-relaxed whitespace-pre-wrap select-text" id="modal-logs-content">
+        Carregando logs...
+      </div>
+      <div class="px-5 py-3 bg-[#1f232b] border-t border-[#2e3440] flex justify-end">
+        <button id="modal-log-close-btn" class="xampp-btn px-4 py-1.5 rounded text-xs font-semibold">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#2e3440] bg-[#181b20] py-2.5 px-6 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-orange-400">System Tray</span> &bull; Inspirado no XAMPP Control Panel &bull; Arquitetura Linux Nativa
+      </div>
+      <span class="font-mono text-[11px] text-slate-500">systemd 261 / Linux x86_64</span>
+    </div>
+  </footer>
+
+  <script src="/app.js?v=1787445209"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=System Tray
+Comment=Gerenciador Dinâmico de Serviços Linux (XAMPP-like)
+Exec=python3 /home/vinicius/system-tray/app.py
+Icon=system-tray
+Terminal=false
+Type=Application
+Categories=Development;System;Settings;
+StartupNotify=true

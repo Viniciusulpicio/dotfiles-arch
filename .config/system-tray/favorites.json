@@ -1,0 +1,12 @@
+[
+  "httpd.service",
+  "sshd.service",
+  "nginx.service",
+  "docker.service",
+  "mongodb.service",
+  "mariadb.service",
+  "php-fpm.service",
+  "postgresql.service",
+  "redis.service",
+  "mysql.service"
+]

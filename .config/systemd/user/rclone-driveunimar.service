@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/home/vinicius/.local/bin/rclone mount DriveUnimar: /home/vinicius/DriveUnimar --vfs-cache-mode full --vfs-cache-max-size 10G --dir-cache-time 72h
+ExecStart=/home/vinicius/.local/bin/rclone mount DriveUnimar: /home/vinicius/DriveUnimar --vfs-cache-mode full --vfs-cache-max-size 10G --vfs-cache-max-age 72h --dir-cache-time 72h --attr-timeout 10s --buffer-size 32M --vfs-read-ahead 128M --no-checksum
 ExecStop=/usr/bin/fusermount -u /home/vinicius/DriveUnimar
 Restart=on-failure
 RestartSec=10

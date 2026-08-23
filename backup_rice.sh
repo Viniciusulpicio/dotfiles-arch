@@ -146,6 +146,20 @@ if [ -n "$CURRENT_WALL" ] && [ -f "$CURRENT_WALL" ]; then
     fi
 fi
 
+
+# 5.1 BACKUP DO SYSTEM TRAY
+if [ -d "$HOME/system-tray" ]; then
+    echo "🖥️ 5.1 Copiando projeto System Tray..."
+    copy_safe "$HOME/system-tray" "$REPO_DIR/"
+fi
+
+# 5.2 BACKUP DE CONFIGURAÇÕES DE RESPONSIVIDADE DO SISTEMA (/etc/sysctl.d)
+if [ -f "/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
+    echo "⚡ 5.2 Copiando configurações de otimização de I/O e Downloads (/etc/sysctl.d)..."
+    mkdir -p "$REPO_DIR/etc/sysctl.d"
+    cp -f "/etc/sysctl.d/99-desktop-responsiveness.conf" "$REPO_DIR/etc/sysctl.d/" 2>/dev/null || true
+fi
+
 # 6. SCRIPTS LOCAIS (.local/bin)
 echo "📜 6. Copiando scripts em ~/.local/bin (excluindo binários pesados)..."
 if [ -d "$HOME/.local/bin" ]; then
@@ -190,6 +204,7 @@ CONFIG_APPS=(
     "wpg"
     "wal"
     "autostart"
+    "system-tray"
     "BetterDiscord"
     "MangoHud"
     "obs-studio"
