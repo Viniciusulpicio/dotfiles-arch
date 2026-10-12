@@ -7,9 +7,10 @@
   "shell-version": [
     "48",
     "49",
-    "50"
+    "50",
+    "51"
   ],
-  "url": "https://github.com/Leleat/Tiling-Assistant",
+  "url": "https://github.com/ubuntu/Tiling-Assistant",
   "uuid": "tiling-assistant@leleat-on-github",
-  "version": 54
+  "version": 56
 }

@@ -71,6 +71,9 @@ echo "📦 2. Exportando listas de pacotes e extensões do sistema..."
 
 # Pacotes nativos explicitamente instalados (excluindo AUR)
 if command -v pacman &> /dev/null; then
+    # Preservar pacotes da NVIDIA/CUDA para compatibilidade com o PC principal (RTX 3060)
+    NVIDIA_SAVED=$(grep -E '^(nvidia|cuda|cudnn|libva-nvidia|lib32-nvidia|opencl-nvidia|python-pytorch-cuda)' "$REPO_DIR/pkg-lists/pacman_native.txt" 2>/dev/null || true)
+
     AUR_PKGS=$(pacman -Qqm 2>/dev/null || true)
     if [ -n "$AUR_PKGS" ]; then
         pacman -Qqe | grep -Fxv -f <(echo "$AUR_PKGS") | sort -u > "$REPO_DIR/pkg-lists/pacman_native.txt"
@@ -79,7 +82,13 @@ if command -v pacman &> /dev/null; then
         pacman -Qqe | sort -u > "$REPO_DIR/pkg-lists/pacman_native.txt"
         > "$REPO_DIR/pkg-lists/aur_packages.txt"
     fi
-    echo "  ✓ Pacman nativos salvos: $(wc -l < "$REPO_DIR/pkg-lists/pacman_native.txt") pacotes"
+
+    if [ -n "$NVIDIA_SAVED" ]; then
+        echo "$NVIDIA_SAVED" >> "$REPO_DIR/pkg-lists/pacman_native.txt"
+        sort -u -o "$REPO_DIR/pkg-lists/pacman_native.txt" "$REPO_DIR/pkg-lists/pacman_native.txt"
+    fi
+
+    echo "  ✓ Pacman nativos salvos (preservando Nvidia para o PC principal): $(wc -l < "$REPO_DIR/pkg-lists/pacman_native.txt") pacotes"
     echo "  ✓ AUR salvos: $(wc -l < "$REPO_DIR/pkg-lists/aur_packages.txt") pacotes"
 fi
 

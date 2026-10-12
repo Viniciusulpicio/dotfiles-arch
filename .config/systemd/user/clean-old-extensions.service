@@ -1,0 +1,6 @@
+[Unit]
+Description=Limpeza periódica de versões antigas e duplicatas de extensões GNOME
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/clean-old-extensions

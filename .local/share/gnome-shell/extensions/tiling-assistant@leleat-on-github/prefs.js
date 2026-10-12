@@ -74,6 +74,7 @@ export default class Prefs extends ExtensionPreferences {
             'enable-advanced-experimental-features',
             'disable-tile-groups',
             'low-performance-move-mode',
+            'enable-layout-picker',
             'monitor-switch-grace-period',
             'adapt-edge-tiling-to-favorite-layout',
             'enable-tile-animations',
@@ -282,19 +283,19 @@ export default class Prefs extends ExtensionPreferences {
     }
 
     _openBugReport(window) {
-        Gtk.show_uri(window, 'https://github.com/Leleat/Tiling-Assistant/issues', Gdk.CURRENT_TIME);
+        Gtk.show_uri(window, 'https://github.com/ubuntu/Tiling-Assistant/issues', Gdk.CURRENT_TIME);
     }
 
     _openUserGuide(window) {
-        Gtk.show_uri(window, 'https://github.com/Leleat/Tiling-Assistant/wiki', Gdk.CURRENT_TIME);
+        Gtk.show_uri(window, 'https://github.com/ubuntu/Tiling-Assistant/wiki', Gdk.CURRENT_TIME);
     }
 
     _openChangelog(window) {
-        Gtk.show_uri(window, 'https://github.com/Leleat/Tiling-Assistant/blob/main/CHANGELOG.md', Gdk.CURRENT_TIME);
+        Gtk.show_uri(window, 'https://github.com/ubuntu/Tiling-Assistant/blob/main/CHANGELOG.md', Gdk.CURRENT_TIME);
     }
 
     _openLicense(window) {
-        Gtk.show_uri(window, 'https://github.com/Leleat/Tiling-Assistant/blob/main/LICENSE', Gdk.CURRENT_TIME);
+        Gtk.show_uri(window, 'https://github.com/ubuntu/Tiling-Assistant/blob/main/LICENSE', Gdk.CURRENT_TIME);
     }
 
     _openHiddenSettings(window, builder) {

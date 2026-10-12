@@ -76,8 +76,9 @@ __pycache__/
 .config/Postman/
 .config/heroic/
 .config/CurseForge/
-.config/hydralauncher/
-.config/rclone/
+.config/rclone/*.conf
+.config/rclone/rclone.conf
+!.config/rclone/dev-filter.txt
 .config/evolution/
 .config/go/telemetry/
 

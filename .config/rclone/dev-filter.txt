@@ -1,0 +1,25 @@
+# Regras de exclusao para sincronizacao de desenvolvimento (rclone)
+
+# Manter explicitamente dist, scratch e arquivos temporarios/assistentes do agy
++ **/dist/**
++ **/scratch/**
++ **/.gemini/**
++ **/.antigravity/**
+
+# Pastas pesadas de compilacao e caches de pacotes
+- **/.pio/**
+- **/.espidf/**
+- **/node_modules/**
+- **/__pycache__/**
+- **/*.pyc
+- **/.venv/**
+
+# Travas temporarias de git
+- **/.git/index.lock
+- **/.git/refs/heads/*.lock
+- **/*.swp
+- **/*~
+- **/.DS_Store
+
+# Incluir todo o resto
++ **

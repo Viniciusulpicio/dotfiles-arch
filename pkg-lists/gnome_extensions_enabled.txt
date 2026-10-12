@@ -5,7 +5,7 @@ auto-move-windows@gnome-shell-extensions.gcampax.github.com
 caffeine@patapon.info
 clipboard-history@alexsaveau.dev
 dash2dock-lite@icedman.github.com
-display-brightness-ddcutil@themightydeity.github.com
+gsconnect@andyholmes.github.io
 just-perfection-desktop@just-perfection
 light-style@gnome-shell-extensions.gcampax.github.com
 mediacontrols@cliffniff.github.com

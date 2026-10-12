@@ -14,8 +14,28 @@
     You should have received a copy of the GNU General Public License
     along with Arch Linux Updates Indicator.  If not, see <http://www.gnu.org/licenses/>.
 
-    Copyright 2016-2022 Raphaël Rochet
+    Copyright 2016-2026 Raphaël Rochet
 */
+
+.arch-updates-indicator * {
+	margin: 0;
+	padding: 0;
+}
+
+.arch-updates-indicator .panel-status-menu-box {
+	padding: 0 4px;
+}
+.arch-updates-indicator .panel-status-menu-box StLabel {
+	margin-left: 4px;
+}
+
+.arch-updates-indicator.compact .panel-status-menu-box {
+	padding: 0;
+}
+.arch-updates-indicator.compact .panel-status-menu-box StLabel {
+	margin-left: 2px;
+	font-size: 80%;
+}
 
 .arch-updates-menubutton {
 	/* Meant to be used as an override to display a small system-menu-action */

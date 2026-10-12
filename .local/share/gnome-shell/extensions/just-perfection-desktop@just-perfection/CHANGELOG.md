@@ -7,6 +7,17 @@ We go to the next version after each release on the
 
 ## [Unreleased]
 
+## [37.0] - 2026-08-29
+
+### Added
+
+- Georgian Translation by [@EkaterinePapava](https://gitlab.gnome.org/EkaterinePapava).
+- GNOME Shell 51 Support.
+
+### Fixed
+
+- Russian Translation by [@Moss3488](https://gitlab.gnome.org/Moss3488).
+
 ## [36.0] - 2026-01-26
 
 ### Added

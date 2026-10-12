@@ -40,6 +40,7 @@ const RE_UpdateLine = /^(.+)\s+(\S+)\s+->\s+(.+)$/;
 let ALWAYS_VISIBLE     = true;
 let USE_BUILDIN_ICONS  = true;
 let SHOW_COUNT         = true;
+let COMPACT_MODE       = false;
 let BOOT_WAIT          = 15;      // 15s
 let CHECK_INTERVAL     = 60*60;   // 1h
 let NOTIFY             = false;
@@ -104,7 +105,8 @@ class ArchUpdateIndicator extends Button {
 
 		this.updateIcon = new St.Icon({gicon: this._getCustIcon('arch-unknown-symbolic'), style_class: 'system-status-icon'});
 
-		let box = new St.BoxLayout({ vertical: false, style_class: 'panel-status-menu-box' });
+		this.add_style_class_name('arch-updates-indicator');
+		let box = new St.BoxLayout({ style_class: 'panel-status-menu-box' });
 		this.label = new St.Label({ text: '',
 			y_expand: true,
 			y_align: Clutter.ActorAlign.CENTER });
@@ -116,7 +118,7 @@ class ArchUpdateIndicator extends Button {
 		// Prepare the special menu : a submenu for updates list that will look like a regular menu item when disabled
 		// Scrollability will also be taken care of by the popupmenu
 		this.menuExpander = new PopupMenu.PopupSubMenuMenuItem('');
-		this.menuExpanderContainer = new St.BoxLayout({ vertical: true, style_class: 'arch-updates-updates-list' });
+		this.menuExpanderContainer = new St.BoxLayout({ orientation: 1, style_class: 'arch-updates-updates-list' });
 		this.menuExpander.menu.box.add_child( this.menuExpanderContainer );
 
 		// Other standard menu items
@@ -231,6 +233,7 @@ class ArchUpdateIndicator extends Button {
 		ALWAYS_VISIBLE = this._settings.get_boolean('always-visible');
 		USE_BUILDIN_ICONS = this._settings.get_boolean('use-buildin-icons');
 		SHOW_COUNT = this._settings.get_boolean('show-count');
+		COMPACT_MODE = this._settings.get_boolean('compact-mode');
 		BOOT_WAIT = this._settings.get_int('boot-wait');
 		CHECK_INTERVAL = 60 * this._settings.get_int('check-interval');
 		NOTIFY = this._settings.get_boolean('notify');
@@ -246,6 +249,11 @@ class ArchUpdateIndicator extends Button {
 		PACKAGE_INFO_CMD = this._settings.get_string('package-info-cmd');
 		LINKIFY_MENU = this._settings.get_boolean('linkify-menu');
 		SHOW_TIMECHECKED = this._settings.get_boolean('show-timechecked');
+		if (COMPACT_MODE) {
+			this.add_style_class_name('compact');
+		} else {
+			this.remove_style_class_name('compact');
+		}
 		this.managerMenuItem.visible = ( MANAGER_CMD != "" );
 		this.timeCheckedMenu.visible = SHOW_TIMECHECKED;
 		this._checkShowHide();
@@ -474,7 +482,7 @@ class ArchUpdateIndicator extends Button {
 							// Not an update
 							this.menuExpanderContainer.add_child( new St.Label({ text: item, style_class: 'arch-updates-update-title' }) );
 						} else {
-							let hBox = new St.BoxLayout({ vertical: false, style_class: 'arch-updates-update-line' });
+							let hBox = new St.BoxLayout({ style_class: 'arch-updates-update-line' });
 							hBox.add_child( this._createPackageLabel(matches[1]) );
 							if (!STRIP_VERSIONS) {
 								hBox.add_child( new St.Label({
