@@ -454,7 +454,7 @@ export default class MediaControls extends Extension {
         this.settings.connect("changed::blacklisted-players", () => {
             this.blacklistedPlayers = this.settings.get_strv("blacklisted-players");
             for (const playerProxy of this.playerProxies.values()) {
-                if (this.isPlayerBlacklisted(playerProxy.identity, playerProxy.desktopEntry)) {
+                if (this.isPlayerBlacklisted(playerProxy.identity, playerProxy.desktopEntry, playerProxy.busName)) {
                     this.removePlayer(playerProxy.busName);
                 }
             }
@@ -574,7 +574,7 @@ export default class MediaControls extends Extension {
                 errorLog("Failed to init player:", busName);
                 return;
             }
-            const isPlayerBlacklisted = this.isPlayerBlacklisted(playerProxy.identity, playerProxy.desktopEntry);
+            const isPlayerBlacklisted = this.isPlayerBlacklisted(playerProxy.identity, playerProxy.desktopEntry, playerProxy.busName);
             if (isPlayerBlacklisted) {
                 return;
             }
@@ -666,16 +666,17 @@ export default class MediaControls extends Extension {
      * @private
      * @param {string} id - The MPRIS Identity (e.g., "Spotify")
      * @param {string} entry - The Desktop Entry name (e.g., "spotify")
+     * @param {string} [busName] - The MPRIS bus name
      * @returns {boolean} - True if the player is blacklisted
      */
-    isPlayerBlacklisted(id, entry) {
+    isPlayerBlacklisted(id, entry, busName) {
         // Standard AppInfo lookup (fastest)
-        let app = getAppInfoByIdAndEntry(id, entry);
+        let app = getAppInfoByIdAndEntry(id, entry, busName);
 
         // Shell AppSystem lookup
         // Necessary for finding running apps that standard AppInfo misses (e.g., Snaps)
         if (app == null) {
-            app = getAppByIdAndEntry(id, entry);
+            app = getAppByIdAndEntry(id, entry, busName);
         }
 
         // Check if the resolved App ID matches the blacklist

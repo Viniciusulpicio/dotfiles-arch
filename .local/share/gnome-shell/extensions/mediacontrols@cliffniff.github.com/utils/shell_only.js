@@ -16,18 +16,57 @@ Gio._promisify(Soup.Session.prototype, "send_and_read_async", "send_and_read_fin
 /**
  * @param {string} id
  * @param {string} entry
+ * @param {string} [busName]
  * @returns {Gio.AppInfo | null}
  */
-export const getAppInfoByIdAndEntry = (id, entry) => {
+export const getAppInfoByIdAndEntry = (id, entry, busName) => {
+    const candidates = [];
+    if (entry) {
+        candidates.push(`${entry}.desktop`, entry);
+    }
+    if (id) {
+        candidates.push(`${id}.desktop`, id, `${id.toLowerCase()}.desktop`, id.toLowerCase());
+    }
+    if (busName) {
+        const parts = busName.split(".");
+        const mprisIdx = parts.indexOf("MediaPlayer2");
+        if (mprisIdx !== -1 && parts[mprisIdx + 1]) {
+            const raw = parts[mprisIdx + 1];
+            candidates.push(`${raw}.desktop`, raw);
+        }
+    }
+
+    const lowerId = (id || "").toLowerCase();
+    const lowerBus = (busName || "").toLowerCase();
+    if (lowerId.includes("chrome") || lowerId.includes("chromium") || lowerBus.includes("chrome") || lowerBus.includes("chromium")) {
+        candidates.push("google-chrome.desktop", "google-chrome-stable.desktop", "chromium.desktop", "com.google.Chrome.desktop");
+    } else if (lowerId.includes("firefox") || lowerBus.includes("firefox")) {
+        candidates.push("firefox.desktop", "org.mozilla.firefox.desktop");
+    } else if (lowerId.includes("spotify") || lowerBus.includes("spotify")) {
+        candidates.push("spotify.desktop", "com.spotify.Client.desktop");
+    } else if (lowerId.includes("brave") || lowerBus.includes("brave")) {
+        candidates.push("brave-browser.desktop", "brave.desktop");
+    } else if (lowerId.includes("edge") || lowerBus.includes("edge")) {
+        candidates.push("microsoft-edge.desktop");
+    }
+
     const apps = Gio.AppInfo.get_all();
-    for (const app of apps) {
-        if (
-            app.get_display_name() === entry ||
-            app.get_id() === id ||
-            app.get_name() === entry ||
-            app.get_name() === id
-        ) {
-            return app;
+    for (const cand of candidates) {
+        const cleanCand = cand.replace(/\.desktop$/, "").toLowerCase();
+        for (const app of apps) {
+            const aid = (app.get_id() || "").toLowerCase();
+            const aname = (app.get_name() || "").toLowerCase();
+            const aexec = (app.get_executable() || "").toLowerCase();
+            const adisp = (app.get_display_name() || "").toLowerCase();
+            if (
+                aid === cand.toLowerCase() ||
+                aid === `${cleanCand}.desktop` ||
+                aname === cleanCand ||
+                adisp === cleanCand ||
+                (cleanCand.length > 3 && aexec.includes(cleanCand))
+            ) {
+                return app;
+            }
         }
     }
     return null;
@@ -36,9 +75,10 @@ export const getAppInfoByIdAndEntry = (id, entry) => {
 /**
  * @param {string} id
  * @param {string} entry
+ * @param {string} [busName]
  * @returns {Shell.App | null}
  */
-export const getAppByIdAndEntry = (id, entry) => {
+export const getAppByIdAndEntry = (id, entry, busName) => {
     const appSystem = Shell.AppSystem.get_default();
     const runningApps = appSystem.get_running();
     const idResults = Shell.AppSystem.search(id ?? "");
@@ -58,28 +98,51 @@ export const getAppByIdAndEntry = (id, entry) => {
         }
     }
 
-    // If not found in running apps, try to lookup by desktop file ID
+    const candidates = [];
     if (entry) {
-        // Try with .desktop extension
-        let app = appSystem.lookup_app(`${entry}.desktop`);
+        candidates.push(`${entry}.desktop`, entry);
+    }
+    if (id) {
+        candidates.push(`${id}.desktop`, id, `${id.toLowerCase()}.desktop`, id.toLowerCase());
+    }
+    if (busName) {
+        const parts = busName.split(".");
+        const mprisIdx = parts.indexOf("MediaPlayer2");
+        if (mprisIdx !== -1 && parts[mprisIdx + 1]) {
+            const raw = parts[mprisIdx + 1];
+            candidates.push(`${raw}.desktop`, raw);
+        }
+    }
+
+    const lowerId = (id || "").toLowerCase();
+    const lowerBus = (busName || "").toLowerCase();
+    if (lowerId.includes("chrome") || lowerId.includes("chromium") || lowerBus.includes("chrome") || lowerBus.includes("chromium")) {
+        candidates.push("google-chrome.desktop", "google-chrome-stable.desktop", "chromium.desktop", "com.google.Chrome.desktop");
+    } else if (lowerId.includes("firefox") || lowerBus.includes("firefox")) {
+        candidates.push("firefox.desktop", "org.mozilla.firefox.desktop");
+    } else if (lowerId.includes("spotify") || lowerBus.includes("spotify")) {
+        candidates.push("spotify.desktop", "com.spotify.Client.desktop");
+    } else if (lowerId.includes("brave") || lowerBus.includes("brave")) {
+        candidates.push("brave-browser.desktop", "brave.desktop");
+    } else if (lowerId.includes("edge") || lowerBus.includes("edge")) {
+        candidates.push("microsoft-edge.desktop");
+    }
+
+    for (const cand of candidates) {
+        let app = appSystem.lookup_app(cand);
         if (app != null) {
             return app;
         }
-        // Try without extension in case it already has it
-        app = appSystem.lookup_app(entry);
+        app = runningApps.find((a) => a.get_id() === cand || a.get_id() === `${cand}.desktop`);
         if (app != null) {
             return app;
         }
     }
 
-    if (id) {
-        // Try with .desktop extension
-        let app = appSystem.lookup_app(`${id}.desktop`);
-        if (app != null) {
-            return app;
-        }
-        // Try without extension
-        app = appSystem.lookup_app(id);
+    // Fallback using getAppInfoByIdAndEntry
+    const appInfo = getAppInfoByIdAndEntry(id, entry, busName);
+    if (appInfo != null) {
+        const app = appSystem.lookup_app(appInfo.get_id());
         if (app != null) {
             return app;
         }
