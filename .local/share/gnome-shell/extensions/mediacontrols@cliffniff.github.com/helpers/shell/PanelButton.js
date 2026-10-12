@@ -20,7 +20,7 @@ import * as Config from 'resource:///org/gnome/shell/misc/config.js';
 import ScrollingLabel from "./ScrollingLabel.js";
 import MenuSlider from "./MenuSlider.js";
 import { debugLog, errorLog } from "../../utils/common.js";
-import { getAppByIdAndEntry, getImage } from "../../utils/shell_only.js";
+import { getAppByIdAndEntry, getAppInfoByIdAndEntry, getImage } from "../../utils/shell_only.js";
 import { ControlIconOptions } from "../../types/enums/shell_only.js";
 import {
     LabelTypes,
@@ -400,10 +400,17 @@ class PanelButton extends PanelMenu.Button {
         }
         for (let i = 0; i < players.length; i++) {
             const player = players[i];
-            const app = getAppByIdAndEntry(player.identity, player.desktopEntry);
+            const app = getAppByIdAndEntry(player.identity, player.desktopEntry, player.busName);
             const isSamePlayer = this.isSamePlayer(player);
             const appName = app?.get_name() ?? (player.identity || _("Unknown player"));
-            const appIcon = app?.get_icon() ?? Gio.Icon.new_for_string("audio-x-generic-symbolic");
+            let appIcon = app?.get_icon?.();
+            if (appIcon == null && app?.get_app_info) {
+                appIcon = app.get_app_info()?.get_icon?.();
+            }
+            if (appIcon == null) {
+                const appInfo = getAppInfoByIdAndEntry(player.identity, player.desktopEntry, player.busName);
+                appIcon = appInfo?.get_icon?.() ?? Gio.Icon.new_for_string("audio-x-generic-symbolic");
+            }
             if (isSamePlayer) {
                 this.menuPlayersTextBoxLabel.text = appName;
                 if (this.menuPlayersTextBoxIcon?.get_parent() != null) {
@@ -747,8 +754,15 @@ class PanelButton extends PanelMenu.Button {
      * @returns {void}
      */
     addButtonIcon(index) {
-        const app = getAppByIdAndEntry(this.playerProxy.identity, this.playerProxy.desktopEntry);
-        const appIcon = app?.get_icon() ?? Gio.Icon.new_for_string("audio-x-generic-symbolic");
+        const app = getAppByIdAndEntry(this.playerProxy.identity, this.playerProxy.desktopEntry, this.playerProxy.busName);
+        let appIcon = app?.get_icon?.();
+        if (appIcon == null && app?.get_app_info) {
+            appIcon = app.get_app_info()?.get_icon?.();
+        }
+        if (appIcon == null) {
+            const appInfo = getAppInfoByIdAndEntry(this.playerProxy.identity, this.playerProxy.desktopEntry, this.playerProxy.busName);
+            appIcon = appInfo?.get_icon?.() ?? Gio.Icon.new_for_string("audio-x-generic-symbolic");
+        }
         const coloredClass = this.extension.coloredPlayerIcon ? "colored-icon" : "symbolic-icon";
         const icon = new St.Icon({
             gicon: appIcon,
