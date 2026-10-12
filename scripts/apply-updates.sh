@@ -24,7 +24,7 @@ fi
 echo ""
 echo "🧩 2. Atualizando extensões do GNOME Shell..."
 mkdir -p "$TARGET_HOME/.local/share/gnome-shell/extensions"
-rsync -av --delete --exclude='.git' \
+rsync -av --exclude='.git' \
     "$SCRIPT_DIR/.local/share/gnome-shell/extensions/" \
     "$TARGET_HOME/.local/share/gnome-shell/extensions/"
 

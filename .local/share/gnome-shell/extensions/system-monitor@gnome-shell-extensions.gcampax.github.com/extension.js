@@ -56,6 +56,7 @@ class StatSection extends St.BoxLayout {
         this.label = new St.Label({
             style_class: 'system-monitor-stat-section-label',
             y_align: Clutter.ActorAlign.CENTER,
+            text: '--',
         });
         this.label.clutter_text.set({
             ellipsize: Pango.EllipsizeMode.NONE,
@@ -155,26 +156,49 @@ class TempSection extends StatSection {
 
     constructor(iconDir) {
         super(iconDir, 'temperature-symbolic', _('Temperature stats'));
-        this.add_style_class_name('system-monitor-temp-section');
+        this.label.text = '--°C';
     }
 
     _update() {
         try {
             let temp = 0;
-            const zones = ['thermal_zone7', 'thermal_zone6', 'thermal_zone0', 'thermal_zone1', 'thermal_zone2', 'thermal_zone3', 'thermal_zone4'];
-            for (const z of zones) {
-                const path = `/sys/class/thermal/${z}/temp`;
-                if (GLib.file_test(path, GLib.FileTest.EXISTS)) {
-                    const [ok, content] = GLib.file_get_contents(path);
-                    if (ok) {
-                        const val = parseInt(new TextDecoder().decode(content).trim(), 10);
-                        if (!isNaN(val) && val > 0) {
-                            temp = Math.round(val / 1000);
-                            break;
+            // 1. hwmon (desktops and Ryzen/Intel Core motherboards)
+            for (let i = 0; i <= 8; i++) {
+                for (let t = 1; t <= 3; t++) {
+                    const hwPath = `/sys/class/hwmon/hwmon${i}/temp${t}_input`;
+                    if (GLib.file_test(hwPath, GLib.FileTest.EXISTS)) {
+                        const [ok, content] = GLib.file_get_contents(hwPath);
+                        if (ok) {
+                            const val = parseInt(new TextDecoder().decode(content).trim(), 10);
+                            if (!isNaN(val) && val > 0 && val < 130000) {
+                                temp = Math.round(val / 1000);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (temp > 0)
+                    break;
+            }
+
+            // 2. thermal zones (laptops)
+            if (temp === 0) {
+                const zones = ['thermal_zone7', 'thermal_zone6', 'thermal_zone0', 'thermal_zone1', 'thermal_zone2', 'thermal_zone3', 'thermal_zone4'];
+                for (const z of zones) {
+                    const path = `/sys/class/thermal/${z}/temp`;
+                    if (GLib.file_test(path, GLib.FileTest.EXISTS)) {
+                        const [ok, content] = GLib.file_get_contents(path);
+                        if (ok) {
+                            const val = parseInt(new TextDecoder().decode(content).trim(), 10);
+                            if (!isNaN(val) && val > 0) {
+                                temp = Math.round(val / 1000);
+                                break;
+                            }
                         }
                     }
                 }
             }
+
             if (temp > 0) {
                 this.label.text = `${temp}°C`;
                 if (temp >= 80)

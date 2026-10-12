@@ -5,27 +5,22 @@
  */
 
 .system-monitor-stat-section {
-  padding: 0 6px;
-}
-
-.system-monitor-temp-section {
-  padding-left: 2px;
+  padding: 0 4px;
 }
 
 .system-monitor-stat-section-icon {
   icon-size: 1.08em;
-  margin-right: 2px;
-}
-
-.system-monitor-temp-section .system-monitor-stat-section-icon {
-  margin-right: -2px;
+  margin-right: 3px;
 }
 
 .system-monitor-stat-section-label {
-  min-width: 0;
   font-size: 0.9em;
 }
-.system-monitor-placeholder {-st-icon-style: symbolic;}
 
-.panel-button .high-usage {color: #ff7800;}
+.system-monitor-placeholder {
+  -st-icon-style: symbolic;
+}
 
+.panel-button .high-usage {
+  color: #ff7800;
+}
