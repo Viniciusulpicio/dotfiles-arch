@@ -32,6 +32,8 @@ export class TilingWindowManager {
             window.connectObject(
                 'unmanaging',
                 () => {
+                    window.disconnectObject(this);
+                    this.deleteTilingState(window);
                     window.assertExistence = () => {
                         throw new Error(
                             'Trying to operate on an unmanaging window!'
@@ -162,8 +164,8 @@ export class TilingWindowManager {
         const wasTiled = window.isTiled;
         const wasMaximized = window.maximizedHorizontally || window.maximizedVertically;
 
-        if (wasMaximized && window.get_maximized)
-            window.unmaximize(window.get_maximized());
+        if (wasMaximized && window.unmaximize.length > 0)
+            window.unmaximize(Util.getMaximizedFlags(window));
         else if (wasMaximized)
             window.unmaximize();
 
@@ -200,10 +202,7 @@ export class TilingWindowManager {
             // This is very easy to reproduce when dragging a window on the
             // lower half with Super + LMB.
             window.move_to_monitor(monitor);
-            if (window.maximize.length === 0) // Gnome 49 removed the parameter in maximize()
-                window.maximize();
-            else
-                window.maximize(Meta.MaximizeFlags.BOTH);
+            Util.maximizeWindow(window, Meta.MaximizeFlags.BOTH);
             return;
         }
 
@@ -213,6 +212,11 @@ export class TilingWindowManager {
         window.tiledRect = newRect.copy();
 
         const { x, y, width, height } = newRect.addGaps(workArea, monitor);
+
+        const verticalMaximize =
+            !maximize && y === workArea.y && height === workArea.height;
+        const horizontalMaximize =
+            !maximize && x === workArea.x && width === workArea.width;
 
         // Animations
         const wActor = window.get_compositor_private();
@@ -233,6 +237,21 @@ export class TilingWindowManager {
             );
         }
 
+        if (!verticalMaximize && !horizontalMaximize && !maximize &&
+                window.override_constraints) {
+            const leftConstraint = newRect.x === workArea.x
+                ? Meta.WindowConstraint.MONITOR : Meta.WindowConstraint.WINDOW;
+            const rightConstraint = newRect.x2 === workArea.x2
+                ? Meta.WindowConstraint.MONITOR : Meta.WindowConstraint.WINDOW;
+            const topConstraint = newRect.y === workArea.y
+                ? Meta.WindowConstraint.MONITOR : Meta.WindowConstraint.WINDOW;
+            const bottomConstraint = newRect.y2 === workArea.y2
+                ? Meta.WindowConstraint.MONITOR : Meta.WindowConstraint.WINDOW;
+
+            window.override_constraints(topConstraint, leftConstraint,
+                rightConstraint, bottomConstraint);
+        }
+
         // See issue #137.
         // Under some circumstances it's possible that windows will tile to the wrong
         // monitor. I can't reproduce it but I suspect that it's because of passing
@@ -250,6 +269,18 @@ export class TilingWindowManager {
         window.move_to_monitor(monitor);
         window.move_frame(true, x, y);
         window.move_resize_frame(true, x, y, width, height);
+
+        if (verticalMaximize) {
+            if (window.set_maximize_flags)
+                window.set_maximize_flags(Meta.MaximizeFlags.VERTICAL);
+            else
+                Util.maximizeWindow(window, Meta.MaximizeFlags.VERTICAL);
+        } else if (horizontalMaximize) {
+            if (window.set_maximize_flags)
+                window.set_maximize_flags(Meta.MaximizeFlags.HORIZONTAL);
+            else
+                Util.maximizeWindow(window, Meta.MaximizeFlags.HORIZONTAL);
+        }
 
         // Maximized with gaps
         if (maximize) {
@@ -272,7 +303,7 @@ export class TilingWindowManager {
             this.saveTileState(window);
 
             if (openTilingPopup)
-                await this.tryOpeningTilingPopup();
+                await this.tryOpeningTilingPopup(window, { x, y, width, height });
         }
     }
 
@@ -290,8 +321,8 @@ export class TilingWindowManager {
     static untile(window, { restoreFullPos = true, skipAnim = false, clampToWorkspace = false } = {}) {
         const wasMaximized = window.maximizedHorizontally || window.maximizedVertically;
 
-        if (wasMaximized && window.get_maximized)
-            window.unmaximize(window.get_maximized());
+        if (wasMaximized && window.unmaximize.length > 0)
+            window.unmaximize(Util.getMaximizedFlags(window));
         else if (wasMaximized)
             window.unmaximize();
 
@@ -319,6 +350,12 @@ export class TilingWindowManager {
                 window.get_frame_rect(),
                 Meta.SizeChange.UNMAXIMIZE
             );
+        }
+
+        if (!wasMaximized && window.override_constraints) {
+            window.override_constraints(Meta.WindowConstraint.NONE,
+                Meta.WindowConstraint.NONE, Meta.WindowConstraint.NONE,
+                Meta.WindowConstraint.NONE);
         }
 
         // userOp means that the window won't clamp to the workspace. For DND
@@ -387,7 +424,7 @@ export class TilingWindowManager {
             this.tile(w, newTile, {
                 skipAnim: true,
                 fakeTile: true
-            });
+            }).catch(logError);
         });
 
         // The tiling signals got disconnected during the tile() call but not
@@ -541,6 +578,8 @@ export class TilingWindowManager {
             window && window.disconnect(signals.get(TilingSignals.UNMANAGING));
             signals.set(TilingSignals.UNMANAGING, 0);
         }
+
+        this._signals.deleteSignalsFor(windowId);
 
         if (!this._tileGroups.has(windowId))
             return;
@@ -835,6 +874,11 @@ export class TilingWindowManager {
         return windows.find(w => getRect(w).equal(nearestRect));
     }
 
+    static getOccupiedRect(window) {
+        const frameRect = new Rect(window.get_frame_rect());
+        return window.tiledRect ? window.tiledRect.union(frameRect) : frameRect;
+    }
+
     /**
      * Gets the rectangle for special positions adapted to the surrounding
      * rectangles. The position is determined by `shortcut` but this function
@@ -872,7 +916,8 @@ export class TilingWindowManager {
         idx !== -1 && topTileGroup.splice(idx, 1);
         const favLayout = Util.getFavoriteLayout(monitor);
         const useFavLayout = favLayout.length && Settings.getBoolean('adapt-edge-tiling-to-favorite-layout');
-        const twRects = useFavLayout && favLayout || topTileGroup.map(w => w.tiledRect);
+        const twRects = useFavLayout && favLayout ||
+            topTileGroup.map(w => this.getOccupiedRect(w));
 
         if (!twRects.length)
             return this.getDefaultTileFor(shortcut, workArea);
@@ -884,8 +929,11 @@ export class TilingWindowManager {
             if (useFavLayout)
                 return rect;
 
+            const defaultRect = this.getDefaultTileFor(shortcut, workArea);
+            const tooSmall = rect.width < defaultRect.width / 2 ||
+                rect.height < defaultRect.height / 2;
             const overlapsTiles = twRects.some(r => r.overlap(rect));
-            return overlapsTiles ? this.getDefaultTileFor(shortcut, workArea) : rect;
+            return overlapsTiles || tooSmall ? defaultRect : rect;
         };
 
         const screenRects = twRects.concat(workArea.minus(twRects));
@@ -981,12 +1029,72 @@ export class TilingWindowManager {
     }
 
     /**
+     * Waits until the `window` has applied the requested resize. On Wayland
+     * the resize requested by move_resize_frame() is applied asynchronously,
+     * so get_frame_rect() can still return the previous geometry until the
+     * window emits size-changed.
+     *
+     * @param {Meta.Window} window the window which was just tiled.
+     * @param {Rect} targetRect the size the window was tiled to.
+     * @param {number} [timeoutMs=300] give up waiting after this time.
+     */
+    static _waitForWindowToSettle(window, targetRect, timeoutMs = 300) {
+        return new Promise((resolve, reject) => {
+            const { width, height } = window.get_frame_rect();
+            if (targetRect &&
+                width === targetRect.width && height === targetRect.height) {
+                resolve();
+                return;
+            }
+
+            const tracker = {};
+            let timeoutId = 0;
+
+            const cleanup = () => {
+                if (timeoutId) {
+                    GLib.Source.remove(timeoutId);
+                    timeoutId = 0;
+                }
+                window.disconnectObject(tracker);
+            };
+
+            window.connectObject('size-changed', () => {
+                cleanup();
+                resolve();
+            }, tracker);
+            window.connectObject('unmanaging', () => {
+                cleanup();
+                const winInfo = `${window.get_wm_class()}#${window.get_id()}`;
+                reject(new Error(`${winInfo} was unmanaging while waiting for it to settle`));
+            }, tracker);
+
+            timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, timeoutMs, () => {
+                timeoutId = 0;
+                cleanup();
+                resolve();
+                return GLib.SOURCE_REMOVE;
+            });
+        });
+    }
+
+    /**
      * Opens the Tiling Popup, if there is unambiguous free screen space,
      * and offer to tile an open window to that spot.
+     *
+     * @param {Meta.Window} [window=null] the window which was just tiled.
+     * @param {Rect} [targetRect=null] the size the `window` was tiled to.
      */
-    static async tryOpeningTilingPopup() {
+    static async tryOpeningTilingPopup(window = null, targetRect = null) {
         if (!Settings.getBoolean('enable-tiling-popup'))
             return;
+
+        if (window) {
+            try {
+                await this._waitForWindowToSettle(window, targetRect);
+            } catch {
+                return;
+            }
+        }
 
         const allWs = Settings.getBoolean('tiling-popup-all-workspace');
         const openWindows = this.getWindows(allWs);
@@ -995,7 +1103,7 @@ export class TilingWindowManager {
         if (!openWindows.length)
             return;
 
-        const tRects = topTileGroup.map(w => w.tiledRect);
+        const tRects = topTileGroup.map(w => this.getOccupiedRect(w));
         const monitor = topTileGroup[0]?.get_monitor(); // for the grace period
         const freeSpace = this.getFreeScreen(tRects, monitor);
         if (!freeSpace)
@@ -1020,7 +1128,7 @@ export class TilingWindowManager {
         if (window.isTiled && equalsTile || this.isMaximized(window) && equalsWA)
             this.untile(window, params);
         else
-            this.tile(window, rect, params);
+            this.tile(window, rect, params).catch(logError);
     }
 
     /**
@@ -1053,7 +1161,7 @@ export class TilingWindowManager {
                 ) {
                     global.display.disconnect(createId);
                     createId = 0;
-                    this.tile(window, rect, { openTilingPopup, skipAnim: true });
+                    this.tile(window, rect, { openTilingPopup, skipAnim: true }).catch(logError);
                 }
             });
 
@@ -1366,7 +1474,7 @@ export class TilingWindowManager {
             if (workArea.equal(window.tiledRect))
                 return;
 
-            this.tile(window, workArea, { openTilingPopup: false, skipAnim: true });
+            this.tile(window, workArea, { openTilingPopup: false, skipAnim: true }).catch(logError);
         } else if (window.isTiled) {
             this.untile(window, { restoreFullPos: false, clampToWorkspace: true, skipAnim: Main.overview.visible });
         }
@@ -1418,5 +1526,9 @@ class TilingSignals {
         }
 
         return ret;
+    }
+
+    deleteSignalsFor(windowId) {
+        this._ids.delete(windowId);
     }
 };

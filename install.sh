@@ -101,8 +101,20 @@ if [ -f "$SCRIPT_DIR/pkg-lists/pacman_native.txt" ]; then
     done < "$SCRIPT_DIR/pkg-lists/pacman_native.txt"
 fi
 
+# Detecção inteligente de GPU (NVIDIA vs Intel/AMD)
+HAS_NVIDIA=false
+if command -v lspci &>/dev/null && lspci | grep -qi "nvidia"; then
+    HAS_NVIDIA=true
+    echo "🎮 GPU NVIDIA detectada (ex: RTX 3060)! Mantendo e instalando drivers NVIDIA..."
+else
+    echo "ℹ️ Nenhuma GPU NVIDIA detectada nesta máquina. Drivers da NVIDIA serão ignorados para evitar incompatibilidades."
+fi
+
 TO_INSTALL_PACMAN=()
 for pkg in "${REQUESTED_NATIVE[@]}"; do
+    if [ "$HAS_NVIDIA" = false ] && echo "$pkg" | grep -qE '^(nvidia|cuda|cudnn|libva-nvidia|lib32-nvidia|opencl-nvidia|python-pytorch-cuda)'; then
+        continue
+    fi
     if ! echo "$INSTALLED_PKGS" | grep -qx "$pkg" && echo "$REPO_PKGS" | grep -qx "$pkg"; then
         TO_INSTALL_PACMAN+=("$pkg")
     fi
@@ -134,6 +146,9 @@ fi
 TO_INSTALL_AUR=()
 INSTALLED_PKGS=$(pacman -Qq 2>/dev/null || true)
 for pkg in "${REQUESTED_AUR[@]}"; do
+    if [ "$HAS_NVIDIA" = false ] && echo "$pkg" | grep -qE '^(nvidia|cuda|cudnn)'; then
+        continue
+    fi
     if ! echo "$INSTALLED_PKGS" | grep -qx "$pkg" && ! echo "$REPO_PKGS" | grep -qx "$pkg"; then
         TO_INSTALL_AUR+=("$pkg")
     fi
@@ -171,12 +186,23 @@ for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfi
     fi
 done
 
-# 9. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config) E PASTAS DO USUÁRIO
+# 9. RESTAURAÇÃO DE CONFIGURAÇÕES (~/.config) COM BACKUP DE SEGURANÇA
 echo ""
-echo "⚙️ 9. Restaurando configurações em ~/.config e organizando pastas em Português..."
+echo "⚙️ 9. Restaurando configurações em ~/.config (com backup preventivo)..."
+BACKUP_DIR="$TARGET_HOME/.dotfiles-backup-$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$TARGET_HOME/.config"
+
+for item in "$SCRIPT_DIR/.config"/*; do
+    [ -e "$item" ] || continue
+    base="$(basename "$item")"
+    if [ -e "$TARGET_HOME/.config/$base" ]; then
+        mkdir -p "$BACKUP_DIR"
+        cp -rf "$TARGET_HOME/.config/$base" "$BACKUP_DIR/" 2>/dev/null || true
+    fi
+done
+
 cp -rf "$SCRIPT_DIR/.config/"* "$TARGET_HOME/.config/" 2>/dev/null || true
-rm -rf "$TARGET_HOME/.config/'*'" "$TARGET_HOME/.config/*" 2>/dev/null || true
+rm -rf "$TARGET_HOME/.config/'*'" 2>/dev/null || true
 
 # Criar pastas padrão em Português
 mkdir -p "$TARGET_HOME/Área de trabalho" "$TARGET_HOME/Documentos" "$TARGET_HOME/Downloads" \
@@ -370,8 +396,20 @@ fi
 sudo systemctl enable --now mariadb.service 2>/dev/null || true
 sudo systemctl enable --now postgresql.service 2>/dev/null || true
 
-# Habilitar serviços de usuário (conky, etc.)
+# Habilitar serviços de usuário (conky, limpeza periódica de extensões, etc.)
 systemctl --user enable conky.service 2>/dev/null || true
+systemctl --user daemon-reload 2>/dev/null || true
+systemctl --user enable --now clean-old-extensions.timer 2>/dev/null || true
+
+# 16. CORREÇÕES DO GNOME 51 E MANUTENÇÃO
+echo ""
+echo "🔧 16. Aplicando correções do GNOME 51 e rotinas de manutenção..."
+if [ -f "$SCRIPT_DIR/scripts/fix-gnome-51.sh" ]; then
+    bash "$SCRIPT_DIR/scripts/fix-gnome-51.sh" || true
+fi
+if [ -f "$SCRIPT_DIR/scripts/clean-old-extensions.sh" ]; then
+    bash "$SCRIPT_DIR/scripts/clean-old-extensions.sh" || true
+fi
 
 if [ "$SHELL" != "/bin/zsh" ] && command -v zsh &> /dev/null; then
     echo "  -> Definindo Zsh como shell padrão..."

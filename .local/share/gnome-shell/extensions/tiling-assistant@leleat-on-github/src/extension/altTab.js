@@ -8,10 +8,7 @@ import {
     Shell,
     St
 } from '../dependencies/gi.js';
-import {
-    Extension,
-    Main
-} from '../dependencies/shell.js';
+import { Main } from '../dependencies/shell.js';
 import {
     AppSwitcherPopup as AppSwitcherPopup49,
     AppIcon as BaseAppIcon,
@@ -386,7 +383,7 @@ const AppSwitcherItem = GObject.registerClass({
     Signals: { 'all-icons-removed': {} }
 }, class AppSwitcherItem extends St.BoxLayout {
     _init(windows) {
-        super._init({ vertical: false });
+        super._init({ orientation: Clutter.Orientation.HORIZONTAL });
 
         // A tiled window in a tileGroup of length 1, doesn't get a separate
         // AppSwitcherItem. It gets added to the non-tiled windows' AppSwitcherItem
@@ -421,9 +418,9 @@ const AppSwitcherItem = GObject.registerClass({
         this.chainIcons = [];
 
         const winTracker = Shell.WindowTracker.get_default();
-        const path = Extension.lookupByURL(import.meta.url)
-            .dir.get_child('media/insert-link-symbolic.svg')
-            .get_path();
+        const path = GLib.build_filenamev([
+            Settings.getExtension().path, 'media', 'insert-link-symbolic.svg'
+        ]);
         const icon = new Gio.FileIcon({ file: Gio.File.new_for_path(path) });
 
         const apps = this.isTileGroup

@@ -3,6 +3,10 @@ import { Config, Main } from '../dependencies/shell.js';
 
 import { Direction, Orientation, Settings } from '../common.js';
 
+Gio._promisify(Gio.File.prototype, 'load_contents_async');
+Gio._promisify(Gio.File.prototype, 'make_directory_async');
+Gio._promisify(Gio.File.prototype, 'query_info_async');
+
 const ShellVerison = Config.PACKAGE_VERSION.split('.').map(Number.parseInt);
 
 /**
@@ -11,6 +15,11 @@ const ShellVerison = Config.PACKAGE_VERSION.split('.').map(Number.parseInt);
  */
 
 export class Util {
+    static _layouts = [];
+    static _layoutsFile = null;
+    static _layoutsMonitor = null;
+    static _layoutsCancellable = null;
+
     /**
      * Performs an approximate equality check. There will be times when
      * there will be inaccuracies. For example, the user may enable window
@@ -121,21 +130,139 @@ export class Util {
     }
 
     /**
+     * Creates `dir` and all its missing parent directories, asynchronously.
+     *
+     * There is no asynchronous make_directory_with_parents(), so walk up to
+     * the first existing ancestor and create the missing directories top-down.
+     *
+     * @param {Gio.File} dir the directory to create.
+     * @param {?Gio.Cancellable} [cancellable] a cancellable to cancel the
+     *      operation with.
+     * @param {number} [priority] the IO priority of the operation.
+     * @returns {Promise<void>}
+     */
+    static async maybeCreateDirectory(dir, cancellable = null, priority = GLib.PRIORITY_DEFAULT) {
+        try {
+            await dir.make_directory_async(priority, cancellable);
+            return;
+        } catch (e) {
+            if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.EXISTS))
+                return;
+            if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                throw e;
+        }
+
+        const missingDirs = [dir];
+        for (let parent = dir.get_parent(); parent; parent = parent.get_parent()) {
+            try {
+                // eslint-disable-next-line no-await-in-loop
+                await parent.make_directory_async(priority, cancellable);
+            } catch (e) {
+                if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.EXISTS))
+                    break;
+                else if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                    missingDirs.unshift(parent);
+                else
+                    throw e;
+            }
+        }
+
+        // Sadly we must be sequential here, so we can't use Promise.all
+        for (const missingDir of missingDirs) {
+            try {
+                // eslint-disable-next-line no-await-in-loop
+                await missingDir.make_directory_async(priority, cancellable);
+            } catch (e) {
+                if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.EXISTS))
+                    throw e;
+            }
+        }
+    }
+
+    /**
+     * Loads the layouts from disk and keeps them in memory, refreshing them
+     * whenever the layouts file changes. This avoids reading the file
+     * synchronously (which happens quite often while tiling).
+     */
+    static async initialize(cancellable) {
+        const userDir = GLib.get_user_config_dir();
+        const dir = Gio.File.new_for_path(
+            GLib.build_filenamev([userDir, 'tiling-assistant']));
+
+        await this.maybeCreateDirectory(dir, cancellable);
+
+        this._layoutsFile = dir.get_child('layouts.json');
+        this._layoutsMonitor = dir.monitor_directory(
+            Gio.FileMonitorFlags.WATCH_MOVES, cancellable);
+        this._layoutsMonitor.connectObject('changed',
+            () => this._reloadLayouts(cancellable).catch(logError), this);
+        await this._reloadLayouts(cancellable);
+    }
+
+    static destroy() {
+        this._layoutsMonitor?.disconnectObject(this);
+        this._layoutsMonitor?.cancel();
+        this._layoutsMonitor = null;
+
+        this._layoutsFile = null;
+        this._layouts = [];
+    }
+
+    static async _reloadLayouts(cancellable) {
+        if (!this._layoutsFile)
+            return;
+
+        try {
+            const [contents] = await this._layoutsFile.load_contents_async(
+                cancellable);
+            this._layouts = contents.length
+                ? JSON.parse(new TextDecoder().decode(contents))
+                : [];
+        } catch (e) {
+            if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+                return;
+
+            // A missing file just means that no layouts were defined yet
+            if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                logError(e, 'Failed to load the layouts');
+
+            this._layouts = [];
+        }
+    }
+
+    /**
      * @returns {Layout[]} the layouts
      */
     static getLayouts() {
-        const userDir = GLib.get_user_config_dir();
-        const pathArr = [userDir, '/tiling-assistant/layouts.json'];
-        const path = GLib.build_filenamev(pathArr);
-        const file = Gio.File.new_for_path(path);
-        if (!file.query_exists(null))
-            return [];
+        return this._layouts;
+    }
 
-        const [success, contents] = file.load_contents(null);
-        if (!success || !contents.length)
-            return [];
+    /**
+     * @param {Meta.Window} window a Meta.Window.
+     * @returns {number} the Meta.MaximizeFlags the `window` is maximized to.
+     */
+    static getMaximizedFlags(window) {
+        let flags = 0;
+        if (window.maximizedHorizontally)
+            flags |= Meta.MaximizeFlags.HORIZONTAL;
+        if (window.maximizedVertically)
+            flags |= Meta.MaximizeFlags.VERTICAL;
 
-        return JSON.parse(new TextDecoder().decode(contents));
+        return flags;
+    }
+
+    /**
+     * Maximizes `window` in the given directions. GNOME 49 removed the
+     * parameter of maximize(), so only pass it when it is supported.
+     *
+     * @param {Meta.Window} window a Meta.Window.
+     * @param {number} flags the Meta.MaximizeFlags to maximize to.
+     */
+    static maximizeWindow(window, flags) {
+        if (window.maximize.length === 0)
+            window.maximize();
+        else
+            window.maximize(flags);
     }
 
     /**
@@ -188,7 +315,7 @@ export class Util {
     }
 
     static is_wayland_compositor() {
-        return Meta.is_wayland_compositor === undefined || Meta.is_wayland_compositor();
+        return Meta.is_wayland_compositor?.() ?? true;
     }
 
     /**

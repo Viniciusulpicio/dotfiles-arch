@@ -8,16 +8,24 @@
   padding: 0 6px;
 }
 
+.system-monitor-temp-section {
+  padding-left: 2px;
+}
+
 .system-monitor-stat-section-icon {
   icon-size: 1.08em;
-  margin-right: 4px !important;
+  margin-right: 2px;
+}
+
+.system-monitor-temp-section .system-monitor-stat-section-icon {
+  margin-right: -2px;
 }
 
 .system-monitor-stat-section-label {
+  min-width: 0;
   font-size: 0.9em;
-  margin-left: 4px !important;
 }
-
 .system-monitor-placeholder {-st-icon-style: symbolic;}
 
 .panel-button .high-usage {color: #ff7800;}
+

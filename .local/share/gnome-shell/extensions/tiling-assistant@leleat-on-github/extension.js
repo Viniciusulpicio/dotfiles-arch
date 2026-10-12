@@ -25,7 +25,9 @@ import KeybindingHandler from './src/extension/keybindingHandler.js';
 import LayoutsManager from './src/extension/layoutsManager.js';
 import AltTabOverride from './src/extension/altTab.js';
 import FocusHintManager from './src/extension/focusHint.js';
-import { Rect } from './src/extension/utility.js';
+import { Rect, Util } from './src/extension/utility.js';
+
+Gio._promisify(Gio.File.prototype, 'load_contents_async');
 
 /**
  * 2 entry points:
@@ -147,14 +149,25 @@ class SettingsOverrider {
 
 export default class TilingAssistantExtension extends Extension {
     async enable() {
+        const cancellable = new Gio.Cancellable();
+        this._cancellable = cancellable;
         this.settings = (await import('./src/common.js')).Settings;
-        this.settings.initialize(this.getSettings());
+        this.settings.initialize(this.getSettings(), this);
         this._settingsOverrider = new SettingsOverrider(this.settings);
 
         const twmModule = await import('./src/extension/tilingWindowManager.js');
 
         this._twm = twmModule.TilingWindowManager;
         this._twm.initialize();
+
+        try {
+            await Util.initialize(cancellable);
+        } catch (e) {
+            if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+                return;
+
+            throw e;
+        }
 
         this._moveHandler = new MoveHandler();
         this._resizeHandler = new ResizeHandler();
@@ -217,7 +230,7 @@ export default class TilingAssistantExtension extends Extension {
         };
 
         // Restore tiled window properties after session was unlocked.
-        this._loadAfterSessionLock();
+        await this._loadAfterSessionLock(cancellable);
 
         // Setting used for detection of a fresh install and do compatibility
         // changes if necessary...
@@ -229,26 +242,31 @@ export default class TilingAssistantExtension extends Extension {
         // them after the session is unlocked again.
         this._saveBeforeSessionLock();
 
-        this._settingsOverrider.destroy();
+        this._cancellable?.cancel();
+        this._cancellable = null;
+
+        this._settingsOverrider?.destroy();
         this._settingsOverrider = null;
-        this._moveHandler.destroy();
+        this._moveHandler?.destroy();
         this._moveHandler = null;
-        this._resizeHandler.destroy();
+        this._resizeHandler?.destroy();
         this._resizeHandler = null;
-        this._keybindingHandler.destroy();
+        this._keybindingHandler?.destroy();
         this._keybindingHandler = null;
-        this._layoutsManager.destroy();
+        this._layoutsManager?.destroy();
         this._layoutsManager = null;
-        this._focusHintManager.destroy();
+        this._focusHintManager?.destroy();
         this._focusHintManager = null;
 
-        this._altTabOverride.destroy();
+        this._altTabOverride?.destroy();
         this._altTabOverride = null;
 
-        this._twm.destroy();
+        this._twm?.destroy();
         this._twm = null;
 
-        this.settings.destroy();
+        Util.destroy();
+
+        this.settings?.destroy();
         this.settings = null;
 
         // Restore old functions.
@@ -311,7 +329,7 @@ export default class TilingAssistantExtension extends Extension {
      * Extensions are disabled when the screen is locked. After having saved them,
      * reload them here.
      */
-    _loadAfterSessionLock() {
+    async _loadAfterSessionLock(cancellable) {
         if (!this._wasLocked)
             return;
 
@@ -320,18 +338,20 @@ export default class TilingAssistantExtension extends Extension {
         const userPath = GLib.get_user_config_dir();
         const path = GLib.build_filenamev([userPath, '/tiling-assistant/tiledSessionRestore2.json']);
         const file = Gio.File.new_for_path(path);
-        if (!file.query_exists(null))
-            return;
 
+        let contents;
         try {
-            file.create(Gio.FileCreateFlags.NONE, null);
+            [contents] = await file.load_contents_async(cancellable);
         } catch (e) {
-            if (e.code !== Gio.IOErrorEnum.EXISTS)
-                throw e;
+            if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                return;
+
+            if (!e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.CANCELLED))
+                logError(e);
+            return;
         }
 
-        const [success, contents] = file.load_contents(null);
-        if (!success || !contents.length)
+        if (!contents.length)
             return;
 
         const states = JSON.parse(new TextDecoder().decode(contents));

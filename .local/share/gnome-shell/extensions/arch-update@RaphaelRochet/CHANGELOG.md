@@ -1,5 +1,11 @@
 # Changes
 
+## v67
+- Added Gnome 51
+- Added compact mode
+- Increased max update interval
+- Updated translation : Ukrainian, French
+
 ## v66
 - Added Gnome 50
 

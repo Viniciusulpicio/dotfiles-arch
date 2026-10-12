@@ -1,7 +1,6 @@
-import { Clutter, Gio, GObject, Meta, Shell, St } from '../dependencies/gi.js';
+import { Clutter, Gio, GLib, GObject, Meta, Shell, St } from '../dependencies/gi.js';
 import {
     _,
-    Extension,
     Main,
     PanelMenu,
     PopupMenu
@@ -189,7 +188,7 @@ export default class TilingLayoutsManager {
         }
 
         const appId = this._currItem.appId;
-        appId ? this._openAppTiled(appId) : this._openTilingPopup();
+        appId ? this._openAppTiled(appId) : this._openTilingPopup().catch(logError);
     }
 
     _openAppTiled(appId) {
@@ -210,7 +209,7 @@ export default class TilingLayoutsManager {
             Twm.tile(window, this._currRect, {
                 openTilingPopup: false,
                 skipAnim: true
-            });
+            }).catch(logError);
         } else if (app.can_open_new_window()) {
             Twm.openAppTiled(app, this._currRect);
         }
@@ -286,7 +285,7 @@ export default class TilingLayoutsManager {
                         : ['x', 'width'];
                     rect[dimension] /= this._tiledWithLoop.length;
                     rect[pos] += idx * rect[dimension];
-                    Twm.tile(w, rect, { openTilingPopup: false, skipAnim: true });
+                    Twm.tile(w, rect, { openTilingPopup: false, skipAnim: true }).catch(logError);
                 });
             }
 
@@ -331,7 +330,7 @@ const LayoutSearch = GObject.registerClass({
 
         const popup = new St.BoxLayout({
             style_class: 'switcher-list',
-            vertical: true,
+            orientation: Clutter.Orientation.VERTICAL,
             width: 500
         });
         this.add_child(popup);
@@ -345,8 +344,10 @@ const LayoutSearch = GObject.registerClass({
             hint_text: ` ${_('Type to search...')}`
         });
         const entryClutterText = entry.get_clutter_text();
-        entryClutterText.connect('key-press-event', this._onKeyPressed.bind(this));
-        entryClutterText.connect('text-changed', this._onTextChanged.bind(this));
+        entryClutterText.connectObject('key-press-event',
+            (clutterText, event) => this._onKeyPressed(clutterText, event), this);
+        entryClutterText.connectObject('text-changed',
+            clutterText => this._onTextChanged(clutterText), this);
         popup.add_child(entry);
 
         this._items = layouts.map(layout => {
@@ -466,10 +467,11 @@ const PanelIndicator = GObject.registerClass({
     _init() {
         super._init(0.0, 'Layout Indicator (Tiling Assistant)');
 
-        const path = Extension.lookupByURL(import.meta.url)
-            .dir
-            .get_child('media/preferences-desktop-apps-symbolic.svg')
-            .get_path();
+        const path = GLib.build_filenamev([
+            Settings.getExtension().path,
+            'media',
+            'preferences-desktop-apps-symbolic.svg'
+        ]);
         const gicon = new Gio.FileIcon({ file: Gio.File.new_for_path(path) });
         this.add_child(new St.Icon({
             gicon,
@@ -487,10 +489,10 @@ const PanelIndicator = GObject.registerClass({
             this._clickGesture = new Clutter.ClickGesture();
             this._clickGesture.set_recognize_on_press(true);
             this._clickGesture.set_enabled(true);
-            this._clickGesture.connect('recognize', () => {
+            this._clickGesture.connectObject('recognize', () => {
                 this._updateItems();
                 this.menu.toggle();
-            });
+            }, this);
 
             this.add_action(this._clickGesture);
         }
@@ -546,7 +548,7 @@ const PanelIndicator = GObject.registerClass({
         settingsButton._icon.set_x_expand(true);
         settingsButton.label.set_x_expand(true);
         settingsButton.connect('activate',
-            () => Extension.lookupByURL(import.meta.url).openPreferences());
+            () => Settings.getExtension().openPreferences());
         this.menu.addMenuItem(settingsButton);
     }
 });

@@ -13,7 +13,7 @@
         <default>60</default>
         <summary>Interval between updates check (minutes)</summary>
         <description>Time to wait between two automatic checks</description>
-        <range min="5" max="2000"/>
+        <range min="5" max="20000"/>
     </key>
 
     <key name="always-visible" type="b">
@@ -37,6 +37,14 @@
         <summary>Show updates count on indicator</summary>
         <description>
             If true, the indicator will display the number of updates pending
+        </description>
+    </key>
+
+    <key name="compact-mode" type="b">
+      <default>false</default>
+        <summary>Compact mode</summary>
+        <description>
+            If true, the padding around the indicator in the panel is reduced
         </description>
     </key>
 

@@ -115,6 +115,19 @@
 			</child>
 			<child>
 				<object class="AdwActionRow">
+					<property name="title" translatable="yes">Compact mode</property>
+					<property name="subtitle" translatable="yes">Reduce padding and font size</property>
+					<property name="activatable-widget">field_compactmode</property>
+					<child>
+						<object class="GtkSwitch" id="field_compactmode">
+							<property name="valign">3</property>
+							<property name="active">false</property>
+						</object>
+					</child>
+				</object>
+			</child>
+			<child>
+				<object class="AdwActionRow">
 					<property name="title" translatable="yes">Position in Panel</property>
 					<property name="activatable-widget">field_enablepositioning</property>
 					<child type="prefix">

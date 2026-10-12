@@ -71,8 +71,29 @@ def main():
         native_pkgs = read_pkg_list(os.path.join(pkg_lists_dir, "pacman_native.txt"))
         aur_pkgs = read_pkg_list(os.path.join(pkg_lists_dir, "aur_packages.txt"))
 
-        missing_pacman = [p for p in sorted(list(native_pkgs - installed_pkgs)) if p in repo_pkgs]
-        missing_aur = [p for p in sorted(list(aur_pkgs - installed_pkgs)) if p not in repo_pkgs and not p.endswith("-debug")]
+        # GPU detection (NVIDIA RTX 3060 vs Intel/AMD)
+        has_nvidia = False
+        try:
+            lspci_res = subprocess.run(['lspci'], capture_output=True, text=True)
+            if "nvidia" in lspci_res.stdout.lower():
+                has_nvidia = True
+                print("🎮 GPU NVIDIA detectada (ex: RTX 3060). Instalando drivers e utilitários NVIDIA...")
+        except Exception:
+            pass
+
+        nvidia_prefixes = ('nvidia', 'cuda', 'cudnn', 'libva-nvidia', 'lib32-nvidia', 'opencl-nvidia', 'python-pytorch-cuda')
+
+        def is_nvidia(p):
+            return any(p.startswith(prefix) for prefix in nvidia_prefixes)
+
+        missing_pacman = [
+            p for p in sorted(list(native_pkgs - installed_pkgs))
+            if p in repo_pkgs and (has_nvidia or not is_nvidia(p))
+        ]
+        missing_aur = [
+            p for p in sorted(list(aur_pkgs - installed_pkgs))
+            if p not in repo_pkgs and not p.endswith("-debug") and (has_nvidia or not is_nvidia(p))
+        ]
 
         if missing_pacman:
             print(f"Installing {len(missing_pacman)} native packages...")
@@ -87,10 +108,24 @@ def main():
                 cmd = f"echo '{SUDO_PASS}' | yay -S --needed --noconfirm {pkg}" if SUDO_PASS else f"yay -S --needed --noconfirm {pkg}"
                 subprocess.run(cmd, shell=True)
 
-    # 4. Restore Configs and Files
-    print("\n--- Restoring Rice, Assets and Configs ---")
+    # 4. Restore Configs and Files with Safety Backup
+    print("\n--- Restoring Rice, Assets and Configs (com backup preventivo) ---")
+    import datetime
+    backup_ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_dir = f"{home}/.dotfiles-backup-{backup_ts}"
+
     os.makedirs(f"{home}/.config", exist_ok=True)
-    subprocess.run(f"cp -rf {dotfiles_dir}/.config/* {home}/.config/", shell=True)
+    if os.path.exists(f"{dotfiles_dir}/.config"):
+        for item in os.listdir(f"{dotfiles_dir}/.config"):
+            target_item = os.path.join(home, ".config", item)
+            if os.path.exists(target_item):
+                os.makedirs(backup_dir, exist_ok=True)
+                if os.path.isdir(target_item):
+                    shutil.copytree(target_item, os.path.join(backup_dir, item), dirs_exist_ok=True)
+                else:
+                    shutil.copy2(target_item, os.path.join(backup_dir, item))
+
+    subprocess.run(f"cp -rf {dotfiles_dir}/.config/* {home}/.config/ 2>/dev/null || true", shell=True)
 
     os.makedirs(f"{home}/.local/bin", exist_ok=True)
     if os.path.exists(f"{dotfiles_dir}/.local/bin"):
@@ -132,6 +167,19 @@ def main():
     ext_list = read_pkg_list(os.path.join(pkg_lists_dir, "gnome_extensions_enabled.txt"))
     for ext in ext_list:
         subprocess.run(f"gnome-extensions enable '{ext}' 2>/dev/null", shell=True)
+
+    # 6. GNOME 51 Fixes and Maintenance
+    print("\n--- Applying GNOME 51 Fixes and Maintenance ---")
+    subprocess.run("systemctl --user daemon-reload 2>/dev/null || true", shell=True)
+    subprocess.run("systemctl --user enable --now clean-old-extensions.timer 2>/dev/null || true", shell=True)
+
+    fix_script = os.path.join(dotfiles_dir, "scripts", "fix-gnome-51.sh")
+    if os.path.exists(fix_script):
+        subprocess.run(["bash", fix_script])
+
+    clean_script = os.path.join(dotfiles_dir, "scripts", "clean-old-extensions.sh")
+    if os.path.exists(clean_script):
+        subprocess.run(["bash", clean_script])
 
     print("\n=== RESTORATION COMPLETE! ===")
 

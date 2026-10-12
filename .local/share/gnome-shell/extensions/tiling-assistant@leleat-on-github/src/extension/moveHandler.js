@@ -5,6 +5,9 @@ import { WINDOW_ANIMATION_TIME } from '../dependencies/unexported/windowManager.
 import { MoveModes, Orientation, Settings } from '../common.js';
 import { Rect, Util } from './utility.js';
 import { TilingWindowManager as Twm } from './tilingWindowManager.js';
+import { LayoutPicker, LayoutPickerTileType } from './layoutPicker.js';
+
+const [MajorShellVersion] = Util.getShellVersion();
 
 /**
  * This class gets to handle the move events (grab & monitor change) of windows.
@@ -18,13 +21,38 @@ export default class TilingMoveHandler {
     constructor() {
         const moveOps = [Meta.GrabOp.MOVING, Meta.GrabOp.KEYBOARD_MOVING];
 
+        if (MajorShellVersion < 51) {
+            this._lastSprite = null;
+            global.stage.connectObject(
+                'captured-event',
+                (actor, event) => {
+                    /* heuristic: the Clutter.Sprite that initiates the drag is
+                     * the last one getting a stage leave event */
+                    if (event.type() === Clutter.EventType.LEAVE &&
+                        event.get_flags() & Clutter.EventFlags.FLAG_GRAB_NOTIFY) {
+                        const sprite = actor.get_context().get_backend().get_sprite?.(global.stage, event);
+
+                        /* workaround spurious leave events from tablet tools */
+                        if (sprite?.role === Clutter.SpriteRole?.POINTER)
+                            this._seenPointerLeave = true;
+
+                        if (sprite?.role !== Clutter.SpriteRole?.TABLET || !this._seenPointerLeave)
+                            this._lastSprite = sprite;
+                    }
+                },
+                this
+            );
+        }
+
         global.display.connectObject(
             'grab-op-begin',
-            (src, window, grabOp) => {
+            (src, window, grabOp, sprite) => {
                 grabOp &= ~1024; // META_GRAB_OP_WINDOW_FLAG_UNCONSTRAINED
 
-                if (window && moveOps.includes(grabOp))
+                if (window && moveOps.includes(grabOp)) {
+                    this._dragSprite = sprite;
                     this._onMoveStarted(window, grabOp);
+                }
             },
             this
         );
@@ -81,6 +109,8 @@ export default class TilingMoveHandler {
             this
         );
         handleWindowActionKeyConflict();
+
+        this._layoutPicker = new LayoutPicker();
     }
 
     destroy() {
@@ -88,8 +118,11 @@ export default class TilingMoveHandler {
         this._wmPrefs = null;
 
         global.display.disconnectObject(this);
+        global.stage.disconnectObject(this);
 
         this._tilePreview.destroy();
+
+        this._layoutPicker.destroy();
 
         if (this._latestMonitorLockTimerId) {
             GLib.Source.remove(this._latestMonitorLockTimerId);
@@ -98,7 +131,7 @@ export default class TilingMoveHandler {
 
         if (this._latestPreviewTimerId) {
             GLib.Source.remove(this._latestPreviewTimerId);
-            this._latestPreviewTimerId = null;
+            this._latestPreviewTimerId = 0;
         }
 
         if (this._restoreSizeTimerId) {
@@ -119,18 +152,39 @@ export default class TilingMoveHandler {
             this._preparePreviewModeChange(this._currPreviewMode, window);
     }
 
+    getDragCoords() {
+        const coords = this._dragSprite?.get_coords?.();
+        if (coords)
+            return [coords.x, coords.y];
+        return global.get_pointer().slice(0, 2);
+    }
+
     _onMoveStarted(window, grabOp) {
         if (window.is_skip_taskbar())
             return;
+
+        // The picker is driven by the pointer, so it is useless for a
+        // keyboard-driven move.
+        if (grabOp !== Meta.GrabOp.KEYBOARD_MOVING &&
+                Settings.getBoolean('enable-layout-picker'))
+            this._layoutPicker.onMoveStarted();
 
         // Also work with a window, which was maximized by GNOME natively
         // because it may have been tiled with this extension before being
         // maximized so we need to restore its size to pre-tiling.
         this._wasMaximizedOnStart = window.maximizedHorizontally || window.maximizedVertically;
-        const [x, y] = global.get_pointer();
+
+        if (MajorShellVersion < 51) {
+            this._seenPointerLeave = false;
+            this._dragSprite = this._lastSprite;
+        }
+
+        const [x, y] = this.getDragCoords();
 
         // Try to restore the window size
         if (window.tiledRect || this._wasMaximizedOnStart) {
+            this._layoutPicker.onMoveFinished();
+
             let counter = 0;
             this._restoreSizeTimerId && GLib.Source.remove(this._restoreSizeTimerId);
             this._restoreSizeTimerId = GLib.timeout_add(GLib.PRIORITY_HIGH_IDLE, 10, () => {
@@ -146,7 +200,7 @@ export default class TilingMoveHandler {
                     return GLib.SOURCE_REMOVE;
                 }
 
-                const [currX, currY] = global.get_pointer();
+                const [currX, currY] = this.getDragCoords();
                 const currPoint = { x: currX, y: currY };
                 const oldPoint = { x, y };
                 const moveDist = Util.getDistance(currPoint, oldPoint);
@@ -216,7 +270,12 @@ export default class TilingMoveHandler {
 
     _onMoveFinished(window) {
         try {
-            window.assertExistence();
+            // Ignore the expected error when the window was destroyed during the grab.
+            try {
+                window.assertExistence();
+            } catch {
+                return;
+            }
 
             if (this._tileRect) {
                 // Ctrl-drag to replace some windows in a tile group / create a new tile group
@@ -224,7 +283,7 @@ export default class TilingMoveHandler {
                 let isCtrlReplacement = false;
                 const ctrlReplacedTileGroup = [];
                 const topTileGroup = Twm.getTopTileGroup({ skipTopWindow: true });
-                const pointerPos = { x: global.get_pointer()[0], y: global.get_pointer()[1] };
+                const pointerPos = { x: this.getDragCoords()[0], y: this.getDragCoords()[1] };
                 const twHovered = topTileGroup.some(w => w.tiledRect.containsPoint(pointerPos));
                 if (this._currPreviewMode === MoveModes.ADAPTIVE_TILING && !this._splitRects.size && twHovered) {
                     isCtrlReplacement = true;
@@ -235,21 +294,29 @@ export default class TilingMoveHandler {
                     });
                 }
 
-                this._splitRects.forEach((rect, w) => Twm.tile(w, rect, { openTilingPopup: false }));
+                this._splitRects.forEach((rect, w) => Twm.tile(w, rect, { openTilingPopup: false }).catch(logError));
                 this._splitRects.clear();
                 Twm.tile(window, this._tileRect, {
                     monitorNr: this._monitorNr,
                     openTilingPopup: this._currPreviewMode !== MoveModes.ADAPTIVE_TILING,
                     ignoreTA: this._ignoreTA
-                });
+                }).catch(logError);
                 this._tileRect = null;
 
                 // Create a new tile group, in which some windows are already part
                 // of a different tile group, with ctrl-(super)-drag. The window may
                 // be maximized by ctrl-super-drag.
                 isCtrlReplacement && window.isTiled && Twm.updateTileGroup(ctrlReplacedTileGroup);
+
+                this._dragSprite = null;
             }
         } finally {
+            // Leaving it pending would re-enter _edgeTilingPreview() on a destroyed window
+            if (this._latestMonitorLockTimerId) {
+                GLib.Source.remove(this._latestMonitorLockTimerId);
+                this._latestMonitorLockTimerId = null;
+            }
+
             if (this._posChangedId) {
                 window.disconnect(this._posChangedId);
                 this._posChangedId = 0;
@@ -277,8 +344,10 @@ export default class TilingMoveHandler {
     // Without the lowPerfMode enabled this will be called whenever the window is
     // moved (by listening to the position-changed signal)
     _onMoving(grabOp, window, lowPerfMode = false) {
-        const [x, y] = global.get_pointer();
+        const [x, y] = this.getDragCoords();
         const currPointerPos = { x, y };
+
+        this._layoutPicker.onMoving(x, y, this._monitorNr);
 
         if (lowPerfMode) {
             if (!this._isGrabOp) {
@@ -382,7 +451,7 @@ export default class TilingMoveHandler {
         const activeWs = global.workspace_manager.get_active_workspace();
         const monitor = global.display.get_current_monitor();
         const workArea = new Rect(activeWs.get_work_area_for_monitor(monitor));
-        const tRects = this._topTileGroup.map(w => w.tiledRect);
+        const tRects = this._topTileGroup.map(w => Twm.getOccupiedRect(w));
         this._freeScreenRects = workArea.minus(tRects);
 
         switch (this._currPreviewMode) {
@@ -454,7 +523,8 @@ export default class TilingMoveHandler {
                     // Only update the monitorNr, if the latest timer timed out.
                     if (timerId === this._latestMonitorLockTimerId) {
                         this._monitorNr = global.display.get_current_monitor();
-                        if (global.display.is_grabbed())
+                        // check that the window still exists, and a grab is still active
+                        if (global.display.is_grabbed() && window.get_compositor_private())
                             this._edgeTilingPreview(window, grabOp);
                     }
 
@@ -472,12 +542,20 @@ export default class TilingMoveHandler {
         const wRect = window.get_frame_rect();
         const workArea = new Rect(window.get_work_area_for_monitor(this._monitorNr));
 
+        const layoutPickerTileType = this._layoutPicker.tileType;
+        const isPicking = layoutPickerTileType !== LayoutPickerTileType.NONE;
+
         const vDetectionSize = Settings.getInt('vertical-preview-area');
-        const pointerAtTopEdge = this._lastPointerPos.y <= workArea.y + vDetectionSize;
-        const pointerAtBottomEdge = this._lastPointerPos.y >= workArea.y2 - vDetectionSize;
+        const pointerAtTopEdge = this._lastPointerPos.y <= workArea.y + vDetectionSize ||
+            layoutPickerTileType === LayoutPickerTileType.TOP ||
+            layoutPickerTileType === LayoutPickerTileType.MAXIMIZE;
+        const pointerAtBottomEdge = this._lastPointerPos.y >= workArea.y2 - vDetectionSize ||
+            layoutPickerTileType === LayoutPickerTileType.BOTTOM;
         const hDetectionSize = Settings.getInt('horizontal-preview-area');
-        const pointerAtLeftEdge = this._lastPointerPos.x <= workArea.x + hDetectionSize;
-        const pointerAtRightEdge = this._lastPointerPos.x >= workArea.x2 - hDetectionSize;
+        const pointerAtLeftEdge = this._lastPointerPos.x <= workArea.x + hDetectionSize ||
+            layoutPickerTileType === LayoutPickerTileType.LEFT;
+        const pointerAtRightEdge = this._lastPointerPos.x >= workArea.x2 - hDetectionSize ||
+            layoutPickerTileType === LayoutPickerTileType.RIGHT;
         // Also use window's pos for top and bottom area detection for quarters
         // because global.get_pointer's y isn't accurate (no idea why...) when
         // grabbing the titlebar & slowly going from the left/right sides to
@@ -485,10 +563,17 @@ export default class TilingMoveHandler {
         const titleBarGrabbed = this._lastPointerPos.y - wRect.y < 50;
         const windowAtTopEdge = titleBarGrabbed && wRect.y === workArea.y;
         const windowAtBottomEdge = wRect.y >= workArea.y2 - 75;
-        const tileTopLeftQuarter = pointerAtLeftEdge && (pointerAtTopEdge || windowAtTopEdge);
-        const tileTopRightQuarter = pointerAtRightEdge && (pointerAtTopEdge || windowAtTopEdge);
-        const tileBottomLeftQuarter = pointerAtLeftEdge && (pointerAtBottomEdge || windowAtBottomEdge);
-        const tileBottomRightQuarter = pointerAtRightEdge && (pointerAtBottomEdge || windowAtBottomEdge);
+        // An explicit picker selection always takes precedence over the edge
+        // detection, otherwise a physically detected edge could override it
+        // (e.g. show a quarter while the picker selected a half).
+        const tileTopLeftQuarter = layoutPickerTileType === LayoutPickerTileType.Q2 ||
+            !isPicking && pointerAtLeftEdge && (pointerAtTopEdge || windowAtTopEdge);
+        const tileTopRightQuarter = layoutPickerTileType === LayoutPickerTileType.Q1 ||
+            !isPicking && pointerAtRightEdge && (pointerAtTopEdge || windowAtTopEdge);
+        const tileBottomLeftQuarter = layoutPickerTileType === LayoutPickerTileType.Q3 ||
+            !isPicking && pointerAtLeftEdge && (pointerAtBottomEdge || windowAtBottomEdge);
+        const tileBottomRightQuarter = layoutPickerTileType === LayoutPickerTileType.Q4 ||
+            !isPicking && pointerAtRightEdge && (pointerAtBottomEdge || windowAtBottomEdge);
 
         if (tileTopLeftQuarter) {
             this._tileRect = Twm.getTileFor('tile-topleft-quarter', workArea, this._monitorNr);
@@ -509,10 +594,15 @@ export default class TilingMoveHandler {
             const shouldMaximize =
                     isLandscape && !Settings.getBoolean('enable-hold-maximize-inverse-landscape') ||
                     !isLandscape && !Settings.getBoolean('enable-hold-maximize-inverse-portrait');
-            const tileRect = shouldMaximize
+            const onlyMaximize = !isPicking &&
+                Settings.getBoolean('enable-layout-picker');
+            const tileRect = onlyMaximize || shouldMaximize && !isPicking ||
+                    layoutPickerTileType === LayoutPickerTileType.MAXIMIZE
                 ? workArea
                 : Twm.getTileFor('tile-top-half', workArea, this._monitorNr);
-            const holdTileRect = shouldMaximize
+            const holdTileRect = !onlyMaximize &&
+                    (shouldMaximize && !isPicking ||
+                        layoutPickerTileType === LayoutPickerTileType.TOP)
                 ? Twm.getTileFor('tile-top-half', workArea, this._monitorNr)
                 : workArea;
             // Dont open preview / start new timer if preview was already one for the top
@@ -523,6 +613,14 @@ export default class TilingMoveHandler {
 
             this._tileRect = tileRect;
             this._tilePreview.open(window, this._tileRect.meta, this._monitorNr);
+
+            if (tileRect.equal(holdTileRect)) {
+                if (this._latestPreviewTimerId) {
+                    GLib.Source.remove(this._latestPreviewTimerId);
+                    this._latestPreviewTimerId = 0;
+                }
+                return;
+            }
 
             let timerId = 0;
             this._latestPreviewTimerId && GLib.Source.remove(this._latestPreviewTimerId);
@@ -537,7 +635,7 @@ export default class TilingMoveHandler {
                         this._tilePreview.open(window, this._tileRect.meta, this._monitorNr);
                     }
 
-                    this._latestPreviewTimerId = null;
+                    this._latestPreviewTimerId = 0;
                     return GLib.SOURCE_REMOVE;
                 });
             timerId = this._latestPreviewTimerId;

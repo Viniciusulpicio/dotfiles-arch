@@ -42,7 +42,7 @@ class StatSection extends St.BoxLayout {
     constructor(iconDir, iconName, accessibleName) {
         super({
             style_class: 'system-monitor-stat-section',
-            accessible_name: accessibleName,
+            accessibleName,
         });
 
         const file = iconDir.get_child(`${iconName}.svg`);
@@ -56,7 +56,6 @@ class StatSection extends St.BoxLayout {
         this.label = new St.Label({
             style_class: 'system-monitor-stat-section-label',
             y_align: Clutter.ActorAlign.CENTER,
-            style: 'margin-left: 5px;',
         });
         this.label.clutter_text.set({
             ellipsize: Pango.EllipsizeMode.NONE,
@@ -147,25 +146,47 @@ class CpuSection extends LoadStatSection {
 
         return (user + sys + nice) / Math.max(total, 1.0);
     }
+}
+
+class TempSection extends StatSection {
+    static {
+        GObject.registerClass(this);
+    }
+
+    constructor(iconDir) {
+        super(iconDir, 'temperature-symbolic', _('Temperature stats'));
+        this.add_style_class_name('system-monitor-temp-section');
+    }
 
     _update() {
-        super._update();
         try {
-            for (let i = 0; i < 10; i++) {
-                let p = '/sys/class/hwmon/hwmon' + i + '/temp1_input';
-                if (GLib.file_test(p, GLib.FileTest.EXISTS)) {
-                    let [ok, contents] = GLib.file_get_contents(p);
+            let temp = 0;
+            const zones = ['thermal_zone7', 'thermal_zone6', 'thermal_zone0', 'thermal_zone1', 'thermal_zone2', 'thermal_zone3', 'thermal_zone4'];
+            for (const z of zones) {
+                const path = `/sys/class/thermal/${z}/temp`;
+                if (GLib.file_test(path, GLib.FileTest.EXISTS)) {
+                    const [ok, content] = GLib.file_get_contents(path);
                     if (ok) {
-                        let textStr = new TextDecoder().decode(contents).trim();
-                        let val = Math.round(parseInt(textStr) / 1000.0);
-                        if (val > 0 && val < 150) {
-                            this.label.text += '  ' + val + '°C';
+                        const val = parseInt(new TextDecoder().decode(content).trim(), 10);
+                        if (!isNaN(val) && val > 0) {
+                            temp = Math.round(val / 1000);
                             break;
                         }
                     }
                 }
             }
-        } catch (e) {}
+            if (temp > 0) {
+                this.label.text = `${temp}°C`;
+                if (temp >= 80)
+                    this.add_style_class_name('high-usage');
+                else
+                    this.remove_style_class_name('high-usage');
+            } else {
+                this.label.text = '--°C';
+            }
+        } catch (e) {
+            this.label.text = '--°C';
+        }
     }
 }
 
@@ -405,6 +426,9 @@ class Indicator extends PanelMenu.Button {
             this._cpuSection, 'visible',
             Gio.SettingsBindFlags.GET);
         box.add_child(this._cpuSection);
+
+        this._tempSection = new TempSection(iconDir);
+        box.add_child(this._tempSection);
 
         this._memSection = new MemSection(iconDir);
         this._settings.bind('show-memory',

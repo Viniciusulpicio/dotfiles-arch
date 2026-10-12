@@ -20,7 +20,7 @@ export default class TilingKeybindingHandler {
                 Settings.getGioObject(),
                 Meta.KeyBindingFlags.IGNORE_AUTOREPEAT,
                 Shell.ActionMode.NORMAL | (allowInOverview.includes(key) && Shell.ActionMode.OVERVIEW),
-                this._onCustomKeybindingPressed.bind(this, key)
+                () => this._onCustomKeybindingPressed(key).catch(logError)
             );
         });
     }
@@ -96,7 +96,7 @@ export default class TilingKeybindingHandler {
                 // Is maximized
                 if (currRect.width === workArea.width) {
                     const tileRect = new Rect(workArea.x, window.untiledRect.y, workArea.width, window.untiledRect.height);
-                    Twm.tile(window, tileRect);
+                    Twm.tile(window, tileRect).catch(logError);
                 // Is tiled
                 } else {
                     Twm.untile(window);
@@ -105,7 +105,7 @@ export default class TilingKeybindingHandler {
             // is tiled normally
             } else if (window.untiledRect) {
                 const tileRect = new Rect(currRect.x, workArea.y, currRect.width, workArea.height);
-                Twm.tile(window, tileRect);
+                Twm.tile(window, tileRect).catch(logError);
 
             // is floating
             } else {
@@ -119,7 +119,7 @@ export default class TilingKeybindingHandler {
                 );
                 const finalX = Math.min(constrainX, workArea.x2 - width);
                 const tileRect = new Rect(finalX, workArea.y, width, workArea.height);
-                Twm.tile(window, tileRect);
+                Twm.tile(window, tileRect).catch(logError);
             }
 
         // Toggle maximization horizontally
@@ -132,7 +132,7 @@ export default class TilingKeybindingHandler {
                 // Is maximized
                 if (currRect.height === workArea.height) {
                     const tileRect = new Rect(window.untiledRect.x, workArea.y, window.untiledRect.width, workArea.height);
-                    Twm.tile(window, tileRect);
+                    Twm.tile(window, tileRect).catch(logError);
                 // Is tiled
                 } else {
                     Twm.untile(window);
@@ -141,7 +141,7 @@ export default class TilingKeybindingHandler {
             // is tiled normally
             } else if (window.untiledRect) {
                 const tileRect = new Rect(workArea.x, currRect.y, workArea.width, currRect.height);
-                Twm.tile(window, tileRect);
+                Twm.tile(window, tileRect).catch(logError);
 
             // is floating
             } else {
@@ -155,17 +155,19 @@ export default class TilingKeybindingHandler {
                 );
                 const finalY = Math.min(constrainY, workArea.y2 - height);
                 const tileRect = new Rect(workArea.x, finalY, workArea.width, height);
-                Twm.tile(window, tileRect);
+                Twm.tile(window, tileRect).catch(logError);
             }
 
         // Restore window size
         } else if (shortcutName === 'restore-window') {
-            if (window.untiledRect) // Tiled & maximized with gaps
+            if (window.untiledRect) { // Tiled & maximized with gaps
                 Twm.untile(window, { clampToWorkspace: true });
-            else if (window.get_maximized?.())
-                window.unmaximize(window.get_maximized());
-            else if (window.maximizedHorizontally || window.maximizedVertically)
-                window.unmaximize();
+            } else if (window.maximizedHorizontally || window.maximizedVertically) {
+                if (window.unmaximize.length > 0)
+                    window.unmaximize(Util.getMaximizedFlags(window));
+                else
+                    window.unmaximize();
+            }
 
         // Center window
         } else if (shortcutName === 'center-window') {
@@ -182,7 +184,7 @@ export default class TilingKeybindingHandler {
                 if (tileRect.equal(currRect))
                     return;
 
-                Twm.tile(window, tileRect, { openTilingPopup: false });
+                Twm.tile(window, tileRect, { openTilingPopup: false }).catch(logError);
             } else if (!Twm.isMaximized(window)) {
                 if (!window.allows_move())
                     return;
@@ -340,7 +342,7 @@ export default class TilingKeybindingHandler {
                 case 'tile-maximize':
                 case 'tile-top-half': {
                     const rect = Twm.getTileFor('tile-top-half', workArea, window.get_monitor());
-                    Twm.tile(window, rect, { skipAnim: true });
+                    Twm.tile(window, rect, { skipAnim: true }).catch(logError);
                     break;
                 } case 'tile-bottom-half': {
                     Twm.untile(window);
@@ -574,7 +576,7 @@ export default class TilingKeybindingHandler {
 
         if (direction) {
             const neighbor = window.tiledRect.getNeighbor(direction, favoriteLayout);
-            Twm.tile(window, neighbor, { openTilingPopup: false });
+            Twm.tile(window, neighbor, { openTilingPopup: false }).catch(logError);
         } else {
             toggleTiling();
         }

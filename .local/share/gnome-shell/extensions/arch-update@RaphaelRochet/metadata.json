@@ -5,13 +5,9 @@
   "name": "Arch Linux Updates Indicator",
   "settings-schema": "org.gnome.shell.extensions.arch-update",
   "shell-version": [
-    "46",
-    "47",
-    "48",
-    "49",
-    "50"
+    "51"
   ],
   "url": "https://codeberg.org/RaphaelRochet/arch-update",
   "uuid": "arch-update@RaphaelRochet",
-  "version": 66
+  "version": 68
 }
