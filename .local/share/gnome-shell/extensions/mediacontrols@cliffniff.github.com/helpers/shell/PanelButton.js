@@ -235,6 +235,8 @@ class PanelButton extends PanelMenu.Button {
             });
             if (typeof this.menuBox.set_vertical === "function") {
                 this.menuBox.set_vertical(true);
+            } else if (typeof this.menuBox.set_orientation === "function") {
+                this.menuBox.set_orientation(Clutter.Orientation.VERTICAL);
             } else {
                 this.menuBox.orientation = Clutter.Orientation.VERTICAL;
             }
