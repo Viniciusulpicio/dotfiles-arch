@@ -231,12 +231,11 @@ class PanelButton extends PanelMenu.Button {
             this.menuBox = new PopupMenu.PopupBaseMenuItem({
                 style_class: "no-padding popup-menu-box",
                 activate: false,
-                orientation: Clutter.Orientation.VERTICAL,
             });
-            if (typeof this.menuBox.set_vertical === "function") {
-                this.menuBox.set_vertical(true);
-            } else if (typeof this.menuBox.set_orientation === "function") {
+            if (typeof this.menuBox.set_orientation === "function") {
                 this.menuBox.set_orientation(Clutter.Orientation.VERTICAL);
+            } else if (typeof this.menuBox.set_vertical === "function") {
+                this.menuBox.set_vertical(true);
             } else {
                 this.menuBox.orientation = Clutter.Orientation.VERTICAL;
             }
