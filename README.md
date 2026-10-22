@@ -169,16 +169,32 @@ chmod +x install.sh
 
 ---
 
-## Sincronização e Backup Contínuo
+## Sincronização e Backup Contínuo (PC Principal ↔ Notebook)
 
-Para salvar alterações feitas no tema, atalhos, extensões ou configurações no GitHub:
+### 1. Equiparar uma máquina com as novidades da outra (`sync_rice.sh`)
+Para puxar do GitHub e aplicar apenas pacotes novos, extensões do VS Code, dotfiles e configurações do Antigravity (`agy` em `~/.gemini`) **sem** apagar projetos, jogos ou reinstalar o sistema:
+
+```bash
+cd ~/dotfiles-arch
+git pull
+./sync_rice.sh
+```
+
+### 2. Salvar novas alterações e enviar para o GitHub (`backup_rice.sh`)
+Exporta todas as configurações (`.config`, `.gemini`, `dconf`, extensões), faz **merge (união)** das listas de pacotes (preservando os pacotes exclusivos do PC principal e do notebook) e já executa `git commit` + `git push` automaticamente:
 
 ```bash
 cd ~/dotfiles-arch
 ./backup_rice.sh
-git add .
-git commit -m "Atualização de configurações do ambiente"
-git push origin main
+```
+
+### 3. Sincronizar pasta de projetos `~/temp` na nuvem (`dev-sync`)
+Para enviar ou baixar seus projetos de desenvolvimento via Rclone (`GoogleDrive:dev-workspace`):
+
+```bash
+dev-push         # Envia ~/temp para o Google Drive
+dev-pull         # Baixa do Google Drive para ~/temp
+dev-sync status  # Compara diferenças locais vs nuvem
 ```
 
 ---
