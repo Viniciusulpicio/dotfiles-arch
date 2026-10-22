@@ -1,12 +1,14 @@
 [Unit]
 Description=Conky Desktop Widgets (Fastfetch + System Info)
 After=graphical-session.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 Type=forking
 ExecStart=/home/vinicius/.config/conky/autostart.sh
-Restart=always
-RestartSec=3
+Restart=on-failure
+RestartSec=5
 Environment=DISPLAY=:0
 Environment=WAYLAND_DISPLAY=wayland-0
 Environment=XDG_RUNTIME_DIR=/run/user/1000

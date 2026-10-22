@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "read_file(*)",
+      "write_file(*)",
+      "read_url(*)",
+      "execute_url(*)",
+      "command(*)"
+    ],
+    "deny": [
+      "command(rm -rf /)",
+      "command(rm -rf /*)",
+      "command(mkfs*)",
+      "command(dd *)"
+    ]
+  },
+  "toolPermission": "always-proceed",
+  "trustedWorkspaces": [
+    "/home/vinicius",
+    "/home/vinicius/temp/estrutura-dados-c",
+    "/home/vinicius/temp/poo-php",
+    "/home/vinicius/temp/poo-php/primeiro_projeto",
+    "/home/vinicius/dotfiles-arch",
+    "/home/vinicius/temp",
+    "/home/vinicius/temp/wizard-pattern",
+    "/home/vinicius/temp/esp32-project/spotify-remote",
+    "/home/vinicius/temp/poo-php/lista_exercicios",
+    "/home/vinicius/temp/esp32-project",
+    "/home/vinicius/temp/esp32-project/pixela",
+    "/home/vinicius/Downloads",
+    "/home/vinicius/temp/estrutura-dados-c/lib",
+    "/home/vinicius/temp/cad",
+    "/home/vinicius/temp/poo-php/composicao"
+  ]
+}

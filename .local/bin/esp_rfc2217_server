@@ -1,0 +1,6 @@
+#!/home/vinicius/.local/share/pipx/venvs/esptool/bin/python -E
+import sys
+from esp_rfc2217_server.__init__ import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())

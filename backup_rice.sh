@@ -194,6 +194,15 @@ if [ -d "$HOME/.oh-my-zsh/custom" ]; then
     copy_safe "$HOME/.oh-my-zsh/custom" "$REPO_DIR/.oh-my-zsh/"
 fi
 
+# 8.1 ANTIGRAVITY / AGY CONFIGS (~/.gemini)
+echo "🤖 8.1 Copiando configurações, skills e plugins do Antigravity (agy)..."
+if [ -d "$HOME/.gemini" ]; then
+    mkdir -p "$REPO_DIR/.gemini/antigravity-cli"
+    [ -f "$HOME/.gemini/GEMINI.md" ] && cp -f "$HOME/.gemini/GEMINI.md" "$REPO_DIR/.gemini/"
+    [ -f "$HOME/.gemini/antigravity-cli/settings.json" ] && cp -f "$HOME/.gemini/antigravity-cli/settings.json" "$REPO_DIR/.gemini/antigravity-cli/"
+    [ -d "$HOME/.gemini/config" ] && copy_safe "$HOME/.gemini/config" "$REPO_DIR/.gemini/"
+fi
+
 # 9. CONFIGURAÇÕES EM ~/.config
 echo "⚙️ 9. Copiando configurações de aplicativos em ~/.config..."
 CONFIG_APPS=(
@@ -262,6 +271,12 @@ if [ -f "$HOME/.config/arduino-ide/config.json" ]; then
     cp -f "$HOME/.config/arduino-ide/config.json" "$REPO_DIR/.config/arduino-ide/" 2>/dev/null || true
 fi
 
+# Rclone filter (sem expor rclone.conf)
+if [ -f "$HOME/.config/rclone/dev-filter.txt" ]; then
+    mkdir -p "$REPO_DIR/.config/rclone"
+    cp -f "$HOME/.config/rclone/dev-filter.txt" "$REPO_DIR/.config/rclone/" 2>/dev/null || true
+fi
+
 # VS Code configs (Settings, Keybindings, Snippets e MCP)
 if [ -d "$HOME/.config/Code/User" ]; then
     mkdir -p "$REPO_DIR/.config/Code/User"
@@ -274,7 +289,7 @@ fi
 
 # Limpeza profunda de bloat / caches / symlinks residuais na pasta de dotfiles
 echo "🧹 Limpando caches e dados temporários do repositório..."
-rm -rf "$REPO_DIR/.config/'*'" "$REPO_DIR/.config/*" 2>/dev/null || true
+rm -rf "$REPO_DIR/.config/'*'" 2>/dev/null || true
 rm -rf "$REPO_DIR/.config/Code/Cookies"* "$REPO_DIR/.config/Code/DIPS"* "$REPO_DIR/.config/Code/Dawn"* \
        "$REPO_DIR/.config/Code/Dictionaries" "$REPO_DIR/.config/Code/GPUCache" "$REPO_DIR/.config/Code/Crashpad" \
        "$REPO_DIR/.config/Code/Local Storage" "$REPO_DIR/.config/Code/Preferences" "$REPO_DIR/.config/Code/Service Worker" \

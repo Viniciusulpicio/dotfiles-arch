@@ -3,9 +3,11 @@ cachyos-ananicy-rules
 gnome-extensions-cli
 gnome-shell-extension-clipboard-indicator
 gnome-shell-extension-pop-shell-git
-gnome-shell-extension-tiling-assistant
 google-chrome
 heroic-games-launcher-bin
+linuxtoys-bin
+linuxtoys-bin-debug
+localsend-bin
 notion-app-electron
 notion-app-electron-debug
 pop-icon-theme-git
@@ -14,8 +16,10 @@ pop-launcher-git-debug
 pop-shell-shortcuts-git
 pop-shell-shortcuts-git-debug
 postman-bin
+python-pywal
 spotify
 visual-studio-code-bin
+winboat-bin
 wlogout
 wlogout-debug
 wpgtk-git

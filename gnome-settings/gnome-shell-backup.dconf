@@ -3,9 +3,10 @@ first-run=false
 window-size=(1248, 1001)
 
 [Console]
-font-scale=0.80000000000000004
+font-scale=0.90000000000000002
+last-window-fullscreen=false
 last-window-maximised=false
-last-window-size=(768, 416)
+last-window-size=(360, 832)
 
 [Extensions]
 window-height=832
@@ -23,6 +24,7 @@ window-width=1536
 
 [TextEditor]
 last-save-directory='file:///home/vinicius/Downloads'
+style-variant='light'
 
 [Weather]
 locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
@@ -35,9 +37,17 @@ active-chart='rings'
 is-maximized=false
 window-size=(906, 524)
 
+[calendar]
+active-view='month'
+window-maximized=false
+window-size=(768, 600)
+
 [control-center]
-last-panel='applications'
-window-state=(768, 416, false)
+last-panel='system'
+window-state=(1536, 832, false)
+
+[desktop/a11y/applications]
+screen-magnifier-enabled=false
 
 [desktop/a11y/magnifier]
 cross-hairs-length=58
@@ -51,7 +61,7 @@ name='X-Pardus-Apps.directory'
 translate=true
 
 [desktop/app-folders/folders/System]
-apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Music.desktop', 'org.gnome.SimpleScan.desktop', 'org.gnome.Showtime.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Tour.desktop', 'btop.desktop', 'org.gnome.Yelp.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'cmake-gui.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop', 'io.github.benjamimgois.goverlay.desktop', 'com.github.ztefn.haguichi.desktop', 'htop.desktop', 'jshell-java-openjdk.desktop', 'org.gnome.Software.desktop', 'qvidcap.desktop', 'avahi-discover.desktop', 'jconsole-java-openjdk.desktop', 'vim.desktop', 'org.gnome.Extensions.desktop', 'conky.desktop', 'lstopo.desktop', 'wpgtk.desktop', 'io.github.flattool.Ignition.desktop', 'torbrowser-settings.desktop', 'dev.overlayed.Overlayed.desktop', 'input-remapper-gtk.desktop', 'org.gnome.Terminal.desktop', 'uxterm.desktop', 'xterm.desktop']
+apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Music.desktop', 'org.gnome.SimpleScan.desktop', 'org.gnome.Showtime.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Tour.desktop', 'btop.desktop', 'org.gnome.Yelp.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'cmake-gui.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop', 'io.github.benjamimgois.goverlay.desktop', 'com.github.ztefn.haguichi.desktop', 'htop.desktop', 'jshell-java-openjdk.desktop', 'org.gnome.Software.desktop', 'qvidcap.desktop', 'avahi-discover.desktop', 'jconsole-java-openjdk.desktop', 'vim.desktop', 'org.gnome.Extensions.desktop', 'conky.desktop', 'lstopo.desktop', 'wpgtk.desktop', 'io.github.flattool.Ignition.desktop', 'torbrowser-settings.desktop', 'dev.overlayed.Overlayed.desktop', 'input-remapper-gtk.desktop', 'org.gnome.Terminal.desktop', 'uxterm.desktop', 'xterm.desktop', 'virtualbox.desktop', 'abiword.desktop']
 name='X-GNOME-Shell-System.directory'
 translate=true
 
@@ -66,12 +76,12 @@ name='suse-yast.directory'
 translate=true
 
 [desktop/app-folders/folders/b51017c7-5a3a-4de7-9875-0f939e72be73]
-apps=['Counter-Strike 2.desktop', 'curseforge.desktop', 'Arena Breakout Infinite.desktop', 'DayZ.desktop', 'PEAK.desktop', 'RV There Yet.desktop', 'sklauncher.desktop', 'The Witcher 3 Wild Hunt.desktop', 'bvnc.desktop', 'heroic.desktop', 'hydra.desktop', 'UNO.desktop', 'Raft.desktop', "Liar's Bar.desktop", 'Grand Theft Auto V Enhanced.desktop', 'FPS Chess.desktop']
+apps=['Counter-Strike 2.desktop', 'curseforge.desktop', 'Arena Breakout Infinite.desktop', 'DayZ.desktop', 'PEAK.desktop', 'RV There Yet.desktop', 'sklauncher.desktop', 'The Witcher 3 Wild Hunt.desktop', 'bvnc.desktop', 'heroic.desktop', 'hydra.desktop', 'UNO.desktop', 'Raft.desktop', "Liar's Bar.desktop", 'Grand Theft Auto V Enhanced.desktop', 'FPS Chess.desktop', 'steam.desktop']
 name='Jogos'
 translate=false
 
 [desktop/app-folders/folders/dc081261-a3ba-48ea-bbf0-f002d96b2c7e]
-apps=['libreoffice-math.desktop', 'libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-calc.desktop', 'libreoffice-base.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop']
+apps=['libreoffice-math.desktop', 'libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-calc.desktop', 'libreoffice-base.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop', 'cups.desktop']
 name='Escritório'
 
 [desktop/background]
@@ -81,6 +91,9 @@ picture-uri='file:///home/vinicius/dotfiles-arch/wallpaper_atual.jpg'
 picture-uri-dark='file:///home/vinicius/dotfiles-arch/wallpaper_atual.jpg'
 primary-color='#000000000000'
 secondary-color='#000000000000'
+
+[desktop/break-reminders]
+selected-breaks=@as []
 
 [desktop/break-reminders/eyesight]
 play-sound=true
@@ -106,20 +119,31 @@ clock-show-seconds=false
 clock-show-weekday=false
 color-scheme='prefer-dark'
 enable-animations=true
+text-scaling-factor=1.0
+toolkit-accessibility=false
 
 [desktop/notifications]
-application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel', 'org-gnome-extensions', 'vesktop', 'antigravity', 'org-gnome-settings', 'org-gnome-shell-extensions-gsconnect', 'codeblocks']
+application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel', 'org-gnome-extensions', 'vesktop', 'antigravity', 'org-gnome-settings', 'org-gnome-shell-extensions-gsconnect', 'codeblocks', 'libreoffice-startcenter', 'libreoffice-calc', 'constructor-virtual-circuitos', 'xdg-desktop-portal-gnome', 'code', 'com-mattjakeman-extensionmanager', 'org-gnome-goa-daemon']
 show-banners=false
 show-in-lock-screen=false
 
 [desktop/notifications/application/antigravity]
 application-id='antigravity.desktop'
 
+[desktop/notifications/application/code]
+application-id='code.desktop'
+
 [desktop/notifications/application/codeblocks]
 application-id='codeblocks.desktop'
 
+[desktop/notifications/application/com-mattjakeman-extensionmanager]
+application-id='com.mattjakeman.ExtensionManager.desktop'
+
 [desktop/notifications/application/com-obsproject-studio]
 application-id='com.obsproject.Studio.desktop'
+
+[desktop/notifications/application/constructor-virtual-circuitos]
+application-id='constructor-virtual-circuitos.desktop'
 
 [desktop/notifications/application/discord]
 application-id='discord.desktop'
@@ -142,6 +166,12 @@ application-id='google-chrome.desktop'
 [desktop/notifications/application/heroic]
 application-id='heroic.desktop'
 
+[desktop/notifications/application/libreoffice-calc]
+application-id='libreoffice-calc.desktop'
+
+[desktop/notifications/application/libreoffice-startcenter]
+application-id='libreoffice-startcenter.desktop'
+
 [desktop/notifications/application/org-gnome-baobab]
 application-id='org.gnome.baobab.desktop'
 
@@ -153,6 +183,9 @@ application-id='org.gnome.Console.desktop'
 
 [desktop/notifications/application/org-gnome-extensions]
 application-id='org.gnome.Extensions.desktop'
+
+[desktop/notifications/application/org-gnome-goa-daemon]
+application-id='org.gnome.goa-daemon.desktop'
 
 [desktop/notifications/application/org-gnome-nautilus]
 application-id='org.gnome.Nautilus.desktop'
@@ -184,12 +217,18 @@ application-id='steam.desktop'
 [desktop/notifications/application/vesktop]
 application-id='vesktop.desktop'
 
+[desktop/notifications/application/xdg-desktop-portal-gnome]
+application-id='xdg-desktop-portal-gnome.desktop'
+
 [desktop/peripherals/mouse]
 accel-profile='flat'
 speed=-0.4695652173913043
 
 [desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
+
+[desktop/screen-time-limits]
+daily-limit-seconds=uint32 28800
 
 [desktop/screensaver]
 color-shading-type='solid'
@@ -235,7 +274,7 @@ window-size=(1024, 768)
 migrated=true
 
 [gnome-system-monitor]
-current-tab='processes'
+current-tab='resources'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
@@ -249,6 +288,7 @@ col-26-width=0
 [mutter]
 dynamic-workspaces=false
 edge-tiling=false
+experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
 
 [nautilus/icon-view]
 default-zoom-level='small-plus'
@@ -268,6 +308,7 @@ initial-size-file-chooser=(1536, 832)
 maximized=false
 
 [papers]
+document-directory=@ms '/home/vinicius/BCC/POO'
 night-mode=false
 
 [papers/default]
@@ -282,21 +323,22 @@ highlight-stroke=2.0
 pen-color='blue'
 pen-stroke=1.0
 show-sidebar=false
+sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
-window-height=832
+window-height=416
 window-maximized=false
-window-width=1536
-zoom=1.2071400569544211
+window-width=384
+zoom=1.0462628481607008
 
 [portal/filechooser/antigravity]
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
 
 [portal/filechooser/code]
-last-folder-path='/home/vinicius/temp'
+last-folder-path='/home/vinicius/temp/poo-php'
 
 [portal/filechooser/com.google.Chrome]
-last-folder-path='/home/vinicius/Downloads'
+last-folder-path='/home/vinicius/temp/sistemas-digitais'
 
 [portal/filechooser/curseforge]
 last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
@@ -306,6 +348,9 @@ last-folder-path='/home/vinicius/Games/Heroic/rocketleague'
 
 [portal/filechooser/org.gnome.Nautilus]
 last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/org.gnome.Papers]
+last-folder-path='/home/vinicius/BCC/POO'
 
 [portal/filechooser/org.gnome.Settings]
 last-folder-path='/home/vinicius/Downloads'
@@ -321,7 +366,7 @@ last-folder-path='/run/media/vinicius/Ventoy/ISOs'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(-22.213899999999999, -49.945799999999998)
+night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
 night-light-schedule-automatic=false
 
 [settings-daemon/plugins/housekeeping]
@@ -385,14 +430,14 @@ sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
 [shell]
-app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'firefox.desktop': <{'position': <2>}>, 'com.obsproject.Studio.desktop': <{'position': <3>}>, 'discord.desktop': <{'position': <4>}>, 'teamspeak3.desktop': <{'position': <5>}>, 'org.telegram.desktop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'System': <{'position': <8>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <9>}>, 'abiword.desktop': <{'position': <10>}>, 'arduino-ide-v2.desktop': <{'position': <11>}>, 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e': <{'position': <12>}>, 'nvidia-settings.desktop': <{'position': <13>}>, 'codeblocks.desktop': <{'position': <14>}>, 'virtualbox.desktop': <{'position': <15>}>, 'steam.desktop': <{'position': <16>}>}]
+app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'firefox.desktop': <{'position': <2>}>, 'com.obsproject.Studio.desktop': <{'position': <3>}>, 'discord.desktop': <{'position': <4>}>, 'teamspeak3.desktop': <{'position': <5>}>, 'org.telegram.desktop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'System': <{'position': <8>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <9>}>, 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e': <{'position': <10>}>, 'arduino-ide-v2.desktop': <{'position': <11>}>, 'codeblocks.desktop': <{'position': <12>}>, 'constructor-virtual-circuitos.desktop': <{'position': <13>}>, 'winetricks.desktop': <{'position': <14>}>, 'logisim.desktop': <{'position': <15>}>, 'Waydroid.desktop': <{'position': <16>}>, 'toys.linux.LinuxToys.desktop': <{'position': <17>}>, 'localsend.desktop': <{'position': <18>}>, 'winboat.desktop': <{'position': <19>}>}]
 command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 → r → Enter', 'nautilus', 'r']
 disable-extension-version-validation=true
 disable-user-extensions=false
-disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'gsconnect@andyholmes.github.io', 'KeepAwake@jepfa.de', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com']
-enabled-extensions=['system-monitor@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'dash2dock-lite@icedman.github.com', 'just-perfection-desktop@just-perfection', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'tiling-assistant@leleat-on-github', 'display-brightness-ddcutil@themightydeity.github.com', 'pop-shell@system76.com', 'add-to-desktop@tommimon.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'pip-on-top@rafostar.github.com', 'quick-settings-audio-panel@rayzeq.github.io', 'clipboard-history@alexsaveau.dev', 'arch-update@RaphaelRochet', 'mediacontrols@cliffniff.github.com', 'caffeine@patapon.info', 'search-light@icedman.github.com']
+disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'KeepAwake@jepfa.de', 'display-brightness-ddcutil@themightydeity.github.com', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com']
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'just-perfection-desktop@just-perfection', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'add-to-desktop@tommimon.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'pip-on-top@rafostar.github.com', 'quick-settings-audio-panel@rayzeq.github.io', 'clipboard-history@alexsaveau.dev', 'arch-update@RaphaelRochet', 'caffeine@patapon.info', 'search-light@icedman.github.com', 'tiling-assistant@leleat-on-github', 'pop-shell@system76.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'dash2dock-lite@icedman.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'mediacontrols@cliffniff.github.com']
 favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'org.gnome.Console.desktop', 'notion.desktop', 'system-tray.desktop']
-last-selected-power-profile='power-saver'
+last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='49.1'
 
 [shell/extensions/KeepAwake@jepfa.de]
@@ -598,7 +643,7 @@ show-title=true
 tile-by-default=true
 
 [shell/extensions/quick-settings-audio-panel]
-profiles-renames={'Áudio interno': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'input:analog-stereo': ('Entrada Estéreo analógico', 'Entrada Estéreo analógico'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:analog-stereo': ('Duplex estéreo analógico', 'Duplex estéreo analógico')}, 'GA106 High Definition Audio Controller': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:hdmi-surround71-extra3': ('Saída Digital Surround 7.1 (HDMI 4)', 'Saída Digital Surround 7.1 (HDMI 4)'), 'output:hdmi-surround-extra3': ('Saída Digital Surround 5.1 (HDMI 4)', 'Saída Digital Surround 5.1 (HDMI 4)'), 'output:hdmi-surround71-extra2': ('Saída Digital Surround 7.1 (HDMI 3)', 'Saída Digital Surround 7.1 (HDMI 3)'), 'output:hdmi-surround-extra2': ('Saída Digital Surround 5.1 (HDMI 3)', 'Saída Digital Surround 5.1 (HDMI 3)'), 'output:hdmi-surround71-extra1': ('Saída Digital Surround 7.1 (HDMI 2)', 'Saída Digital Surround 7.1 (HDMI 2)'), 'output:hdmi-surround-extra1': ('Saída Digital Surround 5.1 (HDMI 2)', 'Saída Digital Surround 5.1 (HDMI 2)'), 'output:hdmi-surround71': ('Saída Digital Surround 7.1 (HDMI)', 'Saída Digital Surround 7.1 (HDMI)'), 'output:hdmi-surround': ('Saída Surround digital 5.1 (HDMI)', 'Saída Surround digital 5.1 (HDMI)'), 'output:hdmi-stereo-extra3': ('Saída Digital Stereo (HDMI 4)', 'Saída Digital Stereo (HDMI 4)'), 'output:hdmi-stereo-extra2': ('Saída Digital Stereo (HDMI 3)', 'Saída Digital Stereo (HDMI 3)'), 'output:hdmi-stereo-extra1': ('Saída Digital Stereo (HDMI 2)', 'Saída Digital Stereo (HDMI 2)'), 'output:hdmi-stereo': ('Saída Estéreo digital (HDMI)', 'Saída Estéreo digital (HDMI)')}, 'SPCA2281 Web Camera': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio')}, 'Buds FE de Vinicius': {'off': ('Desligado', 'Desligado'), 'headset-head-unit-cvsd': ('Unidade de headset (HSP/HFP, codec CVSD)', 'Unidade de headset (HSP/HFP, codec CVSD)'), 'headset-head-unit': ('Unidade de headset (HSP/HFP, codec MSBC)', 'Unidade de headset (HSP/HFP, codec MSBC)'), 'a2dp-sink-sbc_xq': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)'), 'a2dp-sink-sbc': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC)'), 'a2dp-sink': ('Reprodução de alta-fidelidade (destino  A2DP, codec AAC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec AAC)')}, '500 Series Chipset Family On-Package High Definition Audio (HD Audio)': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)'), 'HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)')}}
+profiles-renames={'Áudio interno': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'input:analog-stereo': ('Entrada Estéreo analógico', 'Entrada Estéreo analógico'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:analog-stereo': ('Duplex estéreo analógico', 'Duplex estéreo analógico')}, 'GA106 High Definition Audio Controller': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:hdmi-surround71-extra3': ('Saída Digital Surround 7.1 (HDMI 4)', 'Saída Digital Surround 7.1 (HDMI 4)'), 'output:hdmi-surround-extra3': ('Saída Digital Surround 5.1 (HDMI 4)', 'Saída Digital Surround 5.1 (HDMI 4)'), 'output:hdmi-surround71-extra2': ('Saída Digital Surround 7.1 (HDMI 3)', 'Saída Digital Surround 7.1 (HDMI 3)'), 'output:hdmi-surround-extra2': ('Saída Digital Surround 5.1 (HDMI 3)', 'Saída Digital Surround 5.1 (HDMI 3)'), 'output:hdmi-surround71-extra1': ('Saída Digital Surround 7.1 (HDMI 2)', 'Saída Digital Surround 7.1 (HDMI 2)'), 'output:hdmi-surround-extra1': ('Saída Digital Surround 5.1 (HDMI 2)', 'Saída Digital Surround 5.1 (HDMI 2)'), 'output:hdmi-surround71': ('Saída Digital Surround 7.1 (HDMI)', 'Saída Digital Surround 7.1 (HDMI)'), 'output:hdmi-surround': ('Saída Surround digital 5.1 (HDMI)', 'Saída Surround digital 5.1 (HDMI)'), 'output:hdmi-stereo-extra3': ('Saída Digital Stereo (HDMI 4)', 'Saída Digital Stereo (HDMI 4)'), 'output:hdmi-stereo-extra2': ('Saída Digital Stereo (HDMI 3)', 'Saída Digital Stereo (HDMI 3)'), 'output:hdmi-stereo-extra1': ('Saída Digital Stereo (HDMI 2)', 'Saída Digital Stereo (HDMI 2)'), 'output:hdmi-stereo': ('Saída Estéreo digital (HDMI)', 'Saída Estéreo digital (HDMI)')}, 'SPCA2281 Web Camera': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio')}, 'Buds FE de Vinicius': {'off': ('Desligado', 'Desligado'), 'headset-head-unit-cvsd': ('Unidade de headset (HSP/HFP, codec CVSD)', 'Unidade de headset (HSP/HFP, codec CVSD)'), 'headset-head-unit': ('Unidade de headset (HSP/HFP, codec MSBC)', 'Unidade de headset (HSP/HFP, codec MSBC)'), 'a2dp-sink-sbc_xq': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)'), 'a2dp-sink-sbc': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC)'), 'a2dp-sink': ('Reprodução de alta-fidelidade (destino  A2DP, codec AAC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec AAC)')}, '500 Series Chipset Family On-Package High Definition Audio (HD Audio)': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)'), 'HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)')}, 'AB13X Headset Adapter': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:iec958-ac3-surround-51': ('Saída Surround digital 5.1 (IEC958/AC3)', 'Saída Surround digital 5.1 (IEC958/AC3)'), 'output:iec958-ac3-surround-51+input:mono-fallback': ('Saída Surround digital 5.1 (IEC958/AC3) + Entrada Mono', 'Saída Surround digital 5.1 (IEC958/AC3) + Entrada Mono'), 'output:iec958-stereo': ('Saída Estéreo digital (IEC958)', 'Saída Estéreo digital (IEC958)'), 'output:iec958-stereo+input:mono-fallback': ('Saída Estéreo digital (IEC958) + Entrada Mono', 'Saída Estéreo digital (IEC958) + Entrada Mono'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:mono-fallback': ('Saída Estéreo analógico + Entrada Mono', 'Saída Estéreo analógico + Entrada Mono')}}
 version=2
 
 [shell/extensions/search-light]
@@ -632,9 +677,9 @@ enable-tiling-popup=false
 focus-hint=0
 focus-hint-color='rgb(53,132,228)'
 import-layout-examples=false
-last-version-installed=54
+last-version-installed=56
 maximize-with-gap=false
-overridden-settings={'org.gnome.mutter.edge-tiling': <true>}
+overridden-settings={'org.gnome.mutter.edge-tiling': <false>}
 restore-window=['<Super>Down']
 search-popup-layout=@as []
 single-screen-gap=0
@@ -685,9 +730,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [software]
-check-timestamp=int64 1787415522
+check-timestamp=int64 1792711174
 first-run=false
-flatpak-purge-timestamp=int64 1787444764
+flatpak-purge-timestamp=int64 1792695932
 
 [system/location]
 enabled=true

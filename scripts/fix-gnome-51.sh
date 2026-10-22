@@ -4,36 +4,55 @@
 # ==============================================================================
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 echo "🔧 Aplicando correções do GNOME 51..."
 
-# 1. Correção de Biometria no GDM 51 (libshell-51.so)
-LIBSHELL="/usr/lib/gnome-shell/libshell-51.so"
-if [ -f "$LIBSHELL" ]; then
-    echo "  -> Verificando patch de biometria no GDM em $LIBSHELL..."
-    python3 -c "
-with open('$LIBSHELL', 'rb') as f:
-    data = f.read()
+# 1. Correção de Biometria no GDM 51 (G_RESOURCE_OVERLAYS)
+# Permite autenticação instantânea por digital logo ao ligar (cold boot)
+# sem necessidade de clicar em 'Voltar' e selecionar o perfil manualmente.
+OVERLAY_SRC="$SCRIPT_DIR/gdm-overlay"
+OVERLAY_DST="/usr/share/gnome-shell/gdm-overlay"
 
-target = b'\n        if (!this._reauthOnly)\n            return;\n'
-replacement = b' ' * len(target)
+if [ -d "$OVERLAY_SRC" ]; then
+    echo "  -> Instalando overlay GDM para suporte biométrico em $OVERLAY_DST..."
+    sudo mkdir -p "$OVERLAY_DST"
+    sudo cp -f "$OVERLAY_SRC/loginDialog.js" "$OVERLAY_DST/"
+    sudo cp -f "$OVERLAY_SRC/authServicesLegacy.js" "$OVERLAY_DST/"
+    sudo chmod 755 "$OVERLAY_DST"
+    sudo chmod 644 "$OVERLAY_DST"/*
 
-if target in data:
-    import subprocess
-    print('    ⚡ Aplicando patch no libshell-51.so (criando backup .bak)...')
-    subprocess.run(['sudo', 'cp', '-n', '$LIBSHELL', '$LIBSHELL.bak'], check=True)
-    patched = data.replace(target, replacement, 1)
-    with open('/tmp/libshell-51.so.patched', 'wb') as f:
-        f.write(patched)
-    subprocess.run(['sudo', 'cp', '-f', '/tmp/libshell-51.so.patched', '$LIBSHELL'], check=True)
-    subprocess.run(['sudo', 'chmod', '755', '$LIBSHELL'], check=True)
-    subprocess.run(['rm', '-f', '/tmp/libshell-51.so.patched'])
-    print('    ✓ Patch aplicado com sucesso!')
-else:
-    print('    ✓ libshell-51.so já está com o patch aplicado ou não necessita de alteração.')
-"
+    # Configurar systemd user override para org.gnome.Shell@gdm.service
+    sudo mkdir -p /etc/systemd/user/org.gnome.Shell@gdm.service.d/
+    sudo tee /etc/systemd/user/org.gnome.Shell@gdm.service.d/override.conf >/dev/null << 'EOF'
+[Service]
+Environment="G_RESOURCE_OVERLAYS=/org/gnome/shell/gdm=/usr/share/gnome-shell/gdm-overlay"
+EOF
+
+    # Configurar systemd system override para gdm.service
+    sudo mkdir -p /etc/systemd/system/gdm.service.d/
+    sudo tee /etc/systemd/system/gdm.service.d/override.conf >/dev/null << 'EOF'
+[Service]
+Environment="G_RESOURCE_OVERLAYS=/org/gnome/shell/gdm=/usr/share/gnome-shell/gdm-overlay"
+EOF
+
+    sudo systemctl daemon-reload
+    systemctl --user daemon-reload 2>/dev/null || true
+    echo "  ✓ Overlay do GDM 51 configurado com sucesso!"
 fi
 
-# 2. Correção de Biometria no Polkit (/etc/pam.d/polkit-1)
+# 2. Regra udev para evitar autosuspend do leitor de digital no boot
+FPRINT_UDEV="/etc/udev/rules.d/50-fprint-power.rules"
+if [ ! -f "$FPRINT_UDEV" ]; then
+    echo "  -> Configurando regra udev para o leitor de digital..."
+    sudo tee "$FPRINT_UDEV" >/dev/null << 'EOF'
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="06cb", ATTRS{idProduct}=="00bd", ATTR{power/control}="on"
+EOF
+    sudo udevadm control --reload-rules 2>/dev/null || true
+    echo "  ✓ Regra udev para biometria criada."
+fi
+
+# 3. Correção de Biometria no Polkit (/etc/pam.d/polkit-1)
 POLKIT_PAM="/etc/pam.d/polkit-1"
 if [ -f "$POLKIT_PAM" ]; then
     if ! grep -q "pam_fprintd.so" "$POLKIT_PAM"; then
@@ -45,7 +64,7 @@ if [ -f "$POLKIT_PAM" ]; then
     fi
 fi
 
-# 3. Correção de ciclo de inicialização do auto-power-profile
+# 4. Correção de ciclo de inicialização do auto-power-profile
 POWER_SVC="/etc/systemd/system/auto-power-profile.service"
 if [ -f "$POWER_SVC" ]; then
     if grep -q "WantedBy=multi-user.target" "$POWER_SVC"; then
@@ -57,7 +76,7 @@ if [ -f "$POWER_SVC" ]; then
     fi
 fi
 
-# 4. Compilação de schemas das extensões
+# 5. Compilação de schemas das extensões
 echo "  -> Compilando gschemas das extensões locais..."
 for s in "$HOME"/.local/share/gnome-shell/extensions/*/schemas; do
     [ -d "$s" ] && glib-compile-schemas "$s" 2>/dev/null || true

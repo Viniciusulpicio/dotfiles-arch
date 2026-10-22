@@ -12,6 +12,18 @@
     },
     {
       "class": "yad"
+    },
+    {
+      "class": "Wine"
+    },
+    {
+      "class": "constructorvirtualdecircuitos.exe"
+    },
+    {
+      "title": "Constructor Virtual.*"
+    },
+    {
+      "title": "Información"
     }
   ],
   "skiptaskbarhidden": [],

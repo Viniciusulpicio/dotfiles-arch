@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Logisim
+GenericName=Simulador de Circuitos Lógicos
+Comment=Ferramenta educacional para projeto e simulação de circuitos lógicos digitais
+Exec=/usr/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dsun.java2d.uiScale=2 -jar /home/vinicius/.local/share/logisim/logisim.jar %F
+Icon=/home/vinicius/.local/share/logisim/logisim.png
+Terminal=false
+Categories=Education;Science;Electronics;Development;
+Keywords=logisim;logissim;circuitos;logica;digital;simulacao;
+StartupWMClass=com-cburch-logisim-Main
+StartupNotify=true
