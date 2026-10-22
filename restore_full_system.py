@@ -153,6 +153,15 @@ def main():
     if os.path.exists(f"{dotfiles_dir}/.oh-my-zsh/custom") and os.path.exists(f"{home}/.oh-my-zsh"):
         subprocess.run(f"cp -rf {dotfiles_dir}/.oh-my-zsh/custom/* {home}/.oh-my-zsh/custom/", shell=True)
 
+    if os.path.exists(f"{dotfiles_dir}/.gemini"):
+        os.makedirs(f"{home}/.gemini/antigravity-cli", exist_ok=True)
+        if os.path.exists(f"{dotfiles_dir}/.gemini/GEMINI.md"):
+            shutil.copy(f"{dotfiles_dir}/.gemini/GEMINI.md", f"{home}/.gemini/GEMINI.md")
+        if os.path.exists(f"{dotfiles_dir}/.gemini/antigravity-cli/settings.json"):
+            shutil.copy(f"{dotfiles_dir}/.gemini/antigravity-cli/settings.json", f"{home}/.gemini/antigravity-cli/settings.json")
+        if os.path.exists(f"{dotfiles_dir}/.gemini/config"):
+            subprocess.run(f"cp -rf {dotfiles_dir}/.gemini/config {home}/.gemini/", shell=True)
+
     # 5. GNOME dconf
     print("\n--- Restoring GNOME dconf settings ---")
     gnome_dir = f"{dotfiles_dir}/gnome-settings"

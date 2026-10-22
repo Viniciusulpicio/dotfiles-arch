@@ -271,6 +271,16 @@ mkdir -p "$TARGET_HOME/.oh-my-zsh/custom"
 [ -d "$SCRIPT_DIR/.oh-my-zsh/custom" ] && cp -rf "$SCRIPT_DIR/.oh-my-zsh/custom/"* "$TARGET_HOME/.oh-my-zsh/custom/" 2>/dev/null || true
 echo "  ✓ Customizações do Zsh restauradas."
 
+# 11.1 CONFIGURAÇÕES DO ANTIGRAVITY (AGY)
+if [ -d "$SCRIPT_DIR/.gemini" ]; then
+    echo "🤖 11.1 Restaurando configurações, skills e plugins do Antigravity (agy)..."
+    mkdir -p "$TARGET_HOME/.gemini/antigravity-cli"
+    [ -f "$SCRIPT_DIR/.gemini/GEMINI.md" ] && cp -f "$SCRIPT_DIR/.gemini/GEMINI.md" "$TARGET_HOME/.gemini/"
+    [ -f "$SCRIPT_DIR/.gemini/antigravity-cli/settings.json" ] && cp -f "$SCRIPT_DIR/.gemini/antigravity-cli/settings.json" "$TARGET_HOME/.gemini/antigravity-cli/"
+    [ -d "$SCRIPT_DIR/.gemini/config" ] && cp -rf "$SCRIPT_DIR/.gemini/config" "$TARGET_HOME/.gemini/"
+    echo "  ✓ Configurações do Antigravity (agy) restauradas."
+fi
+
 # 12. CONFIGURAÇÕES E EXTENSÕES DO VS CODE
 echo ""
 echo "💻 12. Restaurando configurações do VS Code..."

@@ -1,3 +1,10 @@
 [MIME Cache]
+application/microsoftpatch=wine-extension-msp.desktop;
+application/pkix-cert=wine-extension-crt.desktop;
+application/vnd.ms-htmlhelp=wine-extension-chm.desktop;
+application/winhlp=wine-extension-hlp.desktop;
+application/x-constructor-circuit=constructor-virtual-circuitos.desktop;
+text/vbscript=wine-extension-vbs.desktop;
+text/x-ms-regedit=wine-extension-reg.desktop;
 x-scheme-handler/sms=org.gnome.Shell.Extensions.GSConnect.desktop;
 x-scheme-handler/tel=org.gnome.Shell.Extensions.GSConnect.desktop;

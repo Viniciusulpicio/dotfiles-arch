@@ -1,33 +1,21 @@
 <?xml version="1.0"?>
 <application-state>
   <context id="">
-    <application id="org.remmina.Remmina.desktop" score="0" last-seen="1787439339"/>
-    <application id="org.wezfurlong.wezterm.desktop" score="1" last-seen="1787182870"/>
-    <application id="google-chrome.desktop" score="14059" last-seen="1787445479"/>
-    <application id="org.gnome.Shell.Extensions.desktop" score="13" last-seen="1787149643"/>
-    <application id="org.gnome.SystemMonitor.desktop" score="5" last-seen="1787236641"/>
-    <application id="org.gnome.Software.desktop" score="15" last-seen="1787154747"/>
-    <application id="org.torproject.torbrowser-launcher.desktop" score="0" last-seen="1787183368"/>
-    <application id="steam.desktop" score="170" last-seen="1787418893"/>
-    <application id="org.gnome.Papers.desktop" score="1219" last-seen="1787186737"/>
-    <application id="discord.desktop" score="28" last-seen="1787418821"/>
-    <application id="org.gnome.Console.desktop" score="3333" last-seen="1787445743"/>
-    <application id="libreoffice-calc.desktop" score="58" last-seen="1787360903"/>
-    <application id="xdg-desktop-portal-gnome.desktop" score="0" last-seen="1787154587"/>
-    <application id="com.mattjakeman.ExtensionManager.desktop" score="1" last-seen="1787149645"/>
-    <application id="com.google.Chrome.desktop" score="7436" last-seen="1777655415"/>
-    <application id="org.telegram.desktop.desktop" score="23" last-seen="1787155065"/>
-    <application id="codeblocks.desktop" score="7" last-seen="1787267446"/>
-    <application id="libreoffice-startcenter.desktop" score="0" last-seen="1787360855"/>
-    <application id="notion.desktop" score="8" last-seen="1787267521"/>
-    <application id="system-tray.desktop" score="0" last-seen="0"/>
-    <application id="firefox.desktop" score="1" last-seen="1787361419"/>
-    <application id="org.gnome.Nautilus.desktop" score="371" last-seen="1787445749"/>
-    <application id="org.gnome.Terminal.desktop" score="11" last-seen="1787270779"/>
-    <application id="code.desktop" score="3718" last-seen="1787270826"/>
-    <application id="mysql-workbench.desktop" score="22" last-seen="1787267302"/>
-    <application id="org.gnome.Snapshot.desktop" score="76" last-seen="1787273658"/>
-    <application id="org.gnome.Extensions.desktop" score="16" last-seen="1787149036"/>
-    <application id="org.gnome.Settings.desktop" score="115" last-seen="1787443625"/>
+    <application id="toys.linux.LinuxToys.desktop" score="7" last-seen="1792709861"/>
+    <application id="org.gnome.Loupe.desktop" score="10" last-seen="1792631905"/>
+    <application id="google-chrome.desktop" score="11218.5078125" last-seen="1792711489"/>
+    <application id="conky.desktop" score="0" last-seen="1792599671"/>
+    <application id="org.gnome.SystemMonitor.desktop" score="0" last-seen="1792448006"/>
+    <application id="org.gnome.Software.desktop" score="0" last-seen="1792423491"/>
+    <application id="logisim.desktop" score="434" last-seen="1792631925"/>
+    <application id="org.gnome.TextEditor.desktop" score="6" last-seen="1792171851"/>
+    <application id="org.gnome.Papers.desktop" score="9706.625" last-seen="1792711488"/>
+    <application id="org.gnome.Console.desktop" score="16604.7734375" last-seen="1792711489"/>
+    <application id="org.gnome.Nautilus.desktop" score="60.265625" last-seen="1792696182"/>
+    <application id="Waydroid.desktop" score="5" last-seen="1792711479"/>
+    <application id="org.gnome.Terminal.desktop" score="16.4375" last-seen="1792544306"/>
+    <application id="winboat.desktop" score="1" last-seen="1792711422"/>
+    <application id="code.desktop" score="19572.3203125" last-seen="1792711383"/>
+    <application id="localsend.desktop" score="3" last-seen="1792711403"/>
   </context>
 </application-state>

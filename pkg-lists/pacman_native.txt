@@ -18,12 +18,14 @@ cpupower
 cronie
 cuda
 cudnn
+cups
 ddcutil
 decibels
 discord
 dkms
 docker
 docker-compose
+dosfstools
 earlyoom
 efibootmgr
 extension-manager
@@ -84,7 +86,7 @@ gvfs-onedrive
 gvfs-smb
 htop
 i2c-tools
-imagemagick
+icoutils
 intel-media-driver
 intel-ucode
 iotop
@@ -94,8 +96,8 @@ jq
 jre25-openjdk
 kolourpaint
 lib32-gamemode
+lib32-vulkan-intel
 libaio
-libayatana-appindicator
 libratbag
 libreoffice-fresh
 libreoffice-fresh-pt-br
@@ -145,11 +147,9 @@ playerctl
 postgresql
 power-profiles-daemon
 powertop
-python-gobject
 python-pip
 python-pipx
 python-pytorch-cuda
-python-pywal
 python-secretstorage
 rclone
 reflector
@@ -169,6 +169,7 @@ sudo
 sushi
 teamspeak3
 tecla
+thermald
 timeshift
 tor
 torbrowser-launcher
@@ -183,10 +184,13 @@ vulkan-intel
 vulkan-nouveau
 vulkan-radeon
 vulkan-tools
+waydroid
 wezterm
 wget
 wine
+winetricks
 wireless_tools
+wmctrl
 wofi
 xdg-desktop-portal-gnome
 xdg-user-dirs-gtk
