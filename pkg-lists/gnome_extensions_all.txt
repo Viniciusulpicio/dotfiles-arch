@@ -8,6 +8,7 @@ clipboard-history@alexsaveau.dev
 clipboard-indicator@tudmotu.com
 dash2dock-lite@icedman.github.com
 dash-to-dock@micxgx.gmail.com
+display-brightness-ddcutil@themightydeity.github.com
 drive-menu@gnome-shell-extensions.gcampax.github.com
 gsconnect@andyholmes.github.io
 just-perfection-desktop@just-perfection

@@ -66,48 +66,53 @@ mkdir -p "$REPO_DIR/.config" \
          "$REPO_DIR/.local/share" \
          "$REPO_DIR/.oh-my-zsh/custom"
 
-# 2. EXPORTANDO LISTAS DE PACOTES E EXTENSÕES
-echo "📦 2. Exportando listas de pacotes e extensões do sistema..."
+# 2. EXPORTANDO LISTAS DE PACOTES E EXTENSÕES (UNINDO PC PRINCIPAL + NOTEBOOK)
+echo "📦 2. Exportando listas de pacotes e extensões do sistema (modo merge multi-máquina)..."
+
+merge_list() {
+    local file="$1"
+    local new_content="$2"
+    if [ -n "$new_content" ]; then
+        touch "$file"
+        local tmp
+        tmp=$(mktemp)
+        printf "%s\n" "$new_content" | cat "$file" - | sed '/^[[:space:]]*$/d' | sort -u > "$tmp"
+        mv "$tmp" "$file"
+    fi
+}
 
 # Pacotes nativos explicitamente instalados (excluindo AUR)
 if command -v pacman &> /dev/null; then
-    # Preservar pacotes da NVIDIA/CUDA para compatibilidade com o PC principal (RTX 3060)
-    NVIDIA_SAVED=$(grep -E '^(nvidia|cuda|cudnn|libva-nvidia|lib32-nvidia|opencl-nvidia|python-pytorch-cuda)' "$REPO_DIR/pkg-lists/pacman_native.txt" 2>/dev/null || true)
-
     AUR_PKGS=$(pacman -Qqm 2>/dev/null || true)
     if [ -n "$AUR_PKGS" ]; then
-        pacman -Qqe | grep -Fxv -f <(echo "$AUR_PKGS") | sort -u > "$REPO_DIR/pkg-lists/pacman_native.txt"
-        echo "$AUR_PKGS" | sort -u > "$REPO_DIR/pkg-lists/aur_packages.txt"
+        NATIVE_PKGS=$(pacman -Qqe | grep -Fxv -f <(echo "$AUR_PKGS") | sort -u)
+        merge_list "$REPO_DIR/pkg-lists/pacman_native.txt" "$NATIVE_PKGS"
+        merge_list "$REPO_DIR/pkg-lists/aur_packages.txt" "$AUR_PKGS"
     else
-        pacman -Qqe | sort -u > "$REPO_DIR/pkg-lists/pacman_native.txt"
-        > "$REPO_DIR/pkg-lists/aur_packages.txt"
+        NATIVE_PKGS=$(pacman -Qqe | sort -u)
+        merge_list "$REPO_DIR/pkg-lists/pacman_native.txt" "$NATIVE_PKGS"
     fi
 
-    if [ -n "$NVIDIA_SAVED" ]; then
-        echo "$NVIDIA_SAVED" >> "$REPO_DIR/pkg-lists/pacman_native.txt"
-        sort -u -o "$REPO_DIR/pkg-lists/pacman_native.txt" "$REPO_DIR/pkg-lists/pacman_native.txt"
-    fi
-
-    echo "  ✓ Pacman nativos salvos (preservando Nvidia para o PC principal): $(wc -l < "$REPO_DIR/pkg-lists/pacman_native.txt") pacotes"
-    echo "  ✓ AUR salvos: $(wc -l < "$REPO_DIR/pkg-lists/aur_packages.txt") pacotes"
+    echo "  ✓ Pacman nativos salvos (unificados PC + Note): $(wc -l < "$REPO_DIR/pkg-lists/pacman_native.txt") pacotes"
+    echo "  ✓ AUR salvos (unificados PC + Note): $(wc -l < "$REPO_DIR/pkg-lists/aur_packages.txt") pacotes"
 fi
 
 # Extensões GNOME ativadas e totais
 if command -v gnome-extensions &> /dev/null; then
-    gnome-extensions list --enabled | sort -u > "$REPO_DIR/pkg-lists/gnome_extensions_enabled.txt"
-    gnome-extensions list | sort -u > "$REPO_DIR/pkg-lists/gnome_extensions_all.txt"
+    merge_list "$REPO_DIR/pkg-lists/gnome_extensions_enabled.txt" "$(gnome-extensions list --enabled 2>/dev/null || true)"
+    merge_list "$REPO_DIR/pkg-lists/gnome_extensions_all.txt" "$(gnome-extensions list 2>/dev/null || true)"
     echo "  ✓ Extensões GNOME ativas salvas: $(wc -l < "$REPO_DIR/pkg-lists/gnome_extensions_enabled.txt") extensões"
 fi
 
 # Extensões VS Code
 if command -v code &> /dev/null; then
-    code --list-extensions | sort -u > "$REPO_DIR/pkg-lists/vscode_extensions.txt"
+    merge_list "$REPO_DIR/pkg-lists/vscode_extensions.txt" "$(code --list-extensions 2>/dev/null || true)"
     echo "  ✓ Extensões VS Code salvas: $(wc -l < "$REPO_DIR/pkg-lists/vscode_extensions.txt") extensões"
 fi
 
 # Flatpaks
 if command -v flatpak &> /dev/null; then
-    flatpak list --app --columns=application 2>/dev/null | sort -u > "$REPO_DIR/pkg-lists/flatpak_list.txt" || true
+    merge_list "$REPO_DIR/pkg-lists/flatpak_list.txt" "$(flatpak list --app --columns=application 2>/dev/null || true)"
     echo "  ✓ Flatpaks salvos"
 fi
 
