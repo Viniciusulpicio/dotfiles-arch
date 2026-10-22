@@ -3,6 +3,7 @@ cachyos-ananicy-rules
 gnome-extensions-cli
 gnome-shell-extension-clipboard-indicator
 gnome-shell-extension-pop-shell-git
+gnome-shell-extension-tiling-assistant
 google-chrome
 heroic-games-launcher-bin
 linuxtoys-bin

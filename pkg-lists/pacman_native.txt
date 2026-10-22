@@ -87,6 +87,7 @@ gvfs-smb
 htop
 i2c-tools
 icoutils
+imagemagick
 intel-media-driver
 intel-ucode
 iotop
@@ -98,6 +99,7 @@ kolourpaint
 lib32-gamemode
 lib32-vulkan-intel
 libaio
+libayatana-appindicator
 libratbag
 libreoffice-fresh
 libreoffice-fresh-pt-br
@@ -147,9 +149,11 @@ playerctl
 postgresql
 power-profiles-daemon
 powertop
+python-gobject
 python-pip
 python-pipx
 python-pytorch-cuda
+python-pywal
 python-secretstorage
 rclone
 reflector
