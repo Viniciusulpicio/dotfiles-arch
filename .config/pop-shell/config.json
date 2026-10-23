@@ -23,9 +23,16 @@
       "title": "Constructor Virtual.*"
     },
     {
-      "title": "Información"
+      "title": "Informaci\u00f3n"
+    },
+    {
+      "class": "openwhip"
     }
   ],
-  "skiptaskbarhidden": [],
+  "skiptaskbarhidden": [
+    {
+      "class": "openwhip"
+    }
+  ],
   "log_on_focus": false
 }

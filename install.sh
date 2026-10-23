@@ -368,6 +368,16 @@ RULE
     echo "  ✓ System Tray instalado e atalhos registrados."
 fi
 
+if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
+    mkdir -p "$TARGET_HOME/openwhip-visual"
+    cp -rf "$SCRIPT_DIR/openwhip-visual/"* "$TARGET_HOME/openwhip-visual/" 2>/dev/null || true
+    if [ ! -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ] && command -v npm &>/dev/null; then
+        echo "  -> Instalando dependências do OpenWhip Visual..."
+        (cd "$TARGET_HOME/openwhip-visual" && npm install --silent 2>/dev/null) || true
+    fi
+    echo "  ✓ OpenWhip Visual restaurado."
+fi
+
 if [ -f "$SCRIPT_DIR/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
     echo "⚡ Restaurando configurações de responsividade para Downloads e Jogos (/etc/sysctl.d)..."
     sudo mkdir -p /etc/sysctl.d

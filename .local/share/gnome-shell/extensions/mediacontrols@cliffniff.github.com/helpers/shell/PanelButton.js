@@ -497,8 +497,14 @@ class PanelButton extends PanelMenu.Button {
             });
         }
         let artSet = false;
-        let stream = await getImage(this.playerProxy.metadata["mpris:artUrl"]);
-        if (stream == null && this.playerProxy.metadata["xesam:url"] != null) {
+        if (this.playerProxy == null) {
+            return;
+        }
+        let stream = await getImage(this.playerProxy.metadata?.["mpris:artUrl"]);
+        if (this.playerProxy == null) {
+            return;
+        }
+        if (stream == null && this.playerProxy.metadata?.["xesam:url"] != null) {
             const trackUri = GLib.uri_parse(this.playerProxy.metadata["xesam:url"], GLib.UriFlags.NONE);
             if (trackUri != null && trackUri.get_scheme() === "file") {
                 const file = Gio.File.new_for_uri(trackUri.to_string());
@@ -510,6 +516,9 @@ class PanelButton extends PanelMenu.Button {
                         null,
                     )
                     .catch(errorLog);
+                if (this.playerProxy == null) {
+                    return;
+                }
                 if (info != null) {
                     const path = info.get_attribute_byte_string(Gio.FILE_ATTRIBUTE_THUMBNAIL_PATH);
                     if (path == null) {
@@ -517,15 +526,24 @@ class PanelButton extends PanelMenu.Button {
                     } else {
                         const thumb = Gio.File.new_for_path(path);
                         stream = await getImage(thumb.get_uri());
+                        if (this.playerProxy == null) {
+                            return;
+                        }
                     }
                 }
             }
+        }
+        if (this.menuImage == null || this.menuBox == null) {
+            return;
         }
         const width = this.getMenuItemWidth();
         if (stream != null) {
             /** @type {Promise<GdkPixbuf.Pixbuf>} */
             const pixbufPromise = /** @type {any} */ (GdkPixbuf.Pixbuf.new_from_stream_async(stream, null));
             const pixbuf = await pixbufPromise.catch(errorLog);
+            if (this.menuImage == null || this.menuBox == null) {
+                return;
+            }
             if (pixbuf != null) {
                 const aspectRatio = pixbuf.width / pixbuf.height;
                 const height = width / aspectRatio;
@@ -607,8 +625,14 @@ class PanelButton extends PanelMenu.Button {
      * @returns {Promise<void>}
      */
     async addMenuSlider() {
+        if (this.playerProxy == null) {
+            return;
+        }
         const position = await this.playerProxy.position.catch(errorLog);
-        const length = this.playerProxy.metadata["mpris:length"];
+        if (this.playerProxy == null || this.menuBox == null) {
+            return;
+        }
+        const length = this.playerProxy.metadata?.["mpris:length"];
         const rate = this.playerProxy.rate;
         if (this.menuSlider == null) {
             this.menuSlider = new MenuSlider();

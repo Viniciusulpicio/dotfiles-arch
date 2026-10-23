@@ -31,5 +31,6 @@
     "/home/vinicius/temp/estrutura-dados-c/lib",
     "/home/vinicius/temp/cad",
     "/home/vinicius/temp/poo-php/composicao"
-  ]
+  ],
+  "verbosity": "high"
 }

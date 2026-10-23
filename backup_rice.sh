@@ -161,10 +161,14 @@ if [ -n "$CURRENT_WALL" ] && [ -f "$CURRENT_WALL" ]; then
 fi
 
 
-# 5.1 BACKUP DO SYSTEM TRAY
+# 5.1 BACKUP DO SYSTEM TRAY E OPENWHIP VISUAL
 if [ -d "$HOME/system-tray" ]; then
     echo "🖥️ 5.1 Copiando projeto System Tray..."
     copy_safe "$HOME/system-tray" "$REPO_DIR/"
+fi
+if [ -d "$HOME/openwhip-visual" ]; then
+    echo "⚡ 5.1b Copiando projeto OpenWhip Visual..."
+    copy_safe "$HOME/openwhip-visual" "$REPO_DIR/"
 fi
 
 # 5.2 BACKUP DE CONFIGURAÇÕES DE RESPONSIVIDADE DO SISTEMA (/etc/sysctl.d)
