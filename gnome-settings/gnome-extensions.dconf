@@ -6,6 +6,9 @@ restore-state=false
 sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
+[appindicator]
+tray-pos='left'
+
 [arch-update]
 always-visible=false
 enable-positioning=false
@@ -56,7 +59,7 @@ enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=4
+indicator-position-max=5
 restore-state=true
 show-indicator='always'
 user-enabled=true

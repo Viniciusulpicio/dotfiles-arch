@@ -88,9 +88,13 @@ export default class PlayerProxy {
         this.mprisProxy = proxies[0];
         this.mprisPlayerProxy = proxies[1];
         this.propertiesProxy = proxies[2];
-        this.propertiesProxy.connectSignal("PropertiesChanged", (proxy, senderName, [, changedProperties]) => {
+        this.propertiesProxy.connectSignal("PropertiesChanged", (proxy, senderName, [ifaceName, changedProperties]) => {
             for (const [property, value] of Object.entries(changedProperties)) {
-                this.mprisPlayerProxy.set_cached_property(property, value);
+                if (ifaceName === MPRIS_PLAYER_IFACE_NAME) {
+                    this.mprisPlayerProxy.set_cached_property(property, value);
+                } else {
+                    this.mprisProxy.set_cached_property(property, value);
+                }
                 this.callOnChangedListeners(
                     /** @type {KeysOf<PlayerProxyProperties>} */ (property),
                     value.recursiveUnpack(),
@@ -160,7 +164,7 @@ export default class PlayerProxy {
 
                     const unpackedPosition = positionVariant[0].recursiveUnpack();
                     const unpackedMetadata = metadataVariant[0].recursiveUnpack();
-                    if (unpackedPosition > 0 && unpackedMetadata["mpris:length"] > 0) {
+                    if (unpackedMetadata?.["xesam:title"] || (unpackedPosition > 0 && unpackedMetadata?.["mpris:length"] > 0)) {
                         this.mprisPlayerProxy.set_cached_property("Position", positionVariant[0]);
                         this.mprisPlayerProxy.set_cached_property("Metadata", metadataVariant[0]);
                         this.callOnChangedListeners("Metadata", unpackedMetadata);
@@ -571,22 +575,20 @@ export default class PlayerProxy {
      * @returns {number}
      */
     onChanged(property, callback) {
-        const listeners = this.changeListeners.get(property);
-        let id;
+        let listeners = this.changeListeners.get(property);
         if (listeners == null) {
-            id = 0;
-            this.changeListeners.set(property, [callback]);
-        } else {
-            id = listeners.push(callback);
+            listeners = [];
+            this.changeListeners.set(property, listeners);
         }
-        return id;
+        listeners.push(callback);
+        return callback;
     }
 
     /**
      * @public
      * @template {KeysOf<PlayerProxyProperties>} T
      * @param {T} property
-     * @param {number} id
+     * @param {any} id
      * @returns {void}
      */
     removeListener(property, id) {
@@ -594,7 +596,10 @@ export default class PlayerProxy {
         if (listeners == null) {
             return;
         }
-        listeners.splice(id, 1);
+        const index = typeof id === "function" ? listeners.indexOf(id) : id;
+        if (index !== -1 && index < listeners.length) {
+            listeners.splice(index, 1);
+        }
     }
 
     /**

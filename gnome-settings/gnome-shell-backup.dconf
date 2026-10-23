@@ -6,7 +6,7 @@ window-size=(1248, 1001)
 font-scale=0.90000000000000002
 last-window-fullscreen=false
 last-window-maximised=false
-last-window-size=(360, 832)
+last-window-size=(768, 832)
 
 [Extensions]
 window-height=832
@@ -326,10 +326,10 @@ show-sidebar=false
 sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
-window-height=416
+window-height=832
 window-maximized=false
-window-width=384
-zoom=1.0462628481607008
+window-width=1536
+zoom=0.87855773289875838
 
 [portal/filechooser/antigravity]
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
@@ -366,7 +366,7 @@ last-folder-path='/run/media/vinicius/Ventoy/ISOs'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
+night-light-last-coordinates=(-22.213899999999999, -49.945799999999998)
 night-light-schedule-automatic=false
 
 [settings-daemon/plugins/housekeeping]
@@ -448,6 +448,9 @@ restore-state=false
 sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
+[shell/extensions/appindicator]
+tray-pos='left'
+
 [shell/extensions/arch-update]
 always-visible=false
 enable-positioning=false
@@ -498,7 +501,7 @@ enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=4
+indicator-position-max=5
 restore-state=true
 show-indicator='always'
 user-enabled=true
@@ -730,9 +733,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [software]
-check-timestamp=int64 1792711174
+check-timestamp=int64 1792772971
 first-run=false
-flatpak-purge-timestamp=int64 1792695932
+flatpak-purge-timestamp=int64 1792770078
 
 [system/location]
 enabled=true

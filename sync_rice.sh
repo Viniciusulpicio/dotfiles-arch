@@ -146,6 +146,15 @@ if [ -d "$SCRIPT_DIR/system-tray" ]; then
     cp -rf "$SCRIPT_DIR/system-tray/"* "$TARGET_HOME/system-tray/" 2>/dev/null || true
 fi
 
+if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
+    mkdir -p "$TARGET_HOME/openwhip-visual"
+    cp -rf "$SCRIPT_DIR/openwhip-visual/"* "$TARGET_HOME/openwhip-visual/" 2>/dev/null || true
+    if [ ! -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ] && command -v npm &>/dev/null; then
+        echo "  -> Instalando dependências do OpenWhip Visual..."
+        (cd "$TARGET_HOME/openwhip-visual" && npm install --silent 2>/dev/null) || true
+    fi
+fi
+
 # 5. Sincronizar extensões novas do VS Code
 CODE_BIN=$(command -v code || command -v visual-studio-code || true)
 if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; then

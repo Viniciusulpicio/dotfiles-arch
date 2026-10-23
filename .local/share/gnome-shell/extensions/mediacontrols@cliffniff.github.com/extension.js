@@ -585,6 +585,7 @@ export default class MediaControls extends Extension {
                 this.panelBtn?.updateWidgets(WidgetFlags.MENU_PLAYERS);
             });
             this.playerProxies.set(busName, playerProxy);
+            this.setActivePlayer();
             this.panelBtn?.updateWidgets(WidgetFlags.MENU_PLAYERS);
         } catch (e) {
             errorLog("Failed to add player:", busName, e);
