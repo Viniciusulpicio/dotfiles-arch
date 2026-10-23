@@ -2,7 +2,7 @@
 Type=Application
 Name=OpenWhip (Visual)
 Comment=Whip overlay visual na barra superior do GNOME
-Exec=sh -c "sleep 6 && if [ -x \"$HOME/openwhip-visual/node_modules/electron/dist/electron\" ]; then \"$HOME/openwhip-visual/node_modules/electron/dist/electron\" \"$HOME/openwhip-visual\"; elif command -v electron >/dev/null 2>&1 && [ -d \"$HOME/openwhip-visual\" ]; then electron \"$HOME/openwhip-visual\"; fi"
+Exec=sh -c "sleep 6 && if [ -x ~/openwhip-visual/node_modules/electron/dist/electron ]; then exec ~/openwhip-visual/node_modules/electron/dist/electron ~/openwhip-visual; elif command -v electron >/dev/null 2>&1 && [ -d ~/openwhip-visual ]; then exec electron ~/openwhip-visual; fi"
 Icon=/home/vinicius/openwhip-visual/icon/tray-linux.png
 Terminal=false
 Categories=Utility;
