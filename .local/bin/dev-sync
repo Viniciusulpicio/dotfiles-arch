@@ -95,6 +95,15 @@ do_pull() {
         --transfers 8 \
         --progress
 
+    # Sincronizar repositório pesado 'leis' diretamente via Git (evitando milhares de arquivos no Rclone)
+    if [[ ! -d "$LOCAL_DIR/leis/.git" ]]; then
+        echo -e "\n${BLUE}==> Clonando repositório 'leis' via Git...${NC}"
+        git clone https://github.com/ctresb/leis.git "$LOCAL_DIR/leis" || true
+    else
+        echo -e "\n${BLUE}==> Atualizando repositório 'leis' via Git...${NC}"
+        git -C "$LOCAL_DIR/leis" pull --ff-only || true
+    fi
+
     echo -e "\n${GREEN}✔ Projetos atualizados com sucesso! [$(date +'%H:%M:%S')]${NC}"
     notify "Projetos atualizados a partir do Google Drive!"
 }
