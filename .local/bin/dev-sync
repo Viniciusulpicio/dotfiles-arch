@@ -58,6 +58,17 @@ check_dependencies() {
     fi
 }
 
+sync_leis_repo() {
+    mkdir -p "$LOCAL_DIR"
+    if [[ ! -d "$LOCAL_DIR/leis/.git" ]]; then
+        echo -e "\n${BLUE}==> Clonando repositório 'leis' via Git...${NC}"
+        git clone https://github.com/ctresb/leis.git "$LOCAL_DIR/leis" || true
+    else
+        echo -e "\n${BLUE}==> Atualizando repositório 'leis' via Git...${NC}"
+        git -C "$LOCAL_DIR/leis" pull --ff-only || true
+    fi
+}
+
 do_push() {
     check_dependencies
     echo -e "${BLUE}==> [PUSH] Enviando arquivos locais para o Google Drive...${NC}"
@@ -69,6 +80,8 @@ do_push() {
         --fast-list \
         --transfers 8 \
         --progress
+
+    sync_leis_repo
 
     echo -e "\n${GREEN}✔ Sincronização concluída com sucesso! [$(date +'%H:%M:%S')]${NC}"
     notify "Projetos enviados para o Google Drive com sucesso!"
@@ -95,14 +108,7 @@ do_pull() {
         --transfers 8 \
         --progress
 
-    # Sincronizar repositório pesado 'leis' diretamente via Git (evitando milhares de arquivos no Rclone)
-    if [[ ! -d "$LOCAL_DIR/leis/.git" ]]; then
-        echo -e "\n${BLUE}==> Clonando repositório 'leis' via Git...${NC}"
-        git clone https://github.com/ctresb/leis.git "$LOCAL_DIR/leis" || true
-    else
-        echo -e "\n${BLUE}==> Atualizando repositório 'leis' via Git...${NC}"
-        git -C "$LOCAL_DIR/leis" pull --ff-only || true
-    fi
+    sync_leis_repo
 
     echo -e "\n${GREEN}✔ Projetos atualizados com sucesso! [$(date +'%H:%M:%S')]${NC}"
     notify "Projetos atualizados a partir do Google Drive!"
