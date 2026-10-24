@@ -58,6 +58,16 @@ check_dependencies() {
     fi
 }
 
+repair_git_dirs() {
+    # Garante que todas as pastas .git tenham a estrutura obrigatória (refs/heads, refs/tags, objects/info, objects/pack)
+    # pois o Google Drive / rclone pode omitir pastas vazias após git gc / pack-refs, fazendo o git achar que não é um repo.
+    if [[ -d "$LOCAL_DIR" ]]; then
+        while IFS= read -r -d '' gitdir; do
+            mkdir -p "$gitdir/refs/heads" "$gitdir/refs/tags" "$gitdir/objects/info" "$gitdir/objects/pack"
+        done < <(find "$LOCAL_DIR" -type d -name ".git" -print0 2>/dev/null)
+    fi
+}
+
 sync_leis_repo() {
     mkdir -p "$LOCAL_DIR"
     if [[ ! -d "$LOCAL_DIR/leis/.git" ]]; then
@@ -71,12 +81,14 @@ sync_leis_repo() {
 
 do_push() {
     check_dependencies
+    repair_git_dirs
     echo -e "${BLUE}==> [PUSH] Enviando arquivos locais para o Google Drive...${NC}"
     echo -e "Origem:  ${YELLOW}$LOCAL_DIR${NC}"
     echo -e "Destino: ${YELLOW}$REMOTE_DIR${NC}\n"
 
     rclone sync "$LOCAL_DIR" "$REMOTE_DIR" \
         --filter-from "$FILTER_FILE" \
+        --create-empty-src-dirs \
         --fast-list \
         --transfers 8 \
         --progress
@@ -104,10 +116,12 @@ do_pull() {
     mkdir -p "$LOCAL_DIR"
     rclone sync "$REMOTE_DIR" "$LOCAL_DIR" \
         --filter-from "$FILTER_FILE" \
+        --create-empty-src-dirs \
         --fast-list \
         --transfers 8 \
         --progress
 
+    repair_git_dirs
     sync_leis_repo
 
     echo -e "\n${GREEN}✔ Projetos atualizados com sucesso! [$(date +'%H:%M:%S')]${NC}"

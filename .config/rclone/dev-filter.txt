@@ -22,5 +22,8 @@
 - **/*~
 - **/.DS_Store
 
+# Manter explicitamente metadados de repositorios Git
++ **/.git/**
+
 # Incluir todo o resto
 + **
