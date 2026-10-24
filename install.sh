@@ -388,8 +388,12 @@ if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
     mkdir -p "$TARGET_HOME/openwhip-visual"
     cp -rf "$SCRIPT_DIR/openwhip-visual/"* "$TARGET_HOME/openwhip-visual/" 2>/dev/null || true
     if [ ! -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ] && command -v npm &>/dev/null; then
-        echo "  -> Instalando dependências do OpenWhip Visual..."
-        (cd "$TARGET_HOME/openwhip-visual" && npm install) || true
+        echo "  -> Instalando binário Electron do OpenWhip Visual (Chicote)..."
+        (
+            cd "$TARGET_HOME/openwhip-visual" && \
+            npm install --no-audit --no-fund && \
+            node -e 'const {downloadArtifact}=require("./node_modules/@electron/get"); const {version}=require("./node_modules/electron/package.json"); downloadArtifact({version,artifactName:"electron",platform:"linux",arch:"x64"}).then(z=>{require("fs").mkdirSync("node_modules/electron/dist",{recursive:true}); require("child_process").execFileSync("unzip",["-o","-q",z,"-d","node_modules/electron/dist"]); require("fs").writeFileSync("node_modules/electron/path.txt","electron");});'
+        ) || true
     fi
     if ! pgrep -f "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1; then
         if [ -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ]; then

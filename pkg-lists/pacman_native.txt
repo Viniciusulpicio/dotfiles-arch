@@ -28,6 +28,7 @@ docker-compose
 dosfstools
 earlyoom
 efibootmgr
+electron
 extension-manager
 f3d
 fastfetch
@@ -180,6 +181,7 @@ torbrowser-launcher
 trash-cli
 ttf-jetbrains-mono-nerd
 ufw
+unzip
 vim
 virtualbox
 virtualbox-host-dkms
