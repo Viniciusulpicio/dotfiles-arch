@@ -123,6 +123,8 @@ if command -v dconf &> /dev/null; then
     dconf dump /org/gnome/ > "$REPO_DIR/gnome-settings/gnome-shell-backup.dconf" 2>/dev/null || true
     dconf dump /com/github/ > "$REPO_DIR/gnome-settings/github-extensions.dconf" 2>/dev/null || true
     dconf dump /org/gnome/shell/extensions/ > "$REPO_DIR/gnome-settings/gnome-extensions.dconf" 2>/dev/null || true
+    dconf dump /org/gnome/desktop/app-folders/ > "$REPO_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
+    dconf read /org/gnome/shell/app-picker-layout > "$REPO_DIR/gnome-settings/app-picker-layout.gv" 2>/dev/null || true
     echo "  ✓ Dconf exportado com sucesso"
 fi
 
@@ -190,7 +192,7 @@ echo "🔤 7. Copiando assets em ~/.local/share..."
 if [ -d "$HOME/.local/share/gnome-shell" ]; then
     copy_safe "$HOME/.local/share/gnome-shell" "$REPO_DIR/.local/share/"
 fi
-for share_dir in fonts icons themes applications; do
+for share_dir in fonts icons themes applications logisim pixmaps; do
     if [ -d "$HOME/.local/share/$share_dir" ]; then
         copy_safe "$HOME/.local/share/$share_dir" "$REPO_DIR/.local/share/"
     fi

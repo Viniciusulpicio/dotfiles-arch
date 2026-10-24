@@ -1,0 +1,31 @@
+[/]
+folder-children=['System', 'Utilities', 'YaST', 'Pardus', 'b51017c7-5a3a-4de7-9875-0f939e72be73', 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e']
+
+[folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[folders/System]
+apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Music.desktop', 'org.gnome.SimpleScan.desktop', 'org.gnome.Showtime.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Tour.desktop', 'btop.desktop', 'org.gnome.Yelp.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'cmake-gui.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop', 'io.github.benjamimgois.goverlay.desktop', 'com.github.ztefn.haguichi.desktop', 'htop.desktop', 'jshell-java-openjdk.desktop', 'org.gnome.Software.desktop', 'qvidcap.desktop', 'avahi-discover.desktop', 'jconsole-java-openjdk.desktop', 'vim.desktop', 'org.gnome.Extensions.desktop', 'conky.desktop', 'lstopo.desktop', 'wpgtk.desktop', 'io.github.flattool.Ignition.desktop', 'torbrowser-settings.desktop', 'dev.overlayed.Overlayed.desktop', 'input-remapper-gtk.desktop', 'org.gnome.Terminal.desktop', 'uxterm.desktop', 'xterm.desktop', 'virtualbox.desktop', 'abiword.desktop']
+name='X-GNOME-Shell-System.directory'
+translate=true
+
+[folders/Utilities]
+apps=['org.gnome.Decibels.desktop', 'org.gnome.Connections.desktop', 'org.gnome.Papers.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'nvtop.desktop', 'org.wezfurlong.wezterm.desktop', 'timeshift-gtk.desktop', 'org.gnome.Evince.desktop', 'qv4l2.desktop', 'bssh.desktop', 'org.manjaro.pamac.manager.desktop', 'com.mattjakeman.ExtensionManager.desktop', 'Alacritty.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'org.pulseaudio.pavucontrol.desktop', 'io.gitlab.jstest_gtk.jstest_gtk.desktop', 'f3d.desktop', 'org.kde.kolourpaint.desktop', 'pinta.desktop', 'yad-settings.desktop', 'yad-icon-browser.desktop', 'solaar.desktop', 'org.freedesktop.Piper.desktop', 'org.remmina.Remmina.desktop', 'org.torproject.torbrowser-launcher.desktop', 'org.torproject.torbrowser-launcher.settings.desktop', 'org.gnome.seahorse.Application.desktop']
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
+[folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[folders/b51017c7-5a3a-4de7-9875-0f939e72be73]
+apps=['Counter-Strike 2.desktop', 'curseforge.desktop', 'Arena Breakout Infinite.desktop', 'DayZ.desktop', 'PEAK.desktop', 'RV There Yet.desktop', 'sklauncher.desktop', 'The Witcher 3 Wild Hunt.desktop', 'bvnc.desktop', 'heroic.desktop', 'hydra.desktop', 'UNO.desktop', 'Raft.desktop', "Liar's Bar.desktop", 'Grand Theft Auto V Enhanced.desktop', 'FPS Chess.desktop', 'steam.desktop']
+name='Jogos'
+translate=false
+
+[folders/dc081261-a3ba-48ea-bbf0-f002d96b2c7e]
+apps=['libreoffice-math.desktop', 'libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-calc.desktop', 'libreoffice-base.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop', 'cups.desktop']
+name='Escritório'

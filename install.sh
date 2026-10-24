@@ -82,6 +82,7 @@ CRITICAL_PKGS=(
     "btop" "cava" "conky" "neofetch"
     "pipewire" "pipewire-alsa" "pipewire-jack" "pipewire-pulse" "wireplumber"
     "python-pywal" "python-gobject" "libayatana-appindicator"
+    "nodejs" "npm" "electron"
     "dconf" "gnome-shell-extensions" "gnome-tweaks"
     "ttf-jetbrains-mono-nerd" "noto-fonts" "noto-fonts-cjk"
 )
@@ -315,8 +316,23 @@ if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
     sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
 fi
 
-# Ajustar eventuais caminhos com usuário hardcoded nas configs restauradas
-find "$TARGET_HOME/.config" -maxdepth 3 -type f \( -name "*.json" -o -name "*.conf" -o -name "*.ini" -o -name "*.sh" -o -name "*.desktop" \) -exec sed -i "s|/home/vinicius|$TARGET_HOME|g" {} + 2>/dev/null || true
+# Ajustar eventuais caminhos com usuário hardcoded nas configs e atalhos restaurados
+find "$TARGET_HOME/.config" "$TARGET_HOME/.local/share/applications" -maxdepth 3 -type f \( -name "*.json" -o -name "*.conf" -o -name "*.ini" -o -name "*.sh" -o -name "*.desktop" \) -exec sed -i "s|/home/vinicius|$TARGET_HOME|g" {} + 2>/dev/null || true
+
+# Atualizar caches de ícones e .desktop antes de aplicar a grade de aplicativos
+if command -v gtk-update-icon-cache &>/dev/null && [ -d "$TARGET_HOME/.local/share/icons/hicolor" ]; then
+    gtk-update-icon-cache -f -t "$TARGET_HOME/.local/share/icons/hicolor" 2>/dev/null || true
+fi
+if command -v update-desktop-database &>/dev/null && [ -d "$TARGET_HOME/.local/share/applications" ]; then
+    update-desktop-database "$TARGET_HOME/.local/share/applications" 2>/dev/null || true
+fi
+
+if [ -f "$SCRIPT_DIR/gnome-settings/app-folders.dconf" ]; then
+    dconf load /org/gnome/desktop/app-folders/ < "$SCRIPT_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
+fi
+if [ -f "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv" ]; then
+    dconf write /org/gnome/shell/app-picker-layout "$(cat "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv")" 2>/dev/null || true
+fi
 
 
 # Habilitar extensões do GNOME
@@ -373,7 +389,14 @@ if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
     cp -rf "$SCRIPT_DIR/openwhip-visual/"* "$TARGET_HOME/openwhip-visual/" 2>/dev/null || true
     if [ ! -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ] && command -v npm &>/dev/null; then
         echo "  -> Instalando dependências do OpenWhip Visual..."
-        (cd "$TARGET_HOME/openwhip-visual" && npm install --silent 2>/dev/null) || true
+        (cd "$TARGET_HOME/openwhip-visual" && npm install) || true
+    fi
+    if ! pgrep -f "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1; then
+        if [ -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ]; then
+            nohup "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1 &
+        elif command -v electron >/dev/null 2>&1; then
+            nohup electron "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1 &
+        fi
     fi
     echo "  ✓ OpenWhip Visual restaurado."
 fi

@@ -141,6 +141,17 @@ if [ -d "$SCRIPT_DIR/.local/share" ]; then
     cp -rf "$SCRIPT_DIR/.local/share/"* "$TARGET_HOME/.local/share/" 2>/dev/null || true
 fi
 
+# Ajustar caminhos hardcoded em .config e .local/share/applications
+find "$TARGET_HOME/.config" "$TARGET_HOME/.local/share/applications" -maxdepth 3 -type f \( -name "*.json" -o -name "*.conf" -o -name "*.ini" -o -name "*.sh" -o -name "*.desktop" \) -exec sed -i "s|/home/vinicius|$TARGET_HOME|g" {} + 2>/dev/null || true
+
+# Atualizar caches de ícones e atalhos (.desktop) para Logisim, OpenWhip, etc.
+if command -v gtk-update-icon-cache &>/dev/null && [ -d "$TARGET_HOME/.local/share/icons/hicolor" ]; then
+    gtk-update-icon-cache -f -t "$TARGET_HOME/.local/share/icons/hicolor" 2>/dev/null || true
+fi
+if command -v update-desktop-database &>/dev/null && [ -d "$TARGET_HOME/.local/share/applications" ]; then
+    update-desktop-database "$TARGET_HOME/.local/share/applications" 2>/dev/null || true
+fi
+
 if [ -d "$SCRIPT_DIR/system-tray" ]; then
     mkdir -p "$TARGET_HOME/system-tray"
     cp -rf "$SCRIPT_DIR/system-tray/"* "$TARGET_HOME/system-tray/" 2>/dev/null || true
@@ -150,8 +161,8 @@ if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
     mkdir -p "$TARGET_HOME/openwhip-visual"
     cp -rf "$SCRIPT_DIR/openwhip-visual/"* "$TARGET_HOME/openwhip-visual/" 2>/dev/null || true
     if [ ! -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ] && command -v npm &>/dev/null; then
-        echo "  -> Instalando dependências do OpenWhip Visual..."
-        (cd "$TARGET_HOME/openwhip-visual" && npm install --silent 2>/dev/null) || true
+        echo "  -> Instalando dependências do OpenWhip Visual (Chicote)..."
+        (cd "$TARGET_HOME/openwhip-visual" && npm install) || true
     fi
 fi
 
@@ -172,12 +183,44 @@ if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; t
     echo "  ✓ Extensões do VS Code equiparadas."
 fi
 
-# 6. Compilar schemas GNOME e aplicar correções GNOME 51
+# 6. Compilar schemas GNOME, restaurar Grade de Apps (dconf) e iniciar Chicote
 echo ""
-echo "🔧 6. Atualizando schemas de extensões GNOME..."
+echo "🔧 6. Atualizando schemas de extensões, Grade de Apps do GNOME e OpenWhip..."
 for schema_dir in "$TARGET_HOME"/.local/share/gnome-shell/extensions/*/schemas; do
     [ -d "$schema_dir" ] && glib-compile-schemas "$schema_dir" 2>/dev/null || true
 done
+
+if command -v dconf &>/dev/null; then
+    if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
+        sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
+    fi
+    if [ -f "$SCRIPT_DIR/gnome-settings/app-folders.dconf" ]; then
+        dconf load /org/gnome/desktop/app-folders/ < "$SCRIPT_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
+    fi
+    if [ -f "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv" ]; then
+        dconf write /org/gnome/shell/app-picker-layout "$(cat "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv")" 2>/dev/null || true
+    fi
+    echo "  ✓ Grade de aplicativos e pastas do GNOME sincronizadas."
+fi
+
+if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ] && command -v gnome-extensions &>/dev/null; then
+    while read -r ext; do
+        [[ -z "$ext" || "$ext" =~ ^# ]] && continue
+        gnome-extensions enable "$ext" 2>/dev/null || true
+    done < "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt"
+    echo "  ✓ Extensões do GNOME (incluindo AppIndicator) ativadas."
+fi
+
+systemctl --user daemon-reload 2>/dev/null || true
+if ! pgrep -f "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1; then
+    if [ -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ]; then
+        nohup "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1 &
+        echo "  ✓ OpenWhip (Chicote) iniciado em segundo plano."
+    elif command -v electron >/dev/null 2>&1 && [ -d "$TARGET_HOME/openwhip-visual" ]; then
+        nohup electron "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1 &
+        echo "  ✓ OpenWhip (Chicote) iniciado via electron do sistema."
+    fi
+fi
 
 echo ""
 echo "================================================================="
