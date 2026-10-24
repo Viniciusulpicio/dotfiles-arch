@@ -1,29 +1,21 @@
 # Regras de exclusao para sincronizacao de desenvolvimento (rclone)
-
-# Manter explicitamente dist, scratch e arquivos temporarios/assistentes do agy
-+ **/dist/**
-+ **/scratch/**
-+ **/.gemini/**
-+ **/.antigravity/**
+# IMPORTANTE: Nao usar regras '+' nem prefixo '**/' em pastas.
+# Regras '+' ou '**/' desativam o pruning de diretorios do rclone e fazem ele
+# varrer/criar milhares de subpastas de .venv, node_modules, .pio, .espidf e leis.
+# Por padrao, o rclone ja inclui todos os arquivos e pastas ocultas (.git, .gemini, dist, scratch).
 
 # Pastas pesadas de compilacao e caches de pacotes
 - /leis/**
-- **/.pio/**
-- **/.espidf/**
-- **/node_modules/**
-- **/__pycache__/**
-- **/*.pyc
-- **/.venv/**
+- .pio/**
+- .espidf/**
+- node_modules/**
+- __pycache__/**
+- *.pyc
+- .venv/**
 
-# Travas temporarias de git
-- **/.git/index.lock
-- **/.git/refs/heads/*.lock
-- **/*.swp
-- **/*~
-- **/.DS_Store
-
-# Manter explicitamente metadados de repositorios Git
-+ **/.git/**
-
-# Incluir todo o resto
-+ **
+# Travas temporarias de git e arquivos temporarios de editor
+- .git/index.lock
+- .git/refs/heads/*.lock
+- *.swp
+- *~
+- .DS_Store

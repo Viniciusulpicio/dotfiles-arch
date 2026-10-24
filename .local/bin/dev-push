@@ -88,7 +88,8 @@ do_push() {
 
     rclone sync "$LOCAL_DIR" "$REMOTE_DIR" \
         --filter-from "$FILTER_FILE" \
-        --create-empty-src-dirs \
+        --bind 0.0.0.0 \
+        --track-renames \
         --fast-list \
         --transfers 8 \
         --progress
@@ -106,7 +107,7 @@ do_pull() {
     echo -e "Destino: ${YELLOW}$LOCAL_DIR${NC}\n"
 
     # Verificar se a pasta já existe no Google Drive
-    if ! rclone lsf "$REMOTE_DIR" --max-depth 1 >/dev/null 2>&1; then
+    if ! rclone lsf "$REMOTE_DIR" --bind 0.0.0.0 --max-depth 1 >/dev/null 2>&1; then
         echo -e "${RED}[AVISO] A pasta remota '$REMOTE_DIR' ainda não existe no Google Drive.${NC}"
         echo -e "${YELLOW}Isso acontece porque o primeiro 'dev-push' ainda não foi executado.${NC}"
         echo -e "Execute primeiro: ${GREEN}dev-push${NC} no PC onde estão seus projetos para criá-la na nuvem.\n"
@@ -116,7 +117,8 @@ do_pull() {
     mkdir -p "$LOCAL_DIR"
     rclone sync "$REMOTE_DIR" "$LOCAL_DIR" \
         --filter-from "$FILTER_FILE" \
-        --create-empty-src-dirs \
+        --bind 0.0.0.0 \
+        --track-renames \
         --fast-list \
         --transfers 8 \
         --progress
@@ -133,6 +135,7 @@ do_status() {
     echo -e "${BLUE}==> Verificando diferenças entre local e Google Drive...${NC}\n"
     rclone check "$LOCAL_DIR" "$REMOTE_DIR" \
         --filter-from "$FILTER_FILE" \
+        --bind 0.0.0.0 \
         --one-way || true
 }
 

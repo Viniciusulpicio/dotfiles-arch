@@ -215,7 +215,13 @@ if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ] && command -v gno
     echo "  ✓ Extensões do GNOME (incluindo AppIndicator) ativadas."
 fi
 
+mkdir -p "$TARGET_HOME/GoogleDrive" "$TARGET_HOME/DriveUnimar"
+rm -f "$TARGET_HOME/GoogleDrive/.trackerignore" "$TARGET_HOME/GoogleDrive/.nomedia" "$TARGET_HOME/DriveUnimar/.trackerignore" "$TARGET_HOME/DriveUnimar/.nomedia" 2>/dev/null || true
+rm -f "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-googledrive.service" "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-driveunimar.service" 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true
+if rclone listremotes 2>/dev/null | grep -q "^GoogleDrive:"; then
+    systemctl --user enable --now rclone-googledrive.service 2>/dev/null || true
+fi
 if ! pgrep -f "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1; then
     if [ -x "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" ]; then
         nohup "$TARGET_HOME/openwhip-visual/node_modules/electron/dist/electron" "$TARGET_HOME/openwhip-visual" >/dev/null 2>&1 &
