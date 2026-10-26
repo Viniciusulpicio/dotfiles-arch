@@ -80,10 +80,12 @@ sudo systemctl disable tor.service 2>/dev/null # O Tor também fica desligado no
 echo "📂 Restaurando configurações pessoais..."
 cp .zshrc .p10k.zsh .bashrc .profile ~/ 2>/dev/null
 cp -r .config/* ~/.config/ 2>/dev/null
-mkdir -p ~/Pictures/Wallpaper ~/.local/bin ~/.local/share
+mkdir -p ~/Pictures/Wallpaper ~/.local/bin ~/.local/share ~/scripts
 cp -r Pictures/Wallpaper/* ~/Pictures/Wallpaper/ 2>/dev/null
 cp -r .local/bin/* ~/.local/bin/ 2>/dev/null
 chmod +x ~/.local/bin/* 2>/dev/null
+cp -r scripts/*.sh ~/scripts/ 2>/dev/null
+chmod +x ~/scripts/*.sh 2>/dev/null
 
 # Oh-My-Zsh Automático
 if [ ! -d "$HOME/.oh-my-zsh" ]; then

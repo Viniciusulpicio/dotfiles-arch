@@ -132,6 +132,11 @@ def main():
         subprocess.run(f"cp -rf {dotfiles_dir}/.local/bin/* {home}/.local/bin/", shell=True)
         subprocess.run(f"chmod +x {home}/.local/bin/* 2>/dev/null", shell=True)
 
+    os.makedirs(f"{home}/scripts", exist_ok=True)
+    if os.path.exists(f"{dotfiles_dir}/scripts"):
+        subprocess.run(f"cp -rf {dotfiles_dir}/scripts/*.sh {home}/scripts/", shell=True)
+        subprocess.run(f"chmod +x {home}/scripts/*.sh 2>/dev/null", shell=True)
+
     os.makedirs(f"{home}/.local/share", exist_ok=True)
     if os.path.exists(f"{dotfiles_dir}/.local/share"):
         subprocess.run(f"cp -rf {dotfiles_dir}/.local/share/* {home}/.local/share/", shell=True)

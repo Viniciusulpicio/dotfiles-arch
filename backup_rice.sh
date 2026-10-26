@@ -181,10 +181,14 @@ if [ -f "/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
 fi
 
 # 6. SCRIPTS LOCAIS (.local/bin)
-echo "📜 6. Copiando scripts em ~/.local/bin (excluindo binários pesados)..."
+echo "📜 6. Copiando scripts em ~/.local/bin e ~/scripts (excluindo binários pesados)..."
 if [ -d "$HOME/.local/bin" ]; then
     mkdir -p "$REPO_DIR/.local/bin"
     rsync -avL --exclude='agy*' --exclude='rclone' --exclude='composer' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
+fi
+if [ -d "$HOME/scripts" ]; then
+    mkdir -p "$REPO_DIR/scripts"
+    cp -rf "$HOME/scripts/"*.sh "$REPO_DIR/scripts/" 2>/dev/null || true
 fi
 
 # 7. ASSETS EM .local/share (Fontes, Ícones, Extensões GNOME, Aplicações)

@@ -30,10 +30,12 @@ rsync -av --exclude='.git' \
 
 # 3. Atualizar binários locais (dev-sync, clean-old-extensions, etc.)
 echo ""
-echo "🛠️ 3. Atualizando scripts em ~/.local/bin..."
-mkdir -p "$TARGET_HOME/.local/bin"
+echo "🛠️ 3. Atualizando scripts em ~/.local/bin e ~/scripts..."
+mkdir -p "$TARGET_HOME/.local/bin" "$TARGET_HOME/scripts"
 cp -rf "$SCRIPT_DIR/.local/bin/"* "$TARGET_HOME/.local/bin/" 2>/dev/null || true
 chmod +x "$TARGET_HOME/.local/bin/"* 2>/dev/null || true
+cp -rf "$SCRIPT_DIR/scripts/"*.sh "$TARGET_HOME/scripts/" 2>/dev/null || true
+chmod +x "$TARGET_HOME/scripts/"*.sh 2>/dev/null || true
 
 # 4. Configurar filtro da pasta temp (Google Drive)
 echo ""
