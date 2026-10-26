@@ -243,6 +243,12 @@ if [ -d "$SCRIPT_DIR/.local/bin" ]; then
     chmod +x "$TARGET_HOME/.local/bin/"* 2>/dev/null || true
 fi
 
+if [ -d "$SCRIPT_DIR/scripts" ]; then
+    mkdir -p "$TARGET_HOME/scripts"
+    cp -rf "$SCRIPT_DIR/scripts/"*.sh "$TARGET_HOME/scripts/" 2>/dev/null || true
+    chmod +x "$TARGET_HOME/scripts/"*.sh 2>/dev/null || true
+fi
+
 if [ -d "$SCRIPT_DIR/.local/share" ]; then
     cp -rf "$SCRIPT_DIR/.local/share/"* "$TARGET_HOME/.local/share/" 2>/dev/null || true
 fi
