@@ -28,11 +28,28 @@ def open_app_window(url):
         import gi
         gi.require_version('Gtk', '3.0')
         gi.require_version('WebKit2', '4.1')
-        from gi.repository import Gtk, WebKit2, GLib
+        from gi.repository import Gtk, Gdk, WebKit2, GLib
 
         def _launch_gtk():
             win = Gtk.Window(title="System Tray — Controle de Serviços")
-            win.set_default_size(1180, 780)
+            win_w, win_h = 1180, 780
+            try:
+                display = Gdk.Display.get_default()
+                if display:
+                    mon = None
+                    seat = display.get_default_seat()
+                    if seat and seat.get_pointer():
+                        _, cx, cy = seat.get_pointer().get_position()
+                        mon = display.get_monitor_at_point(cx, cy)
+                    if not mon:
+                        mon = display.get_primary_monitor() or display.get_monitor(0)
+                    if mon:
+                        wa = mon.get_workarea()
+                        win_w = max(800, min(1440, int(wa.width * 0.76)))
+                        win_h = max(560, min(960, int(wa.height * 0.82)))
+            except Exception:
+                pass
+            win.set_default_size(win_w, win_h)
             win.set_position(Gtk.WindowPosition.CENTER)
             
             webview = WebKit2.WebView()

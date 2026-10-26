@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Detecção dinâmica da resolução física do monitor atual
+if [ -x "$HOME/.local/bin/monitor-info.sh" ]; then
+    eval "$("$HOME/.local/bin/monitor-info.sh")"
+fi
+TARGET_W="${PHYS_W:-1920}"
+TARGET_H="${PHYS_H:-1080}"
+TARGET_RES="${PHYS_RES:-${TARGET_W}x${TARGET_H}}"
+
 # PATH
 WALLPAPERS="$HOME/Pictures/Wallpaper"
 BACKUP="$HOME/Pictures/.backup"
@@ -8,19 +16,21 @@ BACKUP="$HOME/Pictures/.backup"
 mkdir -p "$BACKUP"
 cd "$WALLPAPERS" || exit 1
 
+echo "🖥️ Ajustando wallpapers para a resolução do monitor atual: $TARGET_RES"
+
 # Process all images
 for img in *.{jpg,jpeg,png,webp,bmp}; do
     [[ -f "$img" ]] || continue
 
     # Check resolution
-    read width height <<< $(identify -format "%w %h" "$img")
+    read -r width height <<< "$(identify -format "%w %h" "$img")"
     base="${img%.*}"
     ext="png"                    # Converted wallpaper extension
     orig_ext="${img##*.}"        # Original extension for backup
     orig_ext_lc="${orig_ext,,}"  # Lowercase extension
 
     # --- Skip condition ---
-    if [[ "$width" -eq 1920 && "$height" -eq 1080 && "$orig_ext_lc" == "png" ]]; then
+    if [[ "$width" -eq "$TARGET_W" && "$height" -eq "$TARGET_H" && "$orig_ext_lc" == "png" ]]; then
         continue
     fi
 
@@ -43,14 +53,14 @@ for img in *.{jpg,jpeg,png,webp,bmp}; do
     fi
 
     # Convert (resize if needed)
-    if [[ "$width" -eq 1920 && "$height" -eq 1080 ]]; then
+    if [[ "$width" -eq "$TARGET_W" && "$height" -eq "$TARGET_H" ]]; then
         magick "$img" "$new_name"
     else
-        magick "$img" -resize 1920x1080^ -gravity center -extent 1920x1080 "$new_name"
+        magick "$img" -resize "${TARGET_RES}^" -gravity center -extent "$TARGET_RES" "$new_name"
     fi
 
     if [[ $? -eq 0 ]]; then
-        echo "Converted: $img -> $new_name"
+        echo "Converted: $img -> $new_name ($TARGET_RES)"
 
         # --- Move original to backup with incremental name and original extension ---
         backup_base="$BACKUP/$base"
@@ -77,4 +87,4 @@ for img in *.{jpg,jpeg,png,webp,bmp}; do
     fi
 done
 
-echo "✅ All Wallpapers has been processed $WALLPAPERS"
+echo "✅ All Wallpapers processed for $TARGET_RES in $WALLPAPERS"

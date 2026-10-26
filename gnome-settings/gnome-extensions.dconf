@@ -121,7 +121,6 @@ mounted-icon=true
 msg-to-ext=''
 open-app-animation=true
 panel-mode=false
-preferred-monitor=0
 pressure-sense=false
 pressure-sense-sensitivity=0.40000000000000002
 scroll-sensitivity=0.40000000000000002
@@ -158,7 +157,6 @@ type='phone'
 
 [gsconnect/preferences]
 window-maximized=false
-window-size=(806, 785)
 
 [just-perfection]
 animation=4
@@ -210,7 +208,6 @@ version=2
 [search-light]
 background-color=(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.84999999999999998)
 border-radius=2.5
-monitor-count=1
 scale-height=0.34999999999999998
 scale-width=0.34999999999999998
 secondary-shortcut-search=['<Control>space']

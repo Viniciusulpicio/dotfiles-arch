@@ -4,7 +4,7 @@ Type=Application
 Name=Logisim
 GenericName=Simulador de Circuitos Lógicos
 Comment=Ferramenta educacional para projeto e simulação de circuitos lógicos digitais
-Exec=/usr/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dsun.java2d.uiScale=2 -jar /home/vinicius/.local/share/logisim/logisim.jar %F
+Exec=sh -c 'SCALE=$($HOME/.local/bin/monitor-info.sh --xwayland-scale 2>/dev/null || echo 1); exec /usr/bin/java -Dswing.systemlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dsun.java2d.uiScale=${SCALE:-1} -jar $HOME/.local/share/logisim/logisim.jar "$@"' -- %F
 Icon=logisim
 Terminal=false
 Categories=Education;Science;Electronics;Development;

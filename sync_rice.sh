@@ -136,6 +136,12 @@ if [ -d "$SCRIPT_DIR/.local/bin" ]; then
     chmod +x "$TARGET_HOME/.local/bin/"* 2>/dev/null || true
 fi
 
+if [ -d "$SCRIPT_DIR/scripts" ]; then
+    mkdir -p "$TARGET_HOME/scripts"
+    cp -rf "$SCRIPT_DIR/scripts/"*.sh "$TARGET_HOME/scripts/" 2>/dev/null || true
+    chmod +x "$TARGET_HOME/scripts/"*.sh 2>/dev/null || true
+fi
+
 if [ -d "$SCRIPT_DIR/.local/share" ]; then
     mkdir -p "$TARGET_HOME/.local/share"
     cp -rf "$SCRIPT_DIR/.local/share/"* "$TARGET_HOME/.local/share/" 2>/dev/null || true
@@ -195,8 +201,9 @@ for schema_dir in "$TARGET_HOME"/.local/share/gnome-shell/extensions/*/schemas; 
 done
 
 if command -v dconf &>/dev/null; then
+    DCONF_MONITOR_FILTER='^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)='
     if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
-        sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
+        sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | grep -vE "$DCONF_MONITOR_FILTER" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
     fi
     if [ -f "$SCRIPT_DIR/gnome-settings/app-folders.dconf" ]; then
         dconf load /org/gnome/desktop/app-folders/ < "$SCRIPT_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true

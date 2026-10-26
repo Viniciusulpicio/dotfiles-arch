@@ -12,17 +12,16 @@ echo "🔄 Verificando atualizações do gallery-dl..."
 pip install -U gallery-dl > /dev/null 2>&1
 
 if command -v gallery-dl &> /dev/null; then
-    echo "📥 Baixando em Qualidade MÁXIMA (Originals)..."
-    
-    # Adicionei --write-metadata: Salva um .json junto com a foto. 
-    # Se a foto vier ruim, abra o .json e procure por "originals". 
-    # Se tiver um link lá que o script não baixou, é bug da versão.
-    
-    # Adicionei --verbose: Mostra qual URL exata ele está pegando (ex: .../originals/...)
+    if [ -x "$HOME/.local/bin/monitor-info.sh" ]; then
+        eval "$("$HOME/.local/bin/monitor-info.sh")"
+    fi
+    MIN_W="${PHYS_W:-1920}"
+    echo "📥 Baixando em Qualidade MÁXIMA (Originals >= ${MIN_W}px)..."
     
     gallery-dl --cookies "$COOKIES" \
                --directory "$OUTPUT_DIR" \
                --download-archive "$OUTPUT_DIR/history.sqlite" \
+               --filter "width >= ${MIN_W} and width > height" \
                --write-metadata \
                --verbose \
                "$PINTEREST_URL"

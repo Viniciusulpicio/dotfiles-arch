@@ -85,8 +85,8 @@ for folder in "${FOLDERS_EXTRA[@]}"; do
     fi
 done
 
-# Configs Gerais
-FOLDERS_CONFIG=("kitty" "wezterm" "fastfetch" "btop" "cava" "gtk-3.0" "gtk-4.0" "neofetch" "starship.toml" "wlogout" "wofi" "pop-shell" "tiling-assistant" "mimeapps.list" "user-dirs.dirs" "monitors.xml" "conky" "wpg" "wal" "alacritty" "systemd" "systemd" "systemd" "autostart" "BetterDiscord" "MangoHud" "obs-studio" "rclone" "VirtualBox" "Postman" "arduino-ide" "spicetify" "TeamSpeak3")
+# Configs Gerais (sem monitors.xml para não sobrescrever monitores entre PCs)
+FOLDERS_CONFIG=("kitty" "wezterm" "fastfetch" "btop" "cava" "gtk-3.0" "gtk-4.0" "neofetch" "starship.toml" "wlogout" "wofi" "pop-shell" "tiling-assistant" "mimeapps.list" "user-dirs.dirs" "conky" "wpg" "wal" "alacritty" "systemd" "autostart" "BetterDiscord" "MangoHud" "obs-studio" "rclone" "VirtualBox" "Postman" "arduino-ide" "spicetify" "TeamSpeak3")
 
 for item in "${FOLDERS_CONFIG[@]}"; do
     rm -rf "$REPO_DIR/.config/$item"

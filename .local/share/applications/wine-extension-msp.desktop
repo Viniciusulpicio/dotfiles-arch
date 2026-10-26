@@ -2,7 +2,7 @@
 Type=Application
 Name=Wine Installer
 MimeType=application/microsoftpatch;
-Exec=env "WINEPREFIX=/home/vinicius/.cache/test_dpi" wine start /ProgIDOpen "Msi.Patch" %f
+Exec=wine start /ProgIDOpen "Msi.Patch" %f
 NoDisplay=true
 StartupNotify=true
 Icon=D23E_msiexec.0

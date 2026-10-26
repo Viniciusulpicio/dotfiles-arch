@@ -2,6 +2,6 @@
 Type=Application
 Name=A Wine application
 MimeType=text/x-ms-regedit;
-Exec=env "WINEPREFIX=/home/vinicius/.cache/test_dpi" wine start /ProgIDOpen "regfile" %f
+Exec=wine start /ProgIDOpen "regfile" %f
 NoDisplay=true
 StartupNotify=true

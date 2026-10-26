@@ -15,5 +15,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5e5e5e"
 fastfetch
 
 # Created by `pipx` on 2026-03-19 12:53:10
-export PATH="$PATH:/home/vinicius/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$(npm prefix -g)/bin:$PATH"
+
+# Ajusta automaticamente o DPI do Wine para o monitor ativo antes de abrir qualquer .exe
+wine() {
+  [ -x "$HOME/.local/bin/wine-dpi-sync.sh" ] && "$HOME/.local/bin/wine-dpi-sync.sh"
+  command wine "$@"
+}

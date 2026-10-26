@@ -21,18 +21,14 @@ index-single-directories=['/home/vinicius']
 
 [org/gnome/Connections]
 first-run=false
-window-size=(1248, 1001)
 
 [org/gnome/Console]
 font-scale=0.90000000000000002
 last-window-fullscreen=false
 last-window-maximised=false
-last-window-size=(768, 832)
 
 [org/gnome/Extensions]
-window-height=832
 window-maximized=false
-window-width=768
 
 [org/gnome/Showtime/State]
 is-maximized=false
@@ -40,8 +36,6 @@ is-maximized=false
 [org/gnome/Snapshot]
 capture-mode='video'
 is-maximized=false
-window-height=832
-window-width=1536
 
 [org/gnome/TextEditor]
 last-save-directory='file:///home/vinicius/Downloads'
@@ -49,23 +43,18 @@ style-variant='light'
 
 [org/gnome/Weather]
 locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
-window-height=506
 window-maximized=false
-window-width=613
 
 [org/gnome/baobab/ui]
 active-chart='rings'
 is-maximized=false
-window-size=(906, 524)
 
 [org/gnome/calendar]
 active-view='month'
 window-maximized=false
-window-size=(768, 600)
 
 [org/gnome/control-center]
 last-panel='system'
-window-state=(1536, 832, false)
 
 [org/gnome/desktop/a11y/applications]
 screen-magnifier-enabled=false
@@ -289,7 +278,6 @@ num-workspaces=3
 
 [org/gnome/epiphany/state]
 is-maximized=false
-window-size=(1024, 768)
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -299,8 +287,6 @@ current-tab='resources'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
-window-height=480
-window-width=768
 
 [org/gnome/gnome-system-monitor/proctree]
 col-26-visible=false
@@ -324,8 +310,6 @@ default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 
 [org/gnome/nautilus/window-state]
-initial-size=(768, 416)
-initial-size-file-chooser=(1536, 832)
 maximized=false
 
 [org/gnome/papers]
@@ -347,9 +331,7 @@ show-sidebar=false
 sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
-window-height=832
 window-maximized=false
-window-width=1536
 zoom=0.87855773289875838
 
 [org/gnome/portal/filechooser/antigravity]
@@ -584,7 +566,6 @@ mounted-icon=true
 msg-to-ext=''
 open-app-animation=true
 panel-mode=false
-preferred-monitor=0
 pressure-sense=false
 pressure-sense-sensitivity=0.40000000000000002
 scroll-sensitivity=0.40000000000000002
@@ -621,7 +602,6 @@ type='phone'
 
 [org/gnome/shell/extensions/gsconnect/preferences]
 window-maximized=false
-window-size=(806, 785)
 
 [org/gnome/shell/extensions/just-perfection]
 animation=4
@@ -673,7 +653,6 @@ version=2
 [org/gnome/shell/extensions/search-light]
 background-color=(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.84999999999999998)
 border-radius=2.5
-monitor-count=1
 scale-height=0.34999999999999998
 scale-width=0.34999999999999998
 secondary-shortcut-search=['<Control>space']
@@ -783,4 +762,3 @@ sort-directories-first=false
 sort-order='ascending'
 type-format='category'
 window-position=(26, 23)
-window-size=(960, 1001)

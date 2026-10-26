@@ -95,8 +95,18 @@ function startSingleClickMonitor() {
 }
 
 // ── Overlay window ──────────────────────────────────────────────────────────
+function getActiveBounds() {
+  try {
+    const pt = screen.getCursorScreenPoint();
+    const disp = screen.getDisplayNearestPoint(pt) || screen.getPrimaryDisplay();
+    return disp.bounds;
+  } catch {
+    return screen.getPrimaryDisplay().bounds;
+  }
+}
+
 function createOverlay() {
-  const { bounds } = screen.getPrimaryDisplay();
+  const bounds = getActiveBounds();
   overlay = new BrowserWindow({
     x: bounds.x,
     y: bounds.y,
@@ -139,7 +149,7 @@ function toggleOverlay() {
     return;
   }
   if (!overlay) createOverlay();
-  const { bounds } = screen.getPrimaryDisplay();
+  const bounds = getActiveBounds();
   overlay.setBounds({ x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height });
   overlay.showInactive();
   updateTrayState(true);
@@ -167,6 +177,15 @@ app.whenReady().then(async () => {
   tray.on('click', () => triggerToggle());
   startSingleClickMonitor();
   globalShortcut.register('Alt+W', () => triggerToggle());
+  const syncOverlayBounds = () => {
+    if (overlay) {
+      const bounds = getActiveBounds();
+      overlay.setBounds({ x: bounds.x, y: bounds.y, width: bounds.width, height: bounds.height });
+    }
+  };
+  screen.on('display-metrics-changed', syncOverlayBounds);
+  screen.on('display-added', syncOverlayBounds);
+  screen.on('display-removed', syncOverlayBounds);
 });
 
 app.on('will-quit', () => {

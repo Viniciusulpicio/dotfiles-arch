@@ -1,16 +1,12 @@
 [Connections]
 first-run=false
-window-size=(1248, 1001)
 
 [Console]
 font-scale=0.80000000000000004
 last-window-maximised=false
-last-window-size=(960, 1048)
 
 [Extensions]
-window-height=1048
 window-maximized=false
-window-width=960
 
 [Showtime/State]
 is-maximized=false
@@ -20,18 +16,14 @@ last-save-directory='file:///home/vinicius/Downloads'
 
 [Weather]
 locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
-window-height=506
 window-maximized=false
-window-width=613
 
 [baobab/ui]
 active-chart='rings'
 is-maximized=false
-window-size=(960, 1048)
 
 [control-center]
 last-panel='network'
-window-state=(960, 1048, false)
 
 [desktop/app-folders]
 folder-children=['System', 'Utilities', 'YaST', 'Pardus', 'b51017c7-5a3a-4de7-9875-0f939e72be73']
@@ -209,7 +201,6 @@ num-workspaces=3
 
 [epiphany/state]
 is-maximized=false
-window-size=(1024, 768)
 
 [evolution-data-server]
 migrated=true
@@ -219,8 +210,6 @@ current-tab='processes'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
-window-height=1048
-window-width=704
 
 [gnome-system-monitor/proctree]
 col-26-visible=false
@@ -243,8 +232,6 @@ default-folder-viewer='list-view'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
-initial-size=(960, 524)
-initial-size-file-chooser=(1680, 836)
 maximized=false
 
 [papers]
@@ -258,9 +245,7 @@ dual-page-odd-left=false
 enable-spellchecking=true
 show-sidebar=true
 sizing-mode='free'
-window-height=524
 window-maximized=true
-window-width=960
 zoom=0.69857642184862334
 
 [portal/filechooser/antigravity]
@@ -470,7 +455,6 @@ receive-directory='/home/vinicius/Downloads'
 
 [shell/extensions/gsconnect/preferences]
 window-maximized=false
-window-size=(960, 1001)
 
 [shell/extensions/libpanel]
 layout=[['gnome@main', 'pop-shell@system76.com/main', 'quick-settings-audio-panel@rayzeq.github.io/main']]

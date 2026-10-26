@@ -1,15 +1,32 @@
 #!/bin/bash
 
-# --- CONFIGURAÇÃO ---
-TARGET_RES="1920x1080"  # Confirme se é a sua resolução
+# --- DETECÇÃO DINÂMICA DO MONITOR ATUAL ---
+if [ -x "$HOME/.local/bin/monitor-info.sh" ]; then
+    eval "$("$HOME/.local/bin/monitor-info.sh")"
+fi
+TARGET_RES="${PHYS_RES:-1920x1080}"
+LOG_W="${LOG_W:-1920}"
+LOG_H="${LOG_H:-1080}"
 
 # --- CAMINHOS ---
 WALLPAPERS="$HOME/Pictures/Wallpaper"
 CACHE_DIR="$HOME/.cache/wallpaper-picker"
 GENERATED_WALL="$HOME/.cache/current_wallpaper_fixed.png"
-THUMB_WIDTH="250"
-THUMB_HEIGHT="141"
-WAL_BIN="/usr/local/bin/wal"
+
+# Tamanho proporcional do menu Wofi e das miniaturas conforme o monitor atual
+WOFI_W=$(( LOG_W * 60 / 100 ))
+[ "$WOFI_W" -lt 680 ] && WOFI_W=680
+[ "$WOFI_W" -gt 1400 ] && WOFI_W=1400
+
+WOFI_H=$(( LOG_H * 65 / 100 ))
+[ "$WOFI_H" -lt 420 ] && WOFI_H=420
+[ "$WOFI_H" -gt 950 ] && WOFI_H=950
+
+THUMB_WIDTH=$(( (WOFI_W - 140) / 3 ))
+[ "$THUMB_WIDTH" -lt 160 ] && THUMB_WIDTH=160
+THUMB_HEIGHT=$(( THUMB_WIDTH * 9 / 16 ))
+
+WAL_BIN="$(command -v wal || echo /usr/local/bin/wal)"
 HOOKS="$HOME/.config/wal/hooks/hooks.sh"
 
 mkdir -p "$CACHE_DIR"
@@ -29,8 +46,7 @@ generate_menu(){
     while IFS= read -r img; do
         [[ -f "$img" ]] || continue
         filename=$(basename "$img")
-        ext="${img##*.}"
-        thumb="$CACHE_DIR/$filename"
+        thumb="$CACHE_DIR/${THUMB_WIDTH}x${THUMB_HEIGHT}_$filename"
         if [[ ! -f "$thumb" ]] || [[ "$img" -nt "$thumb" ]]; then
             generate_thumbnail "$img" "$thumb"
         fi
@@ -45,8 +61,8 @@ CHOICE=$(generate_menu | wofi --show dmenu \
     --columns 3 \
     --allow-images \
     --insensitive \
-    --prompt "Wallpaper" \
-    --location 0 --width 950 --height 600 \
+    --prompt "Wallpaper ($TARGET_RES)" \
+    --location 0 --width "$WOFI_W" --height "$WOFI_H" \
     --conf ~/.config/wofi/wallpaper)
 
 [ -z "$CHOICE" ] && exit 0
@@ -54,6 +70,7 @@ CHOICE=$(generate_menu | wofi --show dmenu \
 # --- LIMPEZA DE NOME ---
 CLEAN_NAME=$(basename "$CHOICE")
 CLEAN_NAME=${CLEAN_NAME#img:}
+CLEAN_NAME=${CLEAN_NAME#${THUMB_WIDTH}x${THUMB_HEIGHT}_}
 SELECTED="$WALLPAPERS/$CLEAN_NAME"
 
 if [ ! -f "$SELECTED" ]; then
@@ -61,11 +78,7 @@ if [ ! -f "$SELECTED" ]; then
     exit 1
 fi
 
-notify-send "Ajustando..." "Maximizando imagem em $TARGET_RES"
-
-# --- A MÁGICA (AQUI ESTÁ A MUDANÇA) ---
-# Removi o caractere '>' que impedia imagens pequenas de crescerem.
-# Agora ele vai forçar o crescimento até encostar na borda.
+notify-send "Ajustando..." "Maximizando imagem para o monitor atual ($TARGET_RES)"
 
 magick "$SELECTED" \
     \( -clone 0 -filter Lanczos -resize "$TARGET_RES^" -gravity center -extent "$TARGET_RES" -blur 0x25 -brightness-contrast -30x0 \) \
@@ -75,14 +88,10 @@ magick "$SELECTED" \
     -quality 100 \
     "$GENERATED_WALL"
 
-# DICA: Se ainda achar que tem muita borda, troque a linha do meio acima por:
-# \( -clone 0 -filter Lanczos -resize "$TARGET_RES^" -gravity center -crop "$TARGET_RES" +repage \) \
-# (Isso vai forçar preencher TUDO, cortando o que sobrar, igual zoom normal)
-
 FINAL_WALLPAPER="$GENERATED_WALL"
 
 # --- APLICAÇÃO ---
-"$WAL_BIN" -i "$FINAL_WALLPAPER" -n
+[ -x "$WAL_BIN" ] && "$WAL_BIN" -i "$FINAL_WALLPAPER" -n
 
 URI_FILE=$(python3 -c "import urllib.parse, sys; print('file://' + urllib.parse.quote(sys.argv[1]))" "$FINAL_WALLPAPER")
 
@@ -94,6 +103,6 @@ gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.screensaver picture-options 'zoom'
 
 touch "$HOME/.config/fastfetch/.reload_flag"
-if [ -f "$HOOKS" ]; then $HOOKS; fi
+if [ -f "$HOOKS" ]; then "$HOOKS"; fi
 
-notify-send "Sucesso!" "Wallpaper ajustado."
+notify-send "Sucesso!" "Wallpaper ajustado em $TARGET_RES."

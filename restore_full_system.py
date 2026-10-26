@@ -117,6 +117,9 @@ def main():
     os.makedirs(f"{home}/.config", exist_ok=True)
     if os.path.exists(f"{dotfiles_dir}/.config"):
         for item in os.listdir(f"{dotfiles_dir}/.config"):
+            if item == "monitors.xml":
+                continue
+            src_item = os.path.join(dotfiles_dir, ".config", item)
             target_item = os.path.join(home, ".config", item)
             if os.path.exists(target_item):
                 os.makedirs(backup_dir, exist_ok=True)
@@ -124,8 +127,10 @@ def main():
                     shutil.copytree(target_item, os.path.join(backup_dir, item), dirs_exist_ok=True)
                 else:
                     shutil.copy2(target_item, os.path.join(backup_dir, item))
-
-    subprocess.run(f"cp -rf {dotfiles_dir}/.config/* {home}/.config/ 2>/dev/null || true", shell=True)
+            if os.path.isdir(src_item):
+                shutil.copytree(src_item, target_item, dirs_exist_ok=True)
+            else:
+                shutil.copy2(src_item, target_item)
 
     os.makedirs(f"{home}/.local/bin", exist_ok=True)
     if os.path.exists(f"{dotfiles_dir}/.local/bin"):
@@ -167,15 +172,16 @@ def main():
         if os.path.exists(f"{dotfiles_dir}/.gemini/config"):
             subprocess.run(f"cp -rf {dotfiles_dir}/.gemini/config {home}/.gemini/", shell=True)
 
-    # 5. GNOME dconf
+    # 5. GNOME dconf (sem tamanhos/monitores fixos)
     print("\n--- Restoring GNOME dconf settings ---")
     gnome_dir = f"{dotfiles_dir}/gnome-settings"
+    dconf_filter = "grep -vE '^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)='"
     if os.path.exists(f"{gnome_dir}/full-backup.dconf"):
-        subprocess.run(f"dconf load / < {gnome_dir}/full-backup.dconf", shell=True)
+        subprocess.run(f"{dconf_filter} {gnome_dir}/full-backup.dconf | dconf load /", shell=True)
     if os.path.exists(f"{gnome_dir}/github-extensions.dconf"):
-        subprocess.run(f"dconf load /com/github/ < {gnome_dir}/github-extensions.dconf", shell=True)
+        subprocess.run(f"grep -vE '^(width|height)=' {gnome_dir}/github-extensions.dconf | dconf load /com/github/", shell=True)
     if os.path.exists(f"{gnome_dir}/gnome-extensions.dconf"):
-        subprocess.run(f"dconf load /org/gnome/shell/extensions/ < {gnome_dir}/gnome-extensions.dconf", shell=True)
+        subprocess.run(f"{dconf_filter} {gnome_dir}/gnome-extensions.dconf | dconf load /org/gnome/shell/extensions/", shell=True)
 
     # Enable GNOME extensions
     ext_list = read_pkg_list(os.path.join(pkg_lists_dir, "gnome_extensions_enabled.txt"))

@@ -58,11 +58,11 @@ if [ -f "$TARGET_HOME/.local/bin/clean-old-extensions" ]; then
     bash "$TARGET_HOME/.local/bin/clean-old-extensions"
 fi
 
-# 7. Carregar configurações do dconf das extensões
+# 7. Carregar configurações do dconf das extensões (sem tamanhos/monitores fixos)
 echo ""
 echo "🎛️ 7. Restaurando configurações do GNOME Shell Extensions..."
 if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
-    dconf load /org/gnome/shell/extensions/ < "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" 2>/dev/null || true
+    grep -vE '^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)=' "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
 fi
 
 # Habilitar extensões ativas

@@ -1,17 +1,13 @@
 [Connections]
 first-run=false
-window-size=(1248, 1001)
 
 [Console]
 font-scale=0.90000000000000002
 last-window-fullscreen=false
 last-window-maximised=false
-last-window-size=(768, 832)
 
 [Extensions]
-window-height=832
 window-maximized=false
-window-width=768
 
 [Showtime/State]
 is-maximized=false
@@ -19,8 +15,6 @@ is-maximized=false
 [Snapshot]
 capture-mode='video'
 is-maximized=false
-window-height=832
-window-width=1536
 
 [TextEditor]
 last-save-directory='file:///home/vinicius/Downloads'
@@ -28,23 +22,18 @@ style-variant='light'
 
 [Weather]
 locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
-window-height=506
 window-maximized=false
-window-width=613
 
 [baobab/ui]
 active-chart='rings'
 is-maximized=false
-window-size=(906, 524)
 
 [calendar]
 active-view='month'
 window-maximized=false
-window-size=(768, 600)
 
 [control-center]
 last-panel='system'
-window-state=(1536, 832, false)
 
 [desktop/a11y/applications]
 screen-magnifier-enabled=false
@@ -268,7 +257,6 @@ num-workspaces=3
 
 [epiphany/state]
 is-maximized=false
-window-size=(1024, 768)
 
 [evolution-data-server]
 migrated=true
@@ -278,8 +266,6 @@ current-tab='resources'
 maximized=false
 show-dependencies=false
 show-whose-processes='user'
-window-height=480
-window-width=768
 
 [gnome-system-monitor/proctree]
 col-26-visible=false
@@ -303,8 +289,6 @@ default-folder-viewer='icon-view'
 migrated-gtk-settings=true
 
 [nautilus/window-state]
-initial-size=(768, 416)
-initial-size-file-chooser=(1536, 832)
 maximized=false
 
 [papers]
@@ -326,9 +310,7 @@ show-sidebar=false
 sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
-window-height=832
 window-maximized=false
-window-width=1536
 zoom=0.87855773289875838
 
 [portal/filechooser/antigravity]
@@ -563,7 +545,6 @@ mounted-icon=true
 msg-to-ext=''
 open-app-animation=true
 panel-mode=false
-preferred-monitor=0
 pressure-sense=false
 pressure-sense-sensitivity=0.40000000000000002
 scroll-sensitivity=0.40000000000000002
@@ -600,7 +581,6 @@ type='phone'
 
 [shell/extensions/gsconnect/preferences]
 window-maximized=false
-window-size=(806, 785)
 
 [shell/extensions/just-perfection]
 animation=4
@@ -652,7 +632,6 @@ version=2
 [shell/extensions/search-light]
 background-color=(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.84999999999999998)
 border-radius=2.5
-monitor-count=1
 scale-height=0.34999999999999998
 scale-width=0.34999999999999998
 secondary-shortcut-search=['<Control>space']
