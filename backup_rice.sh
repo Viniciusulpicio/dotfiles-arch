@@ -116,21 +116,22 @@ if command -v flatpak &> /dev/null; then
     echo "  ✓ Flatpaks salvos"
 fi
 
-# 3. BACKUP DE DCONF (GNOME E EXTENSÕES)
+# 3. BACKUP DE DCONF (GNOME E EXTENSÕES - sem tamanhos de janela/monitores fixos)
 echo "🎛️ 3. Exportando configurações do GNOME (dconf)..."
+DCONF_MONITOR_FILTER='^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)='
 if command -v dconf &> /dev/null; then
-    dconf dump / > "$REPO_DIR/gnome-settings/full-backup.dconf" 2>/dev/null || true
-    dconf dump /org/gnome/ > "$REPO_DIR/gnome-settings/gnome-shell-backup.dconf" 2>/dev/null || true
-    dconf dump /com/github/ > "$REPO_DIR/gnome-settings/github-extensions.dconf" 2>/dev/null || true
-    dconf dump /org/gnome/shell/extensions/ > "$REPO_DIR/gnome-settings/gnome-extensions.dconf" 2>/dev/null || true
+    dconf dump / 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/full-backup.dconf" || true
+    dconf dump /org/gnome/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-shell-backup.dconf" || true
+    dconf dump /com/github/ 2>/dev/null | grep -vE '^(width|height)=' > "$REPO_DIR/gnome-settings/github-extensions.dconf" || true
+    dconf dump /org/gnome/shell/extensions/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-extensions.dconf" || true
     dconf dump /org/gnome/desktop/app-folders/ > "$REPO_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
     dconf read /org/gnome/shell/app-picker-layout > "$REPO_DIR/gnome-settings/app-picker-layout.gv" 2>/dev/null || true
-    echo "  ✓ Dconf exportado com sucesso"
+    echo "  ✓ Dconf exportado com sucesso (independente de monitor)"
 fi
 
 # 4. BACKUP DE ARQUIVOS DE SHELL E PROFILE (HOME)
 echo "🐚 4. Copiando arquivos de ambiente Shell e Perfil..."
-for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc .notas_rapidas.txt; do
+for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc; do
     if [ -f "$HOME/$file" ]; then
         cp -f "$HOME/$file" "$REPO_DIR/"
         echo "  ✓ $file"
@@ -248,7 +249,6 @@ CONFIG_APPS=(
     "goverlay"
     "gamemode.ini"
     "mimeapps.list"
-    "monitors.xml"
     "user-dirs.dirs"
     "user-dirs.locale"
     "connections.db"
@@ -312,7 +312,8 @@ rm -rf "$REPO_DIR/.config/Code/Cookies"* "$REPO_DIR/.config/Code/DIPS"* "$REPO_D
        "$REPO_DIR/.config/Code/TransportSecurity" "$REPO_DIR/.config/Code/Trust Tokens"* "$REPO_DIR/.config/Code/WebStorage" \
        "$REPO_DIR/.config/Code/languagepacks.json" "$REPO_DIR/.config/Code/machineid" "$REPO_DIR/.config/Code/Network Persistent State" \
        "$REPO_DIR/.config/Code/User/globalStorage" "$REPO_DIR/.config/Code/User/workspaceStorage" "$REPO_DIR/.config/Code/User/History" \
-       "$REPO_DIR/.config/discord" "$REPO_DIR/.config/arduino-ide" 2>/dev/null || true
+       "$REPO_DIR/.config/discord" "$REPO_DIR/.config/arduino-ide" \
+       "$REPO_DIR/.config/monitors.xml" "$REPO_DIR/.config/tiling-assistant/tiledSessionRestore2.json" 2>/dev/null || true
 
 # 10. VERIFICAÇÃO E COMMIT NO GIT
 echo "🌿 10. Sincronizando com o Git..."

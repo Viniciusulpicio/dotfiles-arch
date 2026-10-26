@@ -180,7 +180,7 @@ fi
 # 8. RESTAURAÇÃO DE ARQUIVOS DE PERFIL, SHELL E DOTFILES
 echo ""
 echo "🐚 8. Restaurando arquivos de ambiente Shell e Perfil..."
-for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc .notas_rapidas.txt; do
+for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc; do
     if [ -f "$SCRIPT_DIR/$file" ]; then
         cp -f "$SCRIPT_DIR/$file" "$TARGET_HOME/"
         echo "  ✓ $file"
@@ -196,13 +196,15 @@ mkdir -p "$TARGET_HOME/.config"
 for item in "$SCRIPT_DIR/.config"/*; do
     [ -e "$item" ] || continue
     base="$(basename "$item")"
+    # Preservar monitors.xml específico de cada máquina/monitor
+    [[ "$base" == "monitors.xml" ]] && continue
     if [ -e "$TARGET_HOME/.config/$base" ]; then
         mkdir -p "$BACKUP_DIR"
         cp -rf "$TARGET_HOME/.config/$base" "$BACKUP_DIR/" 2>/dev/null || true
     fi
+    cp -rf "$item" "$TARGET_HOME/.config/" 2>/dev/null || true
 done
-
-cp -rf "$SCRIPT_DIR/.config/"* "$TARGET_HOME/.config/" 2>/dev/null || true
+rm -f "$TARGET_HOME/.config/tiling-assistant/tiledSessionRestore2.json" 2>/dev/null || true
 rm -rf "$TARGET_HOME/.config/'*'" 2>/dev/null || true
 
 # Criar pastas padrão em Português
@@ -306,20 +308,21 @@ if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; t
     echo "  ✓ Extensões do VS Code instaladas."
 fi
 
-# 13. DCONF & CONFIGURAÇÕES DO GNOME
+# 13. DCONF & CONFIGURAÇÕES DO GNOME (filtrando tamanhos/monitores fixos para respeitar o monitor atual)
 echo ""
 echo "🎛️ 13. Restaurando banco de configurações do GNOME (dconf)..."
+DCONF_MONITOR_FILTER='^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)='
 if [ -f "$SCRIPT_DIR/gnome-settings/full-backup.dconf" ]; then
-    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/full-backup.dconf" | dconf load / 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/full-backup.dconf" | grep -vE "$DCONF_MONITOR_FILTER" | dconf load / 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" ]; then
-    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" | dconf load /org/gnome/ 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-shell-backup.dconf" | grep -vE "$DCONF_MONITOR_FILTER" | dconf load /org/gnome/ 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" ]; then
-    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" | dconf load /com/github/ 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/github-extensions.dconf" | grep -vE '^(width|height)=' | dconf load /com/github/ 2>/dev/null || true
 fi
 if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
-    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
+    sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | grep -vE "$DCONF_MONITOR_FILTER" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
 fi
 
 # Ajustar eventuais caminhos com usuário hardcoded nas configs e atalhos restaurados

@@ -65,6 +65,8 @@ __pycache__/
 **/*-wal
 
 # Sensitive Data & Personal Tokens
+.notas_rapidas.txt
+.local/share/zennote/
 .config/gh/
 .config/google-chrome/
 .config/google-chrome-beta/
@@ -86,3 +88,7 @@ __pycache__/
 .local/bin/agy*
 .local/bin/rclone
 .local/bin/composer
+
+# Machine-specific Monitor & Window Session State
+.config/monitors.xml
+.config/tiling-assistant/tiledSessionRestore2.json
