@@ -25,3 +25,9 @@ Eliminate AI-slop patterns in all prose and edits:
 4. Use active voice, concrete details over abstractions, and preserve the user's personal voice when editing drafts.
 5. For any draft writing or editing task, always apply the full `no-ai-slop` skill (`~/.gemini/config/skills/no-ai-slop/SKILL.md`).
 
+## Automatic skill triggers
+
+1. When creating, redesigning, or styling a web page, landing page, or app screen, always read and apply `design-taste-frontend` (`~/.gemini/config/skills/taste-skill/SKILL.md`).
+2. When creating or rendering a video or animation, always read and apply `hyperframes` (`~/.gemini/config/skills/hyperframes/SKILL.md`).
+
+

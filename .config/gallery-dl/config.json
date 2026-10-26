@@ -3,7 +3,7 @@
         "pinterest": {
             "cookies": "~/.pinterest-cookies.txt",
             "originals": true,
-            "filter": "width > height"
+            "filter": "width >= 1920 and width > height"
         }
     },
     "downloader": {

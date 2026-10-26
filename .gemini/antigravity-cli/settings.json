@@ -1,4 +1,5 @@
 {
+  "model": "Gemini 4 Argon (Medium)",
   "permissions": {
     "allow": [
       "read_file(*)",
@@ -30,7 +31,8 @@
     "/home/vinicius/Downloads",
     "/home/vinicius/temp/estrutura-dados-c/lib",
     "/home/vinicius/temp/cad",
-    "/home/vinicius/temp/poo-php/composicao"
+    "/home/vinicius/temp/poo-php/composicao",
+    "/home/vinicius/temp/teste"
   ],
   "verbosity": "high"
 }

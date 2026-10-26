@@ -286,7 +286,10 @@ if [ -d "$SCRIPT_DIR/.gemini" ]; then
     mkdir -p "$TARGET_HOME/.gemini/antigravity-cli"
     [ -f "$SCRIPT_DIR/.gemini/GEMINI.md" ] && cp -f "$SCRIPT_DIR/.gemini/GEMINI.md" "$TARGET_HOME/.gemini/"
     [ -f "$SCRIPT_DIR/.gemini/antigravity-cli/settings.json" ] && cp -f "$SCRIPT_DIR/.gemini/antigravity-cli/settings.json" "$TARGET_HOME/.gemini/antigravity-cli/"
-    [ -d "$SCRIPT_DIR/.gemini/config" ] && cp -rf "$SCRIPT_DIR/.gemini/config" "$TARGET_HOME/.gemini/"
+    if [ -d "$SCRIPT_DIR/.gemini/config" ]; then
+        mkdir -p "$TARGET_HOME/.gemini/config"
+        rsync -a --delete "$SCRIPT_DIR/.gemini/config/" "$TARGET_HOME/.gemini/config/"
+    fi
     echo "  ✓ Configurações do Antigravity (agy) restauradas."
 fi
 

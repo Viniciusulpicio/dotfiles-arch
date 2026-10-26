@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# clean-user-cache: Limpeza periódica de caches de usuário, pacotes AUR,
+# staging de IDEs e lixeira (preserva ~/temp).
+# ==============================================================================
+set -euo pipefail
+
+echo "🧹 Iniciando limpeza de caches do usuário..."
+
+# 1. Cache do yay (apenas AUR, sem exigir sudo)
+if command -v yay >/dev/null 2>&1; then
+    yay -Sc --aur --noconfirm >/dev/null 2>&1 || true
+fi
+rm -rf "$HOME/.cache/yay"/* 2>/dev/null || true
+
+# 2. Caches de compilação, testes e instaladores já extraídos
+rm -rf \
+    "$HOME/.arduino15/staging"/* \
+    "$HOME/.cache/ms-playwright" \
+    "$HOME/.cache/test_dpi" \
+    "$HOME/.cache/go-build"/* \
+    "$HOME/.cache/vscode-cpptools"/* \
+    "$HOME/.npm/_cacache"/* \
+    "$HOME/.config/Code/CachedExtensionVSIXs"/* \
+    "$HOME/.config/Code/Cache"/* \
+    "$HOME/.config/Code/CachedData"/* \
+    "$HOME/.config/Code - OSS/CachedExtensionVSIXs"/* \
+    "$HOME/.config/Code - OSS/Cache"/* \
+    "$HOME/.config/Code - OSS/CachedData"/* \
+    "$HOME/.config/discord/Cache"/* \
+    "$HOME/.config/discord/Code Cache"/* \
+    "$HOME/.config/Notion/Cache"/* \
+    "$HOME/.config/Notion/Code Cache"/* \
+    2>/dev/null || true
+
+# 3. Esvaziar arquivos da Lixeira com mais de 7 dias
+if [ -d "$HOME/.local/share/Trash" ]; then
+    find "$HOME/.local/share/Trash/files" "$HOME/.local/share/Trash/info" -mindepth 1 -mtime +7 -exec rm -rf {} + 2>/dev/null || true
+fi
+
+# 4. Flatpak runtimes não utilizados (em nível de usuário)
+if command -v flatpak >/dev/null 2>&1; then
+    flatpak uninstall --user --unused -y >/dev/null 2>&1 || true
+fi
+
+echo "✅ Limpeza de caches concluída! [$(date +'%Y-%m-%d %H:%M:%S')]"

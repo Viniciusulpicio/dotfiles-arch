@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer semanal para limpeza de caches do usuário
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target

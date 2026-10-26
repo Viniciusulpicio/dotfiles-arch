@@ -1,4 +1,9 @@
 {
+  "plugins": {
+    "agent-skills": {
+      "enabled": false
+    }
+  },
   "userSettings": {
     "remoteControlHostname": "archlinux-drifting-galaxy"
   }

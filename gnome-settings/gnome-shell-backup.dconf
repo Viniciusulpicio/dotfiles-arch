@@ -33,7 +33,7 @@ active-view='month'
 window-maximized=false
 
 [control-center]
-last-panel='system'
+last-panel='wifi'
 
 [desktop/a11y/applications]
 screen-magnifier-enabled=false
@@ -311,13 +311,13 @@ sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
 window-maximized=false
-zoom=0.87855773289875838
+zoom=1.05426927947851
 
 [portal/filechooser/antigravity]
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
 
 [portal/filechooser/code]
-last-folder-path='/home/vinicius/temp/poo-php'
+last-folder-path='/home/vinicius/temp/estrutura-dados-c'
 
 [portal/filechooser/com.google.Chrome]
 last-folder-path='/home/vinicius/temp/sistemas-digitais'
@@ -348,7 +348,7 @@ last-folder-path='/run/media/vinicius/Ventoy/ISOs'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(-22.213899999999999, -49.945799999999998)
+night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
 night-light-schedule-automatic=false
 
 [settings-daemon/plugins/housekeeping]
@@ -417,9 +417,9 @@ command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 â†’ r â†
 disable-extension-version-validation=true
 disable-user-extensions=false
 disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'KeepAwake@jepfa.de', 'display-brightness-ddcutil@themightydeity.github.com', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com']
-enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'just-perfection-desktop@just-perfection', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'light-style@gnome-shell-extensions.gcampax.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'add-to-desktop@tommimon.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'pip-on-top@rafostar.github.com', 'quick-settings-audio-panel@rayzeq.github.io', 'clipboard-history@alexsaveau.dev', 'arch-update@RaphaelRochet', 'caffeine@patapon.info', 'search-light@icedman.github.com', 'tiling-assistant@leleat-on-github', 'pop-shell@system76.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'dash2dock-lite@icedman.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'mediacontrols@cliffniff.github.com']
+enabled-extensions=['add-to-desktop@tommimon.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'arch-update@RaphaelRochet', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'clipboard-history@alexsaveau.dev', 'dash2dock-lite@icedman.github.com', 'gsconnect@andyholmes.github.io', 'just-perfection-desktop@just-perfection', 'light-style@gnome-shell-extensions.gcampax.github.com', 'mediacontrols@cliffniff.github.com', 'pip-on-top@rafostar.github.com', 'pop-shell@system76.com', 'quick-settings-audio-panel@rayzeq.github.io', 'search-light@icedman.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'tiling-assistant@leleat-on-github', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'org.gnome.Console.desktop', 'notion.desktop', 'system-tray.desktop']
-last-selected-power-profile='performance'
+last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='49.1'
 
 [shell/extensions/KeepAwake@jepfa.de]
@@ -483,7 +483,7 @@ enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=5
+indicator-position-max=4
 restore-state=true
 show-indicator='always'
 user-enabled=true

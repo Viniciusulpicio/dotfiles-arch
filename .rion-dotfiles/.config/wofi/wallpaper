@@ -1,8 +1,8 @@
 [config]
 allow_images=true
 show=drun
-width=60%
-height=65%
+width=900
+height=600
 always_parse_args=true
 show_all=true
 term=wezterm

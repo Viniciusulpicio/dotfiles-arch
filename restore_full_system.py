@@ -170,7 +170,8 @@ def main():
         if os.path.exists(f"{dotfiles_dir}/.gemini/antigravity-cli/settings.json"):
             shutil.copy(f"{dotfiles_dir}/.gemini/antigravity-cli/settings.json", f"{home}/.gemini/antigravity-cli/settings.json")
         if os.path.exists(f"{dotfiles_dir}/.gemini/config"):
-            subprocess.run(f"cp -rf {dotfiles_dir}/.gemini/config {home}/.gemini/", shell=True)
+            os.makedirs(f"{home}/.gemini/config", exist_ok=True)
+            subprocess.run(f"rsync -a --delete {dotfiles_dir}/.gemini/config/ {home}/.gemini/config/", shell=True)
 
     # 5. GNOME dconf (sem tamanhos/monitores fixos)
     print("\n--- Restoring GNOME dconf settings ---")
