@@ -179,6 +179,15 @@ if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
     fi
 fi
 
+if [ -d "$SCRIPT_DIR/rea-studio" ]; then
+    mkdir -p "$TARGET_HOME/rea-studio"
+    cp -rf "$SCRIPT_DIR/rea-studio/"* "$TARGET_HOME/rea-studio/" 2>/dev/null || true
+    if [ ! -d "$TARGET_HOME/rea-studio/node_modules" ] && command -v npm &>/dev/null; then
+        echo "  -> Instalando dependências Node do REA Studio..."
+        (cd "$TARGET_HOME/rea-studio" && npm install --no-audit --no-fund) || true
+    fi
+fi
+
 # 5. Sincronizar extensões novas do VS Code
 CODE_BIN=$(command -v code || command -v visual-studio-code || true)
 if [ -n "$CODE_BIN" ] && [ -f "$SCRIPT_DIR/pkg-lists/vscode_extensions.txt" ]; then

@@ -1,5 +1,5 @@
 {
-  "model": "Gemini 4 Argon (Medium)",
+  "model": "Gemini 3.8 Flash (Medium)",
   "permissions": {
     "allow": [
       "read_file(*)",
@@ -32,7 +32,8 @@
     "/home/vinicius/temp/estrutura-dados-c/lib",
     "/home/vinicius/temp/cad",
     "/home/vinicius/temp/poo-php/composicao",
-    "/home/vinicius/temp/teste"
+    "/home/vinicius/temp/teste",
+    "/home/vinicius/temp/cad/cadunico_recepcao"
   ],
   "verbosity": "high"
 }

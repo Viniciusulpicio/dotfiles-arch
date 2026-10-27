@@ -173,6 +173,10 @@ if [ -d "$HOME/openwhip-visual" ]; then
     echo "⚡ 5.1b Copiando projeto OpenWhip Visual..."
     copy_safe "$HOME/openwhip-visual" "$REPO_DIR/"
 fi
+if [ -d "$HOME/rea-studio" ]; then
+    echo "🔍 5.1c Copiando projeto REA Studio..."
+    copy_safe "$HOME/rea-studio" "$REPO_DIR/"
+fi
 
 # 5.2 BACKUP DE CONFIGURAÇÕES DE RESPONSIVIDADE DO SISTEMA (/etc/sysctl.d)
 if [ -f "/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then

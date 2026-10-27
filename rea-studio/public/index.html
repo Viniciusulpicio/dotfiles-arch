@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REA — Reverse Engineer Anything</title>
+  <style>
+    :root {
+      --bg-canvas: #1e1e1e;
+      --bg-sidebar: #252526;
+      --bg-input: #3c3c3c;
+      --border-color: #333333;
+      --border-focus: #007acc;
+      --text-main: #cccccc;
+      --text-bright: #ffffff;
+      --text-muted: #858585;
+      --accent: #0e639c;
+      --accent-hover: #1177bb;
+      --item-active: #37373d;
+      --item-hover: #2a2d2e;
+      --btn-warning-bg: #896000;
+      --btn-warning-text: #ffffff;
+      --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-code: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Top application header bar */
+    header {
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-color);
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      flex-shrink: 0;
+    }
+
+    .app-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--text-bright);
+      font-size: 13px;
+    }
+    .app-title .version-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: normal;
+      background: #1e1e1e;
+      padding: 1px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-update {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      background: var(--btn-warning-bg);
+      color: var(--btn-warning-text);
+      border: none;
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-update:hover { filter: brightness(1.15); }
+
+    .system-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ec9b0;
+    }
+
+    /* Main split layout */
+    .app-body {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Left Sidebar: actions & target configuration */
+    aside {
+      width: 380px;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    /* Operation mode list */
+    .mode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .mode-item {
+      padding: 8px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mode-item:hover {
+      background: var(--item-hover);
+    }
+    .mode-item.active {
+      background: var(--item-active);
+      border-color: var(--border-focus);
+    }
+
+    .mode-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mode-name {
+      font-weight: 600;
+      color: var(--text-bright);
+      font-size: 12px;
+    }
+    .mode-cmd {
+      font-family: var(--font-code);
+      font-size: 10px;
+      color: #9cdcfe;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .mode-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Target inputs */
+    .drop-zone {
+      border: 1px dashed var(--border-color);
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      padding: 14px 10px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--border-focus);
+      background: rgba(0, 122, 204, 0.08);
+    }
+    .drop-zone-text {
+      font-size: 12px;
+      color: var(--text-bright);
+    }
+    .drop-zone-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 8px;
+    }
+    .field-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    input[type="text"] {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-bright);
+      font-family: var(--font-code);
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 3px;
+      outline: none;
+      width: 100%;
+    }
+    input[type="text"]:focus {
+      border-color: var(--border-focus);
+    }
+
+    .preset-row {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .preset-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-code);
+      font-size: 10.5px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .preset-btn:hover {
+      background: #4a4a4a;
+      color: #fff;
+    }
+
+    .action-button-bar {
+      padding: 12px;
+      margin-top: auto;
+    }
+    .btn-exec {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 3px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-exec:hover { background: var(--accent-hover); }
+    .btn-exec:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Right Workbench view */
+    section.workbench {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-canvas);
+      overflow: hidden;
+    }
+
+    .workbench-toolbar {
+      height: 35px;
+      background: #202224;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      flex-shrink: 0;
+    }
+
+    .tab-group {
+      display: flex;
+      gap: 1px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn:hover { color: var(--text-main); }
+    .tab-btn.active {
+      color: var(--text-bright);
+      border-bottom-color: var(--border-focus);
+      background: var(--bg-canvas);
+    }
+
+    .status-text {
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Terminal output view */
+    .terminal-container {
+      flex: 1;
+      overflow: auto;
+      padding: 12px 16px;
+      background: #141414;
+      font-family: var(--font-code);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #d4d4d4;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Structured view */
+    .structured-container {
+      flex: 1;
+      overflow: auto;
+      padding: 16px;
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      align-content: start;
+    }
+    .property-card {
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+    .property-name {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .property-value {
+      font-family: var(--font-code);
+      font-size: 12px;
+      color: #9cdcfe;
+      overflow: auto;
+      max-height: 160px;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header>
+    <div class="app-title">
+      <span>REA — Engenharia Reversa</span>
+      <span class="version-tag" id="currentVer">v6.8.0</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Update notification button -->
+      <button class="btn-update" id="btnUpdate" onclick="performUpdate()">
+        <span>Atualização disponível</span>
+        <span id="newVerTag"></span>
+      </button>
+
+      <div class="system-status">
+        <span class="status-dot"></span>
+        <span>Servidor Ativo</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <!-- Left Panel: Actions & Inputs -->
+    <aside>
+      <!-- REA Action Selection -->
+      <div class="sidebar-section">
+        <div class="section-title">Modo de Engenharia Reversa</div>
+        <div class="mode-list">
+
+          <div class="mode-item active" onclick="setMode('analyze', this)">
+            <div class="mode-header">
+              <span class="mode-name">1. Inspeção de Formato e Cabeçalhos</span>
+              <span class="mode-cmd">analyze</span>
+            </div>
+            <div class="mode-desc">Lê headers ELF, PE ou Mach-O sem executar. Mostra seções, compilador de origem, arquitetura de CPU e bibliotecas dinâmicas vinculadas.</div>
+          </div>
+
+          <div class="mode-item" onclick="setMode('javascript', this)">
+            <div class="mode-header">
+              <span class="mode-name">2. Desempacotar App JS / Electron</span>
+              <span class="mode-cmd">analyze-javascript</span>
+            </div>
+            <div class="mode-desc">Extrai arquivos .asar ou diretórios Node.js. Reconstrói o mapa de arquivos-fonte, endpoints internos e canais IPC expostos via Electron.</div>
+          </div>
+
+          <div class="mode-item" onclick="setMode('search', this)">
+            <div class="mode-header">
+              <span class="mode-name">3. Varredura de Textos e Símbolos</span>
+              <span class="mode-cmd">search</span>
+            </div>
+            <div class="mode-desc">Busca padrões literais de strings dentro do arquivo executável (como rotas HTTP, credenciais ou mensagens) e nomes de funções exportadas.</div>
+          </div>
+
+          <div class="mode-item" onclick="setMode('trace', this)">
+            <div class="mode-header">
+              <span class="mode-name">4. Rastreamento de Referências Cruzadas</span>
+              <span class="mode-cmd">trace</span>
+            </div>
+            <div class="mode-desc">Mapeia quem consome ou chama uma função ou variável específica, desenhando o fluxo de execução para entender uma rotina alvo.</div>
+          </div>
+
+          <div class="mode-item" onclick="setMode('decompile', this)">
+            <div class="mode-header">
+              <span class="mode-name">5. Descompilação em Pseudocódigo</span>
+              <span class="mode-cmd">decompile</span>
+            </div>
+            <div class="mode-desc">Lê os opcodes em assembly de um procedimento específico e reconstrói a lógica algorítmica aproximada em pseudocódigo legível no estilo C.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Target Selection -->
+      <div class="sidebar-section">
+        <div class="section-title">Alvo da Análise</div>
+
+        <div class="drop-zone" id="dropZone">
+          <input type="file" id="fileInput" style="display: none;">
+          <div class="drop-zone-text">Arrastar arquivo ou executável aqui</div>
+          <div class="drop-zone-sub">Binários ELF, .exe, APK, pacotes .asar ou .js</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label" for="targetPath">Caminho no sistema de arquivos:</label>
+          <input type="text" id="targetPath" placeholder="/usr/bin/ls ou /home/vinicius/app">
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">Binários de teste do sistema:</span>
+          <div class="preset-row">
+            <button class="preset-btn" onclick="applyPreset('/usr/bin/ls')">ls</button>
+            <button class="preset-btn" onclick="applyPreset('/usr/bin/node')">node</button>
+            <button class="preset-btn" onclick="applyPreset('/usr/bin/git')">git</button>
+            <button class="preset-btn" onclick="applyPreset('/usr/bin/python3')">python3</button>
+          </div>
+        </div>
+
+        <div class="field-group" id="queryGroup" style="display: none;">
+          <label class="field-label" id="queryLabel" for="queryInput">Termo de busca / Função:</label>
+          <input type="text" id="queryInput" placeholder="Ex: main">
+        </div>
+      </div>
+
+      <!-- Execution button -->
+      <div class="action-button-bar">
+        <button class="btn-exec" id="btnRun" onclick="runAnalysis()">
+          <span>Executar Análise</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Right Panel: Output & Inspection -->
+    <section class="workbench">
+      <div class="workbench-toolbar">
+        <div class="tab-group">
+          <button class="tab-btn active" id="tabRaw" onclick="switchTab('raw')">Saída do Terminal</button>
+          <button class="tab-btn" id="tabStructured" onclick="switchTab('structured')">Propriedades Estruturadas</button>
+        </div>
+        <div class="status-text" id="execStatus">Pronto</div>
+      </div>
+
+      <!-- Terminal output view -->
+      <div class="terminal-container" id="terminalView">Selecione uma ação à esquerda, informe o arquivo ou diretório e clique em "Executar Análise".</div>
+
+      <!-- Structured properties view -->
+      <div class="structured-container" id="structuredView"></div>
+    </section>
+  </div>
+
+  <script>
+    let activeMode = 'analyze';
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const targetPath = document.getElementById('targetPath');
+    const queryGroup = document.getElementById('queryGroup');
+    const queryLabel = document.getElementById('queryLabel');
+    const queryInput = document.getElementById('queryInput');
+    const btnRun = document.getElementById('btnRun');
+    const terminalView = document.getElementById('terminalView');
+    const structuredView = document.getElementById('structuredView');
+    const tabRaw = document.getElementById('tabRaw');
+    const tabStructured = document.getElementById('tabStructured');
+    const execStatus = document.getElementById('execStatus');
+    const btnUpdate = document.getElementById('btnUpdate');
+    const newVerTag = document.getElementById('newVerTag');
+
+    // Handle URL parameters if opened from tray
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('target')) {
+      targetPath.value = urlParams.get('target');
+      if (urlParams.has('mode')) {
+        const targetMode = urlParams.get('mode');
+        const item = document.querySelector(`.mode-item[onclick*="${targetMode}"]`);
+        if (item) setMode(targetMode, item);
+      }
+      setTimeout(() => runAnalysis(), 300);
+    }
+
+    // Check updates on load
+    async function checkUpdateStatus() {
+      try {
+        const res = await fetch('/api/check-update');
+        const data = await res.json();
+        if (data.hasUpdate) {
+          btnUpdate.style.display = 'inline-flex';
+          newVerTag.textContent = `(v${data.latestVersion})`;
+        }
+      } catch (e) {
+        console.error('Update check failed', e);
+      }
+    }
+    checkUpdateStatus();
+
+    async function performUpdate() {
+      btnUpdate.disabled = true;
+      btnUpdate.innerHTML = '<span class="spinner"></span> Atualizando...';
+      try {
+        const res = await fetch('/api/perform-update', { method: 'POST' });
+        const data = await res.json();
+        alert('REA atualizado com sucesso. Recarregando aplicação.');
+        window.location.reload();
+      } catch (err) {
+        alert('Erro ao atualizar: ' + err.message);
+        btnUpdate.disabled = false;
+        btnUpdate.textContent = 'Tentar novamente';
+      }
+    }
+
+    function setMode(mode, el) {
+      activeMode = mode;
+      document.querySelectorAll('.mode-item').forEach(i => i.classList.remove('active'));
+      if (el) el.classList.add('active');
+
+      if (mode === 'search') {
+        queryGroup.style.display = 'flex';
+        queryLabel.textContent = 'Termo literal ou símbolo a buscar:';
+        queryInput.placeholder = 'Ex: main, token, http';
+      } else if (mode === 'decompile') {
+        queryGroup.style.display = 'flex';
+        queryLabel.textContent = 'Nome exato do procedimento para descompilar:';
+        queryInput.placeholder = 'Ex: main, _start, handler';
+      } else if (mode === 'trace') {
+        queryGroup.style.display = 'flex';
+        queryLabel.textContent = 'Função para mapear chamadas:';
+        queryInput.placeholder = 'Ex: main, initApp';
+      } else {
+        queryGroup.style.display = 'none';
+      }
+    }
+
+    function applyPreset(path) {
+      targetPath.value = path;
+      runAnalysis();
+    }
+
+    // Drag & drop file upload
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length > 0) {
+        uploadFile(e.dataTransfer.files[0]);
+      }
+    });
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        uploadFile(fileInput.files[0]);
+      }
+    });
+
+    async function uploadFile(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+      terminalView.textContent = `Carregando arquivo ${file.name}...`;
+
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.filePath) {
+          targetPath.value = data.filePath;
+          runAnalysis();
+        }
+      } catch (err) {
+        terminalView.textContent = `Falha no upload: ${err.message}`;
+      }
+    }
+
+    async function runAnalysis() {
+      const pathVal = targetPath.value.trim();
+      if (!pathVal) {
+        alert('Informe o caminho do executável ou arraste um arquivo para a caixa.');
+        return;
+      }
+
+      btnRun.disabled = true;
+      btnRun.innerHTML = '<span class="spinner"></span> Processando...';
+      terminalView.textContent = `[REA] Iniciando modo "${activeMode}" em:\n${pathVal}\n\nAguarde o retorno do processo...`;
+      
+      const startTime = performance.now();
+      execStatus.textContent = 'Em execução...';
+
+      try {
+        const res = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            targetPath: pathVal,
+            mode: activeMode,
+            query: queryInput.value.trim()
+          })
+        });
+
+        const data = await res.json();
+        const duration = ((performance.now() - startTime) / 1000).toFixed(2);
+        execStatus.textContent = `Concluído em ${duration}s (Exit code: ${data.exitCode})`;
+
+        terminalView.textContent = data.rawOutput || JSON.stringify(data.data, null, 2);
+        renderProperties(data.data);
+      } catch (err) {
+        terminalView.textContent = `Erro durante a execução: ${err.message}`;
+        execStatus.textContent = 'Falha';
+      } finally {
+        btnRun.disabled = false;
+        btnRun.innerHTML = '<span>Executar Análise</span>';
+      }
+    }
+
+    function renderProperties(data) {
+      structuredView.innerHTML = '';
+      if (!data || typeof data !== 'object') {
+        structuredView.innerHTML = '<div style="color: var(--text-muted); padding: 8px;">Nenhum dado estruturado retornado. Consulte a aba "Saída do Terminal".</div>';
+        return;
+      }
+
+      for (const [key, val] of Object.entries(data)) {
+        const card = document.createElement('div');
+        card.className = 'property-card';
+        const title = document.createElement('div');
+        title.className = 'property-name';
+        title.textContent = key;
+
+        const content = document.createElement('div');
+        content.className = 'property-value';
+        if (typeof val === 'object') {
+          content.innerHTML = `<pre style="font-size: 11px;">${JSON.stringify(val, null, 2)}</pre>`;
+        } else {
+          content.textContent = String(val);
+        }
+
+        card.appendChild(title);
+        card.appendChild(content);
+        structuredView.appendChild(card);
+      }
+    }
+
+    function switchTab(tab) {
+      if (tab === 'raw') {
+        tabRaw.classList.add('active');
+        tabStructured.classList.remove('active');
+        terminalView.style.display = 'block';
+        structuredView.style.display = 'none';
+      } else {
+        tabStructured.classList.add('active');
+        tabRaw.classList.remove('active');
+        terminalView.style.display = 'none';
+        structuredView.style.display = 'grid';
+      }
+    }
+  </script>
+</body>
+</html>

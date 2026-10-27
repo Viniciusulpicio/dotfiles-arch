@@ -417,6 +417,17 @@ if [ -d "$SCRIPT_DIR/openwhip-visual" ]; then
     echo "  ✓ OpenWhip Visual restaurado."
 fi
 
+if [ -d "$SCRIPT_DIR/rea-studio" ]; then
+    echo "🔍 14.3 Restaurando REA Studio..."
+    mkdir -p "$TARGET_HOME/rea-studio"
+    cp -rf "$SCRIPT_DIR/rea-studio/"* "$TARGET_HOME/rea-studio/" 2>/dev/null || true
+    if [ ! -d "$TARGET_HOME/rea-studio/node_modules" ] && command -v npm &>/dev/null; then
+        echo "  -> Instalando dependências Node do REA Studio..."
+        (cd "$TARGET_HOME/rea-studio" && npm install --no-audit --no-fund) || true
+    fi
+    echo "  ✓ REA Studio restaurado."
+fi
+
 if [ -f "$SCRIPT_DIR/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
     echo "⚡ Restaurando configurações de responsividade para Downloads e Jogos (/etc/sysctl.d)..."
     sudo mkdir -p /etc/sysctl.d

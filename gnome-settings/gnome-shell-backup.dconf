@@ -33,7 +33,7 @@ active-view='month'
 window-maximized=false
 
 [control-center]
-last-panel='wifi'
+last-panel='power'
 
 [desktop/a11y/applications]
 screen-magnifier-enabled=false
@@ -311,7 +311,7 @@ sidebar-page='links'
 sizing-mode='free'
 text-color='blue'
 window-maximized=false
-zoom=1.05426927947851
+zoom=0.8679053632611341
 
 [portal/filechooser/antigravity]
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
@@ -320,7 +320,7 @@ last-folder-path='/home/vinicius/temp/ADJ-WWW'
 last-folder-path='/home/vinicius/temp/estrutura-dados-c'
 
 [portal/filechooser/com.google.Chrome]
-last-folder-path='/home/vinicius/temp/sistemas-digitais'
+last-folder-path='/home/vinicius/BCC/Estrutura de dados - C'
 
 [portal/filechooser/curseforge]
 last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
@@ -483,7 +483,7 @@ enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=4
+indicator-position-max=5
 restore-state=true
 show-indicator='always'
 user-enabled=true
@@ -712,9 +712,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [software]
-check-timestamp=int64 1792772971
+check-timestamp=int64 1793062881
 first-run=false
-flatpak-purge-timestamp=int64 1792770078
+flatpak-purge-timestamp=int64 1793140187
 
 [system/location]
 enabled=true
