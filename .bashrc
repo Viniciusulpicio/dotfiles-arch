@@ -10,3 +10,6 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 fastfetch
+
+# Reverse engineering engines
+export GHIDRA_INSTALL_DIR=/opt/ghidra

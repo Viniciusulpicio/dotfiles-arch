@@ -38,6 +38,7 @@ fuse2
 gamemode
 gdm
 gemini-cli
+ghidra
 git
 github-cli
 gnome-backgrounds

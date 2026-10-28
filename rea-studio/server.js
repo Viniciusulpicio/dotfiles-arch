@@ -34,6 +34,7 @@ function runReaCommand(args) {
       shell: false,
       env: {
         ...process.env,
+        GHIDRA_INSTALL_DIR: process.env.GHIDRA_INSTALL_DIR || '/opt/ghidra',
         NODE_OPTIONS: '--max-old-space-size=4096'
       }
     });

@@ -23,3 +23,6 @@ wine() {
   [ -x "$HOME/.local/bin/wine-dpi-sync.sh" ] && "$HOME/.local/bin/wine-dpi-sync.sh"
   command wine "$@"
 }
+
+# Reverse engineering engines
+export GHIDRA_INSTALL_DIR=/opt/ghidra
