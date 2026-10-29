@@ -151,7 +151,7 @@ class HudNote(Gtk.Window):
     def __init__(self):
         super().__init__(title="ZenNote")
         self.save_source_id = None
-        self.current_file: Path = MAIN_NOTE
+        self.current_file: Path | None = None
         self.switching_note = False
         self._drag_Possible = False
 
@@ -188,6 +188,7 @@ class HudNote(Gtk.Window):
 
         self.connect("key-press-event", self._on_key_press)
         self.connect("delete-event", lambda *_: self.close_and_exit())
+        self.connect("focus-out-event", lambda *_: self.save_now())
         self.connect("show", self._on_show)
 
     def _detect_monitor_geometry(self) -> tuple[int, int, int | None, int | None]:
