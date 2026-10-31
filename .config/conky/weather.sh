@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # --- CONFIGURAÇÃO ---
-CITY="Sao Paulo,br"
-API_KEY="YOUR_OPENWEATHER_API_KEY" # Chave da API OpenWeatherMap
+# Para personalizar sem versionar sua chave, defina em ~/.config/conky/weather.env
+[ -f "$HOME/.config/conky/weather.env" ] && source "$HOME/.config/conky/weather.env"
+
+CITY="${CITY:-Sao Paulo,br}"
+API_KEY="${API_KEY:-YOUR_OPENWEATHER_API_KEY}"
 # --------------------
 
 # Obter dados da API com timeout

@@ -83,6 +83,23 @@ __pycache__/
 !.config/rclone/dev-filter.txt
 .config/evolution/
 .config/go/telemetry/
+.config/gsconnect/
+.config/remmina/
+.config/connections.db
+.config/freerdp/
+.config/winboat/
+.config/VirtualBox/
+.config/spotify/
+.config/pulse/
+.config/mozilla/
+.config/ow-electron/
+.config/dconf/user
+.config/conky/weather.env
+**/*.env
+**/*.env.*
+**/*.pem
+**/*.key
+**/*.crt
 
 # Heavy Binaries in local/bin
 .local/bin/agy*

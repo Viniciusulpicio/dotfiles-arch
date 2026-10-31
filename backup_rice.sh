@@ -246,7 +246,6 @@ CONFIG_APPS=(
     "BetterDiscord"
     "MangoHud"
     "obs-studio"
-    "VirtualBox"
     "spicetify"
     "TeamSpeak3"
     "neofetch"
@@ -255,15 +254,12 @@ CONFIG_APPS=(
     "mimeapps.list"
     "user-dirs.dirs"
     "user-dirs.locale"
-    "connections.db"
     "gnome-xdg-terminals.list"
     "xdg-terminals.list"
     "argos"
     "input-remapper-2"
     "devilspie2"
-    "freerdp"
     "gallery-dl"
-    "gsconnect"
     "pamac"
     "pavucontrol.ini"
     "Pinta"
@@ -272,7 +268,6 @@ CONFIG_APPS=(
     "vesktop"
     "vkBasalt"
     "vlc"
-    "winboat"
     "Arduino IDE"
     "codeblocks"
     "composer"
@@ -317,6 +312,11 @@ rm -rf "$REPO_DIR/.config/Code/Cookies"* "$REPO_DIR/.config/Code/DIPS"* "$REPO_D
        "$REPO_DIR/.config/Code/languagepacks.json" "$REPO_DIR/.config/Code/machineid" "$REPO_DIR/.config/Code/Network Persistent State" \
        "$REPO_DIR/.config/Code/User/globalStorage" "$REPO_DIR/.config/Code/User/workspaceStorage" "$REPO_DIR/.config/Code/User/History" \
        "$REPO_DIR/.config/discord" "$REPO_DIR/.config/arduino-ide" \
+       "$REPO_DIR/.config/connections.db" "$REPO_DIR/.config/freerdp" "$REPO_DIR/.config/gsconnect" \
+       "$REPO_DIR/.config/winboat" "$REPO_DIR/.config/remmina" "$REPO_DIR/.config/evolution" \
+       "$REPO_DIR/.config/VirtualBox" "$REPO_DIR/.config/spotify" "$REPO_DIR/.config/pulse" \
+       "$REPO_DIR/.config/mozilla" "$REPO_DIR/.config/ow-electron" "$REPO_DIR/.config/dconf/user" \
+       "$REPO_DIR/.config/conky/weather.env" \
        "$REPO_DIR/.config/monitors.xml" "$REPO_DIR/.config/tiling-assistant/tiledSessionRestore2.json" 2>/dev/null || true
 
 # 10. VERIFICAÇÃO E COMMIT NO GIT
