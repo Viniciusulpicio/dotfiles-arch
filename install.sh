@@ -468,6 +468,13 @@ fi
 sudo systemctl enable --now mariadb.service 2>/dev/null || true
 sudo systemctl enable --now postgresql.service 2>/dev/null || true
 
+# 15.1 CONFIGURAÇÃO DE CHAVES E APIS PESSOAIS (OPCIONAL)
+echo ""
+echo "🔑 15.1 Configuração de Chaves e APIs Pessoais..."
+if [ -f "$SCRIPT_DIR/scripts/setup-keys.sh" ]; then
+    bash "$SCRIPT_DIR/scripts/setup-keys.sh" || true
+fi
+
 # Habilitar serviços de usuário (conky, limpeza periódica de extensões, etc.)
 systemctl --user enable conky.service 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true

@@ -1,8 +1,18 @@
 #!/bin/bash
 
 # --- CONFIGURAÇÃO ---
-# Para personalizar sem versionar sua chave, defina em ~/.config/conky/weather.env
-[ -f "$HOME/.config/conky/weather.env" ] && source "$HOME/.config/conky/weather.env"
+# Se não existir o arquivo .env, chama a interface de configuração na primeira execução
+ENV_FILE="$HOME/.config/conky/weather.env"
+if [ ! -f "$ENV_FILE" ]; then
+    SETUP_SCRIPT=""
+    [ -x "$HOME/.local/bin/setup-keys.sh" ] && SETUP_SCRIPT="$HOME/.local/bin/setup-keys.sh"
+    [ -z "$SETUP_SCRIPT" ] && [ -x "$HOME/dotfiles-arch/scripts/setup-keys.sh" ] && SETUP_SCRIPT="$HOME/dotfiles-arch/scripts/setup-keys.sh"
+    if [ -n "$SETUP_SCRIPT" ] && ([ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]); then
+        "$SETUP_SCRIPT" >/dev/null 2>&1
+    fi
+fi
+
+[ -f "$ENV_FILE" ] && source "$ENV_FILE"
 
 CITY="${CITY:-Sao Paulo,br}"
 API_KEY="${API_KEY:-YOUR_OPENWEATHER_API_KEY}"
