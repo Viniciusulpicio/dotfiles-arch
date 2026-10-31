@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Configurar Chaves e APIs
+Comment=Configurar chaves de API e preferências do Conky
+Exec=/home/vinicius/.local/bin/setup-keys.sh
+Icon=preferences-system
+Terminal=false
+Categories=Settings;System;
