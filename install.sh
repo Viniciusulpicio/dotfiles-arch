@@ -28,6 +28,13 @@ while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
 SUDO_KEEP_ALIVE_PID=$!
 trap 'kill $SUDO_KEEP_ALIVE_PID 2>/dev/null' EXIT
 
+# 0. ASSISTENTE DE CHAVES, IDENTIDADE E APIS PESSOAIS
+echo "🔑 Configuração Inicial: Identidade e Chaves de API..."
+if [ -f "$SCRIPT_DIR/scripts/setup-keys.sh" ]; then
+    bash "$SCRIPT_DIR/scripts/setup-keys.sh" || true
+fi
+echo ""
+
 # 1. HABILITAR REPOSITÓRIO MULTILIB E CONFIGURAR IDIOMA (pt_BR)
 echo "⚙️ 1. Habilitando repositório [multilib] em /etc/pacman.conf..."
 if grep -q "^#\[multilib\]" /etc/pacman.conf; then
@@ -467,13 +474,6 @@ if [ ! -d "/var/lib/mysql" ] && command -v mariadb-install-db &> /dev/null; then
 fi
 sudo systemctl enable --now mariadb.service 2>/dev/null || true
 sudo systemctl enable --now postgresql.service 2>/dev/null || true
-
-# 15.1 CONFIGURAÇÃO DE CHAVES E APIS PESSOAIS (OPCIONAL)
-echo ""
-echo "🔑 15.1 Configuração de Chaves e APIs Pessoais..."
-if [ -f "$SCRIPT_DIR/scripts/setup-keys.sh" ]; then
-    bash "$SCRIPT_DIR/scripts/setup-keys.sh" || true
-fi
 
 # Habilitar serviços de usuário (conky, limpeza periódica de extensões, etc.)
 systemctl --user enable conky.service 2>/dev/null || true
