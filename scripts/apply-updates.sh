@@ -43,9 +43,9 @@ echo ""
 echo "📁 4. Atualizando .stignore do Syncthing em ~/temp..."
 mkdir -p "$TARGET_HOME/temp"
 cp -f "$SCRIPT_DIR/.config/syncthing/stignore.default" "$TARGET_HOME/temp/.stignore" 2>/dev/null || true
-cp -f "$SCRIPT_DIR/.config/systemd/user/syncthing.service" "$TARGET_HOME/.config/systemd/user/" 2>/dev/null || true
+cp -f "$SCRIPT_DIR/.config/systemd/user/syncthing.service" "$SCRIPT_DIR/.config/systemd/user/leis-sync."* "$TARGET_HOME/.config/systemd/user/" 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true
-systemctl --user enable --now syncthing.service 2>/dev/null || true
+systemctl --user enable --now syncthing.service leis-sync.timer 2>/dev/null || true
 
 # 5. Ativar timer de limpeza periódica de extensões antigas
 echo ""

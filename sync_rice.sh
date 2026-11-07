@@ -240,7 +240,7 @@ rm -f "$TARGET_HOME/.local/bin/dev-sync" "$TARGET_HOME/.local/bin/dev-push" "$TA
 rm -f "$TARGET_HOME/GoogleDrive/.trackerignore" "$TARGET_HOME/GoogleDrive/.nomedia" "$TARGET_HOME/DriveUnimar/.trackerignore" "$TARGET_HOME/DriveUnimar/.nomedia" 2>/dev/null || true
 rm -f "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-googledrive.service" "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-driveunimar.service" 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true
-systemctl --user enable --now syncthing.service 2>/dev/null || true
+systemctl --user enable --now syncthing.service leis-sync.timer 2>/dev/null || true
 if rclone listremotes 2>/dev/null | grep -q "^GoogleDrive:"; then
     systemctl --user enable --now rclone-googledrive.service 2>/dev/null || true
 fi

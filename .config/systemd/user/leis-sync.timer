@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer para atualizar ~/temp/leis no login e a cada 1h
+
+[Timer]
+OnStartupSec=2min
+OnUnitActiveSec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

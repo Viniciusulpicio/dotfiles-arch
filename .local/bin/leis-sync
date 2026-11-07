@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Mantem o repositorio ~/temp/leis sempre atualizado automaticamente via Git
+set -e
+
+LEIS_DIR="${DEV_WORKSPACE:-$HOME/temp}/leis"
+mkdir -p "$(dirname "$LEIS_DIR")"
+
+if [[ ! -d "$LEIS_DIR/.git" ]]; then
+    git clone https://github.com/ctresb/leis.git "$LEIS_DIR"
+else
+    git -C "$LEIS_DIR" pull --ff-only origin main
+fi
