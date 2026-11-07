@@ -236,11 +236,34 @@ fi
 
 mkdir -p "$TARGET_HOME/GoogleDrive" "$TARGET_HOME/DriveUnimar" "$TARGET_HOME/temp"
 rm -f "$TARGET_HOME/.local/bin/dev-sync" "$TARGET_HOME/.local/bin/dev-push" "$TARGET_HOME/.local/bin/dev-pull" "$TARGET_HOME/.config/rclone/dev-filter.txt" 2>/dev/null || true
+rclone purge GoogleDrive:dev-workspace 2>/dev/null || true
 [ -f "$SCRIPT_DIR/.config/syncthing/stignore.default" ] && cp -f "$SCRIPT_DIR/.config/syncthing/stignore.default" "$TARGET_HOME/temp/.stignore" 2>/dev/null || true
 rm -f "$TARGET_HOME/GoogleDrive/.trackerignore" "$TARGET_HOME/GoogleDrive/.nomedia" "$TARGET_HOME/DriveUnimar/.trackerignore" "$TARGET_HOME/DriveUnimar/.nomedia" 2>/dev/null || true
 rm -f "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-googledrive.service" "$TARGET_HOME/.config/systemd/user/default.target.wants/rclone-driveunimar.service" 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true
 systemctl --user enable --now syncthing.service leis-sync.timer 2>/dev/null || true
+
+# Parear automaticamente o Syncthing desta maquina (PC/Notebook) com o Mini Servidor (TV Box)
+if command -v syncthing >/dev/null 2>&1 || [ -x "$TARGET_HOME/.local/bin/syncthing" ]; then
+    ST_BIN=$(command -v syncthing 2>/dev/null || echo "$TARGET_HOME/.local/bin/syncthing")
+    TVBOX_ID="T5VBZM2-7YCAG4N-AEHV2UN-HLHCQLB-F33MNJS-PY5XPDX-NJLISQU-FH22GAT"
+    sleep 2
+    MY_ID=$("$ST_BIN" cli show system 2>/dev/null | python3 -c "import sys,json;print(json.load(sys.stdin)['myID'])" 2>/dev/null || true)
+    if [ -n "$MY_ID" ] && [ "$MY_ID" != "$TVBOX_ID" ]; then
+        "$ST_BIN" cli config devices add --device-id "$TVBOX_ID" --name "rk322x-box" 2>/dev/null || true
+        "$ST_BIN" cli config devices "$TVBOX_ID" addresses add "tcp://rk322x-box:22000" 2>/dev/null || true
+        "$ST_BIN" cli config folders add --id "dev-workspace" --label "dev-workspace" --path "$TARGET_HOME/temp" 2>/dev/null || true
+        "$ST_BIN" cli config folders "dev-workspace" devices add --device-id "$TVBOX_ID" 2>/dev/null || true
+        ssh -o BatchMode=yes -o ConnectTimeout=3 vinicius@192.168.0.215 "
+            K=\$(sed -n 's/.*<apikey>\(.*\)<\/apikey>.*/\1/p' /mnt/storage/servicos/syncthing/config/config.xml)
+            S='docker exec syncthing syncthing cli --gui-address=http://127.0.0.1:8384 --gui-apikey='\$K
+            \$S config devices add --device-id '$MY_ID' --name '\$(hostname)' 2>/dev/null || true
+            \$S config devices '$MY_ID' auto-accept-folders set true 2>/dev/null || true
+            \$S config folders 'dev-workspace' devices add --device-id '$MY_ID' 2>/dev/null || true
+        " 2>/dev/null || true
+        echo "  ✓ Syncthing pareado automaticamente com o Mini Servidor (pasta ~/temp)."
+    fi
+fi
 if rclone listremotes 2>/dev/null | grep -q "^GoogleDrive:"; then
     systemctl --user enable --now rclone-googledrive.service 2>/dev/null || true
 fi
