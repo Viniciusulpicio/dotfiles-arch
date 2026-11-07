@@ -1,0 +1,13 @@
+// Regras de exclusao do Syncthing para ~/temp (dev-workspace)
+/leis
+.pio
+.espidf
+node_modules
+__pycache__
+*.pyc
+.venv
+.git/index.lock
+.git/refs/heads/*.lock
+*.swp
+*~
+.DS_Store

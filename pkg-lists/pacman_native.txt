@@ -173,6 +173,7 @@ steam
 stow
 sudo
 sushi
+syncthing
 teamspeak3
 tecla
 thermald

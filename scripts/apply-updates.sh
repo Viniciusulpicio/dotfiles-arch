@@ -28,20 +28,24 @@ rsync -av --exclude='.git' \
     "$SCRIPT_DIR/.local/share/gnome-shell/extensions/" \
     "$TARGET_HOME/.local/share/gnome-shell/extensions/"
 
-# 3. Atualizar binários locais (dev-sync, clean-old-extensions, etc.)
+# 3. Atualizar binários locais (clean-old-extensions, etc.)
 echo ""
 echo "🛠️ 3. Atualizando scripts em ~/.local/bin e ~/scripts..."
 mkdir -p "$TARGET_HOME/.local/bin" "$TARGET_HOME/scripts"
+rm -f "$TARGET_HOME/.local/bin/dev-sync" "$TARGET_HOME/.local/bin/dev-push" "$TARGET_HOME/.local/bin/dev-pull" "$TARGET_HOME/.config/rclone/dev-filter.txt" 2>/dev/null || true
 cp -rf "$SCRIPT_DIR/.local/bin/"* "$TARGET_HOME/.local/bin/" 2>/dev/null || true
 chmod +x "$TARGET_HOME/.local/bin/"* 2>/dev/null || true
 cp -rf "$SCRIPT_DIR/scripts/"*.sh "$TARGET_HOME/scripts/" 2>/dev/null || true
 chmod +x "$TARGET_HOME/scripts/"*.sh 2>/dev/null || true
 
-# 4. Configurar filtro da pasta temp (Google Drive)
+# 4. Configurar regras de exclusão do Syncthing na pasta ~/temp
 echo ""
-echo "📁 4. Atualizando filtros do rclone (dev-sync)..."
-mkdir -p "$TARGET_HOME/.config/rclone"
-cp -f "$SCRIPT_DIR/.config/rclone/dev-filter.txt" "$TARGET_HOME/.config/rclone/" 2>/dev/null || true
+echo "📁 4. Atualizando .stignore do Syncthing em ~/temp..."
+mkdir -p "$TARGET_HOME/temp"
+cp -f "$SCRIPT_DIR/.config/syncthing/stignore.default" "$TARGET_HOME/temp/.stignore" 2>/dev/null || true
+cp -f "$SCRIPT_DIR/.config/systemd/user/syncthing.service" "$TARGET_HOME/.config/systemd/user/" 2>/dev/null || true
+systemctl --user daemon-reload 2>/dev/null || true
+systemctl --user enable --now syncthing.service 2>/dev/null || true
 
 # 5. Ativar timer de limpeza periódica de extensões antigas
 echo ""

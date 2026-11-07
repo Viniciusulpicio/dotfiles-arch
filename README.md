@@ -27,13 +27,20 @@
 ## Demonstração (Showcase)
 
 <div align="center">
-  <img src="wallpaper_atual.jpg" alt="Wallpaper e Estilo Visual" width="85%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);" />
+  <img src="demo/showcase.gif" alt="Showcase Arch Linux + GNOME 51 Rice" width="92%" style="border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.6);" />
+  <br><br>
+  <a href="https://viniciusulpicio.github.io/dotfiles-arch/">
+    <img src="https://img.shields.io/badge/🌐_Simulador_Interativo_Real-GitHub_Pages-ea580c?style=for-the-badge&logo=archlinux&logoColor=white" alt="Simulador Interativo" />
+  </a>
+  <a href="demo/showcase.mp4">
+    <img src="https://img.shields.io/badge/🎬_Vídeo_1080p_Full_HD-MP4-1793D1?style=for-the-badge&logo=gnome&logoColor=white" alt="Showcase 1080p MP4" />
+  </a>
 </div>
 
 <br>
 
-> **Vídeo de Demonstração Interativo:**
-> *(Para adicionar uma prévia em vídeo, utilize o gravador de tela nativo do GNOME através da tecla PrintScreen em Modo Vídeo e anexe o arquivo .webm aqui)*
+> **Ambiente Interativo Fidedigno (`docs/index.html`):**
+> Inclui os componentes reais do repositório rodando direto no navegador: **WezTerm + Fastfetch (`john_wuthering.png`)**, **CAVA (`cava-pywalsync.sh`)**, **Dual Conky (`conky.conf` + `neofetch_conky.conf`)**, **Wofi Wallpaper Picker (`Alt + W`)** com as 9 paletas reais do Pywal, **System Tray Control Panel — XAMPP Edition (`http://127.0.0.1:4999`)** com os 297 serviços systemd, **REA Studio (`http://127.0.0.1:4321`)**, **ZenNote (`Super + N`)**, **Wlogout (`Alt + L`)** e **OpenWhip Visual**.
 
 ---
 
@@ -188,13 +195,13 @@ cd ~/dotfiles-arch
 ./backup_rice.sh
 ```
 
-### 3. Sincronizar pasta de projetos `~/temp` na nuvem (`dev-sync`)
-Para enviar ou baixar seus projetos de desenvolvimento via Rclone (`GoogleDrive:dev-workspace`):
+### 3. Sincronização em Tempo Real da pasta `~/temp` (`Syncthing` + Mini Servidor NAS)
+A pasta `~/temp` (`dev-workspace`) é sincronizada continuamente em tempo real via **Syncthing** com o Mini Servidor caseiro (`rk322x-box`, via LAN ou Tailscale), ignorando pastas de build (`.pio`, `.espidf`, `node_modules`, `.venv`, `/leis`) definidas em `~/temp/.stignore`:
 
 ```bash
-dev-push         # Envia ~/temp para o Google Drive
-dev-pull         # Baixa do Google Drive para ~/temp
-dev-sync status  # Compara diferenças locais vs nuvem
+# Painel local (PC/Notebook): http://127.0.0.1:8384
+# Painel do Mini Servidor:    http://rk322x-box:8384
+systemctl --user status syncthing.service
 ```
 
 ---

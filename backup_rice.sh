@@ -189,7 +189,7 @@ fi
 echo "📜 6. Copiando scripts em ~/.local/bin e ~/scripts (excluindo binários pesados)..."
 if [ -d "$HOME/.local/bin" ]; then
     mkdir -p "$REPO_DIR/.local/bin"
-    rsync -avL --exclude='agy*' --exclude='rclone' --exclude='composer' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
+    rsync -avL --exclude='agy*' --exclude='rclone' --exclude='syncthing' --exclude='composer' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
 fi
 if [ -d "$HOME/scripts" ]; then
     mkdir -p "$REPO_DIR/scripts"
@@ -285,10 +285,10 @@ if [ -f "$HOME/.config/arduino-ide/config.json" ]; then
     cp -f "$HOME/.config/arduino-ide/config.json" "$REPO_DIR/.config/arduino-ide/" 2>/dev/null || true
 fi
 
-# Rclone filter (sem expor rclone.conf)
-if [ -f "$HOME/.config/rclone/dev-filter.txt" ]; then
-    mkdir -p "$REPO_DIR/.config/rclone"
-    cp -f "$HOME/.config/rclone/dev-filter.txt" "$REPO_DIR/.config/rclone/" 2>/dev/null || true
+# Syncthing .stignore da pasta ~/temp (sem expor chaves/certificados)
+if [ -f "$HOME/temp/.stignore" ]; then
+    mkdir -p "$REPO_DIR/.config/syncthing"
+    cp -f "$HOME/temp/.stignore" "$REPO_DIR/.config/syncthing/stignore.default" 2>/dev/null || true
 fi
 
 # VS Code configs (Settings, Keybindings, Snippets e MCP)

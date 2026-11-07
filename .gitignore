@@ -78,9 +78,14 @@ __pycache__/
 .config/Postman/
 .config/heroic/
 .config/CurseForge/
+# Rclone configs com tokens
 .config/rclone/*.conf
 .config/rclone/rclone.conf
-!.config/rclone/dev-filter.txt
+
+# Syncthing chaves privadas e banco local (preservar apenas stignore.default)
+.config/syncthing/*
+!.config/syncthing/stignore.default
+.local/bin/syncthing
 .config/evolution/
 .config/go/telemetry/
 .config/gsconnect/

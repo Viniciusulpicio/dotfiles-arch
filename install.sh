@@ -475,8 +475,11 @@ fi
 sudo systemctl enable --now mariadb.service 2>/dev/null || true
 sudo systemctl enable --now postgresql.service 2>/dev/null || true
 
-# Habilitar serviços de usuário (conky, limpeza periódica de extensões, etc.)
+# Habilitar serviços de usuário (conky, syncthing, limpeza periódica de extensões, etc.)
+mkdir -p "$TARGET_HOME/temp"
+[ -f "$SCRIPT_DIR/.config/syncthing/stignore.default" ] && cp -f "$SCRIPT_DIR/.config/syncthing/stignore.default" "$TARGET_HOME/temp/.stignore" 2>/dev/null || true
 systemctl --user enable conky.service 2>/dev/null || true
+systemctl --user enable --now syncthing.service 2>/dev/null || true
 systemctl --user daemon-reload 2>/dev/null || true
 systemctl --user enable --now clean-old-extensions.timer 2>/dev/null || true
 
