@@ -13,20 +13,20 @@
  * You should have received a copy of the GNU General Public License along with this program.
  * If not, see <https://www.gnu.org/licenses/>.
  */
-import Clutter from 'gi://Clutter';
-import GLib from 'gi://GLib';
-import GObject from 'gi://GObject';
-import Gvc from 'gi://Gvc';
-import St from 'gi://St';
-import { gettext as _, Extension, InjectionManager } from 'resource:///org/gnome/shell/extensions/extension.js';
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
-import { QuickSettingsMenu } from 'resource:///org/gnome/shell/ui/quickSettings.js';
-import * as Volume from 'resource:///org/gnome/shell/ui/status/volume.js';
-import { LibPanel, Panel } from './libs/libpanel/main.js';
-import { update_settings } from './libs/preferences.js';
-import { cleanup_idle_ids, get_pactl_path, spawn, wait_property } from './libs/utils.js';
-import { ApplicationsMixer, ApplicationsMixerToggle, AudioProfileSwitcher, BalanceSlider, MprisList, SinkMixer } from './libs/widgets.js';
+import Clutter from "gi://Clutter";
+import GLib from "gi://GLib";
+import GObject from "gi://GObject";
+import Gvc from "gi://Gvc";
+import St from "gi://St";
+import { gettext as _, Extension, InjectionManager, } from "resource:///org/gnome/shell/extensions/extension.js";
+import * as Main from "resource:///org/gnome/shell/ui/main.js";
+import * as PanelMenu from "resource:///org/gnome/shell/ui/panelMenu.js";
+import { QuickSettingsMenu } from "resource:///org/gnome/shell/ui/quickSettings.js";
+import * as Volume from "resource:///org/gnome/shell/ui/status/volume.js";
+import { LibPanel, Panel } from "./libs/libpanel/main.js";
+import { update_settings } from "./libs/preferences.js";
+import { cleanup_idle_ids, get_pactl_path, spawn, wait_property } from "./libs/utils.js";
+import { ApplicationsMixer, ApplicationsMixerToggle, AudioProfileSwitcher, BalanceSlider, MprisList, SinkMixer, } from "./libs/widgets.js";
 const DateMenu = Main.panel.statusArea.dateMenu;
 const QuickSettings = Main.panel.statusArea.quickSettings;
 const CalendarMessageList = DateMenu._messageList;
@@ -37,13 +37,13 @@ const OutputVolumeSlider = QuickSettings._volumeOutput._output;
 export default class QSAP extends Extension {
     settings;
     async enable() {
-        this.InputVolumeIndicator = await wait_property(QuickSettings, '_volumeInput');
+        this.InputVolumeIndicator = await wait_property(QuickSettings, "_volumeInput");
         this.InputVolumeSlider = this.InputVolumeIndicator._input;
         this.settings = this.getSettings();
         update_settings(this.settings);
         this._extension_controller = new ExtensionController(this.settings, this.getLogger(), this.InputVolumeIndicator, OutputVolumeSlider);
-        this._scscd_callback = this.settings.connect('changed::master-volume-sliders-show-current-device', () => {
-            if (this.settings.get_boolean('master-volume-sliders-show-current-device')) {
+        this._scscd_callback = this.settings.connect("changed::master-volume-sliders-show-current-device", () => {
+            if (this.settings.get_boolean("master-volume-sliders-show-current-device")) {
                 this._patch_show_current_device(OutputVolumeSlider);
                 this._patch_show_current_device(this.InputVolumeSlider);
             }
@@ -52,27 +52,28 @@ export default class QSAP extends Extension {
                 this._unpatch_show_current_device(this.InputVolumeSlider);
             }
         });
-        this.settings.emit('changed::master-volume-sliders-show-current-device', 'master-volume-sliders-show-current-device');
-        this._scabaortd_callback = this.settings.connect('changed::add-button-applications-output-reset-to-default', () => {
-            if (this.settings.get_boolean('add-button-applications-output-reset-to-default')) {
+        this.settings.emit("changed::master-volume-sliders-show-current-device", "master-volume-sliders-show-current-device");
+        this._scabaortd_callback = this.settings.connect("changed::add-button-applications-output-reset-to-default", () => {
+            if (this.settings.get_boolean("add-button-applications-output-reset-to-default")) {
                 this._add_reset_applications_output();
             }
             else {
                 this._remove_reset_applications_output();
             }
         });
-        this.settings.emit('changed::add-button-applications-output-reset-to-default', 'add-button-applications-output-reset-to-default');
+        this.settings.emit("changed::add-button-applications-output-reset-to-default", "add-button-applications-output-reset-to-default");
         this._master_volumes = [];
-        this._sc_callback = this.settings.connect('changed', (_, name) => {
+        this._sc_callback = this.settings.connect("changed", async (_, name) => {
             if (name !== "autohide-profile-switcher" &&
                 name !== "ignore-virtual-capture-streams" &&
                 name !== "always-show-input-volume-slider" &&
                 name !== "remove-output-volume-slider" &&
-                name !== "profiles-renames") {
-                this._refresh_panel();
+                name !== "profiles-renames" &&
+                name !== "applications-volume-sliders-display-name") {
+                await this._refresh_panel();
             }
         });
-        this._refresh_panel();
+        await this._refresh_panel();
     }
     disable() {
         this.settings.disconnect(this._scscd_callback);
@@ -87,26 +88,35 @@ export default class QSAP extends Extension {
         this._extension_controller = undefined;
         this.settings = null;
     }
-    _refresh_panel() {
+    async _refresh_panel() {
         this._cleanup_panel();
         const panel_type = this.settings.get_string("panel-type");
         const merged_panel_position = this.settings.get_string("merged-panel-position");
-        const move_output_volume_slider = this.settings.get_boolean('move-output-volume-slider');
-        const move_input_volume_slider = this.settings.get_boolean('move-input-volume-slider');
+        const move_output_volume_slider = this.settings.get_boolean("move-output-volume-slider");
+        const move_input_volume_slider = this.settings.get_boolean("move-input-volume-slider");
         const create_mpris_controllers = this.settings.get_boolean("create-mpris-controllers");
-        const create_applications_volume_sliders = this.settings.get_boolean('create-applications-volume-sliders');
-        const create_perdevice_volume_sliders = this.settings.get_boolean('create-perdevice-volume-sliders');
-        const create_balance_slider = this.settings.get_boolean('create-balance-slider');
-        const create_profile_switcher = this.settings.get_boolean('create-profile-switcher');
-        const widgets_order = this.settings.get_strv('widgets-order');
-        if (move_output_volume_slider || move_input_volume_slider || create_mpris_controllers || create_applications_volume_sliders || create_perdevice_volume_sliders || create_balance_slider || create_profile_switcher) {
+        const create_applications_volume_sliders = this.settings.get_boolean("create-applications-volume-sliders");
+        const create_perdevice_volume_sliders = this.settings.get_boolean("create-perdevice-volume-sliders");
+        const create_balance_slider = this.settings.get_boolean("create-balance-slider");
+        const create_profile_switcher = this.settings.get_boolean("create-profile-switcher");
+        const widgets_order = this.settings.get_strv("widgets-order");
+        if (move_output_volume_slider ||
+            move_input_volume_slider ||
+            create_mpris_controllers ||
+            create_applications_volume_sliders ||
+            create_perdevice_volume_sliders ||
+            create_balance_slider ||
+            create_profile_switcher) {
             if (panel_type === "independent-panel")
-                LibPanel.enable();
+                await LibPanel.enable();
             this._panel = LibPanel.main_panel;
             let index = -1;
             if (panel_type === "separate-indicator") {
                 this._indicator = new PanelMenu.Button(0.0, "Audio panel", true);
-                this._indicator.add_child(new St.Icon({ style_class: 'system-status-icon', icon_name: 'audio-x-generic-symbolic' }));
+                this._indicator.add_child(new St.Icon({
+                    style_class: "system-status-icon",
+                    icon_name: "audio-x-generic-symbolic",
+                }));
                 this._panel = new QuickSettingsMenu(this._indicator, 2);
                 // Since the panel contains no element that have a minimal width (like QuickToggle)
                 // we need to force it to take the same with as a normal panel
@@ -141,33 +151,33 @@ export default class QSAP extends Extension {
                 Main.panel.addToStatusArea(this.uuid, this._indicator);
             }
             else if (panel_type === "independent-panel") {
-                this._panel = new Panel('main');
+                this._panel = new Panel("main");
                 // Since the panel contains no element that have a minimal width (like QuickToggle)
                 // we need to force it to take the same with as a normal panel
                 this._panel.add_constraint(new Clutter.BindConstraint({
                     coordinate: Clutter.BindCoordinate.WIDTH,
                     source: LibPanel.main_panel,
                 }));
-                LibPanel.addPanel(this._panel);
+                LibPanel.add_panel(this._panel);
             }
-            if (panel_type === "merged-panel" && merged_panel_position === 'top') {
+            if (panel_type === "merged-panel" && merged_panel_position === "top") {
                 widgets_order.reverse();
                 index = this._panel.getItems().indexOf(SystemItem) + 2;
             }
             for (const widget of widgets_order) {
-                if (widget === 'output-volume-slider' && move_output_volume_slider) {
+                if (widget === "output-volume-slider" && move_output_volume_slider) {
                     this._move_slider(index, OutputVolumeSlider);
                 }
-                else if (widget === 'input-volume-slider' && move_input_volume_slider) {
+                else if (widget === "input-volume-slider" && move_input_volume_slider) {
                     this._move_slider(index, this.InputVolumeSlider);
                 }
-                else if (widget === 'mpris-controllers' && create_mpris_controllers) {
+                else if (widget === "mpris-controllers" && create_mpris_controllers) {
                     this._create_media_controls(index);
                     if (this.settings.get_boolean("mpris-controllers-are-moved")) {
                         this._remove_base_media_controls();
                     }
                 }
-                else if (widget === 'applications-volume-sliders' && create_applications_volume_sliders) {
+                else if (widget === "applications-volume-sliders" && create_applications_volume_sliders) {
                     this._create_app_mixer(index, this.settings.get_boolean("group-applications-volume-sliders"), this.settings.get_string("applications-volume-sliders-filter-mode"), this.settings.get_strv("applications-volume-sliders-filters"));
                 }
                 else if (widget === "perdevice-volume-sliders" && create_perdevice_volume_sliders) {
@@ -228,10 +238,9 @@ export default class QSAP extends Extension {
             delete this._indicator;
         }
         else if (this._panel !== LibPanel.main_panel) {
-            LibPanel.removePanel(this._panel); // prevent the panel's position being forgotten
+            LibPanel.remove_panel(this._panel); // prevent the panel's position being forgotten
             this._panel.destroy();
         }
-        ;
         this._panel = null;
         LibPanel.disable();
     }
@@ -244,28 +253,29 @@ export default class QSAP extends Extension {
     }
     _create_media_controls(index) {
         this._media_section = new MprisList();
-        this._media_section.add_style_class_name('QSAP-media-section');
-        if (!this.settings.get_boolean('ignore-css')) {
-            this._media_section.add_style_class_name('QSAP-media-section-optional');
+        this._media_section.add_style_class_name("QSAP-media-section");
+        if (!this.settings.get_boolean("ignore-css")) {
+            this._media_section.add_style_class_name("QSAP-media-section-optional");
         }
         this._panel.addItem(this._media_section, 2);
         this._panel._grid.set_child_at_index(this._media_section, index);
     }
     _remove_base_media_controls() {
-        MessageView_DateMenu._mediaSource.disconnectObject(MessageView_DateMenu);
+        MessageView_DateMenu._mediaSource.disconnect_object(MessageView_DateMenu);
         for (const player of MessageView_DateMenu._mediaSource.players) {
             MessageView_DateMenu._removePlayer(player);
         }
         MessageView_DateMenu._qsap_media_removed = true;
     }
     _create_app_mixer(index, group, filter_mode, filters) {
+        const combine = this.settings.get_boolean("combine-applications-volume-sliders");
         if (group) {
-            this._applications_mixer_combined = new ApplicationsMixerToggle(this.settings, filter_mode, filters);
+            this._applications_mixer_combined = new ApplicationsMixerToggle(this.settings, filter_mode, filters, combine);
             this._panel.addItem(this._applications_mixer_combined, 2);
             this._panel._grid.set_child_at_index(this._applications_mixer_combined, index);
         }
         else {
-            this._applications_mixer = new ApplicationsMixer(this._panel, index, filter_mode, filters, this.settings);
+            this._applications_mixer = new ApplicationsMixer(this._panel, index, filter_mode, filters, this.settings, combine);
         }
     }
     _create_sink_mixer(index, filter_mode, filters, change_button, change_menu) {
@@ -287,7 +297,7 @@ export default class QSAP extends Extension {
     //     slider._iconButton: StButton
     //     sliderBin: StBin
     //     slider._menuButton: StButton
-    //     
+    //
     // Modified slider
     // slider: OutputStreamSlider
     //   box: StBoxLayout
@@ -309,7 +319,10 @@ export default class QSAP extends Extension {
         box.remove_child(sliderBin);
         const menu_button_visible = slider._menuButton.visible;
         box.remove_child(slider._menuButton);
-        const vbox = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+        const vbox = new St.BoxLayout({
+            orientation: Clutter.Orientation.VERTICAL,
+            x_expand: true,
+        });
         box.insert_child_at_index(vbox, 1);
         const hbox = new St.BoxLayout();
         hbox.add_child(sliderBin);
@@ -324,13 +337,16 @@ export default class QSAP extends Extension {
         slider._qsap_callback = slider._control.connect(signal_name, () => {
             const device_id = slider._control.lookup_device_from_stream(slider._stream).get_id();
             // using the item's text allow for compatibility with extensions that changes it, let's hope this won't break
-            slider._deviceItems.get(device_id).label.bind_property('text', label, 'text', GObject.BindingFlags.SYNC_CREATE);
+            slider._deviceItems
+                .get(device_id)
+                .label.bind_property("text", label, "text", GObject.BindingFlags.SYNC_CREATE);
         });
         if (slider._stream) {
             const device_id = slider._control.lookup_device_from_stream(slider._stream).get_id();
-            slider._deviceItems.get(device_id).label.bind_property('text', label, 'text', GObject.BindingFlags.SYNC_CREATE);
+            slider._deviceItems
+                .get(device_id)
+                .label.bind_property("text", label, "text", GObject.BindingFlags.SYNC_CREATE);
         }
-        ;
         vbox.add_child(label);
         vbox.add_child(hbox);
     }
@@ -447,7 +463,9 @@ class ExtensionController {
     update_renames_list() {
         const control = Volume.getMixerControl();
         const add_card = (card) => {
-            const renames = this.settings.get_value("profiles-renames").recursiveUnpack();
+            const renames = this.settings
+                .get_value("profiles-renames")
+                .recursiveUnpack();
             if (!(card.name in renames))
                 renames[card.name] = {};
             const card_renames = renames[card.name];
@@ -474,7 +492,8 @@ class ExtensionController {
                 if (!wrapped.call(this))
                     return false;
                 if (self.pactl_path) {
-                    spawn([self.pactl_path, "-f", "json", "list", "source-outputs"]).then(result => {
+                    spawn([self.pactl_path, "-f", "json", "list", "source-outputs"])
+                        .then(result => {
                         const data = JSON.parse(result);
                         for (const source_output of data) {
                             if (source_output["properties"]["node.virtual"] !== "true") {
@@ -482,7 +501,8 @@ class ExtensionController {
                             }
                         }
                         return false;
-                    }).then(should_show => {
+                    })
+                        .then(should_show => {
                         const old_value = this.visible;
                         this.visible = should_show;
                         if (should_show === old_value) {
@@ -492,10 +512,11 @@ class ExtensionController {
                             // the slider is visible.
                             this.notify("visible");
                         }
-                    }).catch(reason => self.logger.error(reason));
+                    })
+                        .catch(reason => self.logger.error(reason));
                     // dangerous ! if the virtual stream check crashes for some reason,
                     // the user as no way to know that the audio is being recorded.
-                    // but returning `true` causes the indicator to flash briefly, 
+                    // but returning `true` causes the indicator to flash briefly,
                     // which is not very good
                     return false;
                 }
@@ -546,7 +567,8 @@ class ExtensionController {
         else {
             this.input_visibility = this.input_volume_slider.visible;
             this.input_volume_indicator.visible = this.input_visibility;
-            if (this.settings.get_boolean("always-show-input-volume-slider") && !this.input_volume_slider.visible) {
+            if (this.settings.get_boolean("always-show-input-volume-slider") &&
+                !this.input_volume_slider.visible) {
                 this.input_is_recursing = true;
                 this.input_volume_slider.visible = true;
             }

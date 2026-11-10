@@ -9,7 +9,11 @@ LOG_W="${LOG_W:-1920}"
 LOG_H="${LOG_H:-1080}"
 
 # --- CAMINHOS ---
-WALLPAPERS="$HOME/Pictures/Wallpaper"
+if [ -d "$HOME/Imagens/Wallpaper" ]; then
+    WALLPAPERS="$HOME/Imagens/Wallpaper"
+else
+    WALLPAPERS="$HOME/Pictures/Wallpaper"
+fi
 CACHE_DIR="$HOME/.cache/wallpaper-picker"
 GENERATED_WALL="$HOME/.cache/current_wallpaper_fixed.png"
 
@@ -91,7 +95,8 @@ magick "$SELECTED" \
 FINAL_WALLPAPER="$GENERATED_WALL"
 
 # --- APLICAÇÃO ---
-[ -x "$WAL_BIN" ] && "$WAL_BIN" -i "$FINAL_WALLPAPER" -n
+# Pywal e hooks desativados para não alterar as cores/estética do sistema
+# [ -x "$WAL_BIN" ] && "$WAL_BIN" -i "$SELECTED" -n
 
 URI_FILE=$(python3 -c "import urllib.parse, sys; print('file://' + urllib.parse.quote(sys.argv[1]))" "$FINAL_WALLPAPER")
 
@@ -103,6 +108,6 @@ gsettings set org.gnome.desktop.background picture-options 'zoom'
 gsettings set org.gnome.desktop.screensaver picture-options 'zoom'
 
 touch "$HOME/.config/fastfetch/.reload_flag"
-if [ -f "$HOOKS" ]; then "$HOOKS"; fi
+# if [ -f "$HOOKS" ]; then "$HOOKS"; fi
 
 notify-send "Sucesso!" "Wallpaper ajustado em $TARGET_RES."

@@ -2,7 +2,7 @@
 keyrings-selected=['secret-service:///org/freedesktop/secrets/collection/login']
 
 [apps/seahorse/windows/key-manager]
-height=785
+height=369
 width=768
 
 [com/github/ztefn/haguichi/ui]
@@ -97,8 +97,8 @@ name='Escritório'
 [org/gnome/desktop/background]
 color-shading-type='solid'
 picture-options='zoom'
-picture-uri='file:///home/vinicius/dotfiles-arch/wallpaper_atual.jpg'
-picture-uri-dark='file:///home/vinicius/dotfiles-arch/wallpaper_atual.jpg'
+picture-uri='file:///home/vinicius/.cache/current_wallpaper_fixed.png'
+picture-uri-dark='file:///home/vinicius/.cache/current_wallpaper_fixed.png'
 primary-color='#000000000000'
 secondary-color='#000000000000'
 
@@ -129,11 +129,12 @@ clock-show-seconds=false
 clock-show-weekday=false
 color-scheme='prefer-dark'
 enable-animations=true
+show-battery-percentage=false
 text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel', 'org-gnome-extensions', 'vesktop', 'antigravity', 'org-gnome-settings', 'org-gnome-shell-extensions-gsconnect', 'codeblocks', 'libreoffice-startcenter', 'libreoffice-calc', 'constructor-virtual-circuitos', 'xdg-desktop-portal-gnome', 'code', 'com-mattjakeman-extensionmanager', 'org-gnome-goa-daemon']
+application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel', 'org-gnome-extensions', 'vesktop', 'antigravity', 'org-gnome-settings', 'org-gnome-shell-extensions-gsconnect', 'codeblocks', 'libreoffice-startcenter', 'libreoffice-calc', 'constructor-virtual-circuitos', 'xdg-desktop-portal-gnome', 'code', 'com-mattjakeman-extensionmanager', 'org-gnome-goa-daemon', 'gnome-printers-panel']
 show-banners=false
 show-in-lock-screen=false
 
@@ -169,6 +170,9 @@ application-id='gnome-datetime-panel.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-power-panel]
 application-id='gnome-power-panel.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-printers-panel]
+application-id='gnome-printers-panel.desktop'
 
 [org/gnome/desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
@@ -320,7 +324,7 @@ night-mode=false
 annot-color='yellow'
 continuous=true
 dual-page=false
-dual-page-odd-left=false
+dual-page-odd-left=true
 enable-spellchecking=true
 eraser-mode-objects='true'
 highlight-color='yellow'
@@ -328,11 +332,13 @@ highlight-stroke=2.0
 pen-color='blue'
 pen-stroke=1.0
 show-sidebar=false
-sidebar-page='links'
+sidebar-page='thumbnails'
 sizing-mode='free'
 text-color='blue'
 window-maximized=false
-zoom=0.8679053632611341
+zoom=0.62396707588601907
+
+[org/gnome/papers/previewer]
 
 [org/gnome/portal/filechooser/antigravity]
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
@@ -345,6 +351,9 @@ last-folder-path='/home/vinicius/BCC/Estrutura de dados - C'
 
 [org/gnome/portal/filechooser/curseforge]
 last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
+
+[org/gnome/portal/filechooser/desigma]
+last-folder-path='/home/vinicius/figma'
 
 [org/gnome/portal/filechooser/heroic]
 last-folder-path='/home/vinicius/Games/Heroic/rocketleague'
@@ -499,7 +508,7 @@ brightness=0.59999999999999998
 sigma=30
 
 [org/gnome/shell/extensions/caffeine]
-cli-toggle=true
+cli-toggle=false
 enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
@@ -507,7 +516,7 @@ indicator-position-index=0
 indicator-position-max=5
 restore-state=true
 show-indicator='always'
-user-enabled=true
+user-enabled=false
 
 [org/gnome/shell/extensions/clipboard-history]
 display-mode=0
@@ -609,7 +618,7 @@ support-notifier-showed-version=36
 support-notifier-type=0
 
 [org/gnome/shell/extensions/libpanel]
-layout=[['gnome@main', 'quick-settings-audio-panel@rayzeq.github.io/main', 'pop-shell@system76.com/main']]
+layout={'gnome-shell/main:primary': ('primary', 0, 0), 'quick-settings-audio-panel@rayzeq.github.io/main': ('primary', 0, 1)}
 
 [org/gnome/shell/extensions/mediacontrols]
 colored-player-icon=true
@@ -733,9 +742,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1793062881
+check-timestamp=int64 1794261358
 first-run=false
-flatpak-purge-timestamp=int64 1793140187
+flatpak-purge-timestamp=int64 1794241949
 
 [org/gnome/system/location]
 enabled=true

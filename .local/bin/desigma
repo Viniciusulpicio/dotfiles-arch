@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Desigma Launcher with Automatic Background Updater
+
+# Dispara o verificador de atualizações em segundo plano sem travar a inicialização
+if [ -x "$HOME/.local/bin/desigma-updater.sh" ]; then
+    nohup "$HOME/.local/bin/desigma-updater.sh" >/dev/null 2>&1 &
+fi
+
+# Executa o Desigma imediatamente
+exec "$HOME/.local/bin/desigma-bin" "$@"

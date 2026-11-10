@@ -3,6 +3,7 @@ alacritty
 alsa-firmware
 alsa-utils
 ananicy-cpp
+android-tools
 avogadro-fragments
 baobab
 base
@@ -125,6 +126,7 @@ nautilus
 ncdu
 networkmanager
 network-manager-applet
+nmap
 nodejs
 noto-fonts
 noto-fonts-cjk
@@ -152,6 +154,7 @@ postgresql
 power-profiles-daemon
 powertop
 python-gobject
+python-pexpect
 python-pip
 python-pipx
 python-pytorch-cuda
@@ -169,11 +172,13 @@ smartmontools
 snapshot
 sof-firmware
 solaar
+sshpass
 steam
 stow
 sudo
 sushi
 syncthing
+tailscale
 teamspeak3
 tecla
 thermald

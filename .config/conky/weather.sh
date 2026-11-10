@@ -1,64 +1,93 @@
 #!/bin/bash
 
 # --- CONFIGURAÇÃO ---
-# Se não existir o arquivo .env, chama a interface de configuração na primeira execução
 ENV_FILE="$HOME/.config/conky/weather.env"
-if [ ! -f "$ENV_FILE" ]; then
-    SETUP_SCRIPT=""
-    [ -x "$HOME/.local/bin/setup-keys.sh" ] && SETUP_SCRIPT="$HOME/.local/bin/setup-keys.sh"
-    [ -z "$SETUP_SCRIPT" ] && [ -x "$HOME/dotfiles-arch/scripts/setup-keys.sh" ] && SETUP_SCRIPT="$HOME/dotfiles-arch/scripts/setup-keys.sh"
-    if [ -n "$SETUP_SCRIPT" ] && ([ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]); then
-        "$SETUP_SCRIPT" >/dev/null 2>&1
-    fi
-fi
-
 [ -f "$ENV_FILE" ] && source "$ENV_FILE"
 
-CITY="${CITY:-Sao Paulo,br}"
-API_KEY="${API_KEY:-YOUR_OPENWEATHER_API_KEY}"
-# --------------------
+# Coordenadas padrão (São Paulo) ou resolvidas por cidade
+LAT="${LAT:-}"
+LON="${LON:-}"
+CITY="${CITY:-Sao Paulo}"
 
-# Obter dados da API com timeout
-WEATHER_DATA=$(curl -s --connect-timeout 5 "https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${API_KEY}&lang=pt_br")
+if [ -z "$LAT" ] || [ -z "$LON" ]; then
+    # Limpa sufixo como ',br' para busca na geocoding API
+    CLEAN_CITY=$(echo "$CITY" | cut -d',' -f1 | sed 's/ /%20/g')
+    GEO_DATA=$(curl -s --connect-timeout 5 "https://geocoding-api.open-meteo.com/v1/search?name=${CLEAN_CITY}&count=1&language=pt&format=json")
+    LAT=$(echo "$GEO_DATA" | jq -r '.results[0].latitude // empty' 2>/dev/null)
+    LON=$(echo "$GEO_DATA" | jq -r '.results[0].longitude // empty' 2>/dev/null)
+fi
 
-# Verificar se a resposta é válida
-COD=$(echo "$WEATHER_DATA" | jq -r '.cod' 2>/dev/null)
+# Fallback para São Paulo se geocoding falhar
+LAT="${LAT:--23.5475}"
+LON="${LON:--46.6361}"
 
-if [ "$COD" != "200" ]; then
+# Obter dados de clima (Open-Meteo não requer chave de API)
+WEATHER_DATA=$(curl -s --connect-timeout 5 "https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,is_day&wind_speed_unit=ms&timezone=auto")
+
+# Validação da resposta
+if [ -z "$WEATHER_DATA" ] || [ "$(echo "$WEATHER_DATA" | jq 'has("current")' 2>/dev/null)" != "true" ]; then
     echo -e "\${font Fira Sans:bold:size=14}Clima: Indisponível\${font}"
     exit 0
 fi
 
 # Extrair informações usando jq
-TEMP=$(echo "$WEATHER_DATA" | jq '.main.temp' | cut -d'.' -f1)
-ICON_CODE=$(echo "$WEATHER_DATA" | jq -r '.weather[0].icon')
-DESCRIPTION=$(echo "$WEATHER_DATA" | jq -r '.weather[0].description' | sed -e "s/\b\(.\)/\u\1/g") # Capitaliza a primeira letra de cada palavra
-WIND_SPEED=$(echo "$WEATHER_DATA" | jq '.wind.speed')
-HUMIDITY=$(echo "$WEATHER_DATA" | jq '.main.humidity')
+TEMP=$(echo "$WEATHER_DATA" | jq '.current.temperature_2m' | cut -d'.' -f1)
+WEATHER_CODE=$(echo "$WEATHER_DATA" | jq -r '.current.weather_code')
+IS_DAY=$(echo "$WEATHER_DATA" | jq -r '.current.is_day')
+WIND_SPEED=$(echo "$WEATHER_DATA" | jq '.current.wind_speed_10m')
+HUMIDITY=$(echo "$WEATHER_DATA" | jq '.current.relative_humidity_2m')
 
-# Mapear o código do ícone para Nerd Fonts (faixa \ue300-\ue3eb)
-case "$ICON_CODE" in
-    "01d") ICON="\ue30d";; # clear sky day
-    "01n") ICON="\ue32b";; # clear sky night
-    "02d") ICON="\ue302";; # few clouds day
-    "02n") ICON="\ue379";; # few clouds night
-    "03d") ICON="\ue312";; # scattered clouds day
-    "03n") ICON="\ue312";; # scattered clouds night
-    "04d") ICON="\ue312";; # broken clouds day
-    "04n") ICON="\ue312";; # broken clouds night
-    "09d") ICON="\ue318";; # shower rain day
-    "09n") ICON="\ue318";; # shower rain night
-    "10d") ICON="\ue308";; # rain day
-    "10n") ICON="\ue325";; # rain night
-    "11d") ICON="\ue31d";; # thunderstorm day
-    "11n") ICON="\ue31d";; # thunderstorm night
-    "13d") ICON="\ue31a";; # snow day
-    "13n") ICON="\ue31a";; # snow night
-    "50d") ICON="\ue313";; # mist day
-    "50n") ICON="\ue313";; # mist night
-    *) ICON="\ue312";;   # N/A
+# Mapear WMO Weather Code para ícone Nerd Font e descrição
+case "$WEATHER_CODE" in
+    0)
+        [ "$IS_DAY" = "1" ] && ICON="\ue30d" || ICON="\ue32b"
+        DESCRIPTION="Céu Limpo"
+        ;;
+    1)
+        [ "$IS_DAY" = "1" ] && ICON="\ue302" || ICON="\ue379"
+        DESCRIPTION="Tempo Bom"
+        ;;
+    2)
+        [ "$IS_DAY" = "1" ] && ICON="\ue302" || ICON="\ue379"
+        DESCRIPTION="Parcialmente Nublado"
+        ;;
+    3)
+        ICON="\ue312"
+        DESCRIPTION="Nublado"
+        ;;
+    45|48)
+        ICON="\ue313"
+        DESCRIPTION="Nevoeiro"
+        ;;
+    51|53|55)
+        ICON="\ue318"
+        DESCRIPTION="Chuvisco"
+        ;;
+    61|63|65)
+        [ "$IS_DAY" = "1" ] && ICON="\ue308" || ICON="\ue325"
+        DESCRIPTION="Chuva"
+        ;;
+    71|73|75|77)
+        ICON="\ue31a"
+        DESCRIPTION="Neve"
+        ;;
+    80|81|82)
+        ICON="\ue318"
+        DESCRIPTION="Pancadas de Chuva"
+        ;;
+    85|86)
+        ICON="\ue31a"
+        DESCRIPTION="Pancadas de Neve"
+        ;;
+    95|96|99)
+        ICON="\ue31d"
+        DESCRIPTION="Tempestade"
+        ;;
+    *)
+        ICON="\ue312"
+        DESCRIPTION="Tempo Firme"
+        ;;
 esac
 
 # Imprimir a saída formatada para o Conky usando JetBrainsMono Nerd Font
 echo -e "\${font JetBrainsMono Nerd Font:size=42}${ICON}\${font}\${voffset -22}   \${font Fira Sans:bold:size=38}${TEMP}°C \${alignr}\${font Fira Sans:bold:size=20}${DESCRIPTION}\${font}\n\${voffset 8}   Vento ${WIND_SPEED}m/s / Umidade ${HUMIDITY}%"
-

@@ -9,8 +9,13 @@ TARGET_H="${PHYS_H:-1080}"
 TARGET_RES="${PHYS_RES:-${TARGET_W}x${TARGET_H}}"
 
 # PATH
-WALLPAPERS="$HOME/Pictures/Wallpaper"
-BACKUP="$HOME/Pictures/.backup"
+if [ -d "$HOME/Imagens/Wallpaper" ]; then
+    WALLPAPERS="$HOME/Imagens/Wallpaper"
+    BACKUP="$HOME/Imagens/.backup"
+else
+    WALLPAPERS="$HOME/Pictures/Wallpaper"
+    BACKUP="$HOME/Pictures/.backup"
+fi
 
 # Make dirs if they don't exist
 mkdir -p "$BACKUP"

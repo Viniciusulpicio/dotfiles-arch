@@ -1,16 +1,16 @@
-import Clutter from 'gi://Clutter';
-import Gio from 'gi://Gio';
-import GLib from 'gi://GLib';
-import GObject from 'gi://GObject';
-import Gvc from 'gi://Gvc';
-import Pango from 'gi://Pango';
-import St from 'gi://St';
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import { MprisSource } from 'resource:///org/gnome/shell/ui/mpris.js';
-import { Ornament, PopupBaseMenuItem, PopupImageMenuItem, PopupMenuItem, PopupMenuSection } from 'resource:///org/gnome/shell/ui/popupMenu.js';
-import { QuickMenuToggle, QuickSlider, QuickToggle } from 'resource:///org/gnome/shell/ui/quickSettings.js';
-import * as Volume from 'resource:///org/gnome/shell/ui/status/volume.js';
+import Clutter from "gi://Clutter";
+import Gio from "gi://Gio";
+import GLib from "gi://GLib";
+import GObject from "gi://GObject";
+import Gvc from "gi://Gvc";
+import Pango from "gi://Pango";
+import St from "gi://St";
+import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
+import * as Main from "resource:///org/gnome/shell/ui/main.js";
+import { MprisSource } from "resource:///org/gnome/shell/ui/mpris.js";
+import { Ornament, PopupBaseMenuItem, PopupImageMenuItem, PopupMenuItem, PopupMenuSection, } from "resource:///org/gnome/shell/ui/popupMenu.js";
+import { QuickMenuToggle, QuickSlider, QuickToggle, } from "resource:///org/gnome/shell/ui/quickSettings.js";
+import * as Volume from "resource:///org/gnome/shell/ui/status/volume.js";
 import { get_pactl_path, spawn, wait_property } from "./utils.js";
 const { MixerSinkInput, MixerSink } = Gvc;
 // `_volumeOutput` is set in an async function, so we need to ensure that it's currently defined
@@ -54,13 +54,13 @@ export class SinkMixer {
         }
         var matched = false;
         for (const filter of this._filters) {
-            if ((stream.name?.search(filter) > -1) || (stream.description.search(filter) > -1)) {
-                if (this._filter_mode === 'blacklist')
+            if (stream.name?.search(filter) > -1 || stream.description.search(filter) > -1) {
+                if (this._filter_mode === "blacklist")
                     return;
                 matched = true;
             }
         }
-        if (!matched && this._filter_mode === 'whitelist')
+        if (!matched && this._filter_mode === "whitelist")
             return;
         const slider = new SinkVolumeSlider(this._mixer_control, stream, this._change_button, this._change_menu);
         this._sliders.set(id, slider);
@@ -89,7 +89,6 @@ export class SinkMixer {
         this._mixer_control.disconnect(this._sr_event_id);
     }
 }
-;
 const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends StreamSlider {
     _hasHeadphones;
     _setup_timeout;
@@ -98,11 +97,11 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
     constructor(control, stream, change_button, change_menu) {
         super(control);
         this._icons = [
-            'audio-volume-muted-symbolic',
-            'audio-volume-low-symbolic',
-            'audio-volume-medium-symbolic',
-            'audio-volume-high-symbolic',
-            'audio-volume-overamplified-symbolic',
+            "audio-volume-muted-symbolic",
+            "audio-volume-low-symbolic",
+            "audio-volume-medium-symbolic",
+            "audio-volume-high-symbolic",
+            "audio-volume-overamplified-symbolic",
         ];
         this._hasHeadphones = OutputStreamSlider.prototype._findHeadphones(stream);
         this.stream = stream;
@@ -114,11 +113,14 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
         if (!(change_button && change_menu && stream.get_ports().length > 0)) {
             box.remove_child(this._menuButton);
         }
-        const vbox = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+        const vbox = new St.BoxLayout({
+            orientation: Clutter.Orientation.VERTICAL,
+            x_expand: true,
+        });
         box.insert_child_at_index(vbox, 1);
         const label = new St.Label({ natural_width: 0 });
         label.style_class = "QSAP-application-volume-slider-label";
-        let update_change_button = undefined;
+        let update_change_button;
         if (change_button) {
             if (change_menu && stream.get_ports().length > 0) {
                 this.menuEnabled = true;
@@ -137,9 +139,7 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
                     const ui_device = control.lookup_output_id(output_id);
                     if (ui_device.stream_id === stream.id)
                         for (const [port, item] of this._deviceItems) {
-                            item.setOrnament(port === ui_device.port_name
-                                ? Ornament.CHECK
-                                : Ornament.NONE);
+                            item.setOrnament(port === ui_device.port_name ? Ornament.CHECK : Ornament.NONE);
                         }
                     else
                         this._setActiveDevice(-1);
@@ -150,7 +150,7 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
                     child: new St.Icon({ icon_name: "object-select-symbolic" }),
                     toggle_mode: true,
                     y_align: Clutter.ActorAlign.CENTER,
-                    style_class: "icon-button flat"
+                    style_class: "icon-button flat",
                 });
                 select_default_button.connect("clicked", () => {
                     if (control.get_default_sink() === this.stream) {
@@ -186,9 +186,9 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
                     // that changes it (like Quick Settings Audio Device Renamer)
                     const deviceItem = Main.panel.statusArea.quickSettings._volumeOutput._output._deviceItems.get(device.get_id());
                     if (deviceItem)
-                        this._name_binding = deviceItem.label.bind_property('text', label, 'text', GObject.BindingFlags.SYNC_CREATE);
+                        this._name_binding = deviceItem.label.bind_property("text", label, "text", GObject.BindingFlags.SYNC_CREATE);
                 };
-                let signal = stream.connect("notify::port", updater);
+                const signal = stream.connect("notify::port", updater);
                 updater();
                 label.connect("destroy", () => {
                     stream.disconnect(signal);
@@ -205,9 +205,7 @@ const SinkVolumeSlider = GObject.registerClass(class SinkVolumeSlider extends St
         vbox.add_child(sliderBin);
     }
     _updateIcon() {
-        this.iconName = this._hasHeadphones
-            ? 'audio-headphones-symbolic'
-            : this.getIcon();
+        this.iconName = this._hasHeadphones ? "audio-headphones-symbolic" : this.getIcon();
     }
     destroy() {
         if (this._setup_timeout) {
@@ -233,8 +231,8 @@ export const BalanceSlider = GObject.registerClass(class BalanceSlider extends Q
         });
         this.connect("destroy", () => settings.disconnect(this._pactl_path_changed_id));
         this._pactl_path = get_pactl_path(settings)[0];
-        this._sliderChangedId = this.slider.connect('notify::value', () => this._sliderChanged());
-        this.slider.connect('drag-end', () => {
+        this._sliderChangedId = this.slider.connect("notify::value", () => this._sliderChanged());
+        this.slider.connect("drag-end", () => {
             this._notifyVolumeChange();
         });
         this._control = Volume.getMixerControl();
@@ -262,7 +260,10 @@ export const BalanceSlider = GObject.registerClass(class BalanceSlider extends Q
         // creating an additional vbox instead of setting `box` as vertical is necessary
         // because the second solution will add some spacing between the title and the slider
         // and I don't know how to remove it
-        const vbox = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+        const vbox = new St.BoxLayout({
+            orientation: Clutter.Orientation.VERTICAL,
+            x_expand: true,
+        });
         vbox.add_child(title);
         vbox.add_child(hbox);
         box.add_child(vbox);
@@ -279,16 +280,16 @@ export const BalanceSlider = GObject.registerClass(class BalanceSlider extends Q
                 const balance_str = stdout.substring(balance_index + 8).trim();
                 const balance = parseFloat(balance_str);
                 this.slider.block_signal_handler(this._sliderChangedId);
-                this.slider.value = (balance + 1.) / 2.;
+                this.slider.value = (balance + 1) / 2;
                 this.slider.unblock_signal_handler(this._sliderChangedId);
             }
         });
     }
     _sliderChanged() {
-        const balance = this.slider.value * 2. - 1.;
+        const balance = this.slider.value * 2 - 1;
         let left = 0;
         let right = 0;
-        if (balance < 0.) {
+        if (balance < 0) {
             left = this.stream.volume;
             right = Math.round(this.stream.volume * (1 + balance));
         }
@@ -305,8 +306,8 @@ export const BalanceSlider = GObject.registerClass(class BalanceSlider extends Q
         if (this.stream.state === Gvc.MixerStreamState.RUNNING)
             return; // feedback not necessary while playing
         this._volumeCancellable = new Gio.Cancellable();
-        let player = global.display.get_sound_player();
-        player.play_from_theme('audio-volume-change', _('Volume changed'), this._volumeCancellable);
+        const player = global.display.get_sound_player();
+        player.play_from_theme("audio-volume-change", _("Volume changed"), this._volumeCancellable);
     }
     destroy() {
         this._control.disconnect(this._default_sink_changed_signal);
@@ -339,7 +340,7 @@ export const AudioProfileSwitcher = GObject.registerClass(class AudioProfileSwit
         this._autohide_changed_signal = this._settings.connect("changed::autohide-profile-switcher", () => {
             this._change_visibility_if_neccesary();
         });
-        this._settings.emit('changed::autohide-profile-switcher', 'autohide-profile-switcher');
+        this._settings.emit("changed::autohide-profile-switcher", "autohide-profile-switcher");
     }
     _set_device(device) {
         this._settings.disconnect_object(this.menu);
@@ -349,7 +350,9 @@ export const AudioProfileSwitcher = GObject.registerClass(class AudioProfileSwit
         for (const profile of device.get_profiles()) {
             const item = new PopupMenuItem("");
             this._settings.connect_object("changed::profiles-renames", () => {
-                const renames = this._settings.get_value("profiles-renames").recursiveUnpack();
+                const renames = this._settings
+                    .get_value("profiles-renames")
+                    .recursiveUnpack();
                 item.label.text = renames[device.origin][profile.profile][1];
                 this._sync_active_profile();
             }, this.menu);
@@ -375,7 +378,7 @@ export const AudioProfileSwitcher = GObject.registerClass(class AudioProfileSwit
         }
     }
     _change_visibility_if_neccesary() {
-        const autohide = this._settings.get_boolean('autohide-profile-switcher');
+        const autohide = this._settings.get_boolean("autohide-profile-switcher");
         if (this.menu.numMenuItems <= 1 && autohide) {
             this.visible = false;
         }
@@ -393,20 +396,29 @@ class ApplicationsMixerManager {
     _settings;
     _mixer_control;
     _sliders;
+    _client_sliders;
+    // A stream can disappear while its asynchronous pactl lookup is running.
+    // Store the exact object, rather than just its ID, so an ID reuse cannot
+    // make an old lookup add a ghost slider for a newer stream.
+    _pending_streams;
     _filter_mode;
     _filters;
+    _combine_streams;
     _sa_event_id;
     _sr_event_id;
     on_slider_added;
     on_slider_removed;
-    constructor(settings, filter_mode, filters, on_slider_added, on_slider_removed) {
+    constructor(settings, filter_mode, filters, combine_streams, on_slider_added, on_slider_removed) {
         this._settings = settings;
         this._mixer_control = Volume.getMixerControl();
         this.on_slider_added = on_slider_added;
         this.on_slider_removed = on_slider_removed;
         this._sliders = new Map();
+        this._client_sliders = new Map();
+        this._pending_streams = new Map();
         this._filter_mode = filter_mode;
         this._filters = filters.map(f => new RegExp(f));
+        this._combine_streams = combine_streams;
         this._sa_event_id = this._mixer_control.connect("stream-added", this._stream_added.bind(this));
         this._sr_event_id = this._mixer_control.connect("stream-removed", this._stream_removed.bind(this));
         for (const stream of this._mixer_control.get_streams()) {
@@ -414,7 +426,7 @@ class ApplicationsMixerManager {
         }
     }
     _stream_added(control, id) {
-        if (this._sliders.has(id))
+        if (this._sliders.has(id) || this._pending_streams.has(id))
             return;
         const stream = control.lookup_stream_id(id);
         if (stream.is_event_stream || !(stream instanceof MixerSinkInput)) {
@@ -422,34 +434,98 @@ class ApplicationsMixerManager {
         }
         var matched = false;
         for (const filter of this._filters) {
-            if ((stream.name?.search(filter) > -1) || (stream.description.search(filter) > -1)) {
-                if (this._filter_mode === 'blacklist')
+            if (stream.name?.search(filter) > -1 || stream.description.search(filter) > -1) {
+                if (this._filter_mode === "blacklist")
                     return;
                 matched = true;
             }
         }
-        if (!matched && this._filter_mode === 'whitelist')
+        if (!matched && this._filter_mode === "whitelist")
+            return;
+        if (!this._combine_streams) {
+            this._add_stream(stream);
+            return;
+        }
+        const pactl_path = get_pactl_path(this._settings)[0];
+        if (!pactl_path) {
+            this._add_stream(stream);
+            return;
+        }
+        this._pending_streams.set(id, stream);
+        spawn([pactl_path, "-f", "json", "list", "sink-inputs"])
+            .then(stdout => {
+            if (!this._take_pending_stream(id, stream))
+                return;
+            const sink_inputs = JSON.parse(stdout);
+            const sink_input = sink_inputs.find(input => input.index === stream.index);
+            const client = sink_input?.client;
+            if (typeof client !== "string" && typeof client !== "number") {
+                this._add_stream(stream);
+                return;
+            }
+            const client_id = String(client);
+            const slider = this._client_sliders.get(client_id);
+            if (slider) {
+                slider.add_stream(stream);
+                this._sliders.set(id, slider);
+            }
+            else {
+                this._add_stream(stream, client_id);
+            }
+        })
+            .catch(() => {
+            if (this._take_pending_stream(id, stream))
+                this._add_stream(stream);
+        });
+    }
+    _take_pending_stream(id, stream) {
+        if (this._pending_streams.get(id) !== stream)
+            return false;
+        this._pending_streams.delete(id);
+        return true;
+    }
+    _add_stream(stream, client) {
+        if (this._sliders.has(stream.id))
             return;
         const slider = new ApplicationVolumeSlider(this._mixer_control, stream, this._settings);
-        this._sliders.set(id, slider);
+        this._sliders.set(stream.id, slider);
+        if (client !== undefined)
+            this._client_sliders.set(client, slider);
         this.on_slider_added(slider);
     }
     _stream_removed(_control, id) {
+        if (this._pending_streams.delete(id))
+            return;
         const slider = this._sliders.get(id);
         if (slider === undefined)
             return;
-        this.on_slider_removed(slider);
         this._sliders.delete(id);
+        const remaining_streams = slider.remove_stream(id);
+        if (remaining_streams === null)
+            return;
+        for (const [client, grouped_slider] of this._client_sliders) {
+            if (grouped_slider === slider)
+                this._client_sliders.delete(client);
+        }
+        this.on_slider_removed(slider);
         slider.destroy();
+        // StreamSlider is bound to its first stream. Rebuild the group if that stream
+        // disappears, so that one of the remaining streams becomes the new primary.
+        for (const stream of remaining_streams) {
+            this._sliders.delete(stream.id);
+            this._stream_added(this._mixer_control, stream.id);
+        }
     }
     get sliders() {
-        return this._sliders.values();
+        return new Set(this._sliders.values());
     }
     destroy() {
-        for (const slider of this._sliders.values()) {
+        for (const slider of new Set(this._sliders.values())) {
             slider.destroy();
         }
         this._sliders.clear();
+        this._client_sliders.clear();
+        this._pending_streams.clear();
         this._mixer_control.disconnect(this._sa_event_id);
         this._mixer_control.disconnect(this._sr_event_id);
     }
@@ -458,13 +534,13 @@ export class ApplicationsMixer {
     panel;
     _slider_manager;
     _sliders_ordered;
-    constructor(panel, index, filter_mode, filters, settings) {
+    constructor(panel, index, filter_mode, filters, settings, combine_streams) {
         this.panel = panel;
         // Empty actor used to know where to place sliders
         const placeholder = new Clutter.Actor({ visible: false });
         panel._grid.insert_child_at_index(placeholder, index);
         this._sliders_ordered = [placeholder];
-        this._slider_manager = new ApplicationsMixerManager(settings, filter_mode, filters, this._slider_added.bind(this), this._slider_removed.bind(this));
+        this._slider_manager = new ApplicationsMixerManager(settings, filter_mode, filters, combine_streams, this._slider_added.bind(this), this._slider_removed.bind(this));
     }
     _slider_added(slider) {
         this.panel.addItem(slider, 2);
@@ -484,30 +560,30 @@ export class ApplicationsMixer {
         this._sliders_ordered = null;
     }
 }
-;
 // Note: lot of code taken from https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/status/backgroundApps.js?ref_type=heads#L137
 export const ApplicationsMixerToggle = GObject.registerClass(class ApplicationsMixerToggle extends QuickToggle {
     _slider_manager;
     _slidersSection;
     _mosc_signal;
     _sm_updated_signal;
-    constructor(settings, filter_mode, filters) {
+    constructor(settings, filter_mode, filters, combine_streams) {
         super({
-            visible: false, hasMenu: true,
+            visible: false,
+            has_menu: true,
             // The background apps toggle looks like a flat menu, but doesn't
             // have a separate menu button. Fake it with an arrow icon.
-            iconName: "go-next-symbolic",
-            title: "Applications emitting sound"
+            icon_name: "go-next-symbolic",
+            title: "Applications emitting sound",
         });
         this.add_style_class_name("background-apps-quick-toggle");
         this._box.set_child_above_sibling(this._icon, null);
         this.menu.setHeader("audio-volume-high-symbolic", _("Applications volumes"));
         this._slidersSection = new PopupMenuSection();
         this.menu.addMenuItem(this._slidersSection);
-        this.connect("popup-menu", () => this.menu.open(false));
+        this.connect("popup-menu", () => this.menu.open());
         this._mosc_signal = this.menu.connect("open-state-changed", () => this._syncVisibility());
         this._sm_updated_signal = Main.sessionMode.connect("updated", () => this._syncVisibility());
-        this._slider_manager = new ApplicationsMixerManager(settings, filter_mode, filters, this._slider_added.bind(this), this._slider_removed.bind(this));
+        this._slider_manager = new ApplicationsMixerManager(settings, filter_mode, filters, combine_streams, this._slider_added.bind(this), this._slider_removed.bind(this));
     }
     _syncVisibility() {
         const { isLocked } = Main.sessionMode;
@@ -518,7 +594,7 @@ export const ApplicationsMixerToggle = GObject.registerClass(class ApplicationsM
         this.visible = !isLocked && (this.menu.isOpen || nSliders > 0);
     }
     _slider_added(slider) {
-        let slider_item = new ApplicationVolumeSliderItem(slider);
+        const slider_item = new ApplicationVolumeSliderItem(slider);
         slider._item = slider_item;
         this._slidersSection.addMenuItem(slider_item);
         this._syncVisibility();
@@ -529,7 +605,7 @@ export const ApplicationsMixerToggle = GObject.registerClass(class ApplicationsM
         this._syncVisibility();
     }
     vfunc_clicked() {
-        this.menu.open(true);
+        this.menu.open();
     }
     destroy() {
         this._slider_manager.destroy();
@@ -543,17 +619,23 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
     _pactl_path;
     _pactl_path_changed_id;
     _label;
+    _streams;
+    _stream_signal_ids;
+    _syncing_streams;
     constructor(control, stream, settings) {
         super(control);
         this._settings = settings;
-        this.menu.setHeader('audio-headphones-symbolic', _('Output Device'));
+        this._streams = new Map([[stream.id, stream]]);
+        this._stream_signal_ids = new Map();
+        this._syncing_streams = false;
+        this.menu.setHeader("audio-headphones-symbolic", _("Output Device"));
         this._pactl_path_changed_id = settings.connect("changed::pactl-path", () => {
             this._pactl_path = get_pactl_path(settings)[0];
         });
         this.connect("destroy", () => settings.disconnect(this._pactl_path_changed_id));
         this._pactl_path = get_pactl_path(settings)[0];
         if (this._pactl_path) {
-            this._control.connectObject('output-added', (_control, id) => this._addDevice(id), 'output-removed', (_control, id) => this._removeDevice(id), 'active-output-update', (_control, _id) => this._checkUsedSink(), this);
+            this._control.connect_object("output-added", (_control, id) => this._addDevice(id), "output-removed", (_control, id) => this._removeDevice(id), "active-output-update", (_control, _id) => this._checkUsedSink(), this);
             // unfortunately we don't have any signal to know that the active device changed
             //stream.connect('', () => this._setActiveDevice());
             for (const sink of control.get_sinks()) {
@@ -569,7 +651,8 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
         this.stream = stream;
         // And this one need to be after this.stream assignment.
         this._icon.fallback_icon_name = stream.icon_name;
-        if (this._pactl_path && this._settings.get_boolean("applications-volume-sliders-allow-automatic-pactl")) {
+        if (this._pactl_path &&
+            this._settings.get_boolean("applications-volume-sliders-allow-automatic-pactl")) {
             this._checkUsedSink();
         }
         this._iconButton.y_expand = false;
@@ -579,7 +662,10 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
         box.remove_child(sliderBin);
         const menu_button_visible = this._menuButton.visible;
         box.remove_child(this._menuButton);
-        const vbox = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+        const vbox = new St.BoxLayout({
+            orientation: Clutter.Orientation.VERTICAL,
+            x_expand: true,
+        });
         box.insert_child_at_index(vbox, 1);
         const hbox = new St.BoxLayout();
         hbox.add_child(sliderBin);
@@ -587,24 +673,88 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
         this._menuButton.visible = menu_button_visible; // we need to reset `actor.visible` when changing parent
         // this prevent the tall panel bug when the button is shown
         this._menuButton.y_expand = false;
-        this._label = new St.Label({ natural_width: 0, track_hover: true, reactive: true });
+        this._label = new St.Label({
+            natural_width: 0,
+            track_hover: true,
+            reactive: true,
+        });
+        settings.bind("applications-volume-sliders-display-name", this._label, "visible", Gio.SettingsBindFlags.DEFAULT);
         this._label.style_class = "QSAP-application-volume-slider-label";
         this._label.clutter_text.line_wrap = false;
         this._label.clutter_text.ellipsize = Pango.EllipsizeMode.END;
         this._label.connect("notify::hover", () => {
             this._label.clutter_text.line_wrap = this._label.hover ? true : false;
-            this._label.clutter_text.ellipsize = this._label.hover ? Pango.EllipsizeMode.NONE : Pango.EllipsizeMode.END;
+            this._label.clutter_text.ellipsize = this._label.hover
+                ? Pango.EllipsizeMode.NONE
+                : Pango.EllipsizeMode.END;
         });
         const n_desc_handler_id = stream.connect("notify::description", stream => this._update_label(stream));
         this.connect("destroy", () => stream.disconnect(n_desc_handler_id));
         this._update_label(stream);
         vbox.add_child(this._label);
         vbox.add_child(hbox);
+        this._watch_stream(stream);
+    }
+    add_stream(stream) {
+        if (this._streams.has(stream.id))
+            return;
+        this._streams.set(stream.id, stream);
+        this._watch_stream(stream);
+        this._update_label(this.stream);
+    }
+    // Returns null when the primary stream is still present. Otherwise, the
+    // manager recreates this slider around one of the remaining streams.
+    remove_stream(id) {
+        const stream = this._streams.get(id);
+        if (!stream)
+            return null;
+        for (const signal_id of this._stream_signal_ids.get(id) || []) {
+            stream.disconnect(signal_id);
+        }
+        this._stream_signal_ids.delete(id);
+        this._streams.delete(id);
+        if (stream !== this.stream) {
+            this._update_label(this.stream);
+            return null;
+        }
+        return [...this._streams.values()];
+    }
+    _watch_stream(stream) {
+        const sync = () => this._sync_streams(stream);
+        this._stream_signal_ids.set(stream.id, [
+            stream.connect("notify::volume", sync),
+            stream.connect("notify::is-muted", sync),
+        ]);
+        this.connect("destroy", () => {
+            for (const signal_id of this._stream_signal_ids.get(stream.id) || []) {
+                stream.disconnect(signal_id);
+            }
+        });
+    }
+    _sync_streams(source) {
+        if (this._syncing_streams || this._streams.size < 2)
+            return;
+        this._syncing_streams = true;
+        for (const stream of this._streams.values()) {
+            if (stream === source)
+                continue;
+            if (stream.volume !== source.volume) {
+                stream.volume = source.volume;
+                stream.push_volume();
+            }
+            if (stream.is_muted !== source.is_muted)
+                stream.change_is_muted(source.is_muted);
+        }
+        this._syncing_streams = false;
     }
     _update_label(stream) {
         const { name, description } = stream;
-        this._label.text = name === null ? description : `${name} - ${description}`;
-        if (name && name.startsWith("Chromium") && this._pactl_path && this._settings.get_boolean("applications-volume-sliders-allow-automatic-pactl")) {
+        const label = name === null || name === description ? description : `${name} - ${description}`;
+        this._label.text = this._streams.size > 1 ? `${label} (${this._streams.size})` : label;
+        if (name &&
+            name.startsWith("Chromium") &&
+            this._pactl_path &&
+            this._settings.get_boolean("applications-volume-sliders-allow-automatic-pactl")) {
             spawn([this._pactl_path, "-f", "json", "list", "sink-inputs"]).then(stdout_str => {
                 const stdout = JSON.parse(stdout_str);
                 for (const sink_input of stdout) {
@@ -621,7 +771,9 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
             const stdout = JSON.parse(stdout_str);
             for (const sink_input of stdout) {
                 if (sink_input.index === this.stream.index) {
-                    const sink_id = this._control.lookup_device_from_stream(this._control.get_sinks().find(s => s.index === sink_input.sink))?.get_id();
+                    const sink_id = this._control
+                        .lookup_device_from_stream(this._control.get_sinks().find(s => s.index === sink_input.sink))
+                        ?.get_id();
                     if (sink_id) {
                         this._setActiveDevice(sink_id);
                     }
@@ -640,8 +792,8 @@ const ApplicationVolumeSlider = GObject.registerClass(class ApplicationVolumeSli
         // that changes it (like Quick Settings Audio Device Renamer)
         const deviceItem = Main.panel.statusArea.quickSettings._volumeOutput._output._deviceItems.get(device.get_id());
         if (deviceItem)
-            deviceItem.label.bind_property('text', item.label, 'text', GObject.BindingFlags.SYNC_CREATE);
-        item.connect('activate', () => {
+            deviceItem.label.bind_property("text", item.label, "text", GObject.BindingFlags.SYNC_CREATE);
+        item.connect("activate", () => {
             const dev = this._lookupDevice(id);
             if (dev)
                 this._activateDevice(dev);
@@ -678,12 +830,12 @@ export const MprisList = GObject.registerClass(class MprisList extends St.BoxLay
     constructor() {
         super({
             orientation: Clutter.Orientation.VERTICAL,
-            style: 'spacing: 12px;',
-            visible: false
+            style: "spacing: 12px;",
+            visible: false,
         });
         this.messages = new Map();
         this.source = new MprisSource();
-        this.source.connectObject('player-added', (_, player) => this._add_player(player), 'player-removed', (_, player) => this._remove_player(player), this);
+        this.source.connect_object("player-added", (_, player) => this._add_player(player), "player-removed", (_, player) => this._remove_player(player), this);
         this.source.players.forEach(player => {
             this._add_player(player);
         });

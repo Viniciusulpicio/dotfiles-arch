@@ -54,7 +54,7 @@ brightness=0.59999999999999998
 sigma=30
 
 [caffeine]
-cli-toggle=true
+cli-toggle=false
 enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
@@ -62,7 +62,7 @@ indicator-position-index=0
 indicator-position-max=5
 restore-state=true
 show-indicator='always'
-user-enabled=true
+user-enabled=false
 
 [clipboard-history]
 display-mode=0
@@ -164,7 +164,7 @@ support-notifier-showed-version=36
 support-notifier-type=0
 
 [libpanel]
-layout=[['gnome@main', 'quick-settings-audio-panel@rayzeq.github.io/main', 'pop-shell@system76.com/main']]
+layout={'gnome-shell/main:primary': ('primary', 0, 0), 'quick-settings-audio-panel@rayzeq.github.io/main': ('primary', 0, 1)}
 
 [mediacontrols]
 colored-player-icon=true
