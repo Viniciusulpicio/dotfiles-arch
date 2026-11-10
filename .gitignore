@@ -110,6 +110,8 @@ __pycache__/
 .local/bin/agy*
 .local/bin/rclone
 .local/bin/composer
+.local/bin/desigma-*
+
 
 # Machine-specific Monitor & Window Session State
 .config/monitors.xml

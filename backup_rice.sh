@@ -189,7 +189,7 @@ fi
 echo "📜 6. Copiando scripts em ~/.local/bin e ~/scripts (excluindo binários pesados)..."
 if [ -d "$HOME/.local/bin" ]; then
     mkdir -p "$REPO_DIR/.local/bin"
-    rsync -avL --exclude='agy*' --exclude='rclone' --exclude='syncthing' --exclude='composer' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
+    rsync -avL --exclude='agy*' --exclude='rclone' --exclude='syncthing' --exclude='composer' --exclude='desigma-*' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
 fi
 if [ -d "$HOME/scripts" ]; then
     mkdir -p "$REPO_DIR/scripts"
