@@ -1,24 +1,17 @@
 <?xml version="1.0"?>
 <application-state>
   <context id="">
-    <application id="abiword.desktop" score="4.5" last-seen="1793839598"/>
-    <application id="google-chrome.desktop" score="11651.75390625" last-seen="1794273440"/>
-    <application id="desigma.desktop" score="101" last-seen="1793834872"/>
-    <application id="org.gnome.Loupe.desktop" score="0.5" last-seen="1793838443"/>
-    <application id="logisim.desktop" score="4304.5" last-seen="1793834483"/>
-    <application id="org.gnome.TextEditor.desktop" score="4" last-seen="1794244454"/>
-    <application id="org.gnome.Papers.desktop" score="5002.8125" last-seen="1794263653"/>
-    <application id="gcr-prompter.desktop" score="0" last-seen="1793729119"/>
-    <application id="org.gnome.Nautilus.desktop" score="274.6328125" last-seen="1794263630"/>
-    <application id="libreoffice-startcenter.desktop" score="0" last-seen="1794011550"/>
-    <application id="org.gnome.Console.desktop" score="19744.38671875" last-seen="1794273453"/>
-    <application id="org.gnome.seahorse.Application.desktop" score="2" last-seen="1793731643"/>
-    <application id="libreoffice-impress.desktop" score="0.5" last-seen="1794011558"/>
-    <application id="org.gnome.Terminal.desktop" score="216" last-seen="1794074139"/>
-    <application id="firefox.desktop" score="0" last-seen="1793874710"/>
-    <application id="system-tray.desktop" score="0" last-seen="0"/>
-    <application id="org.gnome.DiskUtility.desktop" score="1" last-seen="1794011938"/>
-    <application id="code.desktop" score="12813.66015625" last-seen="1794271453"/>
-    <application id="org.gnome.Settings.desktop" score="2" last-seen="1794240282"/>
+    <application id="org.gnome.TextEditor.desktop" score="69" last-seen="1794532617"/>
+    <application id="google-chrome.desktop" score="8550.876953125" last-seen="1795130883"/>
+    <application id="logisim.desktop" score="177" last-seen="1794532935"/>
+    <application id="org.gnome.Showtime.desktop" score="2" last-seen="1795130449"/>
+    <application id="org.gnome.Papers.desktop" score="2549.90625" last-seen="1795129520"/>
+    <application id="constructor-virtual-circuitos.desktop" score="0" last-seen="1794962701"/>
+    <application id="libreoffice-calc.desktop" score="4" last-seen="1794523255"/>
+    <application id="org.gnome.Nautilus.desktop" score="262.81640625" last-seen="1795130448"/>
+    <application id="org.gnome.Console.desktop" score="15726.193359375" last-seen="1795129532"/>
+    <application id="libreoffice-startcenter.desktop" score="0" last-seen="1794523227"/>
+    <application id="postman.desktop" score="2" last-seen="1794525253"/>
+    <application id="code.desktop" score="17840.830078125" last-seen="1795131036"/>
   </context>
 </application-state>

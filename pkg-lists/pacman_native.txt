@@ -147,6 +147,7 @@ pavucontrol
 php
 php-apache
 php-gd
+php-sqlite
 piper
 pipewire-alsa
 playerctl

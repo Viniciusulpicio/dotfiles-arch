@@ -336,7 +336,7 @@ sidebar-page='thumbnails'
 sizing-mode='free'
 text-color='blue'
 window-maximized=false
-zoom=0.62396707588601907
+zoom=0.82138674433948655
 
 [org/gnome/papers/previewer]
 
@@ -344,10 +344,10 @@ zoom=0.62396707588601907
 last-folder-path='/home/vinicius/temp/ADJ-WWW'
 
 [org/gnome/portal/filechooser/code]
-last-folder-path='/home/vinicius/temp/estrutura-dados-c'
+last-folder-path='/home/vinicius/temp/poo-php'
 
 [org/gnome/portal/filechooser/com.google.Chrome]
-last-folder-path='/home/vinicius/BCC/Estrutura de dados - C'
+last-folder-path='/home/vinicius/Downloads'
 
 [org/gnome/portal/filechooser/curseforge]
 last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
@@ -382,7 +382,7 @@ night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
 night-light-schedule-automatic=false
 
 [org/gnome/settings-daemon/plugins/housekeeping]
-donation-reminder-last-shown=int64 1762560924994914
+donation-reminder-last-shown=int64 1795023086129969
 
 [org/gnome/settings-daemon/plugins/media-keys]
 custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
@@ -446,8 +446,8 @@ app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnom
 command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 → r → Enter', 'nautilus', 'r']
 disable-extension-version-validation=true
 disable-user-extensions=false
-disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'KeepAwake@jepfa.de', 'display-brightness-ddcutil@themightydeity.github.com', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com']
-enabled-extensions=['add-to-desktop@tommimon.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'arch-update@RaphaelRochet', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'clipboard-history@alexsaveau.dev', 'dash2dock-lite@icedman.github.com', 'gsconnect@andyholmes.github.io', 'just-perfection-desktop@just-perfection', 'light-style@gnome-shell-extensions.gcampax.github.com', 'mediacontrols@cliffniff.github.com', 'pip-on-top@rafostar.github.com', 'pop-shell@system76.com', 'quick-settings-audio-panel@rayzeq.github.io', 'search-light@icedman.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'tiling-assistant@leleat-on-github', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'KeepAwake@jepfa.de', 'display-brightness-ddcutil@themightydeity.github.com', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com', 'tiling-assistant@leleat-on-github']
+enabled-extensions=['add-to-desktop@tommimon.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'arch-update@RaphaelRochet', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'clipboard-history@alexsaveau.dev', 'dash2dock-lite@icedman.github.com', 'gsconnect@andyholmes.github.io', 'just-perfection-desktop@just-perfection', 'light-style@gnome-shell-extensions.gcampax.github.com', 'mediacontrols@cliffniff.github.com', 'pip-on-top@rafostar.github.com', 'pop-shell@system76.com', 'quick-settings-audio-panel@rayzeq.github.io', 'search-light@icedman.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']
 favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'org.gnome.Console.desktop', 'notion.desktop', 'system-tray.desktop']
 last-selected-power-profile='power-saver'
 welcome-dialog-last-shown-version='49.1'
@@ -508,7 +508,7 @@ brightness=0.59999999999999998
 sigma=30
 
 [org/gnome/shell/extensions/caffeine]
-cli-toggle=false
+cli-toggle=true
 enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
@@ -516,7 +516,7 @@ indicator-position-index=0
 indicator-position-max=5
 restore-state=true
 show-indicator='always'
-user-enabled=false
+user-enabled=true
 
 [org/gnome/shell/extensions/clipboard-history]
 display-mode=0
@@ -618,7 +618,7 @@ support-notifier-showed-version=36
 support-notifier-type=0
 
 [org/gnome/shell/extensions/libpanel]
-layout={'gnome-shell/main:primary': ('primary', 0, 0), 'quick-settings-audio-panel@rayzeq.github.io/main': ('primary', 0, 1)}
+layout={'gnome-shell/main:primary': ('primary', 0, 0), 'quick-settings-audio-panel@rayzeq.github.io/main': ('primary', 0, 1), 'pop-shell@system76.com/main': ('primary', 0, 2)}
 
 [org/gnome/shell/extensions/mediacontrols]
 colored-player-icon=true
@@ -691,7 +691,6 @@ focus-hint-color='rgb(53,132,228)'
 import-layout-examples=false
 last-version-installed=56
 maximize-with-gap=false
-overridden-settings={'org.gnome.mutter.edge-tiling': <false>}
 restore-window=['<Super>Down']
 search-popup-layout=@as []
 single-screen-gap=0
@@ -742,9 +741,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [org/gnome/software]
-check-timestamp=int64 1794261358
+check-timestamp=int64 1795030221
 first-run=false
-flatpak-purge-timestamp=int64 1794241949
+flatpak-purge-timestamp=int64 1795030824
 
 [org/gnome/system/location]
 enabled=true
