@@ -9,5 +9,5 @@ else
     # Garante encaminhamento de IP
     sudo -n sysctl -w net.ipv4.ip_forward=1 >/dev/null 2>&1
     nmcli connection up Hotspot
-    notify-send -i network-wireless-hotspot "Hotspot Wi-Fi" "Roteador Ativado!\nSSID: Notebook-Net\nSenha: 31070713"
+    notify-send -i network-wireless-hotspot "Hotspot Wi-Fi" "Roteador Ativado!\nSSID: thinkpad\nSenha: 31070713"
 fi
