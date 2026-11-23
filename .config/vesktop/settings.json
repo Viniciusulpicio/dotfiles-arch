@@ -1,0 +1,11 @@
+{
+    "discordBranch": "stable",
+    "minimizeToTray": true,
+    "arRPC": true,
+    "audio": {
+        "workaround": true,
+        "ignoreVirtual": true,
+        "granularSelect": true,
+        "deviceSelect": true
+    }
+}

@@ -1,0 +1,44 @@
+{
+  "float": [
+    {
+      "class": "pop-shell-example",
+      "title": "pop-shell-example"
+    },
+    {
+      "class": "wofi"
+    },
+    {
+      "class": "Google Chrome"
+    },
+    {
+      "class": "yad"
+    },
+    {
+      "class": "Wine"
+    },
+    {
+      "class": "constructorvirtualdecircuitos.exe"
+    },
+    {
+      "title": "Constructor Virtual.*"
+    },
+    {
+      "title": "Informaci\u00f3n"
+    },
+    {
+      "class": "openwhip"
+    },
+    {
+      "title": ".*[pP]icture.*in.*[pP]icture.*"
+    },
+    {
+      "title": ".*PiP.*"
+    }
+  ],
+  "skiptaskbarhidden": [
+    {
+      "class": "openwhip"
+    }
+  ],
+  "log_on_focus": false
+}

@@ -1,0 +1,13 @@
+{
+    "extractor": {
+        "pinterest": {
+            "cookies": "~/.pinterest-cookies.txt",
+            "originals": true,
+            "filter": "width >= 1920 and width > height"
+        }
+    },
+    "downloader": {
+        "part-directory": "/tmp/.gallery-dl",
+        "mtime": false
+    }
+}

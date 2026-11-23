@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Markdown Viewer
+GenericName=Markdown Viewer
+Comment=Visualizador rápido de arquivos Markdown
+Exec=md-viewer %f
+Icon=text-markdown
+Terminal=false
+Type=Application
+MimeType=text/markdown;text/x-markdown;
+Categories=Utility;Viewer;
+StartupNotify=true

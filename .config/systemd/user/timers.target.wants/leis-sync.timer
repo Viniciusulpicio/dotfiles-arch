@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer para atualizar ~/temp/leis uma unica vez ao ligar
+
+[Timer]
+OnStartupSec=1min
+
+[Install]
+WantedBy=timers.target

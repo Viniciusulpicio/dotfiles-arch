@@ -1,0 +1,6 @@
+#!/usr/bin/python
+import sys
+from ldapdomaindump.convert import ldd2bloodhound
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(ldd2bloodhound())

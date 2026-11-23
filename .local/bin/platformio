@@ -1,0 +1,6 @@
+#!/home/vinicius/.local/share/pipx/venvs/platformio/bin/python -E
+import sys
+from platformio.__main__ import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())

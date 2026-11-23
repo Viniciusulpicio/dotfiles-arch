@@ -1,0 +1,337 @@
+#!/bin/bash
+# ==============================================================================
+# Script de Backup Automatizado do Rice e Dotfiles (Arch Linux + GNOME)
+# ==============================================================================
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$SCRIPT_DIR"
+DATE=$(date +"%Y-%m-%d %H:%M:%S")
+
+echo "🚀 Iniciando Backup Completo do Rice e Dotfiles para: $REPO_DIR"
+echo "📅 Data: $DATE"
+
+# Função para cópia segura de arquivos/pastas com filtros de lixo/cache
+copy_safe() {
+    local src="$1"
+    local dest="$2"
+    if [ -e "$src" ]; then
+        echo "  -> Copiando: $(basename "$src")"
+        rsync -avL --delete \
+                  --exclude='.git' \
+                  --exclude='node_modules' \
+                  --exclude='Cache' \
+                  --exclude='Cache_Data' \
+                  --exclude='CachedData' \
+                  --exclude='CachedExtensionVSIXs' \
+                  --exclude='GPUCache' \
+                  --exclude='Code Cache' \
+                  --exclude='DawnGraphiteCache' \
+                  --exclude='DawnWebGPUCache' \
+                  --exclude='Service Worker' \
+                  --exclude='Partitions' \
+                  --exclude='WidevineCdm' \
+                  --exclude='Crashpad' \
+                  --exclude='IndexedDB' \
+                  --exclude='blob_storage' \
+                  --exclude='Session Storage' \
+                  --exclude='Local Storage' \
+                  --exclude='WebStorage' \
+                  --exclude='Dictionaries' \
+                  --exclude='History' \
+                  --exclude='workspaceStorage' \
+                  --exclude='globalStorage' \
+                  --exclude='logs' \
+                  --exclude='Backups' \
+                  --exclude='*.log' \
+                  --exclude='*.tmp' \
+                  --exclude='*.iso' \
+                  --exclude='*.iso.tmp' \
+                  --exclude='*-journal' \
+                  --exclude='*-wal' \
+                  --exclude='agy*' \
+                  --exclude='rclone' \
+                  --exclude='composer' \
+                  "$src" "$dest" > /dev/null 2>&1 || true
+    fi
+}
+
+# 1. PREPARANDO PASTAS DE DESTINO
+echo "📁 1. Preparando estrutura de diretórios..."
+mkdir -p "$REPO_DIR/.config" \
+         "$REPO_DIR/pkg-lists" \
+         "$REPO_DIR/gnome-settings" \
+         "$REPO_DIR/Pictures/Wallpaper" \
+         "$REPO_DIR/.local/bin" \
+         "$REPO_DIR/.local/share" \
+         "$REPO_DIR/.oh-my-zsh/custom"
+
+# 2. EXPORTANDO LISTAS DE PACOTES E EXTENSÕES (UNINDO PC PRINCIPAL + NOTEBOOK)
+echo "📦 2. Exportando listas de pacotes e extensões do sistema (modo merge multi-máquina)..."
+
+merge_list() {
+    local file="$1"
+    local new_content="$2"
+    if [ -n "$new_content" ]; then
+        touch "$file"
+        local tmp
+        tmp=$(mktemp)
+        printf "%s\n" "$new_content" | cat "$file" - | sed '/^[[:space:]]*$/d' | sort -u > "$tmp"
+        mv "$tmp" "$file"
+    fi
+}
+
+# Pacotes nativos explicitamente instalados (excluindo AUR)
+if command -v pacman &> /dev/null; then
+    AUR_PKGS=$(pacman -Qqm 2>/dev/null || true)
+    if [ -n "$AUR_PKGS" ]; then
+        NATIVE_PKGS=$(pacman -Qqe | grep -Fxv -f <(echo "$AUR_PKGS") | sort -u)
+        merge_list "$REPO_DIR/pkg-lists/pacman_native.txt" "$NATIVE_PKGS"
+        merge_list "$REPO_DIR/pkg-lists/aur_packages.txt" "$AUR_PKGS"
+    else
+        NATIVE_PKGS=$(pacman -Qqe | sort -u)
+        merge_list "$REPO_DIR/pkg-lists/pacman_native.txt" "$NATIVE_PKGS"
+    fi
+
+    echo "  ✓ Pacman nativos salvos (unificados PC + Note): $(wc -l < "$REPO_DIR/pkg-lists/pacman_native.txt") pacotes"
+    echo "  ✓ AUR salvos (unificados PC + Note): $(wc -l < "$REPO_DIR/pkg-lists/aur_packages.txt") pacotes"
+fi
+
+# Extensões GNOME ativadas e totais
+if command -v gnome-extensions &> /dev/null; then
+    merge_list "$REPO_DIR/pkg-lists/gnome_extensions_enabled.txt" "$(gnome-extensions list --enabled 2>/dev/null || true)"
+    merge_list "$REPO_DIR/pkg-lists/gnome_extensions_all.txt" "$(gnome-extensions list 2>/dev/null || true)"
+    echo "  ✓ Extensões GNOME ativas salvas: $(wc -l < "$REPO_DIR/pkg-lists/gnome_extensions_enabled.txt") extensões"
+fi
+
+# Extensões VS Code
+if command -v code &> /dev/null; then
+    merge_list "$REPO_DIR/pkg-lists/vscode_extensions.txt" "$(code --list-extensions 2>/dev/null || true)"
+    echo "  ✓ Extensões VS Code salvas: $(wc -l < "$REPO_DIR/pkg-lists/vscode_extensions.txt") extensões"
+fi
+
+# Flatpaks
+if command -v flatpak &> /dev/null; then
+    merge_list "$REPO_DIR/pkg-lists/flatpak_list.txt" "$(flatpak list --app --columns=application 2>/dev/null || true)"
+    echo "  ✓ Flatpaks salvos"
+fi
+
+# 3. BACKUP DE DCONF (GNOME E EXTENSÕES - sem tamanhos de janela/monitores fixos)
+echo "🎛️ 3. Exportando configurações do GNOME (dconf)..."
+DCONF_MONITOR_FILTER='^(window-size|window-width|window-height|last-window-size|initial-size|initial-size-file-chooser|window-state|preferred-monitor|monitor-count)='
+if command -v dconf &> /dev/null; then
+    dconf dump / 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/full-backup.dconf" || true
+    dconf dump /org/gnome/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-shell-backup.dconf" || true
+    dconf dump /com/github/ 2>/dev/null | grep -vE '^(width|height)=' > "$REPO_DIR/gnome-settings/github-extensions.dconf" || true
+    dconf dump /org/gnome/shell/extensions/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-extensions.dconf" || true
+    dconf dump /org/gnome/desktop/app-folders/ > "$REPO_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
+    dconf read /org/gnome/shell/app-picker-layout > "$REPO_DIR/gnome-settings/app-picker-layout.gv" 2>/dev/null || true
+    echo "  ✓ Dconf exportado com sucesso (independente de monitor)"
+fi
+
+# 4. BACKUP DE ARQUIVOS DE SHELL E PROFILE (HOME)
+echo "🐚 4. Copiando arquivos de ambiente Shell e Perfil..."
+for file in .zshrc .p10k.zsh .bashrc .bash_profile .profile .imwheelrc .gitconfig .nvidia-settings-rc; do
+    if [ -f "$HOME/$file" ]; then
+        cp -f "$HOME/$file" "$REPO_DIR/"
+        echo "  ✓ $file"
+    fi
+done
+
+# 5. BACKUP DE RICE, TEMAS, GRUB E WALLPAPERS
+echo "🎨 5. Copiando temas, rice, grub e wallpapers..."
+[ -d "$HOME/.rion-dotfiles" ] && copy_safe "$HOME/.rion-dotfiles" "$REPO_DIR/"
+[ -d "$HOME/grub2-themes" ] && copy_safe "$HOME/grub2-themes" "$REPO_DIR/"
+
+# Wallpapers
+if [ -d "$HOME/Pictures/Wallpaper" ]; then
+    copy_safe "$HOME/Pictures/Wallpaper/" "$REPO_DIR/Pictures/Wallpaper/"
+elif [ -d "$HOME/Imagens/Wallpaper" ]; then
+    copy_safe "$HOME/Imagens/Wallpaper/" "$REPO_DIR/Pictures/Wallpaper/"
+elif [ -d "$HOME/.config/wpg/wallpapers" ]; then
+    copy_safe "$HOME/.config/wpg/wallpapers/" "$REPO_DIR/Pictures/Wallpaper/"
+fi
+
+# Wallpaper atual
+CURRENT_WALL=$(gsettings get org.gnome.desktop.background picture-uri 2>/dev/null | tr -d "'" | sed 's|file://||')
+if [ -n "$CURRENT_WALL" ] && [ -f "$CURRENT_WALL" ]; then
+    if [ "$CURRENT_WALL" != "$REPO_DIR/wallpaper_atual.jpg" ]; then
+        cp -f "$CURRENT_WALL" "$REPO_DIR/wallpaper_atual.jpg"
+        echo "  ✓ Wallpaper atual copiado: $CURRENT_WALL"
+    else
+        echo "  ✓ Wallpaper atual já preservado no repositório"
+    fi
+fi
+
+
+# 5.1 BACKUP DO SYSTEM TRAY E OPENWHIP VISUAL
+if [ -d "$HOME/system-tray" ]; then
+    echo "🖥️ 5.1 Copiando projeto System Tray..."
+    copy_safe "$HOME/system-tray" "$REPO_DIR/"
+fi
+if [ -d "$HOME/openwhip-visual" ]; then
+    echo "⚡ 5.1b Copiando projeto OpenWhip Visual..."
+    copy_safe "$HOME/openwhip-visual" "$REPO_DIR/"
+fi
+if [ -d "$HOME/rea-studio" ]; then
+    echo "🔍 5.1c Copiando projeto REA Studio..."
+    copy_safe "$HOME/rea-studio" "$REPO_DIR/"
+fi
+
+# 5.2 BACKUP DE CONFIGURAÇÕES DE RESPONSIVIDADE DO SISTEMA (/etc/sysctl.d)
+if [ -f "/etc/sysctl.d/99-desktop-responsiveness.conf" ]; then
+    echo "⚡ 5.2 Copiando configurações de otimização de I/O e Downloads (/etc/sysctl.d)..."
+    mkdir -p "$REPO_DIR/etc/sysctl.d"
+    cp -f "/etc/sysctl.d/99-desktop-responsiveness.conf" "$REPO_DIR/etc/sysctl.d/" 2>/dev/null || true
+fi
+
+# 6. SCRIPTS LOCAIS (.local/bin)
+echo "📜 6. Copiando scripts em ~/.local/bin e ~/scripts (excluindo binários pesados)..."
+if [ -d "$HOME/.local/bin" ]; then
+    mkdir -p "$REPO_DIR/.local/bin"
+    rsync -avL --exclude='agy*' --exclude='rclone' --exclude='syncthing' --exclude='composer' --exclude='desigma-*' "$HOME/.local/bin/" "$REPO_DIR/.local/bin/" > /dev/null 2>&1 || true
+fi
+if [ -d "$HOME/scripts" ]; then
+    mkdir -p "$REPO_DIR/scripts"
+    cp -rf "$HOME/scripts/"*.sh "$REPO_DIR/scripts/" 2>/dev/null || true
+fi
+
+# 7. ASSETS EM .local/share (Fontes, Ícones, Extensões GNOME, Aplicações)
+echo "🔤 7. Copiando assets em ~/.local/share..."
+if [ -d "$HOME/.local/share/gnome-shell" ]; then
+    copy_safe "$HOME/.local/share/gnome-shell" "$REPO_DIR/.local/share/"
+fi
+for share_dir in fonts icons themes applications logisim pixmaps; do
+    if [ -d "$HOME/.local/share/$share_dir" ]; then
+        copy_safe "$HOME/.local/share/$share_dir" "$REPO_DIR/.local/share/"
+    fi
+done
+
+# 8. OH-MY-ZSH CUSTOM
+if [ -d "$HOME/.oh-my-zsh/custom" ]; then
+    echo "⚡ 8. Copiando customizações do Oh-My-Zsh..."
+    mkdir -p "$REPO_DIR/.oh-my-zsh/custom"
+    copy_safe "$HOME/.oh-my-zsh/custom" "$REPO_DIR/.oh-my-zsh/"
+fi
+
+# 8.1 ANTIGRAVITY / AGY CONFIGS (~/.gemini)
+echo "🤖 8.1 Copiando configurações, skills e plugins do Antigravity (agy)..."
+if [ -d "$HOME/.gemini" ]; then
+    mkdir -p "$REPO_DIR/.gemini/antigravity-cli"
+    [ -f "$HOME/.gemini/GEMINI.md" ] && cp -f "$HOME/.gemini/GEMINI.md" "$REPO_DIR/.gemini/"
+    [ -f "$HOME/.gemini/antigravity-cli/settings.json" ] && cp -f "$HOME/.gemini/antigravity-cli/settings.json" "$REPO_DIR/.gemini/antigravity-cli/"
+    [ -d "$HOME/.gemini/config" ] && copy_safe "$HOME/.gemini/config" "$REPO_DIR/.gemini/"
+fi
+
+# 9. CONFIGURAÇÕES EM ~/.config
+echo "⚙️ 9. Copiando configurações de aplicativos em ~/.config..."
+CONFIG_APPS=(
+    "alacritty"
+    "wezterm"
+    "kitty"
+    "fastfetch"
+    "btop"
+    "cava"
+    "conky"
+    "gtk-3.0"
+    "gtk-4.0"
+    "pop-shell"
+    "tiling-assistant"
+    "wlogout"
+    "wofi"
+    "wpg"
+    "wal"
+    "autostart"
+    "system-tray"
+    "BetterDiscord"
+    "MangoHud"
+    "obs-studio"
+    "spicetify"
+    "TeamSpeak3"
+    "neofetch"
+    "goverlay"
+    "gamemode.ini"
+    "mimeapps.list"
+    "user-dirs.dirs"
+    "user-dirs.locale"
+    "gnome-xdg-terminals.list"
+    "xdg-terminals.list"
+    "argos"
+    "input-remapper-2"
+    "devilspie2"
+    "gallery-dl"
+    "pamac"
+    "pavucontrol.ini"
+    "Pinta"
+    "QtProject.conf"
+    "systemd"
+    "vesktop"
+    "vkBasalt"
+    "vlc"
+    "Arduino IDE"
+    "codeblocks"
+    "composer"
+)
+
+for app in "${CONFIG_APPS[@]}"; do
+    if [ -e "$HOME/.config/$app" ]; then
+        copy_safe "$HOME/.config/$app" "$REPO_DIR/.config/"
+    fi
+done
+
+# Arduino-IDE (Apenas config.json)
+if [ -f "$HOME/.config/arduino-ide/config.json" ]; then
+    mkdir -p "$REPO_DIR/.config/arduino-ide"
+    cp -f "$HOME/.config/arduino-ide/config.json" "$REPO_DIR/.config/arduino-ide/" 2>/dev/null || true
+fi
+
+# Syncthing .stignore da pasta ~/temp (sem expor chaves/certificados)
+if [ -f "$HOME/temp/.stignore" ]; then
+    mkdir -p "$REPO_DIR/.config/syncthing"
+    cp -f "$HOME/temp/.stignore" "$REPO_DIR/.config/syncthing/stignore.default" 2>/dev/null || true
+fi
+
+# VS Code configs (Settings, Keybindings, Snippets e MCP)
+if [ -d "$HOME/.config/Code/User" ]; then
+    mkdir -p "$REPO_DIR/.config/Code/User"
+    [ -f "$HOME/.config/Code/User/settings.json" ] && cp -f "$HOME/.config/Code/User/settings.json" "$REPO_DIR/.config/Code/User/" 2>/dev/null || true
+    [ -f "$HOME/.config/Code/User/keybindings.json" ] && cp -f "$HOME/.config/Code/User/keybindings.json" "$REPO_DIR/.config/Code/User/" 2>/dev/null || true
+    [ -f "$HOME/.config/Code/User/tasks.json" ] && cp -f "$HOME/.config/Code/User/tasks.json" "$REPO_DIR/.config/Code/User/" 2>/dev/null || true
+    [ -f "$HOME/.config/Code/User/mcp.json" ] && cp -f "$HOME/.config/Code/User/mcp.json" "$REPO_DIR/.config/Code/User/" 2>/dev/null || true
+    [ -d "$HOME/.config/Code/User/snippets" ] && copy_safe "$HOME/.config/Code/User/snippets" "$REPO_DIR/.config/Code/User/"
+fi
+
+# Limpeza profunda de bloat / caches / symlinks residuais na pasta de dotfiles
+echo "🧹 Limpando caches e dados temporários do repositório..."
+rm -rf "$REPO_DIR/.config/'*'" 2>/dev/null || true
+rm -rf "$REPO_DIR/.config/Code/Cookies"* "$REPO_DIR/.config/Code/DIPS"* "$REPO_DIR/.config/Code/Dawn"* \
+       "$REPO_DIR/.config/Code/Dictionaries" "$REPO_DIR/.config/Code/GPUCache" "$REPO_DIR/.config/Code/Crashpad" \
+       "$REPO_DIR/.config/Code/Local Storage" "$REPO_DIR/.config/Code/Preferences" "$REPO_DIR/.config/Code/Service Worker" \
+       "$REPO_DIR/.config/Code/Session Storage" "$REPO_DIR/.config/Code/Shared Dictionary" "$REPO_DIR/.config/Code/SharedStorage"* \
+       "$REPO_DIR/.config/Code/TransportSecurity" "$REPO_DIR/.config/Code/Trust Tokens"* "$REPO_DIR/.config/Code/WebStorage" \
+       "$REPO_DIR/.config/Code/languagepacks.json" "$REPO_DIR/.config/Code/machineid" "$REPO_DIR/.config/Code/Network Persistent State" \
+       "$REPO_DIR/.config/Code/User/globalStorage" "$REPO_DIR/.config/Code/User/workspaceStorage" "$REPO_DIR/.config/Code/User/History" \
+       "$REPO_DIR/.config/discord" "$REPO_DIR/.config/arduino-ide" \
+       "$REPO_DIR/.config/connections.db" "$REPO_DIR/.config/freerdp" "$REPO_DIR/.config/gsconnect" \
+       "$REPO_DIR/.config/winboat" "$REPO_DIR/.config/remmina" "$REPO_DIR/.config/evolution" \
+       "$REPO_DIR/.config/VirtualBox" "$REPO_DIR/.config/spotify" "$REPO_DIR/.config/pulse" \
+       "$REPO_DIR/.config/mozilla" "$REPO_DIR/.config/ow-electron" "$REPO_DIR/.config/dconf/user" \
+       "$REPO_DIR/.config/conky/weather.env" \
+       "$REPO_DIR/.config/monitors.xml" "$REPO_DIR/.config/tiling-assistant/tiledSessionRestore2.json" 2>/dev/null || true
+
+# 10. VERIFICAÇÃO E COMMIT NO GIT
+echo "🌿 10. Sincronizando com o Git..."
+cd "$REPO_DIR"
+
+chmod +x "$REPO_DIR/install.sh" "$REPO_DIR/backup_rice.sh" "$REPO_DIR/restore_full_system.py" 2>/dev/null || true
+
+git add -A
+
+if git diff --staged --quiet; then
+    echo "✨ Nenhuma alteração detectada. Repositório já está 100% atualizado!"
+else
+    git commit -m "Rice Completo: Backup de todas as configurações, extensões, temas e dotfiles ($DATE)"
+    echo "📤 Enviando alterações para o GitHub..."
+    git push origin main
+    echo "✅ Rice e dotfiles enviados para o GitHub com sucesso!"
+fi

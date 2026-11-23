@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/vinicius/Pictures/Wallpaper/pinterest_621356079891536916.gif",
+    "alpha": "100",
+    "special": {
+        "background": "#0c0705",
+        "foreground": "#f2c5ab",
+        "cursor": "#f2c5ab"
+    },
+    "colors": {
+        "color0": "#0c0705",
+        "color1": "#553E41",
+        "color2": "#68564F",
+        "color3": "#8D1106",
+        "color4": "#AE2510",
+        "color5": "#CC482F",
+        "color6": "#E75825",
+        "color7": "#f2c5ab",
+        "color8": "#a98977",
+        "color9": "#553E41",
+        "color10": "#68564F",
+        "color11": "#8D1106",
+        "color12": "#AE2510",
+        "color13": "#CC482F",
+        "color14": "#E75825",
+        "color15": "#f2c5ab"
+    }
+}

@@ -1,0 +1,19 @@
+vinicius@micro 
+-------------- 
+OS: Ubuntu 24.04.3 LTS x86_64 
+Host: Pichau Alphard B560M-T 
+Kernel: 6.14.0-29-generic 
+Uptime: 53 mins 
+Packages: 2534 (dpkg), 18 (snap) 
+Shell: zsh 5.9 
+Resolution: 1920x1080 
+DE: GNOME 46.0 
+WM: Mutter 
+WM Theme: Adwaita 
+Theme: Adwaita [GTK2/3] 
+Icons: Flat-Remix-Blue-Light [GTK2/3] 
+Terminal: gnome-terminal 
+CPU: Intel i5-10400F (12) @ 4.300GHz 
+GPU: NVIDIA GeForce RTX 3060 
+Memory: 4080MiB / 15860MiB 
+

@@ -1,0 +1,739 @@
+[Connections]
+first-run=false
+
+[Console]
+font-scale=0.90000000000000002
+last-window-fullscreen=false
+last-window-maximised=false
+
+[Extensions]
+window-maximized=false
+
+[Showtime/State]
+is-maximized=false
+
+[Snapshot]
+capture-mode='video'
+is-maximized=false
+
+[TextEditor]
+last-save-directory='file:///home/vinicius/Downloads'
+style-variant='light'
+
+[Weather]
+locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
+window-maximized=false
+
+[baobab/ui]
+active-chart='rings'
+is-maximized=false
+
+[calendar]
+active-view='month'
+window-maximized=false
+
+[control-center]
+last-panel='power'
+
+[desktop/a11y/applications]
+screen-magnifier-enabled=false
+
+[desktop/a11y/magnifier]
+cross-hairs-length=58
+
+[desktop/app-folders]
+folder-children=['System', 'Utilities', 'YaST', 'Pardus', 'b51017c7-5a3a-4de7-9875-0f939e72be73', 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e']
+
+[desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[desktop/app-folders/folders/System]
+apps=['nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Logs.desktop', 'org.freedesktop.MalcontentControl.desktop', 'org.gnome.SystemMonitor.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Maps.desktop', 'org.gnome.Music.desktop', 'org.gnome.SimpleScan.desktop', 'org.gnome.Showtime.desktop', 'org.gnome.Snapshot.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Weather.desktop', 'org.gnome.Tour.desktop', 'btop.desktop', 'org.gnome.Yelp.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'cmake-gui.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop', 'io.github.benjamimgois.goverlay.desktop', 'com.github.ztefn.haguichi.desktop', 'htop.desktop', 'jshell-java-openjdk.desktop', 'org.gnome.Software.desktop', 'qvidcap.desktop', 'avahi-discover.desktop', 'jconsole-java-openjdk.desktop', 'vim.desktop', 'org.gnome.Extensions.desktop', 'conky.desktop', 'lstopo.desktop', 'wpgtk.desktop', 'io.github.flattool.Ignition.desktop', 'torbrowser-settings.desktop', 'dev.overlayed.Overlayed.desktop', 'input-remapper-gtk.desktop', 'org.gnome.Terminal.desktop', 'uxterm.desktop', 'xterm.desktop', 'virtualbox.desktop', 'abiword.desktop']
+name='X-GNOME-Shell-System.directory'
+translate=true
+
+[desktop/app-folders/folders/Utilities]
+apps=['org.gnome.Decibels.desktop', 'org.gnome.Connections.desktop', 'org.gnome.Papers.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Loupe.desktop', 'nvtop.desktop', 'org.wezfurlong.wezterm.desktop', 'timeshift-gtk.desktop', 'org.gnome.Evince.desktop', 'qv4l2.desktop', 'bssh.desktop', 'org.manjaro.pamac.manager.desktop', 'com.mattjakeman.ExtensionManager.desktop', 'Alacritty.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'org.pulseaudio.pavucontrol.desktop', 'io.gitlab.jstest_gtk.jstest_gtk.desktop', 'f3d.desktop', 'org.kde.kolourpaint.desktop', 'pinta.desktop', 'yad-settings.desktop', 'yad-icon-browser.desktop', 'solaar.desktop', 'org.freedesktop.Piper.desktop', 'org.remmina.Remmina.desktop', 'org.torproject.torbrowser-launcher.desktop', 'org.torproject.torbrowser-launcher.settings.desktop', 'org.gnome.seahorse.Application.desktop']
+name='X-GNOME-Shell-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/app-folders/folders/b51017c7-5a3a-4de7-9875-0f939e72be73]
+apps=['Counter-Strike 2.desktop', 'curseforge.desktop', 'Arena Breakout Infinite.desktop', 'DayZ.desktop', 'PEAK.desktop', 'RV There Yet.desktop', 'sklauncher.desktop', 'The Witcher 3 Wild Hunt.desktop', 'bvnc.desktop', 'heroic.desktop', 'hydra.desktop', 'UNO.desktop', 'Raft.desktop', "Liar's Bar.desktop", 'Grand Theft Auto V Enhanced.desktop', 'FPS Chess.desktop', 'steam.desktop']
+name='Jogos'
+translate=false
+
+[desktop/app-folders/folders/dc081261-a3ba-48ea-bbf0-f002d96b2c7e]
+apps=['libreoffice-math.desktop', 'libreoffice-impress.desktop', 'libreoffice-draw.desktop', 'libreoffice-calc.desktop', 'libreoffice-base.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop', 'cups.desktop']
+name='Escritório'
+
+[desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///home/vinicius/.cache/current_wallpaper_fixed.png'
+picture-uri-dark='file:///home/vinicius/.cache/current_wallpaper_fixed.png'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[desktop/break-reminders]
+selected-breaks=@as []
+
+[desktop/break-reminders/eyesight]
+play-sound=true
+
+[desktop/break-reminders/movement]
+duration-seconds=uint32 300
+interval-seconds=uint32 1800
+play-sound=true
+
+[desktop/calendar]
+show-weekdate=false
+
+[desktop/datetime]
+automatic-timezone=true
+
+[desktop/input-sources]
+sources=[('xkb', 'br')]
+xkb-options=@as []
+
+[desktop/interface]
+clock-show-date=true
+clock-show-seconds=false
+clock-show-weekday=false
+color-scheme='prefer-dark'
+enable-animations=true
+show-battery-percentage=false
+text-scaling-factor=1.0
+toolkit-accessibility=false
+
+[desktop/notifications]
+application-children=['firefox', 'org-gnome-console', 'gnome-power-panel', 'discord', 'gnome-about-panel', 'org-gnome-tweaks', 'google-chrome', 'com-obsproject-studio', 'steam', 'org-gnome-nautilus', 'org-gnome-baobab', 'org-gnome-showtime', 'spotify', 'org-gnome-characters', 'org-gnome-software', 'heroic', 'org-manjaro-pamac-manager', 'gnome-datetime-panel', 'org-gnome-extensions', 'vesktop', 'antigravity', 'org-gnome-settings', 'org-gnome-shell-extensions-gsconnect', 'codeblocks', 'libreoffice-startcenter', 'libreoffice-calc', 'constructor-virtual-circuitos', 'xdg-desktop-portal-gnome', 'code', 'com-mattjakeman-extensionmanager', 'org-gnome-goa-daemon', 'gnome-printers-panel']
+show-banners=false
+show-in-lock-screen=false
+
+[desktop/notifications/application/antigravity]
+application-id='antigravity.desktop'
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
+
+[desktop/notifications/application/codeblocks]
+application-id='codeblocks.desktop'
+
+[desktop/notifications/application/com-mattjakeman-extensionmanager]
+application-id='com.mattjakeman.ExtensionManager.desktop'
+
+[desktop/notifications/application/com-obsproject-studio]
+application-id='com.obsproject.Studio.desktop'
+
+[desktop/notifications/application/constructor-virtual-circuitos]
+application-id='constructor-virtual-circuitos.desktop'
+
+[desktop/notifications/application/discord]
+application-id='discord.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/gnome-about-panel]
+application-id='gnome-about-panel.desktop'
+
+[desktop/notifications/application/gnome-datetime-panel]
+application-id='gnome-datetime-panel.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/gnome-printers-panel]
+application-id='gnome-printers-panel.desktop'
+
+[desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
+
+[desktop/notifications/application/heroic]
+application-id='heroic.desktop'
+
+[desktop/notifications/application/libreoffice-calc]
+application-id='libreoffice-calc.desktop'
+
+[desktop/notifications/application/libreoffice-startcenter]
+application-id='libreoffice-startcenter.desktop'
+
+[desktop/notifications/application/org-gnome-baobab]
+application-id='org.gnome.baobab.desktop'
+
+[desktop/notifications/application/org-gnome-characters]
+application-id='org.gnome.Characters.desktop'
+
+[desktop/notifications/application/org-gnome-console]
+application-id='org.gnome.Console.desktop'
+
+[desktop/notifications/application/org-gnome-extensions]
+application-id='org.gnome.Extensions.desktop'
+
+[desktop/notifications/application/org-gnome-goa-daemon]
+application-id='org.gnome.goa-daemon.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[desktop/notifications/application/org-gnome-settings]
+application-id='org.gnome.Settings.desktop'
+
+[desktop/notifications/application/org-gnome-shell-extensions-gsconnect]
+application-id='org.gnome.Shell.Extensions.GSConnect.desktop'
+
+[desktop/notifications/application/org-gnome-showtime]
+application-id='org.gnome.Showtime.desktop'
+
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-gnome-tweaks]
+application-id='org.gnome.tweaks.desktop'
+
+[desktop/notifications/application/org-manjaro-pamac-manager]
+application-id='org.manjaro.pamac.manager.desktop'
+
+[desktop/notifications/application/spotify]
+application-id='spotify.desktop'
+
+[desktop/notifications/application/steam]
+application-id='steam.desktop'
+
+[desktop/notifications/application/vesktop]
+application-id='vesktop.desktop'
+
+[desktop/notifications/application/xdg-desktop-portal-gnome]
+application-id='xdg-desktop-portal-gnome.desktop'
+
+[desktop/peripherals/mouse]
+accel-profile='flat'
+speed=-0.4695652173913043
+
+[desktop/peripherals/touchpad]
+two-finger-scrolling-enabled=true
+
+[desktop/screen-time-limits]
+daily-limit-seconds=uint32 28800
+
+[desktop/screensaver]
+color-shading-type='solid'
+idle-activation-enabled=true
+picture-options='zoom'
+picture-uri='file:///home/vinicius/.cache/current_wallpaper_fixed.png'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[desktop/search-providers]
+sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
+
+[desktop/session]
+idle-delay=uint32 900
+
+[desktop/sound]
+event-sounds=true
+theme-name='__custom'
+
+[desktop/wm/keybindings]
+move-to-monitor-down=@as []
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-monitor-up=@as []
+move-to-workspace-1=@as []
+move-to-workspace-left=['<Shift><Super>Page_Down']
+move-to-workspace-right=['<Shift><Super>Page_Up']
+switch-input-source=['<Shift><Super>space', 'XF86Keyboard']
+switch-to-workspace-left=['<Super>Page_Down']
+switch-to-workspace-right=['<Super>Page_Up']
+toggle-maximized=@as []
+
+[desktop/wm/preferences]
+action-middle-click-titlebar='minimize'
+button-layout=':minimize,maximize,close'
+num-workspaces=3
+
+[epiphany/state]
+is-maximized=false
+
+[evolution-data-server]
+migrated=true
+
+[gitlab/somas/Apostrophe]
+preview-active=true
+preview-mode='full-width'
+preview-security='always-restricted'
+spellcheck=false
+toolbar-active=true
+
+[gnome-system-monitor]
+current-tab='resources'
+maximized=false
+show-dependencies=false
+show-whose-processes='user'
+
+[gnome-system-monitor/proctree]
+col-26-visible=false
+col-26-width=0
+
+[mutter]
+dynamic-workspaces=false
+edge-tiling=false
+experimental-features=['scale-monitor-framebuffer', 'xwayland-native-scaling']
+
+[nautilus/icon-view]
+default-zoom-level='small-plus'
+
+[nautilus/list-view]
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'date_modified', 'date_accessed', 'date_created', 'recency', 'detailed_type']
+default-visible-columns=['name', 'size', 'date_modified']
+default-zoom-level='small'
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+
+[nautilus/window-state]
+maximized=false
+
+[papers]
+document-directory=@ms '/home/vinicius/BCC/POO'
+night-mode=false
+
+[papers/default]
+annot-color='yellow'
+continuous=true
+dual-page=false
+dual-page-odd-left=true
+enable-spellchecking=true
+eraser-mode-objects='true'
+highlight-color='yellow'
+highlight-stroke=2.0
+pen-color='blue'
+pen-stroke=1.0
+show-sidebar=false
+sidebar-page='thumbnails'
+sizing-mode='free'
+text-color='blue'
+window-maximized=false
+zoom=0.82138674433948655
+
+[papers/previewer]
+
+[portal/filechooser/antigravity]
+last-folder-path='/home/vinicius/temp/ADJ-WWW'
+
+[portal/filechooser/code]
+last-folder-path='/home/vinicius/temp/graduacao-bcc/termo-02/poo-php'
+
+[portal/filechooser/com.google.Chrome]
+last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/curseforge]
+last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
+
+[portal/filechooser/desigma]
+last-folder-path='/home/vinicius/figma'
+
+[portal/filechooser/heroic]
+last-folder-path='/home/vinicius/Games/Heroic/rocketleague'
+
+[portal/filechooser/org.gnome.Nautilus]
+last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/org.gnome.Papers]
+last-folder-path='/home/vinicius/BCC/POO'
+
+[portal/filechooser/org.gnome.Settings]
+last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/org.gnome.TextEditor]
+last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/steam]
+last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/virtualbox]
+last-folder-path='/run/media/vinicius/Ventoy/ISOs'
+
+[settings-daemon/plugins/color]
+night-light-enabled=false
+night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
+night-light-schedule-automatic=false
+
+[settings-daemon/plugins/housekeeping]
+donation-reminder-last-shown=int64 1795023086129969
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/']
+email=@as []
+home=@as []
+screensaver=['<Super>l', '<Super>Escape']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>t'
+command='wezterm'
+name='Wezterm'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Alt>w'
+command='/home/vinicius/.local/bin/wallpaper-picker.sh'
+name='Wallpaper Picker'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='<Alt>f'
+command='wofi'
+name='Wofi'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom3]
+binding='<Alt>l'
+command='wlogout'
+name='Wlogout'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom4]
+binding='<Super>e'
+command='nautilus --new-window'
+name='Nautilus Nova Janela'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom5]
+binding='<Control>F5'
+command='/home/seu_usuario/obs-scripts/start_obs_buffer.sh'
+name='Iniciar Replay Buffer OBS'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom6]
+binding='<Alt>z'
+command='/home/seu_usuario/obs-scripts/save_replay.sh'
+name='Salvar replay OBS'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom7]
+binding='<Alt>q'
+command='kgx'
+name='Teclado'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom8]
+binding='<Super>n'
+command='sh /home/vinicius/scripts/hudnote.sh'
+name='Bloco de Notas Rápido'
+
+[settings-daemon/plugins/power]
+idle-dim=true
+power-button-action='interactive'
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
+
+[shell]
+app-picker-layout=[{'org.gnome.Settings.desktop': <{'position': <0>}>, 'org.gnome.Nautilus.desktop': <{'position': <1>}>, 'firefox.desktop': <{'position': <2>}>, 'com.obsproject.Studio.desktop': <{'position': <3>}>, 'discord.desktop': <{'position': <4>}>, 'teamspeak3.desktop': <{'position': <5>}>, 'org.telegram.desktop.desktop': <{'position': <6>}>, 'Utilities': <{'position': <7>}>, 'System': <{'position': <8>}>, 'b51017c7-5a3a-4de7-9875-0f939e72be73': <{'position': <9>}>, 'dc081261-a3ba-48ea-bbf0-f002d96b2c7e': <{'position': <10>}>, 'arduino-ide-v2.desktop': <{'position': <11>}>, 'codeblocks.desktop': <{'position': <12>}>, 'constructor-virtual-circuitos.desktop': <{'position': <13>}>, 'winetricks.desktop': <{'position': <14>}>, 'logisim.desktop': <{'position': <15>}>, 'Waydroid.desktop': <{'position': <16>}>, 'toys.linux.LinuxToys.desktop': <{'position': <17>}>, 'localsend.desktop': <{'position': <18>}>, 'winboat.desktop': <{'position': <19>}>, 'org.gnome.gitlab.somas.Apostrophe.desktop': <{'position': <20>}>, 'desigma.desktop': <{'position': <21>}>, 'com.github.johnfactotum.Foliate.desktop': <{'position': <22>}>, 'ghidra.desktop': <{'position': <23>}>}, {'md-viewer.desktop': <{'position': <0>}>, 'openwhip-visual.desktop': <{'position': <1>}>, 'rea-studio.desktop': <{'position': <2>}>, 'toggle-hotspot.desktop': <{'position': <3>}>, 'com.microsoft.VSCode.desktop': <{'position': <4>}>}]
+command-history=['sudo pacman -Syu', 'gnome-terminal', 'kgx', 'Alt + F2 → r → Enter', 'nautilus', 'r']
+disable-extension-version-validation=true
+disable-user-extensions=false
+disabled-extensions=['apps-menu@gnome-shell-extensions.gcampax.github.com', 'argos@pew.worldwidemann.com', 'blur-my-shell@aunetx', 'logomenu@aryan_k', 'window-list@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'native-window-placement@gnome-shell-extensions.gcampax.github.com', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'monitor-brightness-volume@ailin.nemui', 'screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com', 'KeepAwake@jepfa.de', 'display-brightness-ddcutil@themightydeity.github.com', 'dash-to-dock@micxgx.gmail.com', 'Vitals@CoreCoding.com', 'tiling-assistant@leleat-on-github']
+enabled-extensions=['add-to-desktop@tommimon.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'caffeine@patapon.info', 'clipboard-history@alexsaveau.dev', 'dash2dock-lite@icedman.github.com', 'gsconnect@andyholmes.github.io', 'just-perfection-desktop@just-perfection', 'light-style@gnome-shell-extensions.gcampax.github.com', 'pip-on-top@rafostar.github.com', 'quick-settings-audio-panel@rayzeq.github.io', 'search-light@icedman.github.com', 'status-icons@gnome-shell-extensions.gcampax.github.com', 'system-monitor@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'pop-shell@system76.com', 'mediacontrols@cliffniff.github.com', 'arch-update@RaphaelRochet']
+favorite-apps=['google-chrome.desktop', 'spotify.desktop', 'code.desktop', 'mysql-workbench.desktop', 'postman.desktop', 'org.gnome.Console.desktop', 'notion.desktop', 'system-tray.desktop']
+last-selected-power-profile='power-saver'
+welcome-dialog-last-shown-version='49.1'
+
+[shell/extensions/KeepAwake@jepfa.de]
+idle-activation-enabled=false
+idle-delay=0
+idle-dim=false
+restore-state=false
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
+
+[shell/extensions/appindicator]
+tray-pos='left'
+
+[shell/extensions/arch-update]
+always-visible=false
+check-cmd='/home/vinicius/.local/bin/arch-update-checker.sh'
+enable-positioning=false
+show-count=false
+strip-versions=true
+update-cmd="gnome-terminal -- bash -c 'yay -Syu; echo; echo Pressione Enter para sair; read'"
+
+[shell/extensions/blur-my-shell]
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <[<{'type': <'corner'>, 'id': <'effect_000000000002'>, 'params': <{'radius': <24>}>}>, <{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000001'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_17527500238104': {'name': <'New pipeline'>, 'effects': <@av []>}}
+settings-version=2
+
+[shell/extensions/blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/dash-to-dock]
+blur=true
+brightness=0.59999999999999998
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[shell/extensions/blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/overview]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/panel]
+brightness=0.59999999999999998
+pipeline='pipeline_default'
+sigma=30
+
+[shell/extensions/blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/caffeine]
+cli-toggle=true
+enable-fullscreen=false
+enable-mpris=false
+indicator-position=0
+indicator-position-index=0
+indicator-position-max=4
+restore-state=true
+show-indicator='always'
+user-enabled=true
+
+[shell/extensions/clipboard-history]
+display-mode=0
+window-width-percentage=33
+
+[shell/extensions/dash-to-dock]
+apply-glossy-effect=true
+autohide=true
+background-color='#1e1e1e'
+background-opacity=0.34999999999999998
+click-action='focus-minimize-or-previews'
+custom-background-color=true
+custom-theme-shrink=true
+dance-urgent-applications=true
+dash-max-icon-size=56
+dock-fixed=false
+dock-position='BOTTOM'
+extend-height=false
+intellihide=false
+require-pressure-to-show=false
+running-indicator-style='DOTS'
+show-apps-always-in-the-edge=true
+show-apps-at-top=false
+show-mounts=true
+show-show-apps-button=true
+show-trash=true
+transparency-mode='DYNAMIC'
+
+[shell/extensions/dash2dock-lite]
+animate-icons=true
+animate-icons-unmute=true
+animation-bounce-height=0.75
+animation-magnify=0.55000000000000004
+animation-rise=0.34999999999999998
+animation-spread=0.84999999999999998
+animation-type=0
+apps-icon=true
+autohide-dash=true
+autohide-dodge=false
+autohide-speed=0.40000000000000002
+blur-background=true
+border-radius=3.0
+clock-icon=false
+customize-topbar=false
+dock-location=0
+dock-padding=0.5
+downloads-icon=false
+downloads-icon-rotate-labels=false
+favorites-only=false
+hide-labels=false
+icon-border-radius=3.0
+icon-spacing=0.5
+items-pullout-angle=0.5
+lamp-app-animation=true
+mounted-icon=true
+msg-to-ext=''
+open-app-animation=true
+panel-mode=false
+pressure-sense=false
+pressure-sense-sensitivity=0.40000000000000002
+scroll-sensitivity=0.40000000000000002
+shrink-icons=true
+trash-icon=true
+
+[shell/extensions/display-brightness-ddcutil]
+ddcutil-binary-path='/usr/bin/ddcutil'
+ddcutil-queue-ms=130.0
+ddcutil-sleep-multiplier=40.0
+decrease-brightness-shortcut=['<Control>XF86MonBrightnessDown']
+hide-system-indicator=false
+increase-brightness-shortcut=['<Control>XF86MonBrightnessUp']
+only-all-slider=false
+position-system-menu=3.0
+show-all-slider=false
+show-internal-slider=false
+show-value-label=false
+step-change-keyboard=1.0
+
+[shell/extensions/gsconnect]
+devices=['3ece46ec3872458487f43667ac96daf2']
+enabled=false
+missing-openssl=false
+name='archlinux'
+
+[shell/extensions/gsconnect/device/3ece46ec3872458487f43667ac96daf2]
+incoming-capabilities=['kdeconnect.battery', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.contacts.request_all_uids_timestamps', 'kdeconnect.contacts.request_vcards_by_uid', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.action', 'kdeconnect.notification.reply', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.runcommand', 'kdeconnect.runcommand.output', 'kdeconnect.sftp.request', 'kdeconnect.share.request', 'kdeconnect.share.request.update', 'kdeconnect.shareinputdevices.request', 'kdeconnect.sms.request', 'kdeconnect.sms.request_attachment', 'kdeconnect.sms.request_conversation', 'kdeconnect.sms.request_conversations', 'kdeconnect.systemvolume', 'kdeconnect.telephony.request_mute']
+last-connection='lan://10.1.73.145:1716'
+name='Galaxy S23 Ultra'
+outgoing-capabilities=['kdeconnect.battery', 'kdeconnect.clipboard', 'kdeconnect.clipboard.connect', 'kdeconnect.connectivity_report', 'kdeconnect.contacts.response_uids_timestamps', 'kdeconnect.contacts.response_vcards', 'kdeconnect.digitizer', 'kdeconnect.digitizer.session', 'kdeconnect.findmyphone.request', 'kdeconnect.mousepad.echo', 'kdeconnect.mousepad.keyboardstate', 'kdeconnect.mousepad.request', 'kdeconnect.mpris', 'kdeconnect.mpris.request', 'kdeconnect.notification', 'kdeconnect.notification.request', 'kdeconnect.ping', 'kdeconnect.presenter', 'kdeconnect.runcommand.request', 'kdeconnect.sftp', 'kdeconnect.share.request', 'kdeconnect.shareinputdevices', 'kdeconnect.sms.attachment_file', 'kdeconnect.sms.messages', 'kdeconnect.systemvolume.request', 'kdeconnect.telephony']
+supported-plugins=['battery', 'clipboard', 'connectivity_report', 'contacts', 'findmyphone', 'mousepad', 'mpris', 'notification', 'ping', 'presenter', 'runcommand', 'sftp', 'share', 'sms', 'systemvolume', 'telephony']
+type='phone'
+
+[shell/extensions/gsconnect/preferences]
+window-maximized=false
+
+[shell/extensions/just-perfection]
+animation=4
+support-notifier-showed-version=36
+support-notifier-type=0
+
+[shell/extensions/libpanel]
+layout={'gnome-shell/main:primary': ('primary', 0, 0), 'pop-shell@system76.com/main': ('primary', 0, 2), 'quick-settings-audio-panel@rayzeq.github.io/main': ('primary', 0, 1)}
+
+[shell/extensions/mediacontrols]
+colored-player-icon=true
+elements-order=['ICON', 'LABEL', 'CONTROLS']
+extension-index=uint32 2
+extension-position='Left'
+fixed-label-width=false
+label-width=uint32 110
+labels-order=['TITLE']
+mouse-action-scroll-down='PREVIOUS_TRACK'
+mouse-action-scroll-up='NEXT_TRACK'
+show-control-icons=true
+show-control-icons-next=false
+show-control-icons-play=true
+show-control-icons-previous=false
+show-control-icons-seek-backward=false
+show-control-icons-seek-forward=false
+
+[shell/extensions/pip-on-top]
+stick=true
+
+[shell/extensions/pop-shell]
+active-hint=false
+active-hint-border-radius=uint32 0
+focus-left=@as []
+focus-right=@as []
+gap-inner=uint32 0
+gap-outer=uint32 0
+pop-monitor-left=@as []
+pop-monitor-right=@as []
+pop-workspace-down=['<Shift><Control><Alt>Down']
+pop-workspace-up=['<Shift><Control><Alt>Up']
+show-skip-taskbar=true
+show-title=true
+tile-by-default=true
+
+[shell/extensions/quick-settings-audio-panel]
+profiles-renames={'Áudio interno': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'input:analog-stereo': ('Entrada Estéreo analógico', 'Entrada Estéreo analógico'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:analog-stereo': ('Duplex estéreo analógico', 'Duplex estéreo analógico')}, 'GA106 High Definition Audio Controller': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:hdmi-surround71-extra3': ('Saída Digital Surround 7.1 (HDMI 4)', 'Saída Digital Surround 7.1 (HDMI 4)'), 'output:hdmi-surround-extra3': ('Saída Digital Surround 5.1 (HDMI 4)', 'Saída Digital Surround 5.1 (HDMI 4)'), 'output:hdmi-surround71-extra2': ('Saída Digital Surround 7.1 (HDMI 3)', 'Saída Digital Surround 7.1 (HDMI 3)'), 'output:hdmi-surround-extra2': ('Saída Digital Surround 5.1 (HDMI 3)', 'Saída Digital Surround 5.1 (HDMI 3)'), 'output:hdmi-surround71-extra1': ('Saída Digital Surround 7.1 (HDMI 2)', 'Saída Digital Surround 7.1 (HDMI 2)'), 'output:hdmi-surround-extra1': ('Saída Digital Surround 5.1 (HDMI 2)', 'Saída Digital Surround 5.1 (HDMI 2)'), 'output:hdmi-surround71': ('Saída Digital Surround 7.1 (HDMI)', 'Saída Digital Surround 7.1 (HDMI)'), 'output:hdmi-surround': ('Saída Surround digital 5.1 (HDMI)', 'Saída Surround digital 5.1 (HDMI)'), 'output:hdmi-stereo-extra3': ('Saída Digital Stereo (HDMI 4)', 'Saída Digital Stereo (HDMI 4)'), 'output:hdmi-stereo-extra2': ('Saída Digital Stereo (HDMI 3)', 'Saída Digital Stereo (HDMI 3)'), 'output:hdmi-stereo-extra1': ('Saída Digital Stereo (HDMI 2)', 'Saída Digital Stereo (HDMI 2)'), 'output:hdmi-stereo': ('Saída Estéreo digital (HDMI)', 'Saída Estéreo digital (HDMI)')}, 'SPCA2281 Web Camera': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio')}, 'Buds FE de Vinicius': {'off': ('Desligado', 'Desligado'), 'headset-head-unit-cvsd': ('Unidade de headset (HSP/HFP, codec CVSD)', 'Unidade de headset (HSP/HFP, codec CVSD)'), 'headset-head-unit': ('Unidade de headset (HSP/HFP, codec MSBC)', 'Unidade de headset (HSP/HFP, codec MSBC)'), 'a2dp-sink-sbc_xq': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC-XQ)'), 'a2dp-sink-sbc': ('Reprodução de alta-fidelidade (destino  A2DP, codec SBC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec SBC)'), 'a2dp-sink': ('Reprodução de alta-fidelidade (destino  A2DP, codec AAC)', 'Reprodução de alta-fidelidade (destino  A2DP, codec AAC)')}, '500 Series Chipset Family On-Package High Definition Audio (HD Audio)': {'off': ('Desligado', 'Desligado'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'HiFi (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Mic1, Mic2, Speaker)'), 'HiFi (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)': ('Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)', 'Play HiFi quality Music (HDMI1, HDMI2, HDMI3, Headphones, Mic1, Mic2)')}, 'AB13X Headset Adapter': {'off': ('Desligado', 'Desligado'), 'input:mono-fallback': ('Entrada Mono', 'Entrada Mono'), 'pro-audio': ('Pro Audio', 'Pro Audio'), 'output:iec958-ac3-surround-51': ('Saída Surround digital 5.1 (IEC958/AC3)', 'Saída Surround digital 5.1 (IEC958/AC3)'), 'output:iec958-ac3-surround-51+input:mono-fallback': ('Saída Surround digital 5.1 (IEC958/AC3) + Entrada Mono', 'Saída Surround digital 5.1 (IEC958/AC3) + Entrada Mono'), 'output:iec958-stereo': ('Saída Estéreo digital (IEC958)', 'Saída Estéreo digital (IEC958)'), 'output:iec958-stereo+input:mono-fallback': ('Saída Estéreo digital (IEC958) + Entrada Mono', 'Saída Estéreo digital (IEC958) + Entrada Mono'), 'output:analog-stereo': ('Saída Estéreo analógico', 'Saída Estéreo analógico'), 'output:analog-stereo+input:mono-fallback': ('Saída Estéreo analógico + Entrada Mono', 'Saída Estéreo analógico + Entrada Mono')}}
+version=2
+
+[shell/extensions/search-light]
+background-color=(0.10000000000000001, 0.10000000000000001, 0.10000000000000001, 0.84999999999999998)
+border-radius=2.5
+scale-height=0.34999999999999998
+scale-width=0.34999999999999998
+secondary-shortcut-search=['<Control>space']
+shortcut-search=['<Super>space']
+
+[shell/extensions/system-monitor]
+show-cpu=true
+show-download=false
+show-memory=true
+show-swap=false
+show-upload=false
+
+[shell/extensions/tiling-assistant]
+activate-layout0=@as []
+activate-layout1=@as []
+activate-layout2=@as []
+activate-layout3=@as []
+auto-tile=@as []
+center-window=@as []
+debugging-free-rects=@as []
+debugging-show-tiled-rects=@as []
+default-move-mode=0
+dynamic-keybinding-behavior=2
+enable-tiling-popup=false
+focus-hint=0
+focus-hint-color='rgb(53,132,228)'
+import-layout-examples=false
+last-version-installed=56
+maximize-with-gap=false
+restore-window=['<Super>Down']
+search-popup-layout=@as []
+single-screen-gap=0
+tile-bottom-half=['<Super>KP_2']
+tile-bottom-half-ignore-ta=@as []
+tile-bottomleft-quarter=['<Super>KP_1']
+tile-bottomleft-quarter-ignore-ta=@as []
+tile-bottomright-quarter=['<Super>KP_3']
+tile-bottomright-quarter-ignore-ta=@as []
+tile-edit-mode=['<Alt>x']
+tile-left-half=['<Super>Left', '<Super>KP_4']
+tile-left-half-ignore-ta=@as []
+tile-maximize=['<Super>Up', '<Super>KP_5']
+tile-maximize-horizontally=@as []
+tile-maximize-vertically=@as []
+tile-right-half=['<Super>Right', '<Super>KP_6']
+tile-right-half-ignore-ta=@as []
+tile-top-half=['<Super>KP_8']
+tile-top-half-ignore-ta=@as []
+tile-topleft-quarter=['<Super>KP_7']
+tile-topleft-quarter-ignore-ta=@as []
+tile-topright-quarter=['<Super>KP_9']
+tile-topright-quarter-ignore-ta=@as []
+tiling-popup-all-workspace=false
+toggle-always-on-top=@as []
+toggle-tiling-popup=@as []
+window-gap=8
+
+[shell/extensions/vitals]
+hot-sensors=['_processor_temp_', '_processor_usage_', '_memory_usage_']
+position-in-panel=0
+show-battery=false
+show-memory=true
+show-processor=true
+show-temperature=true
+
+[shell/extensions/workspace-indicator]
+embed-previews=true
+
+[shell/keybindings]
+focus-active-notification=@as []
+
+[shell/weather]
+automatic-location=true
+locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.8139052020289248)], [(-0.41073414481823473, -0.81361432545578749)])>)>]
+
+[shell/world-clocks]
+locations=@av []
+
+[software]
+check-timestamp=int64 1795030221
+first-run=false
+flatpak-purge-timestamp=int64 1795454731
+
+[system/location]
+enabled=true
+
+[tweaks]
+show-extensions-notice=false

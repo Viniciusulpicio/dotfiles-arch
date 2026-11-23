@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=REA Studio
+Comment=Reverse Engineer Anything
+Exec=python3 /home/vinicius/rea-studio/app.py
+Icon=rea-studio
+Terminal=false
+Type=Application
+Categories=Development;System;Settings;
+StartupNotify=true

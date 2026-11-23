@@ -1,0 +1,17 @@
+{
+  "auto_tile": true,
+  "focus_follows_mouse": false,
+  "gap_inner": 0,
+  "gap_outer": 0,
+  "dynamic_keybindings_behavior": "tiling_state",
+  "raise_tile_group": true,
+  "tile_new_windows": true,
+  "keybindings": {
+    "toggle_floating": "<Alt>f",
+    "close_window": "<Alt>s",
+    "tile_left": "<Super>Left",
+    "tile_right": "<Super>Right",
+    "tile_up": "<Super>Up",
+    "tile_down": "<Super>Down"
+  }
+}

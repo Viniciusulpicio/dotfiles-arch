@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Constructor Virtual de Circuitos
+Comment=Simulador de Circuitos Digitais e Protoboards
+Exec=/home/vinicius/.local/bin/iniciar-constructor.sh %f
+Icon=/home/vinicius/.local/share/pixmaps/constructor-virtual.png
+Terminal=false
+Type=Application
+Categories=Education;Electronics;Engineering;
+StartupNotify=true
+StartupWMClass=constructorvirtualdecircuitos.exe
+MimeType=application/x-constructor-circuit;

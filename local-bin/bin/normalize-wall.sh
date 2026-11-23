@@ -1,0 +1,1 @@
+/home/vinicius/.rion-dotfiles/.script/normalize-wall.sh

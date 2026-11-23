@@ -1,0 +1,6 @@
+[Unit]
+Description=Limpeza periódica de caches do usuário (yay, IDEs, apps, lixeira)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/clean-user-cache

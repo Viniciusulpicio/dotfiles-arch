@@ -1,0 +1,6 @@
+#!/home/vinicius/.local/share/pipx/venvs/esptool/bin/python -E
+import sys
+from espsecure.__init__ import _main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(_main())

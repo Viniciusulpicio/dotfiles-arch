@@ -1,0 +1,30 @@
+{
+  "imports": [
+    {
+      "name": "i-have-adhd",
+      "source": "antigravity",
+      "importedAt": "2026-10-22T23:01:21Z",
+      "components": [
+        "skills"
+      ]
+    },
+    {
+      "name": "superpowers",
+      "source": "antigravity",
+      "importedAt": "2026-10-22T23:09:05Z",
+      "components": [
+        "skills"
+      ]
+    },
+    {
+      "name": "agent-skills",
+      "source": "antigravity",
+      "importedAt": "2026-10-22T23:09:06Z",
+      "components": [
+        "skills",
+        "agents",
+        "commands"
+      ]
+    }
+  ]
+}

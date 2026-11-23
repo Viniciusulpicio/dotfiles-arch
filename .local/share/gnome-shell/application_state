@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="org.remmina.Remmina.desktop" score="1" last-seen="1795456728"/>
+    <application id="toys.linux.LinuxToys.desktop" score="0" last-seen="1795459715"/>
+    <application id="abiword.desktop" score="0" last-seen="1795134759"/>
+    <application id="org.gnome.Loupe.desktop" score="0" last-seen="1795459861"/>
+    <application id="google-chrome.desktop" score="10116.876953125" last-seen="1795459872"/>
+    <application id="org.gnome.TextEditor.desktop" score="71" last-seen="1795459819"/>
+    <application id="org.gnome.gitlab.somas.Apostrophe.desktop" score="8" last-seen="1795455512"/>
+    <application id="org.gnome.Showtime.desktop" score="121" last-seen="1795459841"/>
+    <application id="org.gnome.Papers.desktop" score="2549.90625" last-seen="1795129520"/>
+    <application id="constructor-virtual-circuitos.desktop" score="0" last-seen="1794962701"/>
+    <application id="org.gnome.Nautilus.desktop" score="328.81640625" last-seen="1795459882"/>
+    <application id="org.gnome.Console.desktop" score="16243.193359375" last-seen="1795459791"/>
+    <application id="logisim.desktop" score="202" last-seen="1795458641"/>
+    <application id="org.gnome.Terminal.desktop" score="1" last-seen="1795455142"/>
+    <application id="com.github.johnfactotum.Foliate.desktop" score="0" last-seen="1795455230"/>
+    <application id="org.gnome.DiskUtility.desktop" score="4" last-seen="1795134868"/>
+  </context>
+</application-state>

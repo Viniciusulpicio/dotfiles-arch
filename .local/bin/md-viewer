@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+import sys
+import os
+import markdown
+
+import gi
+gi.require_version('Gtk', '4.0')
+gi.require_version('Adw', '1')
+gi.require_version('WebKit', '6.0')
+from gi.repository import Gtk, Adw, WebKit, Gio
+
+CSS = """
+:root {
+    color-scheme: light dark;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #ffffff;
+        --text-color: #1f2328;
+        --border-color: #d1d9e0;
+        --code-bg: #f6f8fa;
+        --quote-color: #59636e;
+        --link-color: #0969da;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1e1e20;
+        --text-color: #e6edf3;
+        --border-color: #3d444d;
+        --code-bg: #161b22;
+        --quote-color: #8b949e;
+        --link-color: #4493f8;
+    }
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+h1 { font-size: 2em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+h2 { font-size: 1.5em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
+p, ul, ol, table, pre { margin-bottom: 16px; }
+a { color: var(--link-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+    padding: 0.2em 0.4em;
+    font-size: 85%;
+    background-color: var(--code-bg);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: var(--code-bg);
+    border-radius: 6px;
+}
+pre code { padding: 0; background: none; }
+blockquote {
+    padding: 0 1em;
+    color: var(--quote-color);
+    border-left: 0.25em solid var(--border-color);
+    margin-left: 0;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+table th, table td {
+    padding: 8px 13px;
+    border: 1px solid var(--border-color);
+}
+table th { font-weight: 600; background-color: var(--code-bg); }
+hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--border-color);
+    border: 0;
+}
+"""
+
+class MarkdownViewerApp(Adw.Application):
+    def __init__(self, filepath):
+        super().__init__(application_id=None, flags=Gio.ApplicationFlags.NON_UNIQUE)
+        self.filepath = filepath
+
+    def do_activate(self):
+        filename = os.path.basename(self.filepath) if self.filepath else "Markdown"
+        content = ""
+        if self.filepath and os.path.exists(self.filepath):
+            try:
+                with open(self.filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+            except Exception as e:
+                content = f"# Erro ao ler arquivo\n\n`{e}`"
+
+        html_body = markdown.markdown(content, extensions=['extra', 'codehilite', 'toc', 'sane_lists'])
+        full_html = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>{CSS}</style>
+</head>
+<body>
+{html_body}
+</body>
+</html>"""
+
+        win = Adw.ApplicationWindow(application=self)
+        win.set_default_size(920, 720)
+        win.set_title(filename)
+
+        toolbar_view = Adw.ToolbarView()
+        header = Adw.HeaderBar()
+        toolbar_view.add_top_bar(header)
+
+        webview = WebKit.WebView()
+        settings = webview.get_settings()
+        settings.set_enable_developer_extras(False)
+        webview.load_html(full_html, f"file://{os.path.abspath(self.filepath or '.')}/")
+
+        toolbar_view.set_content(webview)
+        win.set_content(toolbar_view)
+        win.present()
+
+if __name__ == "__main__":
+    filepath = sys.argv[1] if len(sys.argv) > 1 else ""
+    app = MarkdownViewerApp(filepath)
+    app.run([])
