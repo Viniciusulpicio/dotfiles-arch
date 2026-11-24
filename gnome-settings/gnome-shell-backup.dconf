@@ -364,7 +364,7 @@ last-folder-path='/run/media/vinicius/Ventoy/ISOs'
 
 [settings-daemon/plugins/color]
 night-light-enabled=false
-night-light-last-coordinates=(-22.217600000000001, -49.948700000000002)
+night-light-last-coordinates=(-22.213899999999999, -49.945799999999998)
 night-light-schedule-automatic=false
 
 [settings-daemon/plugins/housekeeping]
