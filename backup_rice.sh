@@ -124,6 +124,9 @@ if command -v dconf &> /dev/null; then
     dconf dump /org/gnome/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-shell-backup.dconf" || true
     dconf dump /com/github/ 2>/dev/null | grep -vE '^(width|height)=' > "$REPO_DIR/gnome-settings/github-extensions.dconf" || true
     dconf dump /org/gnome/shell/extensions/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/gnome-extensions.dconf" || true
+    dconf dump /org/gnome/nautilus/ 2>/dev/null | grep -vE "$DCONF_MONITOR_FILTER" > "$REPO_DIR/gnome-settings/nautilus.dconf" || true
+    dconf dump /org/freedesktop/tracker/ 2>/dev/null > "$REPO_DIR/gnome-settings/tracker.dconf" || true
+    dconf dump /org/gtk/settings/file-chooser/ 2>/dev/null > "$REPO_DIR/gnome-settings/gtk-file-chooser.dconf" || true
     dconf dump /org/gnome/desktop/app-folders/ > "$REPO_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
     dconf read /org/gnome/shell/app-picker-layout > "$REPO_DIR/gnome-settings/app-picker-layout.gv" 2>/dev/null || true
     echo "  ✓ Dconf exportado com sucesso (independente de monitor)"
@@ -271,6 +274,8 @@ CONFIG_APPS=(
     "Arduino IDE"
     "codeblocks"
     "composer"
+    "environment.d"
+    "nautilus"
 )
 
 for app in "${CONFIG_APPS[@]}"; do
@@ -323,7 +328,7 @@ rm -rf "$REPO_DIR/.config/Code/Cookies"* "$REPO_DIR/.config/Code/DIPS"* "$REPO_D
 echo "🌿 10. Sincronizando com o Git..."
 cd "$REPO_DIR"
 
-chmod +x "$REPO_DIR/install.sh" "$REPO_DIR/backup_rice.sh" "$REPO_DIR/restore_full_system.py" 2>/dev/null || true
+chmod +x "$REPO_DIR/install.sh" "$REPO_DIR/backup_rice.sh" "$REPO_DIR/sync_rice.sh" "$REPO_DIR/sync-rice" "$REPO_DIR/backup-rice" "$REPO_DIR/restore_full_system.py" 2>/dev/null || true
 
 git add -A
 

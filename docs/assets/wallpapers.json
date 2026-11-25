@@ -1,0 +1,263 @@
+[
+  {
+    "id": "wallpaper_atual.jpg",
+    "filename": "wallpaper_atual.jpg",
+    "url": "assets/wallpapers/wallpaper_atual.jpg",
+    "logo": "assets/fastfetch/john_wuthering.png",
+    "special": {
+      "background": "#000000",
+      "foreground": "#e79fa8",
+      "cursor": "#e79fa8"
+    },
+    "colors": {
+      "color0": "#000000",
+      "color1": "#9F2024",
+      "color2": "#D92123",
+      "color3": "#D2292E",
+      "color4": "#A03A46",
+      "color5": "#DA3A47",
+      "color6": "#A44F5B",
+      "color7": "#e79fa8",
+      "color8": "#a16f75",
+      "color9": "#9F2024",
+      "color10": "#D92123",
+      "color11": "#D2292E",
+      "color12": "#A03A46",
+      "color13": "#DA3A47",
+      "color14": "#A44F5B",
+      "color15": "#e79fa8"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536786.jpg",
+    "filename": "pinterest_621356079891536786.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536786.jpg",
+    "logo": "assets/fastfetch/john_arknights.png",
+    "special": {
+      "background": "#0f1010",
+      "foreground": "#f4cab2",
+      "cursor": "#f4cab2"
+    },
+    "colors": {
+      "color0": "#0f1010",
+      "color1": "#91473B",
+      "color2": "#9F6359",
+      "color3": "#D4755E",
+      "color4": "#BB8270",
+      "color5": "#D18771",
+      "color6": "#F29173",
+      "color7": "#f4cab2",
+      "color8": "#aa8d7c",
+      "color9": "#91473B",
+      "color10": "#9F6359",
+      "color11": "#D4755E",
+      "color12": "#BB8270",
+      "color13": "#D18771",
+      "color14": "#F29173",
+      "color15": "#f4cab2"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536790.jpg",
+    "filename": "pinterest_621356079891536790.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536790.jpg",
+    "logo": "assets/fastfetch/john_starrail.png",
+    "special": {
+      "background": "#030406",
+      "foreground": "#acb9c9",
+      "cursor": "#acb9c9"
+    },
+    "colors": {
+      "color0": "#030406",
+      "color1": "#2A4459",
+      "color2": "#2D4C69",
+      "color3": "#2A5771",
+      "color4": "#4B576E",
+      "color5": "#3A6A85",
+      "color6": "#5B6D90",
+      "color7": "#acb9c9",
+      "color8": "#78818c",
+      "color9": "#2A4459",
+      "color10": "#2D4C69",
+      "color11": "#2A5771",
+      "color12": "#4B576E",
+      "color13": "#3A6A85",
+      "color14": "#5B6D90",
+      "color15": "#acb9c9"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536792.jpg",
+    "filename": "pinterest_621356079891536792.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536792.jpg",
+    "logo": "assets/fastfetch/john_genshin.png",
+    "special": {
+      "background": "#0c120f",
+      "foreground": "#efdcc2",
+      "cursor": "#efdcc2"
+    },
+    "colors": {
+      "color0": "#0c120f",
+      "color1": "#768443",
+      "color2": "#A78F6B",
+      "color3": "#D5AF65",
+      "color4": "#DCA372",
+      "color5": "#B4A68B",
+      "color6": "#E3B388",
+      "color7": "#efdcc2",
+      "color8": "#a79a87",
+      "color9": "#768443",
+      "color10": "#A78F6B",
+      "color11": "#D5AF65",
+      "color12": "#DCA372",
+      "color13": "#B4A68B",
+      "color14": "#E3B388",
+      "color15": "#efdcc2"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536803.jpg",
+    "filename": "pinterest_621356079891536803.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536803.jpg",
+    "logo": "assets/fastfetch/john_zenless.png",
+    "special": {
+      "background": "#0A1112",
+      "foreground": "#b4b8ab",
+      "cursor": "#b4b8ab"
+    },
+    "colors": {
+      "color0": "#0A1112",
+      "color1": "#54613E",
+      "color2": "#393D41",
+      "color3": "#3B4D43",
+      "color4": "#485749",
+      "color5": "#556652",
+      "color6": "#68735F",
+      "color7": "#b4b8ab",
+      "color8": "#7d8077",
+      "color9": "#54613E",
+      "color10": "#393D41",
+      "color11": "#3B4D43",
+      "color12": "#485749",
+      "color13": "#556652",
+      "color14": "#68735F",
+      "color15": "#b4b8ab"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536822.jpg",
+    "filename": "pinterest_621356079891536822.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536822.jpg",
+    "logo": "assets/fastfetch/john_endfield.png",
+    "special": {
+      "background": "#020409",
+      "foreground": "#e4dad4",
+      "cursor": "#e4dad4"
+    },
+    "colors": {
+      "color0": "#020409",
+      "color1": "#A14F64",
+      "color2": "#906B72",
+      "color3": "#9C7A84",
+      "color4": "#898080",
+      "color5": "#A69494",
+      "color6": "#CEACA8",
+      "color7": "#e4dad4",
+      "color8": "#9f9894",
+      "color9": "#A14F64",
+      "color10": "#906B72",
+      "color11": "#9C7A84",
+      "color12": "#898080",
+      "color13": "#A69494",
+      "color14": "#CEACA8",
+      "color15": "#e4dad4"
+    }
+  },
+  {
+    "id": "pinterest_621356079891536846.jpg",
+    "filename": "pinterest_621356079891536846.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891536846.jpg",
+    "logo": "assets/fastfetch/wuthering.png",
+    "special": {
+      "background": "#16120f",
+      "foreground": "#d7c5a3",
+      "cursor": "#d7c5a3"
+    },
+    "colors": {
+      "color0": "#16120f",
+      "color1": "#7C613C",
+      "color2": "#705942",
+      "color3": "#705F48",
+      "color4": "#8B633A",
+      "color5": "#90714C",
+      "color6": "#A38D63",
+      "color7": "#d7c5a3",
+      "color8": "#968972",
+      "color9": "#7C613C",
+      "color10": "#705942",
+      "color11": "#705F48",
+      "color12": "#8B633A",
+      "color13": "#90714C",
+      "color14": "#A38D63",
+      "color15": "#d7c5a3"
+    }
+  },
+  {
+    "id": "pinterest_621356079891537084.jpg",
+    "filename": "pinterest_621356079891537084.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891537084.jpg",
+    "logo": "assets/fastfetch/arknights.png",
+    "special": {
+      "background": "#0E1218",
+      "foreground": "#cec8c1",
+      "cursor": "#cec8c1"
+    },
+    "colors": {
+      "color0": "#0E1218",
+      "color1": "#4B525F",
+      "color2": "#505765",
+      "color3": "#6F7176",
+      "color4": "#7F7E7F",
+      "color5": "#84827E",
+      "color6": "#918C86",
+      "color7": "#cec8c1",
+      "color8": "#908c87",
+      "color9": "#4B525F",
+      "color10": "#505765",
+      "color11": "#6F7176",
+      "color12": "#7F7E7F",
+      "color13": "#84827E",
+      "color14": "#918C86",
+      "color15": "#cec8c1"
+    }
+  },
+  {
+    "id": "pinterest_621356079891537088.jpg",
+    "filename": "pinterest_621356079891537088.jpg",
+    "url": "assets/wallpapers/pinterest_621356079891537088.jpg",
+    "logo": "assets/fastfetch/endfield.png",
+    "special": {
+      "background": "#0c0501",
+      "foreground": "#e3cf99",
+      "cursor": "#e3cf99"
+    },
+    "colors": {
+      "color0": "#0c0501",
+      "color1": "#894D03",
+      "color2": "#9E6A0C",
+      "color3": "#F77601",
+      "color4": "#BE830D",
+      "color5": "#D49B20",
+      "color6": "#D9AA36",
+      "color7": "#e3cf99",
+      "color8": "#9e906b",
+      "color9": "#894D03",
+      "color10": "#9E6A0C",
+      "color11": "#F77601",
+      "color12": "#BE830D",
+      "color13": "#D49B20",
+      "color14": "#D9AA36",
+      "color15": "#e3cf99"
+    }
+  }
+]

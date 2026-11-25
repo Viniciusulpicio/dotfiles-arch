@@ -1,0 +1,4 @@
+[miner/files]
+ignored-directories=['po', 'CVS', 'core-dumps', 'lost+found', 'DriveUnimar', 'GoogleDrive']
+index-recursive-directories=['&DESKTOP', '&DOCUMENTS', '&DOWNLOAD', '&MUSIC', '&PICTURES', '&VIDEOS']
+index-single-directories=['/home/vinicius']

@@ -1,0 +1,15 @@
+[icon-view]
+default-zoom-level='small-plus'
+
+[list-view]
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'date_modified', 'date_accessed', 'date_created', 'recency', 'detailed_type']
+default-visible-columns=['name', 'size', 'date_modified']
+default-zoom-level='small'
+
+[preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+show-image-thumbnails='local-only'
+
+[window-state]
+maximized=false

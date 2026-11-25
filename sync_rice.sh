@@ -217,13 +217,22 @@ if command -v dconf &>/dev/null; then
     if [ -f "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" ]; then
         sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/gnome-extensions.dconf" | grep -vE "$DCONF_MONITOR_FILTER" | dconf load /org/gnome/shell/extensions/ 2>/dev/null || true
     fi
+    if [ -f "$SCRIPT_DIR/gnome-settings/nautilus.dconf" ]; then
+        grep -vE "$DCONF_MONITOR_FILTER" "$SCRIPT_DIR/gnome-settings/nautilus.dconf" | dconf load /org/gnome/nautilus/ 2>/dev/null || true
+    fi
+    if [ -f "$SCRIPT_DIR/gnome-settings/tracker.dconf" ]; then
+        sed "s|/home/vinicius|$TARGET_HOME|g" "$SCRIPT_DIR/gnome-settings/tracker.dconf" | dconf load /org/freedesktop/tracker/ 2>/dev/null || true
+    fi
+    if [ -f "$SCRIPT_DIR/gnome-settings/gtk-file-chooser.dconf" ]; then
+        grep -vE "$DCONF_MONITOR_FILTER" "$SCRIPT_DIR/gnome-settings/gtk-file-chooser.dconf" | dconf load /org/gtk/settings/file-chooser/ 2>/dev/null || true
+    fi
     if [ -f "$SCRIPT_DIR/gnome-settings/app-folders.dconf" ]; then
         dconf load /org/gnome/desktop/app-folders/ < "$SCRIPT_DIR/gnome-settings/app-folders.dconf" 2>/dev/null || true
     fi
     if [ -f "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv" ]; then
         dconf write /org/gnome/shell/app-picker-layout "$(cat "$SCRIPT_DIR/gnome-settings/app-picker-layout.gv")" 2>/dev/null || true
     fi
-    echo "  ✓ Grade de aplicativos e pastas do GNOME sincronizadas."
+    echo "  ✓ Grade de aplicativos, Nautilus, Tracker e dconf sincronizados."
 fi
 
 if [ -f "$SCRIPT_DIR/pkg-lists/gnome_extensions_enabled.txt" ] && command -v gnome-extensions &>/dev/null; then

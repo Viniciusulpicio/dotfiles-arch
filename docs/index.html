@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinicius Sulpicio — Arch Linux + GNOME 51 Rice (Live Environment)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="gnome-desktop">
+
+  <!-- 1. WALLPAPER LAYER (wallpaper-picker.sh Lanczos + Blur Fill) -->
+  <div id="wallpaper-layer" class="wallpaper-layer">
+    <div id="wallpaper-bg-curr" class="wallpaper-slide active" style="background-image: url('assets/wallpapers/wallpaper_atual.jpg');"></div>
+    <div id="wallpaper-bg-next" class="wallpaper-slide"></div>
+  </div>
+
+  <!-- 2. DESKTOP CONKY WIDGETS (.config/conky/autostart.sh) -->
+  <div class="conky-layer" id="conky-layer">
+    <!-- Left Conky: .config/conky/neofetch_conky.conf (bottom_left, JetBrains Mono 10pt) -->
+    <div class="conky-neofetch" id="conky-left">
+      <pre class="conky-ascii">           -`           
+         .o+`           
+         `ooo/          
+        `+oooo:         
+       `+oooooo:        
+       -+oooooo+:       
+      `/:-:++oooo+:     
+     `/++++/+++++++:    
+    `/++++++++++++++:   
+   `/+++ooooooooooooo/` 
+  ./ooosssso++osssssso+`
+ .oossssso-````/ossssss+`
+-osssssso.      :ssssssso.
+:osssssss/        osssso+++.
+/ossssssss/         +ssssooo/-
+`/ossssso+/:-         -:/+osssso+-
+`+sso+:-`                `.-/+oso:
+`++:.                      `-/+/
+.`                          `/</pre>
+      <div class="conky-neofetch-info">
+        <div><span class="conky-yellow">vinicius</span>@arch</div>
+        <div>-----------------------</div>
+        <div>OS: Arch Linux x86_64</div>
+        <div>DE: GNOME 51.1 (Wayland)</div>
+        <div>Shell: zsh 5.9</div>
+        <div>Uptime: <span id="conky-uptime">7h 46m</span></div>
+        <div>Kernel: 6.17.4-zen1-1-zen</div>
+        <div>Memory: <span id="conky-mem">62% / 15.48 GiB</span></div>
+        <div>OS Age: 69 days</div>
+      </div>
+    </div>
+
+    <!-- Right Conky: .config/conky/conky.conf (bottom_right, Fira Sans) -->
+    <div class="conky-main" id="conky-right">
+      <div class="conky-clock" id="conky-time">23:28</div>
+      <div class="conky-date" id="conky-date">sexta-feira, 30 de outubro</div>
+
+      <div class="conky-section-title">Informações de Rede</div>
+      <div class="conky-lines">
+        <div>» Wi-Fi: Vinicius-5G (802.11ax)</div>
+        <div>» Upload: <span id="conky-up">184 KB/s</span></div>
+        <div>» Download: <span id="conky-down">6.4 MB/s</span></div>
+        <div>» Total Enviado: 1.28 GiB / Total Recebido: 19.4 GiB</div>
+      </div>
+
+      <div class="conky-section-title">Informações do Sistema</div>
+      <div class="conky-lines">
+        <div>» Uso de RAM: <span id="conky-ram-pct">62%</span> de 15.48 GiB</div>
+        <div>» Uso de CPU: <span id="conky-cpu-pct">14%</span> de 100%</div>
+        <div>» Armazenamento: 48% de 931.5 GiB (NVMe)</div>
+        <div id="conky-player">» Ouvindo: <span id="conky-track">The Weeknd - Blinding Lights</span> / <span id="conky-play-state">Playing</span></div>
+      </div>
+
+      <div class="conky-weather">
+        <div class="weather-row-top">
+          <div class="weather-left">
+            <i class="fa-solid fa-cloud-moon weather-icon"></i>
+            <span class="weather-temp">23°C</span>
+          </div>
+          <span class="weather-desc">Céu Limpo</span>
+        </div>
+        <div class="weather-sub">Vento 3.6m/s / Umidade 68% • São Paulo, BR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. GNOME 51 TOP PANEL (blur-my-shell + libpanel + extensions) -->
+  <header class="gnome-panel">
+    <div class="panel-left">
+      <!-- Workspace Indicator (embed-previews=true, num-workspaces=3) -->
+      <div class="workspace-switcher" title="Workspaces (Super+PageUp/PageDown)">
+        <button class="ws-pill active" data-ws="1" onclick="switchWorkspace(1)">
+          <span class="ws-dot"></span> 1: Term &amp; Cava
+        </button>
+        <button class="ws-pill" data-ws="2" onclick="switchWorkspace(2)">
+          <span class="ws-dot"></span> 2: XAMPP Tray
+        </button>
+        <button class="ws-pill" data-ws="3" onclick="switchWorkspace(3)">
+          <span class="ws-dot"></span> 3: REA Studio
+        </button>
+      </div>
+
+      <!-- AppIndicator Tray (tray-pos='left') -->
+      <div class="appindicator-box">
+        <button class="panel-tray-btn" id="tray-btn-xampp" onclick="toggleWindow('win-xampp')" title="System Tray — Linux Control Panel (XAMPP Edition) [http://127.0.0.1:4999]">
+          <img src="assets/icons/system-tray.svg" alt="XAMPP" width="16" height="16">
+          <span class="tray-pill-label">XAMPP</span>
+          <span class="tray-active-count" id="top-xampp-count">45</span>
+        </button>
+        <button class="panel-tray-btn" id="tray-btn-rea" onclick="toggleWindow('win-rea')" title="REA — Reverse Engineer Anything [http://127.0.0.1:4321]">
+          <img src="assets/icons/rea-studio.svg" alt="REA" width="16" height="16">
+          <span class="tray-pill-label">REA</span>
+        </button>
+        <button class="panel-tray-btn" id="tray-btn-whip" onclick="toggleWhipOverlay()" title="OpenWhip Visual — Spawn / Drop Whip">
+          <span>🪢</span>
+        </button>
+      </div>
+
+      <!-- MediaControls Extension (extension-position='Left') -->
+      <div class="mediacontrols-pill" onclick="toggleMusicPlay()" title="MediaControls + Argos Spotify (Clique para Play/Pause)">
+        <i class="fa-brands fa-spotify text-[#1ed760]"></i>
+        <span id="panel-track-label">The Weeknd - Blinding Lights</span>
+        <i class="fa-solid fa-pause text-[11px]" id="panel-play-icon"></i>
+      </div>
+    </div>
+
+    <div class="panel-center">
+      <button class="panel-clock-btn" id="panel-clock" onclick="toggleCalendarPopover()">
+        30 de out. 23:28
+      </button>
+    </div>
+
+    <div class="panel-right">
+      <!-- Vitals & System Monitor Extensions -->
+      <div class="vitals-pill" onclick="setRightTerminalMode('btop')" title="system-monitor &amp; vitals (Clique para abrir btop)">
+        <span><i class="fa-solid fa-microchip text-[11px] opacity-70"></i> <b id="top-cpu">14%</b></span>
+        <span><i class="fa-solid fa-memory text-[11px] opacity-70"></i> <b id="top-ram">62%</b></span>
+        <span><i class="fa-solid fa-temperature-half text-[11px] opacity-70"></i> <b>49°C</b></span>
+      </div>
+
+      <!-- Caffeine Extension -->
+      <button class="panel-icon-btn active" id="btn-caffeine" onclick="toggleCaffeine()" title="Caffeine / KeepAwake (Ativo: impede suspensão)">
+        <i class="fa-solid fa-mug-hot"></i>
+      </button>
+
+      <!-- Pop Shell & Tiling Assistant -->
+      <button class="panel-icon-btn active" id="btn-tiling" onclick="retileWindows()" title="Pop Shell + Tiling Assistant (Super + Setas)">
+        <i class="fa-solid fa-table-columns"></i>
+      </button>
+
+      <!-- GSConnect (Galaxy S23 Ultra) -->
+      <button class="panel-icon-btn" onclick="triggerNotification('GSConnect • Galaxy S23 Ultra', 'Conectado via LAN (192.168.0.160:1716) • Bateria 84%')" title="GSConnect: Galaxy S23 Ultra Pareado">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </button>
+
+      <!-- Quick Settings Audio & System Pill -->
+      <button class="quick-settings-pill" onclick="toggleQuickSettings()">
+        <i class="fa-solid fa-headphones" title="Buds FE de Vinicius (A2DP AAC)"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-volume-high"></i>
+        <span class="qs-bat"><i class="fa-solid fa-battery-full"></i> 98%</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- GNOME Quick Settings Popover (quick-settings-audio-panel + DDC brightness) -->
+  <div class="gnome-popover hidden" id="quick-settings-popover">
+    <div class="qs-header">
+      <div class="qs-chip"><i class="fa-solid fa-battery-full text-emerald-400"></i> 98% (Desempenho Balanceado)</div>
+      <div class="qs-actions">
+        <button class="qs-round-btn" onclick="openOverlay('wlogout')" title="Wlogout Power Menu (Alt+L)"><i class="fa-solid fa-power-off"></i></button>
+      </div>
+    </div>
+    <div class="qs-sliders">
+      <div class="qs-slider-row">
+        <i class="fa-solid fa-headphones text-xs"></i>
+        <div class="qs-slider-track"><div class="qs-slider-fill" style="width: 78%;"></div></div>
+        <span class="text-[11px] opacity-75">Buds FE (AAC)</span>
+      </div>
+      <div class="qs-slider-row">
+        <i class="fa-solid fa-sun text-xs"></i>
+        <div class="qs-slider-track"><div class="qs-slider-fill" style="width: 90%;"></div></div>
+        <span class="text-[11px] opacity-75">DDC/CI 90%</span>
+      </div>
+    </div>
+    <div class="qs-grid">
+      <div class="qs-tile active">
+        <i class="fa-solid fa-wifi"></i>
+        <div><b>Vinicius-5G</b><span>Conectado</span></div>
+      </div>
+      <div class="qs-tile active">
+        <i class="fa-brands fa-bluetooth-b"></i>
+        <div><b>Bluetooth</b><span>Buds FE</span></div>
+      </div>
+      <div class="qs-tile active" onclick="toggleWindow('win-xampp')">
+        <i class="fa-solid fa-server"></i>
+        <div><b>System Tray</b><span>Polkit Ativo</span></div>
+      </div>
+      <div class="qs-tile active">
+        <i class="fa-solid fa-bolt"></i>
+        <div><b>Kernel BBR</b><span>ZRAM + Dirty 64MB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GNOME Notification Toast Area -->
+  <div id="gnome-notification-area" class="gnome-notification-area"></div>
+
+  <!-- 4. WORKSPACE WINDOWS AREA -->
+  <main class="desktop-workspace" id="desktop-workspace">
+
+    <!-- WORKSPACE 1: Dual Borderless Terminals (fastfetch_wall.sh + wezterm.lua) -->
+    <div class="ws-view active" id="ws-1">
+      <div class="tiling-grid" id="tiling-grid">
+
+        <!-- Terminal 1: ffa_term (WezTerm borderless, window_decorations="NONE", opacity 0.85) -->
+        <section class="wezterm-window" id="win-ffa">
+          <div class="wezterm-inner">
+            <!-- Fastfetch Output (.config/fastfetch/config.jsonc) -->
+            <div class="fastfetch-block" id="fastfetch-block">
+              <div class="ff-logo-box">
+                <img id="ff-logo-img" src="assets/fastfetch/john_wuthering.png" alt="Fastfetch Logo">
+              </div>
+              <div class="ff-details">
+                <div class="ff-title">vinicius@archlinux</div>
+                <div class="ff-row"><span class="ff-key">os    </span>  Arch Linux x86_64</div>
+                <div class="ff-row"><span class="ff-key">de    </span>  Mutter (Wayland) • GNOME 51.1</div>
+                <div class="ff-row"><span class="ff-key">shell </span>  zsh 5.9 (Powerlevel10k)</div>
+                <div class="ff-row"><span class="ff-key">uptime</span>  7h 46m</div>
+                <div class="ff-row"><span class="ff-key">os age</span>  69 days</div>
+                <div class="ff-row"><span class="ff-key">memory</span>  9.64 GiB / 15.48 GiB (62%)</div>
+                <div class="ff-palette-row" id="ff-palette-squares"></div>
+              </div>
+            </div>
+
+            <!-- Zsh + Powerlevel10k Interactive Session -->
+            <div class="zsh-history" id="zsh-history">
+              <div class="zsh-hint">
+                <span class="hint-badge">Dica</span> Digite <code>help</code>, <code>fastfetch</code>, <code>wal</code>, <code>btop</code>, <code>xampp</code>, <code>rea</code>, <code>hudnote</code>, <code>wlogout</code> ou use os atalhos reais do teclado (<kbd>Alt+W</kbd>, <kbd>Alt+F</kbd>, <kbd>Alt+L</kbd>, <kbd>Super+N</kbd>).
+              </div>
+            </div>
+
+            <div class="p10k-prompt-line">
+              <div class="p10k-left">
+                <span class="p10k-seg-os">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="display:inline-block;vertical-align:-1px;">
+                    <path d="M12 2L9.2 8.7c.7.4 1.5.9 2.8 1.5-1.4-.3-2.4-.7-3.1-1.1L4 22c2.2-1.3 4.3-2.1 6.3-2.4-.2-.7-.3-1.5-.2-2.3.1-1.6 1-2.8 2-2.7 1 .1 1.7 1.4 1.6 3-.1.6-.2 1.3-.4 1.9 2 .4 4.1 1.1 6.7 2.5l-1.4-3.7c-1-.8-2.1-1.6-4.2-2.5 1.5.4 2.7.9 3.6 1.5L12 2z"/>
+                  </svg>
+                </span>
+                <span class="p10k-seg-dir"><i class="fa-regular fa-folder-open"></i> ~/dotfiles-arch</span>
+                <span class="p10k-seg-git"><i class="fa-solid fa-code-branch"></i> main !2</span>
+              </div>
+              <div class="p10k-right">
+                <span class="p10k-seg-ok">✔</span>
+                <span class="p10k-seg-time" id="p10k-time">23:28:14</span>
+              </div>
+            </div>
+            <div class="p10k-input-line">
+              <span class="p10k-char">❯</span>
+              <input type="text" id="zsh-input" autocomplete="off" spellcheck="false" autofocus placeholder="Digite um comando zsh (ex: wal, xampp, btop, help)...">
+              <span class="zsh-autosuggest" id="zsh-autosuggest"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Terminal 2: cava_term (CAVA Audio Visualizer synced via cava-pywalsync.sh + btop toggle) -->
+        <section class="wezterm-window" id="win-cava">
+          <div class="cava-mode-bar">
+            <div class="cava-tabs">
+              <button class="cava-tab active" id="tab-btn-cava" onclick="setRightTerminalMode('cava')">
+                <i class="fa-solid fa-wave-square"></i> cava (pywalsync)
+              </button>
+              <button class="cava-tab" id="tab-btn-btop" onclick="setRightTerminalMode('btop')">
+                <i class="fa-solid fa-chart-pie"></i> btop++ (kernel/zram)
+              </button>
+            </div>
+            <div class="cava-color-indicator">
+              <span class="color-dot" id="cava-c1-dot"></span>
+              <span class="color-dot" id="cava-c5-dot"></span>
+              <span class="cava-sync-tag" id="cava-gradient-label">#9F2024 → #DA3A47</span>
+            </div>
+          </div>
+
+          <!-- CAVA Canvas View -->
+          <div class="cava-view active" id="view-cava">
+            <canvas id="cava-canvas"></canvas>
+          </div>
+
+          <!-- BTOP++ View (.config/btop/btop.conf + Kernel Sysctl Metrics) -->
+          <div class="btop-view" id="view-btop">
+            <div class="btop-box">
+              <div class="btop-header">
+                <span><b>cpu</b> [AMD Ryzen / Intel High-Perf • Schedutil]</span>
+                <span class="btop-accent" id="btop-cpu-val">14.2% • 49°C</span>
+              </div>
+              <div class="btop-bars" id="btop-cpu-bars"></div>
+            </div>
+            <div class="btop-split">
+              <div class="btop-box">
+                <div class="btop-header"><span><b>mem</b> [15.48 GiB + ZRAM]</span><span>62%</span></div>
+                <div class="btop-kv"><span>Usado:</span><b>9.64 GiB</b></div>
+                <div class="btop-kv"><span>Cache:</span><b>3.12 GiB</b></div>
+                <div class="btop-kv"><span>ZRAM (zstd):</span><b class="text-emerald-400">Ativo (Swappiness 100)</b></div>
+                <div class="btop-kv"><span>Dirty Flush:</span><b class="text-amber-300">64 MB / 32 MB bg</b></div>
+              </div>
+              <div class="btop-box">
+                <div class="btop-header"><span><b>net</b> [Google BBR TCP]</span><span>eth0 / wlan0</span></div>
+                <div class="btop-kv"><span>Congestion:</span><b class="text-sky-400">tcp_bbr (fq)</b></div>
+                <div class="btop-kv"><span>Download:</span><b id="btop-down">6.4 MB/s</b></div>
+                <div class="btop-kv"><span>Upload:</span><b id="btop-up">184 KB/s</b></div>
+                <div class="btop-kv"><span>Rclone Mounts:</span><b class="text-emerald-400">GoogleDrive, DriveUnimar</b></div>
+              </div>
+            </div>
+            <div class="btop-box flex-1">
+              <div class="btop-header"><span><b>proc</b> [Top Processos do Rice]</span><span>filter: all</span></div>
+              <table class="btop-table">
+                <thead><tr><th>PID</th><th>Programa</th><th>Comando</th><th>Mem</th><th>CPU%</th></tr></thead>
+                <tbody>
+                  <tr><td>1842</td><td>gnome-shell</td><td>/usr/bin/gnome-shell (Wayland)</td><td>412M</td><td>4.2%</td></tr>
+                  <tr><td>2910</td><td>wezterm-gui</td><td>wezterm (OpenGL / EGL 60fps)</td><td>168M</td><td>1.8%</td></tr>
+                  <tr><td>3104</td><td>cava</td><td>cava (cava-pywalsync.sh)</td><td>14M</td><td>2.1%</td></tr>
+                  <tr><td>3219</td><td>python3</td><td>python3 ~/system-tray/app.py</td><td>42M</td><td>0.4%</td></tr>
+                  <tr><td>3380</td><td>conky</td><td>conky -c ~/.config/conky/conky.conf</td><td>18M</td><td>0.3%</td></tr>
+                  <tr><td>3382</td><td>conky</td><td>conky -c ~/.config/conky/neofetch_conky.conf</td><td>12M</td><td>0.1%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- FLOATING / WORKSPACE WINDOW: System Tray XAMPP Control Panel (Real system-tray/static/index.html) -->
+    <section class="gtk-app-window hidden" id="win-xampp">
+      <div class="gtk-titlebar">
+        <div class="gtk-title-left">
+          <img src="assets/icons/system-tray.svg" width="16" height="16" alt="">
+          <span>System Tray — Linux Control Panel (XAMPP Edition) • http://127.0.0.1:4999</span>
+        </div>
+        <div class="gtk-window-controls">
+          <button class="gtk-ctrl-btn" onclick="switchWorkspace(1); toggleWindow('win-xampp')" title="Minimizar"><i class="fa-solid fa-minus"></i></button>
+          <button class="gtk-ctrl-btn" onclick="maximizeAppWindow('win-xampp')" title="Maximizar"><i class="fa-regular fa-square"></i></button>
+          <button class="gtk-ctrl-btn close" onclick="closeWindow('win-xampp')" title="Fechar"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <iframe src="system-tray.html" id="iframe-xampp" class="app-iframe" title="System Tray XAMPP Control Panel"></iframe>
+    </section>
+
+    <!-- FLOATING / WORKSPACE WINDOW: REA Studio (Real rea-studio/public/index.html) -->
+    <section class="gtk-app-window hidden" id="win-rea">
+      <div class="gtk-titlebar">
+        <div class="gtk-title-left">
+          <img src="assets/icons/rea-studio.svg" width="16" height="16" alt="">
+          <span>REA — Reverse Engineer Anything • http://127.0.0.1:4321</span>
+        </div>
+        <div class="gtk-window-controls">
+          <button class="gtk-ctrl-btn" onclick="closeWindow('win-rea')" title="Minimizar"><i class="fa-solid fa-minus"></i></button>
+          <button class="gtk-ctrl-btn" onclick="maximizeAppWindow('win-rea')" title="Maximizar"><i class="fa-regular fa-square"></i></button>
+          <button class="gtk-ctrl-btn close" onclick="closeWindow('win-rea')" title="Fechar"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <iframe src="rea-studio.html" id="iframe-rea" class="app-iframe" title="REA Studio"></iframe>
+    </section>
+
+    <!-- FLOATING WINDOW: ZenNote / HudNote (scripts/hudnote.sh — Super + N) -->
+    <section class="hudnote-window hidden" id="win-hudnote">
+      <div class="hudnote-topbar">
+        <div class="hudnote-tabs" id="hudnote-tabs">
+          <button class="hudnote-tab active" data-note="principal" onclick="switchHudNote('principal')">principal</button>
+          <button class="hudnote-tab" data-note="atalhos-rice" onclick="switchHudNote('atalhos-rice')">atalhos-rice</button>
+          <button class="hudnote-icon-btn" onclick="createNewHudNote()" title="Nova nota (Ctrl+N)"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="hudnote-actions">
+          <button class="hudnote-icon-btn" onclick="insertHudTodo()" title="Tarefa [ ] / [x] (Ctrl+Enter)"><i class="fa-regular fa-square-check"></i></button>
+          <button class="hudnote-icon-btn" onclick="insertHudTimestamp()" title="Inserir data/hora (Ctrl+T)"><i class="fa-regular fa-clock"></i></button>
+          <button class="hudnote-icon-btn" onclick="closeOverlay('hudnote')" title="Fechar (Esc / Super+N)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <textarea id="hudnote-editor" class="hudnote-editor" spellcheck="false"></textarea>
+      <div class="hudnote-statusbar">
+        <span id="hudnote-stats">Linhas: 9   Palavras: 48   Caracteres: 312</span>
+        <span id="hudnote-saved">Salvo 23:28:10 (~/.notas_rapidas.txt)</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. REAL WOFI OVERLAY: Alt + W (Wallpaper Picker) & Alt + F (App Launcher) (.config/wofi/style.css) -->
+  <div class="wofi-backdrop hidden" id="wofi-backdrop" onclick="if(event.target===this) closeOverlay('wofi')">
+    <div class="wofi-window" id="wofi-window">
+      <div class="wofi-input-box">
+        <i class="fa-solid fa-magnifying-glass wofi-search-icon"></i>
+        <input type="text" id="wofi-search" autocomplete="off" spellcheck="false" placeholder="Wallpaper (1920x1080)...">
+        <span class="wofi-esc-hint">ESC para fechar</span>
+      </div>
+
+      <!-- Mode A: Wallpaper Picker 3-Column Grid (wallpaper-picker.sh) -->
+      <div class="wofi-wall-grid" id="wofi-wall-grid"></div>
+
+      <!-- Mode B: App Launcher drun (Alt + F) -->
+      <div class="wofi-drun-grid hidden" id="wofi-drun-grid"></div>
+    </div>
+  </div>
+
+  <!-- 6. REAL WLOGOUT OVERLAY: Alt + L (.config/wlogout/layout & style.css) -->
+  <div class="wlogout-overlay hidden" id="wlogout-overlay" onclick="if(event.target===this) closeOverlay('wlogout')">
+    <div class="wlogout-blur-bg" id="wlogout-blur-bg"></div>
+    <div class="wlogout-grid">
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Lock', 'loginctl lock-session')">
+        <img src="assets/wlogout/lock.png" alt="Lock">
+        <span>Lock <kbd>l</kbd></span>
+      </button>
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Reboot', 'gnome-session-quit --reboot')">
+        <img src="assets/wlogout/restart.png" alt="Reboot">
+        <span>Reboot <kbd>r</kbd></span>
+      </button>
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Shutdown', 'gnome-session-quit --power-off')">
+        <img src="assets/wlogout/power.png" alt="Shutdown">
+        <span>Shutdown <kbd>s</kbd></span>
+      </button>
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Logout', 'gnome-session-quit')">
+        <img src="assets/wlogout/logout.png" alt="Logout">
+        <span>Logout <kbd>e</kbd></span>
+      </button>
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Suspend', 'systemctl suspend')">
+        <img src="assets/wlogout/sleep.png" alt="Suspend">
+        <span>Suspend <kbd>u</kbd></span>
+      </button>
+      <button class="wlogout-btn" onclick="triggerWlogoutAction('Hibernate', 'systemctl hibernate')">
+        <img src="assets/wlogout/hibernate.png" alt="Hibernate">
+        <span>Hibernate <kbd>h</kbd></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 7. OPENWHIP VISUAL OVERLAY (openwhip-visual/overlay.html) -->
+  <iframe src="openwhip.html" id="openwhip-iframe" class="openwhip-iframe hidden" title="OpenWhip Overlay"></iframe>
+
+  <!-- 8. INTERACTIVE KEYBINDING BAR & DASH-TO-DOCK (org-gnome.dconf favorite-apps) -->
+  <div class="keybindings-hud" id="keybindings-hud">
+    <button class="kb-chip" onclick="openWofiWallpaper()">
+      <kbd>Alt + W</kbd> <span>Wofi Wallpaper + Pywal</span>
+    </button>
+    <button class="kb-chip" onclick="openWofiDrun()">
+      <kbd>Alt + F</kbd> <span>Wofi App Launcher</span>
+    </button>
+    <button class="kb-chip" onclick="toggleWindow('win-xampp')">
+      <kbd>Tray</kbd> <span>XAMPP Control Panel (297 serviços)</span>
+    </button>
+    <button class="kb-chip" onclick="toggleOverlay('hudnote')">
+      <kbd>Super + N</kbd> <span>ZenNote (Notas Rápidas)</span>
+    </button>
+    <button class="kb-chip" onclick="toggleWindow('win-rea')">
+      <kbd>REA</kbd> <span>REA Reverse Engineering</span>
+    </button>
+    <button class="kb-chip" onclick="openOverlay('wlogout')">
+      <kbd>Alt + L</kbd> <span>Wlogout Power Menu</span>
+    </button>
+  </div>
+
+  <footer class="dash-to-dock" id="dash-to-dock">
+    <!-- Exact favorite-apps from gnome-settings/org-gnome.dconf -->
+    <button class="dock-item running" onclick="focusDualTerminals()" title="WezTerm + Cava (Super+T / Alt+Q)">
+      <div class="dock-icon dock-wezterm"><i class="fa-solid fa-terminal"></i></div>
+      <span class="dock-dot"></span>
+    </button>
+    <button class="dock-item running" onclick="toggleWindow('win-xampp')" title="System Tray — Linux Control Panel (XAMPP Edition)">
+      <div class="dock-icon dock-xampp"><img src="assets/icons/system-tray.svg" width="26" height="26" alt="XAMPP"></div>
+      <span class="dock-dot"></span>
+    </button>
+    <button class="dock-item" onclick="toggleWindow('win-rea')" title="REA — Reverse Engineer Anything">
+      <div class="dock-icon dock-rea"><img src="assets/icons/rea-studio.svg" width="26" height="26" alt="REA"></div>
+    </button>
+    <button class="dock-item" onclick="toggleOverlay('hudnote')" title="ZenNote — Bloco de Notas Rápido (Super+N)">
+      <div class="dock-icon dock-hudnote"><i class="fa-solid fa-note-sticky"></i></div>
+    </button>
+    <button class="dock-item running" onclick="toggleMusicPlay()" title="Spotify (Argos + MediaControls)">
+      <div class="dock-icon dock-spotify"><i class="fa-brands fa-spotify"></i></div>
+      <span class="dock-dot"></span>
+    </button>
+    <button class="dock-item" onclick="openWofiWallpaper()" title="WPGTK / Pywal Wallpaper Switcher (Alt+W)">
+      <div class="dock-icon dock-pywal"><i class="fa-solid fa-palette"></i></div>
+    </button>
+    <div class="dock-sep"></div>
+    <button class="dock-item" onclick="openWofiDrun()" title="Mostrar Aplicativos — Wofi (Alt+F)">
+      <div class="dock-icon dock-apps"><i class="fa-solid fa-grip"></i></div>
+    </button>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

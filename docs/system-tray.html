@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Tray — Linux Control Panel (XAMPP Edition)</title>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --xampp-orange: #ea580c;
+      --xampp-bg: #111317;
+      --xampp-surface: #181b20;
+      --xampp-panel: #1f232b;
+      --xampp-border: #2e3440;
+      --xampp-text: #e5e9f0;
+      --xampp-green: #22c55e;
+      --xampp-red: #ef4444;
+    }
+
+    body {
+      background-color: var(--xampp-bg);
+      color: var(--xampp-text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f1115; }
+    ::-webkit-scrollbar-thumb { background: #2e3440; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3b4252; }
+
+    .xampp-btn {
+      background: #252a34;
+      border: 1px solid #3b4252;
+      color: #e5e9f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      transition: all 0.1s ease-in-out;
+    }
+    .xampp-btn:hover {
+      background: #2e3440;
+      border-color: #4c566a;
+      color: #ffffff;
+    }
+    .xampp-btn:active {
+      transform: translateY(1px);
+      background: #1e222a;
+    }
+
+    .xampp-btn-start {
+      background: #15803d;
+      border: 1px solid #22c55e;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .xampp-btn-start:hover {
+      background: #16a34a;
+    }
+
+    .xampp-btn-stop {
+      background: #991b1b;
+      border: 1px solid #ef4444;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .xampp-btn-stop:hover {
+      background: #b91c1c;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-orange-600 selection:text-white">
+
+  <!-- ================= TOP TITLE BAR ================= -->
+  <header class="border-b border-[#2e3440] bg-[#181b20] px-5 py-2.5 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand & XAMPP Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center text-white shadow-md font-bold text-sm">
+          <i class="fa-solid fa-server"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-sm font-bold text-white tracking-tight">
+              System Tray <span class="text-orange-400 font-semibold">Control Panel</span>
+            </h1>
+            <span class="text-[10px] bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2 py-0.2 rounded font-mono font-bold">
+              XAMPP Edition
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-400">Painel de Controle de Serviços & Inicialização Linux</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center bg-[#111317] p-1 rounded-lg border border-[#2e3440] text-xs font-semibold">
+        <button id="nav-btn-services" onclick="switchSection('services')" class="px-3.5 py-1.5 rounded bg-[#252a34] text-white border border-[#3b4252] transition flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-orange-400"></i>
+          <span>Módulos de Serviços</span>
+        </button>
+        <button id="nav-btn-autostart" onclick="switchSection('autostart')" class="px-3.5 py-1.5 rounded text-slate-400 hover:text-white transition flex items-center gap-2">
+          <i class="fa-solid fa-rocket text-amber-400"></i>
+          <span>Aplicativos (Autostart)</span>
+          <span id="badge-autostart-count" class="bg-[#252a34] text-slate-300 text-[10px] px-1.5 py-0.2 rounded font-mono">0</span>
+        </button>
+      </div>
+
+      <!-- Stats Metrics -->
+      <div class="hidden md:flex items-center gap-3 text-xs">
+        <div class="flex items-center gap-2 px-2.5 py-1 rounded bg-[#111317] border border-[#2e3440]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-slate-400">Ativos:</span>
+          <span id="stat-active" class="font-bold text-emerald-400 font-mono">--</span>
+        </div>
+        <div class="flex items-center gap-2 px-2.5 py-1 rounded bg-[#111317] border border-[#2e3440]">
+          <i class="fa-solid fa-memory text-teal-400 text-[11px]"></i>
+          <span class="text-slate-400">RAM:</span>
+          <span id="stat-ram" class="font-bold text-teal-400 font-mono">-- MB</span>
+        </div>
+        <button id="btn-refresh" title="Atualizar agora (R)" class="xampp-btn px-2.5 py-1 rounded text-xs font-medium flex items-center gap-1.5">
+          <i class="fa-solid fa-rotate-right text-xs" id="refresh-icon"></i>
+          <span>Atualizar</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-4 flex flex-col gap-4">
+
+    <!-- ================= SECTION 1: SERVICES TABLE ================= -->
+    <div id="section-services" class="flex flex-col gap-4">
+
+      <div class="flex flex-col lg:flex-row items-stretch gap-4">
+        
+        <!-- Left: The Iconic XAMPP Module Table -->
+        <div class="flex-1 flex flex-col gap-2">
+          
+          <!-- Toolbar -->
+          <div class="bg-[#181b20] border border-[#2e3440] rounded-t-lg p-2.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-1.5 text-xs overflow-x-auto">
+              <button class="filter-tab px-3 py-1 rounded font-semibold transition bg-orange-600 text-white" data-filter="favorites">
+                ⭐ Favoritos & Dev
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="dev">
+                Bancos & Web
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="active">
+                🟢 Rodando
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="inactive">
+                ⚪ Parados
+              </button>
+              <button class="filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white" data-filter="all">
+                Todos (<span id="total-count">0</span>)
+              </button>
+            </div>
+
+            <!-- Search -->
+            <div class="relative min-w-[200px] flex-1 max-w-xs">
+              <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+              <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Filtrar módulos... [/]" 
+                class="w-full bg-[#111317] border border-[#2e3440] rounded pl-8 pr-7 py-1 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition"
+              >
+              <button id="search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 text-xs">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- XAMPP Table -->
+          <div class="bg-[#181b20] border border-t-0 border-[#2e3440] rounded-b-lg overflow-hidden shadow-md">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse font-sans">
+                <thead>
+                  <tr class="bg-[#1f232b] text-slate-300 border-b border-[#2e3440] font-bold text-[11px] uppercase tracking-wider">
+                    <th class="py-2.5 px-3 w-36">Módulo</th>
+                    <th class="py-2.5 px-2 w-16 text-center font-mono">PID</th>
+                    <th class="py-2.5 px-2 w-20 text-center font-mono">Porta</th>
+                    <th class="py-2.5 px-3 w-36 text-center">Ações</th>
+                    <th class="py-2.5 px-3 w-36 text-center text-amber-400"><i class="fa-solid fa-power-off text-amber-400 mr-1 text-[10px]"></i> Iniciar no Boot</th>
+                    <th class="py-2.5 px-2 w-16 text-center">Logs</th>
+                    <th class="py-2.5 px-4 min-w-[220px]">Descrição / Explicação (PT-BR)</th>
+                  </tr>
+                </thead>
+                <tbody id="services-tbody" class="divide-y divide-[#2e3440]">
+                  <tr>
+                    <td colspan="7" class="py-12 text-center text-slate-500 animate-pulse">Carregando módulos de serviços do sistema...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: XAMPP Control Sidebar -->
+        <div class="w-full lg:w-56 flex flex-col gap-2 bg-[#181b20] border border-[#2e3440] rounded-lg p-3 shadow-md">
+          <div class="text-[11px] font-bold text-orange-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-sliders"></i> Controles XAMPP
+          </div>
+
+          <button id="btn-stop-all-dev" class="xampp-btn py-2 px-3 rounded text-xs font-semibold flex items-center justify-center gap-2 text-rose-300 border-rose-900/60 bg-rose-950/30 hover:bg-rose-900/50 transition">
+            <i class="fa-solid fa-power-off text-xs"></i>
+            <span>Parar Todos os Devs</span>
+          </button>
+
+          <button onclick="startFavoriteServices()" class="xampp-btn py-2 px-3 rounded text-xs font-semibold flex items-center justify-center gap-2 text-emerald-300 border-emerald-900/60 bg-emerald-950/30 hover:bg-emerald-900/50 transition">
+            <i class="fa-solid fa-play text-xs"></i>
+            <span>Iniciar Favoritos</span>
+          </button>
+
+          <div class="border-t border-[#2e3440] my-1"></div>
+
+          <button onclick="switchSection('autostart')" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-rocket text-amber-400"></i> Autostart Apps</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <button onclick="openNetstatModal()" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-blue-400"></i> Portas / Netstat</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <button onclick="openConfigInfoModal()" class="xampp-btn py-1.5 px-3 rounded text-xs font-medium flex items-center justify-between text-slate-300">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-gear text-slate-400"></i> Informações</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+          </button>
+
+          <div class="border-t border-[#2e3440] my-1"></div>
+
+          <div class="bg-[#111317] border border-[#2e3440] rounded p-2.5 text-[11px] text-slate-400 flex flex-col gap-1">
+            <div class="flex justify-between font-mono">
+              <span>No Boot:</span>
+              <span id="sidebar-boot" class="font-bold text-amber-400">--</span>
+            </div>
+            <div class="flex justify-between font-mono">
+              <span>Total RAM:</span>
+              <span id="sidebar-ram" class="font-bold text-teal-400">-- MB</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= THE ICONIC XAMPP BOTTOM CONSOLE ================= -->
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg shadow-md overflow-hidden">
+        <div class="bg-[#1f232b] px-3.5 py-1.5 border-b border-[#2e3440] flex items-center justify-between">
+          <div class="flex items-center gap-2 text-xs font-bold text-slate-300">
+            <i class="fa-solid fa-terminal text-orange-400"></i>
+            <span>Log de Ações & Console do Sistema</span>
+          </div>
+          <button onclick="clearConsole()" class="text-[11px] text-slate-400 hover:text-white font-mono px-2 py-0.5 rounded bg-[#111317] border border-[#2e3440] transition">
+            Limpar Console
+          </button>
+        </div>
+        <div id="xampp-console" class="p-3 bg-[#0c0d10] font-mono text-[11px] text-slate-300 h-36 overflow-y-auto leading-relaxed whitespace-pre-wrap select-text border-t border-[#111317]">
+          [Carregando console...]
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= SECTION 2: AUTOSTART APPS ================= -->
+    <div id="section-autostart" class="hidden flex-col gap-4">
+      
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md">
+        <div>
+          <h2 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-rocket text-amber-400"></i>
+            Aplicativos de Inicialização do Usuário (Autostart)
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Gerencie quais programas e scripts abrem automaticamente ao fazer login no seu computador.
+          </p>
+        </div>
+        <button onclick="openAddAppModal()" class="xampp-btn xampp-btn-start px-3.5 py-2 rounded text-xs font-semibold transition flex items-center gap-2 shadow-sm">
+          <i class="fa-solid fa-plus text-xs"></i>
+          <span>Adicionar Aplicativo</span>
+        </button>
+      </div>
+
+      <!-- Autostart Apps Table -->
+      <div class="bg-[#181b20] border border-[#2e3440] rounded-lg overflow-hidden shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[#1f232b] text-slate-300 border-b border-[#2e3440] font-bold text-[11px] uppercase tracking-wider">
+                <th class="py-2.5 px-4 w-12 text-center">Ícone</th>
+                <th class="py-2.5 px-4 min-w-[200px]">Aplicativo / Descrição</th>
+                <th class="py-2.5 px-4">Comando (Exec)</th>
+                <th class="py-2.5 px-4 w-32">Origem</th>
+                <th class="py-2.5 px-4 w-36 text-center">Iniciar no Login</th>
+                <th class="py-2.5 px-4 w-20 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="autostart-tbody" class="divide-y divide-[#2e3440]">
+              <tr>
+                <td colspan="6" class="py-8 text-center text-slate-500 animate-pulse">Carregando aplicativos de inicialização...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ADD AUTOSTART APP MODAL -->
+  <div id="modal-add-app" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+    <div class="bg-[#181b20] border border-[#2e3440] rounded-lg max-w-lg w-full flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-5 py-3 bg-[#1f232b] border-b border-[#2e3440] flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-plus text-orange-400 text-xs"></i>
+          <h3 class="font-bold text-white text-xs">Adicionar Aplicativo ao Autostart</h3>
+        </div>
+        <button onclick="closeAddAppModal()" class="p-1 rounded hover:bg-[#252a34] text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div class="p-5 flex flex-col gap-3.5 text-xs">
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Escolher dos Aplicativos Instalados:</label>
+          <select id="modal-app-select" onchange="handleAppSelectChange(this.value)" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-slate-200 focus:outline-none focus:border-orange-500">
+            <option value="">-- Selecione um aplicativo instalado --</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 my-0.5 text-slate-500 text-[11px]">
+          <div class="flex-1 border-t border-[#2e3440]"></div>
+          <span>ou digite manualmente</span>
+          <div class="flex-1 border-t border-[#2e3440]"></div>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Nome do Aplicativo:</label>
+          <input type="text" id="modal-app-name" placeholder="Ex: Meu Script ou Discord" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Comando de Execução (Exec):</label>
+          <input type="text" id="modal-app-exec" placeholder="Ex: /usr/bin/discord ou python3 ~/meu_script.py" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white font-mono placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-400 font-semibold mb-1">Descrição (opcional):</label>
+          <input type="text" id="modal-app-comment" placeholder="Ex: Iniciar automaticamente em segundo plano" class="w-full bg-[#111317] border border-[#2e3440] rounded px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500">
+        </div>
+      </div>
+
+      <div class="px-5 py-3 bg-[#1f232b] border-t border-[#2e3440] flex items-center justify-end gap-2">
+        <button onclick="closeAddAppModal()" class="xampp-btn px-4 py-1.5 rounded text-xs font-semibold">
+          Cancelar
+        </button>
+        <button onclick="submitAddApp()" class="xampp-btn xampp-btn-start px-4 py-1.5 rounded text-xs font-semibold">
+          Adicionar ao Autostart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGS MODAL -->
+  <div id="modal-logs" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4">
+    <div class="bg-[#181b20] border border-[#2e3440] rounded-lg max-w-4xl w-full flex flex-col max-h-[85vh] shadow-2xl overflow-hidden">
+      <div class="px-5 py-3 bg-[#1f232b] border-b border-[#2e3440] flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-terminal text-orange-400 text-xs"></i>
+          <div>
+            <h3 id="modal-service-name" class="font-bold text-white text-xs font-mono">service.service</h3>
+            <p class="text-[11px] text-slate-400">Logs do journalctl</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="modal-log-lines" class="bg-[#111317] border border-[#2e3440] rounded text-xs px-2 py-1 text-slate-300 focus:outline-none">
+            <option value="50">50 linhas</option>
+            <option value="100">100 linhas</option>
+            <option value="200">200 linhas</option>
+          </select>
+          <button id="modal-log-refresh" class="xampp-btn p-1.5 rounded text-xs">
+            <i class="fa-solid fa-rotate-right"></i>
+          </button>
+          <button id="modal-log-close" class="p-1.5 rounded hover:bg-[#252a34] text-slate-400 hover:text-white transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-4 bg-[#0c0d10] flex-1 overflow-auto font-mono text-xs text-slate-300 leading-relaxed whitespace-pre-wrap select-text" id="modal-logs-content">
+        Carregando logs...
+      </div>
+      <div class="px-5 py-3 bg-[#1f232b] border-t border-[#2e3440] flex justify-end">
+        <button id="modal-log-close-btn" class="xampp-btn px-4 py-1.5 rounded text-xs font-semibold">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[#2e3440] bg-[#181b20] py-2.5 px-6 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-orange-400">System Tray</span> &bull; Inspirado no XAMPP Control Panel &bull; Arquitetura Linux Nativa
+      </div>
+      <span class="font-mono text-[11px] text-slate-500">systemd 261 / Linux x86_64</span>
+    </div>
+  </footer>
+
+  <script>
+window.__REAL_STATE__ = {"services": [{"name": "docker.service", "display_name": "docker", "description": "Gerenciador de Containers Docker (para rodar instâncias de Node, PHP, Redis e Mongo).", "raw_description": "Docker Application Container Engine", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "database", "is_dev": true, "is_favorite": true, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "httpd.service", "display_name": "httpd", "description": "Servidor Web Apache (HTTPD) para hospedar sites e APIs em PHP.", "raw_description": "httpd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "web", "is_dev": true, "is_favorite": true, "port": "80, 443", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mariadb.service", "display_name": "mariadb", "description": "Banco de Dados Relacional SQL (MariaDB/MySQL) para aplicações PHP e Node.js.", "raw_description": "MariaDB 13.0.2 database server", "active_state": "failed", "sub_state": "failed", "is_running": false, "is_active": false, "boot_state": "enabled", "is_boot_enabled": true, "category": "database", "is_dev": true, "is_favorite": true, "port": "3306", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mysql.service", "display_name": "mysql", "description": "Banco de Dados Relacional MySQL para desenvolvimento PHP e Node.js.", "raw_description": "mysql", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "database", "is_dev": true, "is_favorite": true, "port": "3306", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "postgresql.service", "display_name": "postgresql", "description": "Banco de Dados Relacional PostgreSQL de alto desempenho para Node.js e PHP.", "raw_description": "PostgreSQL database server", "active_state": "failed", "sub_state": "failed", "is_running": false, "is_active": false, "boot_state": "enabled", "is_boot_enabled": true, "category": "database", "is_dev": true, "is_favorite": true, "port": "5432", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "sshd.service", "display_name": "sshd", "description": "Servidor SSH para acesso remoto seguro via terminal ou VS Code Remote.", "raw_description": "sshd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "network", "is_dev": true, "is_favorite": true, "port": "22", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "containerd.service", "display_name": "containerd", "description": "Mecanismo de baixo nível para execução de containers Docker.", "raw_description": "containerd container runtime", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "containers", "is_dev": true, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dnsmasq.service", "display_name": "dnsmasq", "description": "Servidor DNS e DHCP leve para redes locais e containers.", "raw_description": "dnsmasq", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "network", "is_dev": true, "is_favorite": false, "port": "53", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mysqld.service", "display_name": "mysqld", "description": "Daemon do Servidor de Banco de Dados Relacional MySQL.", "raw_description": "mysqld", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "database", "is_dev": true, "is_favorite": false, "port": "3306", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ollama.service", "display_name": "ollama", "description": "Servidor local para execução de Inteligência Artificial e Modelos LLM (Llama, Deepseek).", "raw_description": "ollama", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "ai_ml", "is_dev": true, "is_favorite": false, "port": "11434", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "sshdgenkeys.service", "display_name": "sshdgenkeys", "description": "Geração automática de chaves criptográficas para o servidor SSH.", "raw_description": "sshdgenkeys", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "network", "is_dev": true, "is_favorite": false, "port": "22", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "wsdd-discovery.service", "display_name": "wsdd-discovery", "description": "Serviço de descoberta WSD para visualização em redes Windows.", "raw_description": "wsdd-discovery", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "network", "is_dev": true, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "wsdd.service", "display_name": "wsdd", "description": "Descoberta automática de computadores Linux no Windows Explorer da rede local.", "raw_description": "wsdd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "network", "is_dev": true, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "accounts-daemon.service", "display_name": "accounts-daemon", "description": "Gerenciador de contas, perfis e fotos de usuários do sistema operacional.", "raw_description": "Accounts Service", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "alsa-restore.service", "display_name": "alsa-restore", "description": "Restauração e salvamento dos níveis de volume de áudio da placa de som.", "raw_description": "Save/Restore Sound Card State", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "colord.service", "display_name": "colord", "description": "Manage, Install and Generate Color Profiles", "raw_description": "Manage, Install and Generate Color Profiles", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-broker.service", "display_name": "dbus-broker", "description": "D-Bus System Message Bus", "raw_description": "D-Bus System Message Bus", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gdm.service", "display_name": "gdm", "description": "GNOME Display Gerenciador", "raw_description": "GNOME Display Manager", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "geoclue.service", "display_name": "geoclue", "description": "Location Lookup Serviço", "raw_description": "Location Lookup Service", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "kmod-static-nodes.service", "display_name": "kmod-static-nodes", "description": "Create List of Static Device Nodes", "raw_description": "Create List of Static Device Nodes", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager-wait-online.service", "display_name": "NetworkManager-wait-online", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "Network Manager Wait Online", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager.service", "display_name": "NetworkManager", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "Network Manager", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "polkit.service", "display_name": "polkit", "description": "Authorization Gerenciador", "raw_description": "Authorization Manager", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "power-profiles-daemon.service", "display_name": "power-profiles-daemon", "description": "Power Profiles daemon", "raw_description": "Power Profiles daemon", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-binfmt.service", "display_name": "systemd-binfmt", "description": "Set Up Additional Binary Formats", "raw_description": "Set Up Additional Binary Formats", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-fsck@dev-disk-by\\x2duuid-811C\\x2d0678.service", "display_name": "systemd-fsck@dev-disk-by\\x2duuid-811C\\x2d0678", "description": "File System Check on /dev/disk/by-uuid/811C-0678", "raw_description": "File System Check on /dev/disk/by-uuid/811C-0678", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journal-flush.service", "display_name": "systemd-journal-flush", "description": "Gravação de Logs no Disco Rígido", "raw_description": "Flush Journal to Persistent Storage", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journald.service", "display_name": "systemd-journald", "description": "Coletor e gravador de logs de todo o sistema operacional.", "raw_description": "Journal Service", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-logind.service", "display_name": "systemd-logind", "description": "Gerenciador de sessões de login de usuários, suspensão e desligamento.", "raw_description": "User Login Management", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-modules-load.service", "display_name": "systemd-modules-load", "description": "Carregamento de Módulos e Drivers do Kernel", "raw_description": "Load Kernel Modules", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-network-generator.service", "display_name": "systemd-network-generator", "description": "Generate Network Units from Kernel Command Line", "raw_description": "Generate Network Units from Kernel Command Line", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-networkd-persistent-storage.service", "display_name": "systemd-networkd-persistent-storage", "description": "Gerenciador leve de interfaces de rede do systemd.", "raw_description": "Enable Persistent Storage in systemd-networkd", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-networkd-wait-online.service", "display_name": "systemd-networkd-wait-online", "description": "Gerenciador leve de interfaces de rede do systemd.", "raw_description": "Wait for Network to be Online", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-networkd.service", "display_name": "systemd-networkd", "description": "Gerenciador leve de interfaces de rede do systemd.", "raw_description": "Network Management", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-random-seed.service", "display_name": "systemd-random-seed", "description": "Load/Save OS Random Seed", "raw_description": "Load/Save OS Random Seed", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-remount-fs.service", "display_name": "systemd-remount-fs", "description": "Remontagem de Sistemas de Arquivos do Sistema", "raw_description": "Remount Root and Kernel File Systems", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "enabled-runtime", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-resolved.service", "display_name": "systemd-resolved", "description": "Resolução de nomes de domínio DNS e navegação na internet.", "raw_description": "Network Name Resolution", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysctl.service", "display_name": "systemd-sysctl", "description": "Aplicação de Parâmetros do Kernel (sysctl)", "raw_description": "Apply Kernel Variables", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-timesyncd.service", "display_name": "systemd-timesyncd", "description": "Sincronizador automático do relógio do sistema com servidores NTP na internet.", "raw_description": "Network Time Synchronization", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tmpfiles-setup-dev-early.service", "display_name": "systemd-tmpfiles-setup-dev-early", "description": "Criação de Nós de Dispositivos em /dev in /dev gracefully", "raw_description": "Create Static Device Nodes in /dev gracefully", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tmpfiles-setup-dev.service", "display_name": "systemd-tmpfiles-setup-dev", "description": "Criação de Nós de Dispositivos em /dev in /dev", "raw_description": "Create Static Device Nodes in /dev", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tmpfiles-setup.service", "display_name": "systemd-tmpfiles-setup", "description": "Criação de Arquivos e Diretórios Temporários do Sistema", "raw_description": "Create System Files and Directories", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-udev-load-credentials.service", "display_name": "systemd-udev-load-credentials", "description": "Load udev Rules from Credentials", "raw_description": "Load udev Rules from Credentials", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-udev-trigger.service", "display_name": "systemd-udev-trigger", "description": "Detecção e Inicialização de Dispositivos Conectados", "raw_description": "Coldplug All udev Devices", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-udevd.service", "display_name": "systemd-udevd", "description": "Gerenciador de eventos e detecção de novos dispositivos de hardware (USB, placas).", "raw_description": "Rule-based Manager for Device Events and Files", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-update-utmp.service", "display_name": "systemd-update-utmp", "description": "Record System Boot/Shutdown in UTMP", "raw_description": "Record System Boot/Shutdown in UTMP", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-user-sessions.service", "display_name": "systemd-user-sessions", "description": "Permit User Sessions", "raw_description": "Permit User Sessions", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-userdb-load-credentials.service", "display_name": "systemd-userdb-load-credentials", "description": "Load JSON user/group Records from Credentials", "raw_description": "Load JSON user/group Records from Credentials", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-userdbd.service", "display_name": "systemd-userdbd", "description": "Mecanismo de consulta de usuários e grupos do sistema.", "raw_description": "User Database Manager", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-vconsole-setup.service", "display_name": "systemd-vconsole-setup", "description": "Virtual Console Setup", "raw_description": "Virtual Console Setup", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-zram-setup@zram0.service", "display_name": "systemd-zram-setup@zram0", "description": "Configuração de memória SWAP compactada na RAM (ZRAM).", "raw_description": "Create swap on /dev/zram0", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "udisks2.service", "display_name": "udisks2", "description": "Gerenciador de montagem e leitura de discos, pendrives e partições.", "raw_description": "Disk Manager", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "upower.service", "display_name": "upower", "description": "Serviço de monitoramento de bateria e gerenciamento de energia.", "raw_description": "Daemon for power management", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "user-runtime-dir@1000.service", "display_name": "user-runtime-dir@1000", "description": "Diretório de Execução Temporário do Usuário /run/user/1000", "raw_description": "User Runtime Directory /run/user/1000", "active_state": "active", "sub_state": "exited", "is_running": false, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "user@1000.service", "display_name": "user@1000", "description": "Gerenciador de Sessão do Usuário UID 1000", "raw_description": "User Manager for UID 1000", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "wpa_supplicant.service", "display_name": "wpa_supplicant", "description": "Autenticador de segurança para redes sem fio Wi-Fi (WPA/WPA2/WPA3).", "raw_description": "WPA supplicant", "active_state": "active", "sub_state": "running", "is_running": true, "is_active": true, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "alsa-state.service", "display_name": "alsa-state", "description": "Gerenciador do estado dos canais de som do ALSA.", "raw_description": "Manage Sound Card State (restore and store)", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ananicy-cpp.service", "display_name": "ananicy-cpp", "description": "Otimizador automático de prioridade de CPU para jogos e aplicações pesadas.", "raw_description": "ananicy-cpp", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "archlinux-keyring-wkd-sync.service", "display_name": "archlinux-keyring-wkd-sync", "description": "Sincronizador automático de chaves de assinatura do Arch Linux.", "raw_description": "Refresh existing keys of archlinux-keyring", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "arptables.service", "display_name": "arptables", "description": "arptables", "raw_description": "arptables", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "audit-rules.service", "display_name": "audit-rules", "description": "Carregamento de regras de auditoria de segurança.", "raw_description": "Load Audit Rules", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "auditd.service", "display_name": "auditd", "description": "Serviço de auditoria e monitoramento de eventos de segurança do kernel.", "raw_description": "Security Audit Logging Service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "auto-cpufreq.service", "display_name": "auto-cpufreq", "description": "Otimizador automático de frequência de CPU para economia de bateria e performance.", "raw_description": "auto-cpufreq.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "avahi-daemon.service", "display_name": "avahi-daemon", "description": "Descoberta automática de dispositivos e serviços na rede local (mDNS/Zeroconf).", "raw_description": "avahi-daemon", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "avahi-dnsconfd.service", "display_name": "avahi-dnsconfd", "description": "avahi-dnsconfd", "raw_description": "avahi-dnsconfd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "bluetooth.service", "display_name": "bluetooth", "description": "Gerenciador de conexões, pareamento e dispositivos Bluetooth (fones, teclados).", "raw_description": "bluetooth", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "bolt.service", "display_name": "bolt", "description": "bolt", "raw_description": "bolt", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "breakpoint-pre-basic.service", "display_name": "breakpoint-pre-basic", "description": "breakpoint-pre-basic", "raw_description": "breakpoint-pre-basic", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "breakpoint-pre-mount.service", "display_name": "breakpoint-pre-mount", "description": "breakpoint-pre-mount", "raw_description": "breakpoint-pre-mount", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "breakpoint-pre-switch-root.service", "display_name": "breakpoint-pre-switch-root", "description": "breakpoint-pre-switch-root", "raw_description": "breakpoint-pre-switch-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "breakpoint-pre-udev.service", "display_name": "breakpoint-pre-udev", "description": "breakpoint-pre-udev", "raw_description": "breakpoint-pre-udev", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "canberra-system-bootup.service", "display_name": "canberra-system-bootup", "description": "canberra-system-bootup", "raw_description": "canberra-system-bootup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "canberra-system-shutdown-reboot.service", "display_name": "canberra-system-shutdown-reboot", "description": "canberra-system-shutdown-reboot", "raw_description": "canberra-system-shutdown-reboot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "canberra-system-shutdown.service", "display_name": "canberra-system-shutdown", "description": "canberra-system-shutdown", "raw_description": "canberra-system-shutdown", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "console-getty.service", "display_name": "console-getty", "description": "console-getty", "raw_description": "console-getty", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "cpupower.service", "display_name": "cpupower", "description": "Serviço de monitoramento de bateria e gerenciamento de energia.", "raw_description": "cpupower", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "cronie.service", "display_name": "cronie", "description": "Agendador de tarefas periódicas e scripts automatizados (Cron).", "raw_description": "cronie", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "cups.service", "display_name": "cups", "description": "Sistema de gerenciamento e fila de impressão (impressoras locais e de rede).", "raw_description": "cups", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "631", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.bluez.service", "display_name": "dbus-org.bluez", "description": "dbus-org.bluez", "raw_description": "dbus-org.bluez", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.hostname1.service", "display_name": "dbus-org.freedesktop.hostname1", "description": "dbus-org.freedesktop.hostname1", "raw_description": "dbus-org.freedesktop.hostname1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.import1.service", "display_name": "dbus-org.freedesktop.import1", "description": "dbus-org.freedesktop.import1", "raw_description": "dbus-org.freedesktop.import1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.locale1.service", "display_name": "dbus-org.freedesktop.locale1", "description": "dbus-org.freedesktop.locale1", "raw_description": "dbus-org.freedesktop.locale1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.login1.service", "display_name": "dbus-org.freedesktop.login1", "description": "dbus-org.freedesktop.login1", "raw_description": "dbus-org.freedesktop.login1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.machine1.service", "display_name": "dbus-org.freedesktop.machine1", "description": "dbus-org.freedesktop.machine1", "raw_description": "dbus-org.freedesktop.machine1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.network1.service", "display_name": "dbus-org.freedesktop.network1", "description": "dbus-org.freedesktop.network1", "raw_description": "dbus-org.freedesktop.network1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.nm-dispatcher.service", "display_name": "dbus-org.freedesktop.nm-dispatcher", "description": "dbus-org.freedesktop.nm-dispatcher", "raw_description": "dbus-org.freedesktop.nm-dispatcher", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.portable1.service", "display_name": "dbus-org.freedesktop.portable1", "description": "dbus-org.freedesktop.portable1", "raw_description": "dbus-org.freedesktop.portable1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.resolve1.service", "display_name": "dbus-org.freedesktop.resolve1", "description": "dbus-org.freedesktop.resolve1", "raw_description": "dbus-org.freedesktop.resolve1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.sysupdate1.service", "display_name": "dbus-org.freedesktop.sysupdate1", "description": "dbus-org.freedesktop.sysupdate1", "raw_description": "dbus-org.freedesktop.sysupdate1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.timedate1.service", "display_name": "dbus-org.freedesktop.timedate1", "description": "dbus-org.freedesktop.timedate1", "raw_description": "dbus-org.freedesktop.timedate1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus-org.freedesktop.timesync1.service", "display_name": "dbus-org.freedesktop.timesync1", "description": "dbus-org.freedesktop.timesync1", "raw_description": "dbus-org.freedesktop.timesync1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dbus.service", "display_name": "dbus", "description": "dbus", "raw_description": "dbus", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "debug-shell.service", "display_name": "debug-shell", "description": "debug-shell", "raw_description": "debug-shell", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dirmngr@etc-pacman.d-gnupg.service", "display_name": "dirmngr@etc-pacman.d-gnupg", "description": "GnuPG network certificate management serviço em segundo plano para /etc/pacman.d/gnupg", "raw_description": "GnuPG network certificate management daemon for /etc/pacman.d/gnupg", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "display-manager.service", "display_name": "display-manager", "description": "display-manager", "raw_description": "display-manager", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "dm-event.service", "display_name": "dm-event", "description": "Device-mapper event daemon", "raw_description": "Device-mapper event daemon", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "e2scrub_all.service", "display_name": "e2scrub_all", "description": "e2scrub_all", "raw_description": "e2scrub_all", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "e2scrub_reap.service", "display_name": "e2scrub_reap", "description": "e2scrub_reap", "raw_description": "e2scrub_reap", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ead.service", "display_name": "ead", "description": "ead", "raw_description": "ead", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "earlyoom.service", "display_name": "earlyoom", "description": "earlyoom", "raw_description": "earlyoom", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ebtables.service", "display_name": "ebtables", "description": "ebtables", "raw_description": "ebtables", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "emergency.service", "display_name": "emergency", "description": "Emergency Shell", "raw_description": "Emergency Shell", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "fancontrol.service", "display_name": "fancontrol", "description": "fancontrol", "raw_description": "fancontrol", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "firewalld.service", "display_name": "firewalld", "description": "Gerenciador dinâmico de firewall do Linux.", "raw_description": "firewalld.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "flatpak-system-helper.service", "display_name": "flatpak-system-helper", "description": "flatpak-system-helper", "raw_description": "flatpak-system-helper", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "fprintd.service", "display_name": "fprintd", "description": "fprintd", "raw_description": "fprintd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "fstrim.service", "display_name": "fstrim", "description": "fstrim", "raw_description": "fstrim", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "getty@tty1.service", "display_name": "getty@tty1", "description": "Getty on tty1", "raw_description": "Getty on tty1", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gnome-remote-desktop-configuration.service", "display_name": "gnome-remote-desktop-configuration", "description": "gnome-remote-desktop-configuration", "raw_description": "gnome-remote-desktop-configuration", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gnome-remote-desktop-pcscd.service", "display_name": "gnome-remote-desktop-pcscd", "description": "gnome-remote-desktop-pcscd", "raw_description": "gnome-remote-desktop-pcscd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gnome-remote-desktop.service", "display_name": "gnome-remote-desktop", "description": "gnome-remote-desktop", "raw_description": "gnome-remote-desktop", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gpg-agent@etc-pacman.d-gnupg.service", "display_name": "gpg-agent@etc-pacman.d-gnupg", "description": "GnuPG cryptographic agent and passphrase cache for /etc/pacman.d/gnupg", "raw_description": "GnuPG cryptographic agent and passphrase cache for /etc/pacman.d/gnupg", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "gpm.service", "display_name": "gpm", "description": "gpm", "raw_description": "gpm", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "healthd.service", "display_name": "healthd", "description": "healthd", "raw_description": "healthd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "iio-sensor-proxy.service", "display_name": "iio-sensor-proxy", "description": "iio-sensor-proxy", "raw_description": "iio-sensor-proxy", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "initrd-cleanup.service", "display_name": "initrd-cleanup", "description": "Cleaning Up and Shutting Down Daemons", "raw_description": "Cleaning Up and Shutting Down Daemons", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "initrd-parse-etc.service", "display_name": "initrd-parse-etc", "description": "Mountpoints Configured in the Real Root", "raw_description": "Mountpoints Configured in the Real Root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "initrd-switch-root.service", "display_name": "initrd-switch-root", "description": "Switch Root", "raw_description": "Switch Root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "initrd-udevadm-cleanup-db.service", "display_name": "initrd-udevadm-cleanup-db", "description": "Cleanup udev Database", "raw_description": "Cleanup udev Database", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "inputattach.service", "display_name": "inputattach", "description": "inputattach", "raw_description": "inputattach", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ip6tables.service", "display_name": "ip6tables", "description": "ip6tables", "raw_description": "ip6tables", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "iptables.service", "display_name": "iptables", "description": "iptables", "raw_description": "iptables", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "iwd.service", "display_name": "iwd", "description": "iwd", "raw_description": "iwd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "keyboxd@etc-pacman.d-gnupg.service", "display_name": "keyboxd@etc-pacman.d-gnupg", "description": "GnuPG public key management serviço para /etc/pacman.d/gnupg", "raw_description": "GnuPG public key management service for /etc/pacman.d/gnupg", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "kmsconvt@tty1.service", "display_name": "kmsconvt@tty1", "description": "Serviço do sistema (kmsconvt@tty1.service).", "raw_description": "kmsconvt@tty1.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "krb5-kadmind.service", "display_name": "krb5-kadmind", "description": "krb5-kadmind", "raw_description": "krb5-kadmind", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "krb5-kdc.service", "display_name": "krb5-kdc", "description": "krb5-kdc", "raw_description": "krb5-kdc", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "krb5-kpropd.service", "display_name": "krb5-kpropd", "description": "krb5-kpropd", "raw_description": "krb5-kpropd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lastlog2-import.service", "display_name": "lastlog2-import", "description": "lastlog2-import", "raw_description": "lastlog2-import", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ldconfig.service", "display_name": "ldconfig", "description": "Rebuild Dynamic Linker Cache", "raw_description": "Rebuild Dynamic Linker Cache", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lm_sensors.service", "display_name": "lm_sensors", "description": "lm_sensors", "raw_description": "lm_sensors", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lxc-auto.service", "display_name": "lxc-auto", "description": "lxc-auto", "raw_description": "lxc-auto", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lxc-monitord.service", "display_name": "lxc-monitord", "description": "lxc-monitord", "raw_description": "lxc-monitord", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lxc-net.service", "display_name": "lxc-net", "description": "lxc-net", "raw_description": "lxc-net", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "lxc.service", "display_name": "lxc", "description": "lxc", "raw_description": "lxc", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "malcontent-timer-extension-agent.service", "display_name": "malcontent-timer-extension-agent", "description": "malcontent-timer-extension-agent", "raw_description": "malcontent-timer-extension-agent", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "malcontent-timerd.service", "display_name": "malcontent-timerd", "description": "malcontent-timerd", "raw_description": "malcontent-timerd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "malcontent-webd-update.service", "display_name": "malcontent-webd-update", "description": "malcontent-webd-update", "raw_description": "malcontent-webd-update", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "malcontent-webd.service", "display_name": "malcontent-webd", "description": "malcontent-webd", "raw_description": "malcontent-webd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mdcheck_continue.service", "display_name": "mdcheck_continue", "description": "mdcheck_continue", "raw_description": "mdcheck_continue", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mdcheck_start.service", "display_name": "mdcheck_start", "description": "mdcheck_start", "raw_description": "mdcheck_start", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mdmonitor-oneshot.service", "display_name": "mdmonitor-oneshot", "description": "mdmonitor-oneshot", "raw_description": "mdmonitor-oneshot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mdmonitor.service", "display_name": "mdmonitor", "description": "mdmonitor", "raw_description": "mdmonitor", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "mkinitcpio-generate-shutdown-ramfs.service", "display_name": "mkinitcpio-generate-shutdown-ramfs", "description": "Generate shutdown-ramfs", "raw_description": "Generate shutdown-ramfs", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "modprobe@configfs.service", "display_name": "modprobe@configfs", "description": "Load Kernel Module configfs", "raw_description": "Load Kernel Module configfs", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "modprobe@dm_mod.service", "display_name": "modprobe@dm_mod", "description": "Load Kernel Module dm_mod", "raw_description": "Load Kernel Module dm_mod", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "modprobe@drm.service", "display_name": "modprobe@drm", "description": "Load Kernel Module drm", "raw_description": "Load Kernel Module drm", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "modprobe@fuse.service", "display_name": "modprobe@fuse", "description": "Load Kernel Module fuse", "raw_description": "Load Kernel Module fuse", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "modprobe@loop.service", "display_name": "modprobe@loop", "description": "Load Kernel Module loop", "raw_description": "Load Kernel Module loop", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager-config-initrd.service", "display_name": "NetworkManager-config-initrd", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "NetworkManager-config-initrd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "masked-runtime", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager-dispatcher.service", "display_name": "NetworkManager-dispatcher", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "NetworkManager-dispatcher", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "enabled", "is_boot_enabled": true, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager-initrd.service", "display_name": "NetworkManager-initrd", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "NetworkManager-initrd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "masked-runtime", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "NetworkManager-wait-online-initrd.service", "display_name": "NetworkManager-wait-online-initrd", "description": "Gerenciador principal de conexões de rede Wi-Fi, Ethernet e VPN do sistema.", "raw_description": "NetworkManager-wait-online-initrd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "masked-runtime", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nftables.service", "display_name": "nftables", "description": "nftables", "raw_description": "nftables", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nm-priv-helper.service", "display_name": "nm-priv-helper", "description": "nm-priv-helper", "raw_description": "nm-priv-helper", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-hibernate.service", "display_name": "nvidia-hibernate", "description": "nvidia-hibernate", "raw_description": "nvidia-hibernate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-persistenced.service", "display_name": "nvidia-persistenced", "description": "nvidia-persistenced", "raw_description": "nvidia-persistenced", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-powerd.service", "display_name": "nvidia-powerd", "description": "nvidia-powerd", "raw_description": "nvidia-powerd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-resume.service", "display_name": "nvidia-resume", "description": "nvidia-resume", "raw_description": "nvidia-resume", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-suspend-then-hibernate.service", "display_name": "nvidia-suspend-then-hibernate", "description": "nvidia-suspend-then-hibernate", "raw_description": "nvidia-suspend-then-hibernate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "nvidia-suspend.service", "display_name": "nvidia-suspend", "description": "nvidia-suspend", "raw_description": "nvidia-suspend", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ostree-boot-complete.service", "display_name": "ostree-boot-complete", "description": "ostree-boot-complete", "raw_description": "ostree-boot-complete", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ostree-finalize-staged-hold.service", "display_name": "ostree-finalize-staged-hold", "description": "ostree-finalize-staged-hold", "raw_description": "ostree-finalize-staged-hold", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ostree-finalize-staged.service", "display_name": "ostree-finalize-staged", "description": "ostree-finalize-staged", "raw_description": "ostree-finalize-staged", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ostree-prepare-root.service", "display_name": "ostree-prepare-root", "description": "ostree-prepare-root", "raw_description": "ostree-prepare-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ostree-remount.service", "display_name": "ostree-remount", "description": "ostree-remount", "raw_description": "ostree-remount", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "paccache.service", "display_name": "paccache", "description": "paccache", "raw_description": "paccache", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "pacman-filesdb-refresh.service", "display_name": "pacman-filesdb-refresh", "description": "pacman-filesdb-refresh", "raw_description": "pacman-filesdb-refresh", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "pam_namespace.service", "display_name": "pam_namespace", "description": "pam_namespace", "raw_description": "pam_namespace", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "pcscd.service", "display_name": "pcscd", "description": "pcscd", "raw_description": "pcscd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "plymouth-quit-wait.service", "display_name": "plymouth-quit-wait", "description": "Aguardando encerramento da tela de splash de inicialização.", "raw_description": "plymouth-quit-wait.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "plymouth-quit.service", "display_name": "plymouth-quit", "description": "Encerramento da animação gráfica de boot ao carregar a tela de login.", "raw_description": "plymouth-quit.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "plymouth-start.service", "display_name": "plymouth-start", "description": "Tela de inicialização gráfica e animação de boot (Splash screen).", "raw_description": "plymouth-start.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "quotaon-root.service", "display_name": "quotaon-root", "description": "quotaon-root", "raw_description": "quotaon-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ratbagd.service", "display_name": "ratbagd", "description": "ratbagd", "raw_description": "ratbagd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "rc-local.service", "display_name": "rc-local", "description": "Script de inicialização personalizada do sistema.", "raw_description": "rc-local.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "reflector.service", "display_name": "reflector", "description": "reflector", "raw_description": "reflector", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "rescue.service", "display_name": "rescue", "description": "Rescue Shell", "raw_description": "Rescue Shell", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "rsyncd.service", "display_name": "rsyncd", "description": "rsyncd", "raw_description": "rsyncd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "seatd.service", "display_name": "seatd", "description": "seatd", "raw_description": "seatd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "sensord.service", "display_name": "sensord", "description": "sensord", "raw_description": "sensord", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "shadow.service", "display_name": "shadow", "description": "Verify integrity of password and group files", "raw_description": "Verify integrity of password and group files", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "smartd.service", "display_name": "smartd", "description": "smartd", "raw_description": "smartd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "sndiod.service", "display_name": "sndiod", "description": "sndiod", "raw_description": "sndiod", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "snmpd.service", "display_name": "snmpd", "description": "snmpd", "raw_description": "snmpd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "snmptrapd.service", "display_name": "snmptrapd", "description": "snmptrapd", "raw_description": "snmptrapd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "speech-dispatcherd.service", "display_name": "speech-dispatcherd", "description": "speech-dispatcherd", "raw_description": "speech-dispatcherd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "spice-webdavd.service", "display_name": "spice-webdavd", "description": "spice-webdavd", "raw_description": "spice-webdavd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "sudo_logsrvd.service", "display_name": "sudo_logsrvd", "description": "sudo_logsrvd", "raw_description": "sudo_logsrvd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "syslog.service", "display_name": "syslog", "description": "Serviço padrão de registro de logs do sistema operacional.", "raw_description": "syslog.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "system-update-cleanup.service", "display_name": "system-update-cleanup", "description": "system-update-cleanup", "raw_description": "system-update-cleanup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "system76-power.service", "display_name": "system76-power", "description": "Gerenciamento de gráficos híbridos e perfis de energia System76.", "raw_description": "system76-power.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-ask-password-console.service", "display_name": "systemd-ask-password-console", "description": "Dispatch Password Requests to Console", "raw_description": "Dispatch Password Requests to Console", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-ask-password-wall.service", "display_name": "systemd-ask-password-wall", "description": "Forward Password Requests to Wall", "raw_description": "Forward Password Requests to Wall", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-battery-check.service", "display_name": "systemd-battery-check", "description": "Early Battery Level Check", "raw_description": "Early Battery Level Check", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-bless-boot.service", "display_name": "systemd-bless-boot", "description": "systemd-bless-boot", "raw_description": "systemd-bless-boot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-boot-check-no-failures.service", "display_name": "systemd-boot-check-no-failures", "description": "systemd-boot-check-no-failures", "raw_description": "systemd-boot-check-no-failures", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-boot-clear-sysfail.service", "display_name": "systemd-boot-clear-sysfail", "description": "systemd-boot-clear-sysfail", "raw_description": "systemd-boot-clear-sysfail", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-boot-random-seed.service", "display_name": "systemd-boot-random-seed", "description": "Update Boot Loader Random Seed", "raw_description": "Update Boot Loader Random Seed", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-boot-update.service", "display_name": "systemd-boot-update", "description": "systemd-boot-update", "raw_description": "systemd-boot-update", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-bsod.service", "display_name": "systemd-bsod", "description": "Display Boot-Time Emergency Messages In Full Screen", "raw_description": "Display Boot-Time Emergency Messages In Full Screen", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-confext-initrd.service", "display_name": "systemd-confext-initrd", "description": "Merge System Configuration Images into /etc/ of the initrd", "raw_description": "Merge System Configuration Images into /etc/ of the initrd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-confext-sysroot.service", "display_name": "systemd-confext-sysroot", "description": "systemd-confext-sysroot", "raw_description": "systemd-confext-sysroot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-confext.service", "display_name": "systemd-confext", "description": "Merge System Configuration Images into /etc/", "raw_description": "Merge System Configuration Images into /etc/", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-coredump-register.service", "display_name": "systemd-coredump-register", "description": "systemd-coredump-register", "raw_description": "systemd-coredump-register", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-coredumpd.service", "display_name": "systemd-coredumpd", "description": "systemd-coredumpd", "raw_description": "systemd-coredumpd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-cryptenroll-firstboot.service", "display_name": "systemd-cryptenroll-firstboot", "description": "Interactive Disk Encryption Setup", "raw_description": "Interactive Disk Encryption Setup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-exit.service", "display_name": "systemd-exit", "description": "systemd-exit", "raw_description": "systemd-exit", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-factory-reset-complete.service", "display_name": "systemd-factory-reset-complete", "description": "Mark the Factory Reset as Completed", "raw_description": "Mark the Factory Reset as Completed", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-factory-reset-reboot.service", "display_name": "systemd-factory-reset-reboot", "description": "systemd-factory-reset-reboot", "raw_description": "systemd-factory-reset-reboot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-factory-reset-request.service", "display_name": "systemd-factory-reset-request", "description": "systemd-factory-reset-request", "raw_description": "systemd-factory-reset-request", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-firstboot.service", "display_name": "systemd-firstboot", "description": "Initial Setup", "raw_description": "Initial Setup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-fsck-root.service", "display_name": "systemd-fsck-root", "description": "File System Check on Root Device", "raw_description": "File System Check on Root Device", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-growfs-root.service", "display_name": "systemd-growfs-root", "description": "systemd-growfs-root", "raw_description": "systemd-growfs-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-halt.service", "display_name": "systemd-halt", "description": "System Halt", "raw_description": "System Halt", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hibernate-clear.service", "display_name": "systemd-hibernate-clear", "description": "Clear Stale Hibernate Storage Info", "raw_description": "Clear Stale Hibernate Storage Info", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hibernate-resume.service", "display_name": "systemd-hibernate-resume", "description": "Resume from hibernation", "raw_description": "Resume from hibernation", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hibernate.service", "display_name": "systemd-hibernate", "description": "systemd-hibernate", "raw_description": "systemd-hibernate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-homed-activate.service", "display_name": "systemd-homed-activate", "description": "Gerenciador de diretórios pessoais e criptografia de usuários.", "raw_description": "systemd-homed-activate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-homed-firstboot.service", "display_name": "systemd-homed-firstboot", "description": "Gerenciador de diretórios pessoais e criptografia de usuários.", "raw_description": "systemd-homed-firstboot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-homed.service", "display_name": "systemd-homed", "description": "Gerenciador de diretórios pessoais e criptografia de usuários.", "raw_description": "systemd-homed", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hostnamed.service", "display_name": "systemd-hostnamed", "description": "Hostname Serviço", "raw_description": "Hostname Service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hwdb-update.service", "display_name": "systemd-hwdb-update", "description": "Rebuild Hardware Database", "raw_description": "Rebuild Hardware Database", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-hybrid-sleep.service", "display_name": "systemd-hybrid-sleep", "description": "systemd-hybrid-sleep", "raw_description": "systemd-hybrid-sleep", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-imds-early-network.service", "display_name": "systemd-imds-early-network", "description": "systemd-imds-early-network", "raw_description": "systemd-imds-early-network", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-imds-import.service", "display_name": "systemd-imds-import", "description": "systemd-imds-import", "raw_description": "systemd-imds-import", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-importd.service", "display_name": "systemd-importd", "description": "Disk Image Download Serviço", "raw_description": "Disk Image Download Service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journal-catalog-update.service", "display_name": "systemd-journal-catalog-update", "description": "Rebuild Journal Catalog", "raw_description": "Rebuild Journal Catalog", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journal-gatewayd.service", "display_name": "systemd-journal-gatewayd", "description": "systemd-journal-gatewayd", "raw_description": "systemd-journal-gatewayd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journal-remote.service", "display_name": "systemd-journal-remote", "description": "systemd-journal-remote", "raw_description": "systemd-journal-remote", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-journal-upload.service", "display_name": "systemd-journal-upload", "description": "systemd-journal-upload", "raw_description": "systemd-journal-upload", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-kexec.service", "display_name": "systemd-kexec", "description": "Reboot via kexec", "raw_description": "Reboot via kexec", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-localed.service", "display_name": "systemd-localed", "description": "systemd-localed", "raw_description": "systemd-localed", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-machine-id-commit.service", "display_name": "systemd-machine-id-commit", "description": "Save Transient machine-id to Disk", "raw_description": "Save Transient machine-id to Disk", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-machined.service", "display_name": "systemd-machined", "description": "Registro de Máquinas Virtuais e Containers", "raw_description": "Virtual Machine and Container Registration Service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-mountfsd.service", "display_name": "systemd-mountfsd", "description": "systemd-mountfsd", "raw_description": "systemd-mountfsd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-nsresourced.service", "display_name": "systemd-nsresourced", "description": "systemd-nsresourced", "raw_description": "systemd-nsresourced", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-oomd.service", "display_name": "systemd-oomd", "description": "Monitor de memória que previne travamentos matando processos com vazamento de RAM.", "raw_description": "Userspace Out-Of-Memory (OOM) Killer", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrfs-root.service", "display_name": "systemd-pcrfs-root", "description": "systemd-pcrfs-root", "raw_description": "systemd-pcrfs-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-file-system.service", "display_name": "systemd-pcrlock-file-system", "description": "systemd-pcrlock-file-system", "raw_description": "systemd-pcrlock-file-system", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-firmware-code.service", "display_name": "systemd-pcrlock-firmware-code", "description": "systemd-pcrlock-firmware-code", "raw_description": "systemd-pcrlock-firmware-code", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-firmware-config.service", "display_name": "systemd-pcrlock-firmware-config", "description": "systemd-pcrlock-firmware-config", "raw_description": "systemd-pcrlock-firmware-config", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-machine-id.service", "display_name": "systemd-pcrlock-machine-id", "description": "systemd-pcrlock-machine-id", "raw_description": "systemd-pcrlock-machine-id", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-make-policy.service", "display_name": "systemd-pcrlock-make-policy", "description": "systemd-pcrlock-make-policy", "raw_description": "systemd-pcrlock-make-policy", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-secureboot-authority.service", "display_name": "systemd-pcrlock-secureboot-authority", "description": "systemd-pcrlock-secureboot-authority", "raw_description": "systemd-pcrlock-secureboot-authority", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlock-secureboot-policy.service", "display_name": "systemd-pcrlock-secureboot-policy", "description": "systemd-pcrlock-secureboot-policy", "raw_description": "systemd-pcrlock-secureboot-policy", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrlogin@1000.service", "display_name": "systemd-pcrlogin@1000", "description": "TPM NvPCR Measurement of User Record for UID 1000", "raw_description": "TPM NvPCR Measurement of User Record for UID 1000", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrmachine.service", "display_name": "systemd-pcrmachine", "description": "TPM PCR Machine ID Measurement", "raw_description": "TPM PCR Machine ID Measurement", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrnvdone.service", "display_name": "systemd-pcrnvdone", "description": "TPM PCR NvPCR Initialization Separator", "raw_description": "TPM PCR NvPCR Initialization Separator", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrosseparator.service", "display_name": "systemd-pcrosseparator", "description": "TPM PCR OS Separator", "raw_description": "TPM PCR OS Separator", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrphase-factory-reset.service", "display_name": "systemd-pcrphase-factory-reset", "description": "systemd-pcrphase-factory-reset", "raw_description": "systemd-pcrphase-factory-reset", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrphase-initrd.service", "display_name": "systemd-pcrphase-initrd", "description": "TPM PCR Barrier (initrd)", "raw_description": "TPM PCR Barrier (initrd)", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrphase-storage-target-mode.service", "display_name": "systemd-pcrphase-storage-target-mode", "description": "systemd-pcrphase-storage-target-mode", "raw_description": "systemd-pcrphase-storage-target-mode", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrphase-sysinit.service", "display_name": "systemd-pcrphase-sysinit", "description": "TPM PCR Barrier (Initialization)", "raw_description": "TPM PCR Barrier (Initialization)", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrphase.service", "display_name": "systemd-pcrphase", "description": "TPM PCR Barrier (User)", "raw_description": "TPM PCR Barrier (User)", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pcrproduct.service", "display_name": "systemd-pcrproduct", "description": "TPM NvPCR Product ID Measurement", "raw_description": "TPM NvPCR Product ID Measurement", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-portabled.service", "display_name": "systemd-portabled", "description": "systemd-portabled", "raw_description": "systemd-portabled", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-poweroff.service", "display_name": "systemd-poweroff", "description": "System Power Off", "raw_description": "System Power Off", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-pstore.service", "display_name": "systemd-pstore", "description": "systemd-pstore", "raw_description": "systemd-pstore", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-quotacheck-root.service", "display_name": "systemd-quotacheck-root", "description": "Root File System Quota Check", "raw_description": "Root File System Quota Check", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-quotacheck.service", "display_name": "systemd-quotacheck", "description": "Serviço do sistema (systemd-quotacheck.service).", "raw_description": "systemd-quotacheck.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-reboot.service", "display_name": "systemd-reboot", "description": "System Reboot", "raw_description": "System Reboot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-repart.service", "display_name": "systemd-repart", "description": "Repartition Root Disk", "raw_description": "Repartition Root Disk", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-rfkill.service", "display_name": "systemd-rfkill", "description": "Load/Save RF Kill Switch Status", "raw_description": "Load/Save RF Kill Switch Status", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-soft-reboot.service", "display_name": "systemd-soft-reboot", "description": "Reboot System Userspace", "raw_description": "Reboot System Userspace", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-storagetm.service", "display_name": "systemd-storagetm", "description": "systemd-storagetm", "raw_description": "systemd-storagetm", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-suspend-then-hibernate.service", "display_name": "systemd-suspend-then-hibernate", "description": "systemd-suspend-then-hibernate", "raw_description": "systemd-suspend-then-hibernate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-suspend.service", "display_name": "systemd-suspend", "description": "systemd-suspend", "raw_description": "systemd-suspend", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysext-initrd.service", "display_name": "systemd-sysext-initrd", "description": "Merge System Extension Images into /usr/ and /opt/ of the initrd", "raw_description": "Merge System Extension Images into /usr/ and /opt/ of the initrd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysext-sysroot.service", "display_name": "systemd-sysext-sysroot", "description": "systemd-sysext-sysroot", "raw_description": "systemd-sysext-sysroot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysext.service", "display_name": "systemd-sysext", "description": "Merge System Extension Images into /usr/ and /opt/", "raw_description": "Merge System Extension Images into /usr/ and /opt/", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysinstall.service", "display_name": "systemd-sysinstall", "description": "systemd-sysinstall", "raw_description": "systemd-sysinstall", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysupdate-auto-enable.service", "display_name": "systemd-sysupdate-auto-enable", "description": "systemd-sysupdate-auto-enable", "raw_description": "systemd-sysupdate-auto-enable", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysupdate-reboot.service", "display_name": "systemd-sysupdate-reboot", "description": "systemd-sysupdate-reboot", "raw_description": "systemd-sysupdate-reboot", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysupdate-update.service", "display_name": "systemd-sysupdate-update", "description": "systemd-sysupdate-update", "raw_description": "systemd-sysupdate-update", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysupdate.service", "display_name": "systemd-sysupdate", "description": "systemd-sysupdate", "raw_description": "systemd-sysupdate", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "alias", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysupdated.service", "display_name": "systemd-sysupdated", "description": "systemd-sysupdated", "raw_description": "systemd-sysupdated", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-sysusers.service", "display_name": "systemd-sysusers", "description": "Criação Automática de Usuários do Sistema", "raw_description": "Create System Users", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-time-wait-sync.service", "display_name": "systemd-time-wait-sync", "description": "systemd-time-wait-sync", "raw_description": "systemd-time-wait-sync", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-timedated.service", "display_name": "systemd-timedated", "description": "systemd-timedated", "raw_description": "systemd-timedated", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tmpfiles-clean.service", "display_name": "systemd-tmpfiles-clean", "description": "Cleanup of Temporary Directories", "raw_description": "Cleanup of Temporary Directories", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tpm2-clear.service", "display_name": "systemd-tpm2-clear", "description": "systemd-tpm2-clear", "raw_description": "systemd-tpm2-clear", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tpm2-setup-early.service", "display_name": "systemd-tpm2-setup-early", "description": "Early TPM SRK Setup", "raw_description": "Early TPM SRK Setup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tpm2-setup.service", "display_name": "systemd-tpm2-setup", "description": "TPM SRK Setup", "raw_description": "TPM SRK Setup", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-tpm2-swtpm.service", "display_name": "systemd-tpm2-swtpm", "description": "systemd-tpm2-swtpm", "raw_description": "systemd-tpm2-swtpm", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-udev-settle.service", "display_name": "systemd-udev-settle", "description": "Wait for udev To Complete Device Initialization", "raw_description": "Wait for udev To Complete Device Initialization", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-update-done.service", "display_name": "systemd-update-done", "description": "Update is Completed", "raw_description": "Update is Completed", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "systemd-volatile-root.service", "display_name": "systemd-volatile-root", "description": "systemd-volatile-root", "raw_description": "systemd-volatile-root", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "thermald.service", "display_name": "thermald", "description": "thermald", "raw_description": "thermald", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "tlp.service", "display_name": "tlp", "description": "Otimizador avançado de economia de bateria para notebooks.", "raw_description": "tlp.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "tor.service", "display_name": "tor", "description": "tor", "raw_description": "tor", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "tuned.service", "display_name": "tuned", "description": "Ajuste dinâmico de performance e economia de energia do sistema.", "raw_description": "tuned.service", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "ufw.service", "display_name": "ufw", "description": "Firewall de segurança simples (Uncomplicated Firewall) para proteção de portas.", "raw_description": "ufw", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "usbmuxd.service", "display_name": "usbmuxd", "description": "Comunicação USB com dispositivos Apple (iPhone/iPad).", "raw_description": "usbmuxd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "static", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "uuidd.service", "display_name": "uuidd", "description": "uuidd", "raw_description": "uuidd", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "indirect", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "vboxweb.service", "display_name": "vboxweb", "description": "Serviço de gerenciamento web do VirtualBox.", "raw_description": "vboxweb", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}, {"name": "waydroid-container.service", "display_name": "waydroid-container", "description": "waydroid-container", "raw_description": "waydroid-container", "active_state": "inactive", "sub_state": "dead", "is_running": false, "is_active": false, "boot_state": "disabled", "is_boot_enabled": false, "category": "system", "is_dev": false, "is_favorite": false, "port": "-", "memory_bytes": 0, "memory_mb": 0, "pid": 0}], "details": {"docker.service": {"name": "docker.service", "memory_bytes": 40005632, "memory_mb": 38.2, "active_state": "active", "sub_state": "running", "boot_state": "enabled", "description": "Gerenciador de Containers Docker (para rodar instâncias de Node, PHP, Redis e Mongo).", "pid": 1932, "started_at": "Fri 2026-10-30 15:36:03 -03", "port": "-", "is_active": true, "is_running": true, "is_boot_enabled": true}, "containerd.service": {"name": "containerd.service", "memory_bytes": 48615424, "memory_mb": 46.4, "active_state": "active", "sub_state": "running", "boot_state": "disabled", "description": "Mecanismo de baixo nível para execução de containers Docker.", "pid": 685, "started_at": "Fri 2026-10-30 15:35:58 -03", "port": "-", "is_active": true, "is_running": true, "is_boot_enabled": false}}, "stats": {"total_services": 297, "active": 45, "running": 21, "boot_enabled": 14, "dev_services": 13, "favorites": 6, "dev_memory_mb": 84.6}, "autostart": [{"filename": "fastfetch_wall.desktop", "path": "/home/vinicius/.config/autostart/fastfetch_wall.desktop", "name": "Conky", "exec": "sh -c \"sleep 5 && ~/.config/conky/autostart.sh\"", "comment": "Inicia o Conky", "icon": "application-x-executable", "is_enabled": true, "is_user": true}, {"filename": "openwhip-visual.desktop", "path": "/home/vinicius/.config/autostart/openwhip-visual.desktop", "name": "OpenWhip (Visual)", "exec": "sh -c \"sleep 6 && if [ -x ~/openwhip-visual/node_modules/electron/dist/electron ]; then exec ~/openwhip-visual/node_modules/electron/dist/electron ~/openwhip-visual; elif command -v electron >/dev/null 2>&1 && [ -d ~/openwhip-visual ]; then exec electron ~/openwhip-visual; fi\"", "comment": "Whip overlay visual na barra superior do GNOME", "icon": "/home/vinicius/openwhip-visual/icon/tray-linux.png", "is_enabled": true, "is_user": true}, {"filename": "xapp-sn-watcher.desktop", "path": "/etc/xdg/autostart/xapp-sn-watcher.desktop", "name": "xapp-sn-watcher", "exec": "/usr/lib/xapps/xapp-sn-watcher", "comment": "A service that provides the org.kde.StatusNotifierWatcher interface for XApps", "icon": "application-x-executable", "is_enabled": true, "is_user": false}, {"filename": "at-spi-dbus-bus.desktop", "path": "/etc/xdg/autostart/at-spi-dbus-bus.desktop", "name": "AT-SPI D-Bus Bus", "exec": "/usr/lib/at-spi-bus-launcher --launch-immediately", "comment": "", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "gnome-keyring-pkcs11.desktop", "path": "/etc/xdg/autostart/gnome-keyring-pkcs11.desktop", "name": "Certificate and Key Storage", "exec": "/usr/bin/gnome-keyring-daemon --start --components=pkcs11", "comment": "GNOME Keyring: PKCS#11 Component", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "org.gnome.Evolution-alarm-notify.desktop", "path": "/etc/xdg/autostart/org.gnome.Evolution-alarm-notify.desktop", "name": "Events and Tasks Reminders", "exec": "/usr/lib/evolution-data-server/evolution-alarm-notify --autostart", "comment": "Event and task notifications", "icon": "org.gnome.Evolution-alarm-notify", "is_enabled": false, "is_user": false}, {"filename": "geoclue-demo-agent.desktop", "path": "/etc/xdg/autostart/geoclue-demo-agent.desktop", "name": "Geoclue Demo agent", "exec": "/usr/lib/geoclue-2.0/demos/agent", "comment": "", "icon": "mark-location-symbolic", "is_enabled": false, "is_user": false}, {"filename": "org.gnome.SettingsDaemon.DiskUtilityNotify.desktop", "path": "/etc/xdg/autostart/org.gnome.SettingsDaemon.DiskUtilityNotify.desktop", "name": "gnome-disk-utility notification plugin for GNOME Settings Daemon", "exec": "/usr/lib/gsd-disk-utility-notify", "comment": "", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "remmina-applet.desktop", "path": "/home/vinicius/.config/autostart/remmina-applet.desktop", "name": "Miniaplicativo do Remmina", "exec": "remmina -i", "comment": "Conecte a áreas de trabalho remotas através do miniaplicativo", "icon": "org.remmina.Remmina", "is_enabled": false, "is_user": true}, {"filename": "nm-applet.desktop", "path": "/etc/xdg/autostart/nm-applet.desktop", "name": "NetworkManager Applet", "exec": "nm-applet", "comment": "Manage your network connections", "icon": "nm-device-wireless", "is_enabled": false, "is_user": false}, {"filename": "orca-autostart.desktop", "path": "/etc/xdg/autostart/orca-autostart.desktop", "name": "Orca Screen Reader", "exec": "orca --replace", "comment": "", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "gnome-keyring-secrets.desktop", "path": "/etc/xdg/autostart/gnome-keyring-secrets.desktop", "name": "Secret Storage Service", "exec": "/usr/bin/gnome-keyring-daemon --start --components=secrets", "comment": "GNOME Keyring: Secret Service", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "system-tray.desktop", "path": "/home/vinicius/.config/autostart/system-tray.desktop", "name": "System Tray", "exec": "python3 /home/vinicius/system-tray/app.py --no-browser", "comment": "Painel e Ícone de Controle de Serviços do Linux na Barra Superior", "icon": "system-tray", "is_enabled": false, "is_user": true}, {"filename": "localsearch-3.desktop", "path": "/etc/xdg/autostart/localsearch-3.desktop", "name": "Tracker File System Miner", "exec": "/usr/lib/localsearch-3", "comment": "Crawls and processes files on the file system", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "xdg-user-dirs.desktop", "path": "/etc/xdg/autostart/xdg-user-dirs.desktop", "name": "User folders update", "exec": "xdg-user-dirs-update", "comment": "", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "user-dirs-update-gtk.desktop", "path": "/etc/xdg/autostart/user-dirs-update-gtk.desktop", "name": "User folders update", "exec": "xdg-user-dirs-gtk-update", "comment": "Update common folders names to match current locale", "icon": "application-x-executable", "is_enabled": false, "is_user": false}, {"filename": "wine-dpi-sync.desktop", "path": "/home/vinicius/.config/autostart/wine-dpi-sync.desktop", "name": "Wine Auto DPI Sync", "exec": "/bin/sh -c \"$HOME/.local/bin/wine-dpi-sync.sh\"", "comment": "Ajusta automaticamente o DPI do Wine para o monitor atual no login", "icon": "application-x-executable", "is_enabled": false, "is_user": true}]};
+(function() {
+  const origFetch = window.fetch;
+  const state = window.__REAL_STATE__;
+  window.fetch = async function(url, opts) {
+    const u = String(url);
+    if (u.startsWith('/api/')) {
+      await new Promise(r => setTimeout(r, 40));
+      const path = u.split('?')[0];
+      const params = new URLSearchParams(u.split('?')[1] || '');
+      const body = opts && opts.body ? JSON.parse(opts.body) : {};
+
+      if (path === '/api/services') {
+        return new Response(JSON.stringify({ success: true, services: state.services, total: state.services.length }));
+      }
+      if (path === '/api/system/stats') {
+        const active = state.services.filter(s => s.is_active).length;
+        const boot = state.services.filter(s => s.is_boot_enabled).length;
+        return new Response(JSON.stringify({
+          success: true,
+          stats: { ...state.stats, active, boot_enabled: boot }
+        }));
+      }
+      if (path === '/api/autostart') {
+        return new Response(JSON.stringify({ success: true, apps: state.autostart, total: state.autostart.length }));
+      }
+      if (path === '/api/service/details') {
+        const name = params.get('name');
+        const s = state.services.find(x => x.name === name);
+        const det = state.details[name] || {
+          pid: s && s.is_active ? (Math.floor(Math.random() * 8000) + 1200) : 0,
+          is_running: s ? s.is_active : false,
+          is_active: s ? s.is_active : false,
+          memory_mb: s && s.is_active ? 42.4 : 0
+        };
+        return new Response(JSON.stringify({ success: true, details: det }));
+      }
+      if (path === '/api/service/action') {
+        const s = state.services.find(x => x.name === body.service);
+        if (s) {
+          if (body.action === 'start' || body.action === 'restart') {
+            s.is_active = true; s.is_running = true;
+            s.pid = Math.floor(Math.random() * 9000) + 1500;
+            state.details[s.name] = { pid: s.pid, is_active: true, is_running: true, memory_mb: 38.2, is_boot_enabled: s.is_boot_enabled, boot_state: s.boot_state };
+          } else if (body.action === 'stop') {
+            s.is_active = false; s.is_running = false; s.pid = 0;
+            state.details[s.name] = { pid: 0, is_active: false, is_running: false, memory_mb: 0, is_boot_enabled: s.is_boot_enabled, boot_state: s.boot_state };
+          } else if (body.action === 'enable') {
+            s.is_boot_enabled = true; s.boot_state = 'enabled';
+          } else if (body.action === 'disable') {
+            s.is_boot_enabled = false; s.boot_state = 'disabled';
+          }
+          try { window.parent.postMessage({ type: 'TRAY_STATE_CHANGE', services: state.services }, '*'); } catch(e) {}
+        }
+        return new Response(JSON.stringify({ success: true, message: 'OK via Polkit Sem Senha', details: s ? (state.details[s.name] || s) : {} }));
+      }
+      if (path === '/api/service/favorite') {
+        const s = state.services.find(x => x.name === body.service);
+        if (s) s.is_favorite = !s.is_favorite;
+        return new Response(JSON.stringify({ success: true, is_favorite: s ? s.is_favorite : false }));
+      }
+      if (path === '/api/service/logs') {
+        const name = params.get('name');
+        const now = new Date().toISOString().replace('T', ' ').slice(0, 19);
+        const logs = [
+          '-- Journal begins at ' + now + ', host archlinux --',
+          now + ' archlinux systemd[1]: Starting ' + name + '.service...',
+          now + ' archlinux polkitd[612]: Registered Authentication Agent (Polkit NOPASSWD rule active)',
+          now + ' archlinux ' + name + '[2418]: Listening on configured socket/port (TCP BBR congestion control enabled)',
+          now + ' archlinux systemd[1]: Started ' + name + '.service — High-Performance Arch Rice.'
+        ].join('\n');
+        return new Response(JSON.stringify({ success: true, logs }));
+      }
+      if (path === '/api/autostart/toggle') {
+        const a = state.autostart.find(x => x.filename === body.filename);
+        if (a) a.is_enabled = body.enabled;
+        return new Response(JSON.stringify({ success: true }));
+      }
+    }
+    return origFetch.apply(this, arguments);
+  };
+})();
+
+// System Tray - Instant Reactive & Optimistic XAMPP Control Panel Logic
+
+let activeSection = 'services'; // 'services' | 'autostart'
+let allServices = [];
+let allAutostartApps = [];
+let installedAppsList = [];
+let currentFilter = 'favorites';
+let searchQuery = '';
+let selectedServiceForLogs = '';
+let isFetching = false;
+let detailsCache = {};
+let pendingActions = new Set();
+
+// DOM Elements
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+const servicesTbody = document.getElementById('services-tbody');
+const totalCount = document.getElementById('total-count');
+const btnRefresh = document.getElementById('btn-refresh');
+const refreshIcon = document.getElementById('refresh-icon');
+const btnStopAllDev = document.getElementById('btn-stop-all-dev');
+const toastContainer = document.getElementById('toast-container');
+const xamppConsole = document.getElementById('xampp-console');
+
+const navBtnServices = document.getElementById('nav-btn-services');
+const navBtnAutostart = document.getElementById('nav-btn-autostart');
+const sectionServices = document.getElementById('section-services');
+const sectionAutostart = document.getElementById('section-autostart');
+const badgeAutostartCount = document.getElementById('badge-autostart-count');
+const autostartTbody = document.getElementById('autostart-tbody');
+
+// Stats Elements
+const statActive = document.getElementById('stat-active');
+const statRam = document.getElementById('stat-ram');
+const sidebarBoot = document.getElementById('sidebar-boot');
+const sidebarRam = document.getElementById('sidebar-ram');
+
+// Modal Elements
+const modalLogs = document.getElementById('modal-logs');
+const modalServiceName = document.getElementById('modal-service-name');
+const modalLogsContent = document.getElementById('modal-logs-content');
+const modalLogLines = document.getElementById('modal-log-lines');
+const modalLogRefresh = document.getElementById('modal-log-refresh');
+const modalLogClose = document.getElementById('modal-log-close');
+const modalLogCloseBtn = document.getElementById('modal-log-close-btn');
+
+const modalAddApp = document.getElementById('modal-add-app');
+const modalAppSelect = document.getElementById('modal-app-select');
+const modalAppName = document.getElementById('modal-app-name');
+const modalAppExec = document.getElementById('modal-app-exec');
+const modalAppComment = document.getElementById('modal-app-comment');
+
+// --- REAL-TIME XAMPP CONSOLE ---
+function logToConsole(tag, message, type = 'info') {
+  const time = new Date().toLocaleTimeString('pt-BR');
+  const typeColors = {
+    info: 'text-slate-300',
+    success: 'text-emerald-400',
+    error: 'text-rose-400',
+    warn: 'text-amber-400',
+    system: 'text-sky-400'
+  };
+  const color = typeColors[type] || 'text-slate-300';
+  
+  const line = document.createElement('div');
+  line.className = 'py-0.5';
+  line.innerHTML = `<span class="text-slate-500">${time}</span> <span class="font-bold text-orange-400">[${tag}]</span> <span class="${color}">${message}</span>`;
+  
+  xamppConsole.appendChild(line);
+  xamppConsole.scrollTop = xamppConsole.scrollHeight;
+}
+
+function clearConsole() {
+  xamppConsole.innerHTML = '';
+  logToConsole('main', 'Console limpo.', 'system');
+}
+
+// --- TOAST NOTIFICATIONS ---
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  const borders = {
+    success: 'border-emerald-600/50 bg-[#141b16] text-emerald-300',
+    error: 'border-rose-600/50 bg-[#221618] text-rose-300',
+    info: 'border-[#3b4252] bg-[#181b20] text-slate-200',
+    warning: 'border-amber-600/50 bg-[#221d14] text-amber-300'
+  };
+  const icons = {
+    success: '<i class="fa-solid fa-check text-emerald-400"></i>',
+    error: '<i class="fa-solid fa-xmark text-rose-400"></i>',
+    info: '<i class="fa-solid fa-info text-blue-400"></i>',
+    warning: '<i class="fa-solid fa-triangle-exclamation text-amber-400"></i>'
+  };
+
+  toast.className = `flex items-center gap-3 p-3 rounded border shadow-xl text-xs font-medium transition-all duration-200 transform translate-y-2 opacity-0 pointer-events-auto ${borders[type] || borders.info}`;
+  toast.innerHTML = `
+    <div>${icons[type] || icons.info}</div>
+    <div class="flex-1 leading-snug">${message}</div>
+    <button class="text-slate-400 hover:text-white" onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+  `;
+
+  toastContainer.appendChild(toast);
+  setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => toast.remove(), 250);
+  }, 3500);
+}
+
+// --- SECTION SWITCHER ---
+function switchSection(section) {
+  activeSection = section;
+  if (section === 'services') {
+    navBtnServices.className = 'px-3.5 py-1.5 rounded bg-[#252a34] text-white border border-[#3b4252] transition flex items-center gap-2';
+    navBtnAutostart.className = 'px-3.5 py-1.5 rounded text-slate-400 hover:text-white transition flex items-center gap-2';
+    sectionServices.classList.remove('hidden');
+    sectionServices.classList.add('flex');
+    sectionAutostart.classList.add('hidden');
+    sectionAutostart.classList.remove('flex');
+    renderServicesTable();
+  } else {
+    navBtnAutostart.className = 'px-3.5 py-1.5 rounded bg-[#252a34] text-white border border-[#3b4252] transition flex items-center gap-2';
+    navBtnServices.className = 'px-3.5 py-1.5 rounded text-slate-400 hover:text-white transition flex items-center gap-2';
+    sectionAutostart.classList.remove('hidden');
+    sectionAutostart.classList.add('flex');
+    sectionServices.classList.add('hidden');
+    sectionServices.classList.remove('flex');
+    fetchAutostartApps();
+  }
+}
+
+// --- FETCH DATA (WITH AUTO CACHE REFRESH) ---
+async function fetchServices(silent = false) {
+  if (isFetching) return;
+  isFetching = true;
+  if (!silent) refreshIcon.classList.add('animate-spin');
+
+  try {
+    const [servicesRes, statsRes, autostartRes] = await Promise.all([
+      fetch('/api/services?t=' + Date.now()),
+      fetch('/api/system/stats?t=' + Date.now()),
+      fetch('/api/autostart?t=' + Date.now())
+    ]);
+
+    const servicesData = await servicesRes.json();
+    const statsData = await statsRes.json();
+    const autostartData = await autostartRes.json();
+
+    if (servicesData.success) {
+      allServices = servicesData.services;
+      totalCount.innerText = servicesData.total;
+      if (activeSection === 'services') renderServicesTable();
+    }
+
+    if (statsData.success) {
+      const s = statsData.stats;
+      statActive.innerText = s.active;
+      statRam.innerText = `${s.dev_memory_mb} MB`;
+      if (sidebarBoot) sidebarBoot.innerText = s.boot_enabled;
+      if (sidebarRam) sidebarRam.innerText = `${s.dev_memory_mb} MB`;
+    }
+
+    if (autostartData.success) {
+      allAutostartApps = autostartData.apps;
+      badgeAutostartCount.innerText = allAutostartApps.filter(a => a.is_enabled).length;
+      if (activeSection === 'autostart') renderAutostartTable();
+    }
+  } catch (err) {
+    if (!silent) {
+      showToast("Erro ao conectar com o backend local.", "error");
+      logToConsole('error', 'Falha ao conectar com o servidor local.', 'error');
+    }
+  } finally {
+    isFetching = false;
+    refreshIcon.classList.remove('animate-spin');
+  }
+}
+
+// Fetch single service details (PID / RAM)
+async function fetchServiceDetails(serviceName) {
+  try {
+    const res = await fetch(`/api/service/details?name=${encodeURIComponent(serviceName)}&t=` + Date.now());
+    const data = await res.json();
+    if (data.success) {
+      detailsCache[serviceName] = data.details;
+      
+      const pidEl = document.getElementById(`pid-${serviceName}`);
+      if (pidEl) {
+        pidEl.innerText = data.details.pid > 0 ? data.details.pid : '-';
+        if (data.details.pid > 0) pidEl.classList.add('text-emerald-400', 'font-bold');
+      }
+
+      const rowEl = document.getElementById(`row-${serviceName}`);
+      if (rowEl && data.details.is_running) {
+        rowEl.classList.add('bg-emerald-950/10');
+      }
+    }
+  } catch (e) {}
+}
+
+// --- FILTER SERVICES ---
+function getFilteredServices() {
+  let list = allServices;
+
+  if (searchQuery.trim()) {
+    const q = searchQuery.toLowerCase().trim();
+    list = list.filter(s => 
+      s.name.toLowerCase().includes(q) || 
+      s.display_name.toLowerCase().includes(q) || 
+      s.description.toLowerCase().includes(q) ||
+      s.category.toLowerCase().includes(q)
+    );
+  }
+
+  if (currentFilter === 'favorites') {
+    list = list.filter(s => s.is_favorite);
+    if (list.length === 0 && !searchQuery.trim()) {
+      list = allServices.filter(s => s.is_dev);
+    }
+  } else if (currentFilter === 'dev') {
+    list = list.filter(s => s.is_dev);
+  } else if (currentFilter === 'active') {
+    list = list.filter(s => s.is_active);
+  } else if (currentFilter === 'inactive') {
+    list = list.filter(s => !s.is_active);
+  }
+
+  return list;
+}
+
+// --- RENDER XAMPP SERVICES TABLE ---
+function renderServicesTable() {
+  const filtered = getFilteredServices();
+
+  if (filtered.length === 0) {
+    servicesTbody.innerHTML = `
+      <tr>
+        <td colspan="7" class="py-10 text-center text-slate-500 font-sans">
+          <i class="fa-solid fa-filter text-lg mb-1"></i>
+          <p>Nenhum módulo encontrado com esse filtro.</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  servicesTbody.innerHTML = filtered.map(s => {
+    const isRunning = s.is_running;
+    const isActive = s.is_active;
+    const isBoot = s.is_boot_enabled;
+    const isFav = s.is_favorite;
+    const isPending = pendingActions.has(s.name);
+    const cached = detailsCache[s.name] || {};
+    const pid = cached.pid || s.pid || (isActive ? '...' : '-');
+    const port = s.port || '-';
+
+    return `
+      <tr id="row-${s.name}" class="hover:bg-[#202530] transition border-b border-[#2e3440] ${isActive ? 'bg-[#15231c]/40' : ''}">
+        
+        <!-- Column 1: Module Name -->
+        <td class="py-2.5 px-3">
+          <div class="flex items-center gap-2">
+            <button onclick="handleToggleFavorite('${s.name}')" title="${isFav ? 'Remover dos favoritos' : 'Favoritar módulo'}" class="text-xs ${isFav ? 'text-amber-400' : 'text-slate-600 hover:text-amber-400'}">
+              <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-star"></i>
+            </button>
+            <div>
+              <span class="font-bold text-white text-xs font-mono">${s.display_name}</span>
+              ${isActive ? '<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 ml-1.5" title="Rodando"></span>' : ''}
+            </div>
+          </div>
+        </td>
+
+        <!-- Column 2: PID -->
+        <td class="py-2.5 px-2 text-center font-mono text-xs text-slate-300">
+          <span id="pid-${s.name}" class="${isActive ? 'text-emerald-400 font-bold' : 'text-slate-500'}">${pid}</span>
+        </td>
+
+        <!-- Column 3: Port -->
+        <td class="py-2.5 px-2 text-center font-mono text-xs">
+          <span class="${port !== '-' ? 'text-orange-400 font-bold' : 'text-slate-500'}">${port}</span>
+        </td>
+
+        <!-- Column 4: Actions (Start / Stop) -->
+        <td class="py-2.5 px-3 text-center">
+          <div class="flex items-center justify-center gap-1">
+            ${isActive ? `
+              <button 
+                onclick="handleServiceAction('${s.name}', 'stop')" 
+                id="btn-act-${s.name}"
+                ${isPending ? 'disabled' : ''}
+                class="xampp-btn xampp-btn-stop py-1 px-3 rounded text-xs"
+              >
+                ${isPending ? '<i class="fa-solid fa-spinner animate-spin"></i>' : '<i class="fa-solid fa-stop text-[10px] mr-1"></i> Stop'}
+              </button>
+              <button 
+                onclick="handleServiceAction('${s.name}', 'restart')" 
+                title="Reiniciar módulo"
+                class="xampp-btn py-1 px-2 rounded text-xs text-slate-300 hover:text-white"
+              >
+                <i class="fa-solid fa-rotate text-[10px]"></i>
+              </button>
+            ` : `
+              <button 
+                onclick="handleServiceAction('${s.name}', 'start')" 
+                id="btn-act-${s.name}"
+                ${isPending ? 'disabled' : ''}
+                class="xampp-btn xampp-btn-start py-1 px-4 rounded text-xs"
+              >
+                ${isPending ? '<i class="fa-solid fa-spinner animate-spin"></i>' : '<i class="fa-solid fa-play text-[10px] mr-1"></i> Start'}
+              </button>
+            `}
+          </div>
+        </td>
+
+        <!-- Column 5: DEDICATED PROMINENT BOOT BUTTON (Ligar no Boot) -->
+        <td class="py-2.5 px-3 text-center">
+          <button 
+            onclick="handleToggleBoot('${s.name}', ${!isBoot})"
+            class="px-2.5 py-1 rounded text-xs font-mono font-bold transition flex items-center justify-center gap-1.5 w-full mx-auto shadow-sm ${
+              isBoot 
+                ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40' 
+                : 'bg-[#252a34] hover:bg-[#2e3440] text-slate-400 hover:text-white border border-[#3b4252]'
+            }"
+            title="${isBoot ? 'Inicia ao ligar o computador (Clique para DESATIVAR e economizar RAM)' : 'NÃO inicia ao ligar o PC (Clique para ATIVAR)'}"
+          >
+            <i class="fa-solid ${isBoot ? 'fa-toggle-on text-amber-400' : 'fa-toggle-off text-slate-500'} text-xs"></i>
+            <span>${isBoot ? 'ON (No Boot)' : 'OFF (Desativado)'}</span>
+          </button>
+        </td>
+
+        <!-- Column 6: Logs -->
+        <td class="py-2.5 px-2 text-center">
+          <button 
+            onclick="openLogsModal('${s.name}')" 
+            class="xampp-btn py-1 px-2 rounded text-xs text-slate-300 hover:text-white"
+            title="Ver logs do módulo"
+          >
+            <i class="fa-solid fa-file-lines text-[10px] mr-1"></i> Logs
+          </button>
+        </td>
+
+        <!-- Column 7: Description in Portuguese -->
+        <td class="py-2.5 px-4">
+          <p class="text-[12px] text-slate-300 leading-snug" title="${s.description}">
+            ${s.description || '-'}
+          </p>
+        </td>
+
+      </tr>
+    `;
+  }).join('');
+
+  filtered.forEach(s => {
+    if (s.is_active) fetchServiceDetails(s.name);
+  });
+}
+
+// --- AUTOSTART APPS TABLE ---
+async function fetchAutostartApps() {
+  try {
+    const res = await fetch('/api/autostart?t=' + Date.now());
+    const data = await res.json();
+    if (data.success) {
+      allAutostartApps = data.apps;
+      badgeAutostartCount.innerText = allAutostartApps.filter(a => a.is_enabled).length;
+      renderAutostartTable();
+    }
+  } catch (e) {
+    showToast('Erro ao carregar aplicativos de inicialização.', 'error');
+  }
+}
+
+function renderAutostartTable() {
+  if (allAutostartApps.length === 0) {
+    autostartTbody.innerHTML = `
+      <tr>
+        <td colspan="6" class="py-10 text-center text-slate-500">
+          <i class="fa-solid fa-rocket text-xl text-slate-600 mb-1"></i>
+          <p class="font-semibold text-slate-400">Nenhum aplicativo configurado para autostart</p>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  autostartTbody.innerHTML = allAutostartApps.map(app => {
+    const isEnabled = app.is_enabled;
+    const isUser = app.is_user;
+
+    return `
+      <tr class="hover:bg-[#202530] transition border-b border-[#2e3440]">
+        <td class="py-2.5 px-4 text-center">
+          <div class="w-7 h-7 rounded bg-[#111317] border border-[#2e3440] flex items-center justify-center text-orange-400 text-xs">
+            <i class="fa-solid fa-cube"></i>
+          </div>
+        </td>
+        <td class="py-2.5 px-4">
+          <div class="font-bold text-white text-xs">${app.name}</div>
+          <p class="text-[11px] text-slate-400">${app.comment || 'Aplicativo de usuário'}</p>
+        </td>
+        <td class="py-2.5 px-4 font-mono text-[11px] text-slate-300 max-w-xs truncate" title="${app.exec}">
+          ${app.exec}
+        </td>
+        <td class="py-2.5 px-4">
+          <span class="px-2 py-0.5 rounded text-[10px] ${isUser ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'}">
+            ${isUser ? 'Usuário' : 'Sistema'}
+          </span>
+        </td>
+        <td class="py-2.5 px-4 text-center">
+          <button 
+            onclick="handleToggleAutostart('${app.filename}', ${!isEnabled})"
+            class="px-2.5 py-1 rounded text-xs font-mono font-bold transition flex items-center justify-center gap-1.5 mx-auto ${
+              isEnabled 
+                ? 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40' 
+                : 'bg-[#252a34] hover:bg-[#2e3440] text-slate-400 hover:text-white border border-[#3b4252]'
+            }"
+          >
+            <span class="w-2 h-2 rounded-full ${isEnabled ? 'bg-emerald-400' : 'bg-slate-500'}"></span>
+            <span>${isEnabled ? 'ATIVO NO LOGIN' : 'DESATIVADO'}</span>
+          </button>
+        </td>
+        <td class="py-2.5 px-4 text-right">
+          <button onclick="handleDeleteAutostart('${app.filename}', '${app.name}')" title="Remover da inicialização" class="xampp-btn py-1 px-2.5 rounded text-rose-400 hover:text-rose-300">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+// --- OPTIMISTIC & INSTANT ACTIONS ---
+
+// 1. INSTANT FAVORITE TOGGLE (NO F5 NEEDED)
+async function handleToggleFavorite(serviceName) {
+  const s = allServices.find(x => x.name === serviceName || x.display_name === serviceName);
+  if (s) {
+    s.is_favorite = !s.is_favorite;
+    logToConsole('main', `${s.display_name} ${s.is_favorite ? 'adicionado aos favoritos ⭐' : 'removido dos favoritos'}.`, 'info');
+    renderServicesTable(); // Instant UI update!
+  }
+
+  try {
+    const res = await fetch('/api/service/favorite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: serviceName })
+    });
+    const data = await res.json();
+    if (data.success && s) {
+      s.is_favorite = data.is_favorite;
+      renderServicesTable();
+    }
+  } catch (e) {
+    if (s) {
+      s.is_favorite = !s.is_favorite; // Revert on network failure
+      renderServicesTable();
+    }
+  }
+}
+
+// 2. INSTANT BOOT TOGGLE (NO F5 NEEDED)
+async function handleToggleBoot(serviceName, shouldEnable) {
+  const s = allServices.find(x => x.name === serviceName);
+  const prevBoot = s ? s.is_boot_enabled : !shouldEnable;
+
+  // Optimistic instant visual update
+  if (s) {
+    s.is_boot_enabled = shouldEnable;
+    s.boot_state = shouldEnable ? 'enabled' : 'disabled';
+    renderServicesTable(); // Update instantly on click!
+  }
+
+  const action = shouldEnable ? 'enable' : 'disable';
+  logToConsole('boot', `Configurando boot de ${serviceName} para: ${action.toUpperCase()}...`, 'warn');
+
+  try {
+    const res = await fetch('/api/service/action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: serviceName, action: action })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      const msg = shouldEnable 
+        ? `${serviceName} configurado para INICIAR COM O PC (Boot ATIVO).` 
+        : `${serviceName} DESATIVADO DO BOOT (Economizando 100% de RAM ao ligar o PC).`;
+      logToConsole('boot', msg, 'success');
+      showToast(msg, 'success');
+      
+      if (s && data.details) {
+        s.is_boot_enabled = data.details.is_boot_enabled;
+        s.boot_state = data.details.boot_state;
+        renderServicesTable();
+      }
+    } else {
+      if (s) {
+        s.is_boot_enabled = prevBoot;
+        s.boot_state = prevBoot ? 'enabled' : 'disabled';
+        renderServicesTable();
+      }
+      logToConsole('error', `Erro ao alterar boot de ${serviceName}: ${data.message}`, 'error');
+      showToast(`Erro ao alterar boot: ${data.message}`, 'error');
+    }
+  } catch (e) {
+    if (s) {
+      s.is_boot_enabled = prevBoot;
+      renderServicesTable();
+    }
+  }
+}
+
+// 3. INSTANT SERVICE START/STOP (NO F5 NEEDED)
+async function handleServiceAction(serviceName, action) {
+  const s = allServices.find(x => x.name === serviceName);
+  const prevActive = s ? s.is_active : false;
+
+  pendingActions.add(serviceName);
+  
+  // Optimistic immediate visual state update
+  if (s) {
+    if (action === 'start') {
+      s.is_active = true;
+      s.is_running = true;
+    } else if (action === 'stop') {
+      s.is_active = false;
+      s.is_running = false;
+      s.pid = 0;
+      if (detailsCache[serviceName]) detailsCache[serviceName].pid = 0;
+    }
+  }
+  
+  logToConsole('action', `Executando comando '${action}' em ${serviceName}...`, 'warn');
+  renderServicesTable(); // Instant UI update!
+
+  try {
+    const res = await fetch('/api/service/action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ service: serviceName, action: action })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      logToConsole('systemd', `${serviceName}: ${action.toUpperCase()} finalizado com sucesso.`, 'success');
+      showToast(`${serviceName}: ${action} executado com sucesso.`, 'success');
+      
+      if (s && data.details) {
+        s.is_active = data.details.is_active;
+        s.is_running = data.details.is_running;
+        s.pid = data.details.pid;
+        detailsCache[serviceName] = data.details;
+      }
+    } else {
+      if (s) {
+        s.is_active = prevActive;
+        s.is_running = prevActive;
+      }
+      logToConsole('error', `Falha ao executar ${action} em ${serviceName}: ${data.message || data.error}`, 'error');
+      showToast(`Erro ao executar ${action} em ${serviceName}: ${data.message || data.error}`, 'error');
+    }
+  } catch (err) {
+    if (s) s.is_active = prevActive;
+    logToConsole('error', `Erro de comunicação na ação '${action}'.`, 'error');
+  } finally {
+    pendingActions.delete(serviceName);
+    renderServicesTable();
+    // Refresh stats in background
+    fetch('/api/system/stats?t=' + Date.now()).then(r => r.json()).then(st => {
+      if (st.success) {
+        statActive.innerText = st.stats.active;
+        statRam.innerText = `${st.stats.dev_memory_mb} MB`;
+        if (sidebarRam) sidebarRam.innerText = `${st.stats.dev_memory_mb} MB`;
+      }
+    }).catch(()=>{});
+  }
+}
+
+// 4. INSTANT AUTOSTART TOGGLE (NO F5 NEEDED)
+async function handleToggleAutostart(filename, enabled) {
+  const app = allAutostartApps.find(x => x.filename === filename);
+  if (app) {
+    app.is_enabled = enabled;
+    badgeAutostartCount.innerText = allAutostartApps.filter(a => a.is_enabled).length;
+    renderAutostartTable(); // Instant UI update!
+  }
+
+  try {
+    const res = await fetch('/api/autostart/toggle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: filename, enabled: enabled })
+    });
+    const data = await res.json();
+    if (data.success) {
+      logToConsole('autostart', `Aplicativo ${filename} ${enabled ? 'ativado no login' : 'desativado'}.`, 'success');
+      showToast(enabled ? `Aplicativo ativado no autostart.` : `Aplicativo desativado do autostart.`, 'success');
+    }
+  } catch (e) {}
+}
+
+async function handleDeleteAutostart(filename, name) {
+  if (!confirm(`Remover "${name}" da inicialização do sistema?`)) return;
+  
+  // Instant remove from table
+  allAutostartApps = allAutostartApps.filter(x => x.filename !== filename);
+  badgeAutostartCount.innerText = allAutostartApps.filter(a => a.is_enabled).length;
+  renderAutostartTable();
+
+  try {
+    const res = await fetch('/api/autostart/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: filename })
+    });
+    const data = await res.json();
+    if (data.success) {
+      logToConsole('autostart', `Aplicativo "${name}" removido da inicialização.`, 'warn');
+      showToast(`"${name}" removido com sucesso.`, 'success');
+    }
+  } catch (e) {}
+}
+
+async function startFavoriteServices() {
+  const favs = allServices.filter(s => s.is_favorite && !s.is_active);
+  if (favs.length === 0) {
+    showToast('Todos os módulos favoritos já estão em execução.', 'info');
+    return;
+  }
+  logToConsole('main', `Iniciando ${favs.length} módulos favoritos...`, 'warn');
+  for (const s of favs) {
+    await handleServiceAction(s.name, 'start');
+  }
+}
+
+async function stopAllDevServices() {
+  const runningDev = allServices.filter(s => s.is_active && (s.is_dev || s.is_favorite));
+  if (runningDev.length === 0) {
+    showToast('Nenhum módulo de desenvolvimento está em execução.', 'info');
+    return;
+  }
+  const names = runningDev.map(s => s.display_name).join(', ');
+  if (!confirm(`Parar ${runningDev.length} módulos de desenvolvimento (${names}) para liberar memória RAM?`)) return;
+
+  logToConsole('main', `Parando ${runningDev.length} módulos para liberar RAM...`, 'warn');
+  for (const s of runningDev) {
+    await handleServiceAction(s.name, 'stop');
+  }
+  logToConsole('main', 'Todos os módulos foram parados. Memória RAM liberada.', 'success');
+}
+
+// --- LOGS MODAL ---
+async function openLogsModal(serviceName) {
+  selectedServiceForLogs = serviceName;
+  modalServiceName.innerText = serviceName;
+  modalLogsContent.innerText = 'Carregando logs do journalctl...';
+  modalLogs.classList.remove('hidden');
+  modalLogs.classList.add('flex');
+  await refreshLogs();
+}
+
+async function refreshLogs() {
+  if (!selectedServiceForLogs) return;
+  const lines = modalLogLines.value || 50;
+  try {
+    const res = await fetch(`/api/service/logs?name=${encodeURIComponent(selectedServiceForLogs)}&lines=${lines}&t=` + Date.now());
+    const data = await res.json();
+    if (data.success) {
+      modalLogsContent.innerText = data.logs || '(Sem logs recentes registrados)';
+      modalLogsContent.scrollTop = modalLogsContent.scrollHeight;
+    } else {
+      modalLogsContent.innerText = `Erro ao ler logs: ${data.error}`;
+    }
+  } catch (e) {}
+}
+
+function closeLogsModal() {
+  modalLogs.classList.add('hidden');
+  modalLogs.classList.remove('flex');
+  selectedServiceForLogs = '';
+}
+
+// --- ADD APP MODAL ---
+async function openAddAppModal() {
+  modalAddApp.classList.remove('hidden');
+  modalAddApp.classList.add('flex');
+  modalAppName.value = '';
+  modalAppExec.value = '';
+  modalAppComment.value = '';
+
+  if (installedAppsList.length === 0) {
+    try {
+      const res = await fetch('/api/system/installed-apps?t=' + Date.now());
+      const data = await res.json();
+      if (data.success) {
+        installedAppsList = data.apps;
+        modalAppSelect.innerHTML = '<option value="">-- Selecione um aplicativo instalado --</option>' +
+          installedAppsList.map((a, i) => `<option value="${i}">${a.name} (${a.exec})</option>`).join('');
+      }
+    } catch (e) {}
+  }
+}
+
+function handleAppSelectChange(index) {
+  if (index === '') return;
+  const app = installedAppsList[parseInt(index)];
+  if (app) {
+    modalAppName.value = app.name;
+    modalAppExec.value = app.exec;
+    modalAppComment.value = app.comment || `Iniciar ${app.name} automaticamente`;
+  }
+}
+
+function closeAddAppModal() {
+  modalAddApp.classList.add('hidden');
+  modalAddApp.classList.remove('flex');
+}
+
+async function submitAddApp() {
+  const name = modalAppName.value.trim();
+  const execCmd = modalAppExec.value.trim();
+  const comment = modalAppComment.value.trim();
+
+  if (!name || !execCmd) {
+    showToast('Nome e Comando são obrigatórios.', 'warning');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/autostart/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, exec: execCmd, comment: comment })
+    });
+    const data = await res.json();
+    if (data.success) {
+      logToConsole('autostart', `Aplicativo "${name}" adicionado à inicialização.`, 'success');
+      showToast(`"${name}" adicionado com sucesso!`, 'success');
+      closeAddAppModal();
+      await fetchAutostartApps();
+    }
+  } catch (e) {}
+}
+
+function openNetstatModal() {
+  alert("Portas ativas e conexões podem ser visualizadas na coluna 'Porta' de cada serviço.");
+}
+
+function openConfigInfoModal() {
+  alert("System Tray Control Panel (XAMPP Edition)\n\nGerenciador dinâmico de serviços systemd e autostart de aplicativos para Linux.\nDesenvolvido com foco em alta produtividade e zero consumo de RAM no boot.");
+}
+
+// --- INITIALIZATION ---
+document.addEventListener('DOMContentLoaded', () => {
+  logToConsole('main', 'System Tray Control Panel (XAMPP Edition) inicializado.', 'system');
+  logToConsole('systemd', 'Varrendo serviços instalados no computador...', 'info');
+
+  fetchServices().then(() => {
+    logToConsole('systemd', `${allServices.length} serviços detectados dinamicamente via systemd.`, 'success');
+  });
+
+  setInterval(() => fetchServices(true), 5000);
+
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    if (searchQuery) searchClear.classList.remove('hidden');
+    else searchClear.classList.add('hidden');
+    renderServicesTable();
+  });
+
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    searchClear.classList.add('hidden');
+    renderServicesTable();
+  });
+
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        t.className = 'filter-tab px-3 py-1 rounded font-medium transition text-slate-400 hover:text-white';
+      });
+      tab.className = 'filter-tab px-3 py-1 rounded font-semibold transition bg-orange-600 text-white';
+      currentFilter = tab.getAttribute('data-filter');
+      renderServicesTable();
+    });
+  });
+
+  btnRefresh.addEventListener('click', () => {
+    logToConsole('main', 'Atualizando lista de serviços...', 'info');
+    fetchServices(false);
+  });
+
+  btnStopAllDev.addEventListener('click', stopAllDevServices);
+
+  modalLogClose.addEventListener('click', closeLogsModal);
+  modalLogCloseBtn.addEventListener('click', closeLogsModal);
+  modalLogRefresh.addEventListener('click', refreshLogs);
+  modalLogLines.addEventListener('change', refreshLogs);
+  modalLogs.addEventListener('click', (e) => {
+    if (e.target === modalLogs) closeLogsModal();
+  });
+
+  modalAddApp.addEventListener('click', (e) => {
+    if (e.target === modalAddApp) closeAddAppModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput && activeSection === 'services') {
+      e.preventDefault();
+      searchInput.focus();
+    } else if (e.key === 'Escape') {
+      if (!modalLogs.classList.contains('hidden')) closeLogsModal();
+      if (!modalAddApp.classList.contains('hidden')) closeAddAppModal();
+    }
+  });
+});
+</script>
+</body>
+</html>
