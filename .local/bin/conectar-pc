@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# Painel de controle do PC de Mesa
+PC_IP="100.93.84.79"
+REMMINA_PROFILE="$HOME/.local/share/remmina/pc_de_mesa.remmina"
+
+check_status() {
+    if ping -c 1 -W 1 "$PC_IP" >/dev/null 2>&1; then
+        echo -e "\033[1;32mONLINE\033[0m ($PC_IP via Tailscale)"
+    else
+        echo -e "\033[1;31mOFFLINE\033[0m"
+    fi
+}
+
+while true; do
+    clear
+    echo "=============================================="
+    echo "         PAINEL DO PC DE MESA"
+    echo "=============================================="
+    echo -n "Status atual: "
+    check_status
+    echo "----------------------------------------------"
+    echo " 1) Ligar o PC (Wake-on-LAN via rk322x-box)"
+    echo " 2) Ver a Tela do PC (Remmina / RDP)"
+    echo " 3) Reiniciar no Windows (via GRUB)"
+    echo " 4) Desligar o PC (Poweroff)"
+    echo " 5) Abrir Terminal SSH no PC"
+    echo " 0) Sair"
+    echo "=============================================="
+    read -rp "Escolha uma opção: " opt
+
+    case "$opt" in
+        1)
+            echo "Enviando comando para acordar o PC..."
+            "$HOME/.local/bin/ligar-pc"
+            echo "Aguarde 20 a 30 segundos para o boot completar."
+            read -rp "Pressione Enter para continuar..."
+            ;;
+        2)
+            echo "Abrindo conexão de tela (Remmina)..."
+            if [ -f "$REMMINA_PROFILE" ]; then
+                remmina -c "$REMMINA_PROFILE" >/dev/null 2>&1 &
+            else
+                remmina >/dev/null 2>&1 &
+            fi
+            sleep 1
+            ;;
+        3)
+            echo "Enviando ordem para alternar para o Windows..."
+            ssh -o ConnectTimeout=5 "vinicius@$PC_IP" "sudo grub-reboot 'osprober-efi-B036-1041' && sudo reboot"
+            echo "O PC está reiniciando no Windows. Conecte pelo Remmina em 40 segundos."
+            read -rp "Pressione Enter para continuar..."
+            ;;
+        4)
+            echo "Desligando o PC..."
+            ssh -o ConnectTimeout=5 "vinicius@$PC_IP" "sudo poweroff"
+            read -rp "Pressione Enter para continuar..."
+            ;;
+        5)
+            ssh "vinicius@$PC_IP"
+            ;;
+        0)
+            exit 0
+            ;;
+        *)
+            echo "Opção inválida!"
+            sleep 1
+            ;;
+    esac
+done

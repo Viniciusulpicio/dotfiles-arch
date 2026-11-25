@@ -321,8 +321,8 @@ show-sidebar=false
 sidebar-page='thumbnails'
 sizing-mode='free'
 text-color='blue'
-window-maximized=false
-zoom=0.82138674433948655
+window-maximized=true
+zoom=1.5946638086432927
 
 [papers/previewer]
 
@@ -334,6 +334,9 @@ last-folder-path='/home/vinicius/temp/graduacao-bcc/termo-02/poo-php'
 
 [portal/filechooser/com.google.Chrome]
 last-folder-path='/home/vinicius/Downloads'
+
+[portal/filechooser/com.microsoft.VSCode]
+last-folder-path='/home/vinicius/temp/graduacao-bcc/termo-02/poo-php/cafeteria'
 
 [portal/filechooser/curseforge]
 last-folder-path='/home/vinicius/Downloads/drive-download-20251119T004244Z-1-001'
@@ -500,7 +503,7 @@ enable-fullscreen=false
 enable-mpris=false
 indicator-position=0
 indicator-position-index=0
-indicator-position-max=4
+indicator-position-max=5
 restore-state=true
 show-indicator='always'
 user-enabled=true
@@ -728,9 +731,9 @@ locations=[<(uint32 2, <('São Paulo', 'SBMT', true, [(-0.41044326824509736, -0.
 locations=@av []
 
 [software]
-check-timestamp=int64 1795030221
+check-timestamp=int64 1795621130
 first-run=false
-flatpak-purge-timestamp=int64 1795454731
+flatpak-purge-timestamp=int64 1795624458
 
 [system/location]
 enabled=true
