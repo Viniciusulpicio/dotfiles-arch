@@ -333,10 +333,13 @@ chmod +x "$REPO_DIR/install.sh" "$REPO_DIR/backup_rice.sh" "$REPO_DIR/sync_rice.
 git add -A
 
 if git diff --staged --quiet; then
-    echo "✨ Nenhuma alteração detectada. Repositório já está 100% atualizado!"
+    echo "✨ Nenhuma alteração detectada localmente."
+    git pull --rebase origin main 2>/dev/null || true
+    echo "✨ Repositório já está 100% atualizado!"
 else
     git commit -m "Rice Completo: Backup de todas as configurações, extensões, temas e dotfiles ($DATE)"
     echo "📤 Enviando alterações para o GitHub..."
+    git pull --rebase origin main || git pull origin main || true
     git push origin main
     echo "✅ Rice e dotfiles enviados para o GitHub com sucesso!"
 fi
