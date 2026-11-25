@@ -9,7 +9,6 @@ default-zoom-level='small'
 [preferences]
 default-folder-viewer='icon-view'
 migrated-gtk-settings=true
-show-image-thumbnails='local-only'
 
 [window-state]
 maximized=false
