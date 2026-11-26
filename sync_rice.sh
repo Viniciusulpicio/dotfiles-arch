@@ -67,6 +67,9 @@ INSTALLED_PKGS=$(pacman -Qq 2>/dev/null || true)
 if [ -f "$SCRIPT_DIR/pkg-lists/aur_packages.txt" ] && command -v yay &>/dev/null; then
     while read -r pkg; do
         [[ -z "$pkg" || "$pkg" =~ ^# || "$pkg" =~ -debug$ ]] && continue
+        if [ "$pkg" = "yay" ] && command -v yay &>/dev/null; then
+            continue
+        fi
         if [ "$HAS_NVIDIA" = false ] && echo "$pkg" | grep -qE '^(nvidia|cuda|cudnn)'; then
             continue
         fi
